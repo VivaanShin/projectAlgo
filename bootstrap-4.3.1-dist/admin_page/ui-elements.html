@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>알Go뽑자 어드민페이지</title>
+    <!-- Bootstrap Styles-->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="js/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">알Go뽑자 관리자 대쉬보드</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                
+
+
+                <!--
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+            
+                </li>
+                -->
+
+        
+            </ul>
+        </nav>
+
+
+
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="admin.html"><i class="fa fa-dashboard"></i> 회원 정보</a>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="ui-elements.html"><i class="fa fa-desktop"></i>정치인 정보 </a>
+                    </li>
+
+                    <li>
+                        <a href="grade_user.html"><i class="fa fa-sitemap"></i>평점 관리<!--span class="fa arrow"></span--></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="grade_user.html">유저 평점 관리</a>
+                            </li>
+
+                            <li>
+                                <a href="grade_candidate.html">정치인 평점 관리</a>
+                            </li>
+              
+
+                        </ul>
+                    </li>
+					
+                </ul>
+
+            </div>
+
+        </nav>
+
+
+
+
+
+
+
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            정치인관리 <small>대쉬보드</small>
+                        </h1>
+                    </div>
+                </div>
+				
+				
+                <!-- /. ROW  -->
+
+                <div class="row">
+                   
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                정치인관리 
+                            </div> 
+
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>번호</th>
+                                                <th>이름</th>
+                                                <th>생년월일</th>
+                                                <th>소속정당</th>
+                                                <th>선거구명</th>
+                                                <th>직업</th>
+                                                <th>병역여부</th>
+                                                <th>관리</th>
+        
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>A</td>
+                                                <td>19XX.XX.XX</td>
+                                                <td>A당</td>
+                                                <td>XX구</td>
+                                                <td>선생님</td>
+                                                <td><input type="text" readonly=""value="false"></td>
+                                                
+                                                <td> <button>수정</button><button>삭제</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>B</td>
+                                                <td>19XX.XX.XX</td>
+                                                <td>B당</td>
+                                                <td>XX구</td>
+                                                <td>변호사</td>
+                                                <td>true</td>
+                                                <td> <button>수정</button><button>삭제</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>C</td>
+                                                <td>19XX.XX.XX</td>
+                                                <td>C당</td>
+                                                <td>XX구</td>
+                                                <td>국제정치가</td>
+                                                <td>false</td>
+                                                <td> <button>수정</button><button>삭제</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>D</td>
+                                                <td>19XX.XX.XX</td>
+                                                <td>D당</td>
+                                                <td>XX구</td>
+                                                       <td>교수</td>
+                                                <td>false</td>
+                                                <td> <button>수정</button><button>삭제</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>E</td>
+                                                <td>19XX.XX.XX</td>
+                                                <td>E당</td>
+                                                <td>XX구</td>
+                                                       <td>교수</td>
+                                                <td>false</td>
+                                                <td> <button>수정</button><button>삭제</button></td>
+                                            </tr>
+                                            <tr>
+                                               <td><input type="text" value=""></td>
+                                               <td><input type="text" value=""></td>
+                                               <td><input type="text" value=""></td>
+                                               <td><input type="text" value=""></td>
+                                               <td><input type="text" value=""></td>
+                                               <td><input type="text" value=""></td>
+                                               <td><input type="text" value=""></td>
+
+                            
+
+
+                                                <td> <button>정치인 추가</button></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+				<footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+	 
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+	
+	
+	<script src="assets/js/easypiechart.js"></script>
+	<script src="assets/js/easypiechart-data.js"></script>
+	
+	
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>
