@@ -45,10 +45,10 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
             
             with self.conn.cursor() as insert_curs:
                 for committee_info in soup.findAll('item'):
+                    committeecode=committee_info.find('committeecode').text
+                    committeename=committee_info.find('committeename').text
                     if not committee_info.committee_code.string == '전체 ': #전체 값은 제외
-                        print(committee_info)
-                        insert_curs.execute(self.INSERT_SQL,(committee_info.committeecode.string,
-                                           committee_info.committename.string))
+                        insert_curs.execute(self.INSERT_SQL,(committeecode,committeename))
             
             self.conn.commit();        
            
