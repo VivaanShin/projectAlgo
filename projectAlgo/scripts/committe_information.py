@@ -14,14 +14,8 @@ from urllib.error import URLError,HTTPError
 class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클래스
     OPEN_APL_URL='http://apis.data.go.kr/9710000/BillInfoService2/getCommitPetitionList?&ServiceKey='
     SERVICE_KEY=''
-    INSERT_SQL="""insert into tb_committee_info (committeeCode,committeen)
-                    SELECT '%s','%s' from dual
-                    where not exists
-                    (
-                        select *
-                        from tb_
-                        where committeeCode=%s 
-                    )
+    INSERT_SQL="""insert into tb_committee_info (committeeCode,committeen) 
+                  values(%s,%s)
                     """
     #후에 DB 정의되면 맞게 변경
     def __init__(self):
@@ -47,7 +41,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
                     if not commit_count==1: #전체 값은 제외
                         committeeCode=committee_info.find('committeecode').get_text()
                         committeename=committee_info.find('committeename').get_text()
-                        insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename,committeeCode))
+                        insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename))
                         
                         commit_count+=1
             self.conn.commit();        
