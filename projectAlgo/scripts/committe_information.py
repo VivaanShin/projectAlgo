@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue May 12 00:04:36 2020
-
 @author: User
 """
 
 import sys
 import pymysql
-import requests
+import urllib.request
 import urllib.parse
 from bs4 import BeautifulSoup
 from urllib.error import URLError,HTTPError
@@ -40,15 +39,14 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
     
     def get_store_committee_info(self): 
         try:
-            res=requests.get(self.url).text
-            soup=BeautifulSoup(res,'lxml')
+            res=urllib.request.urlopen(self.url).read().decode()
+            soup=BeautifulSoup(res,'html.parser')
             
             with self.conn.cursor() as insert_curs:
                 for committee_info in soup.findAll('item'):
-                    committeecode=committee_info.find('committeecode').text
-                    committeename=committee_info.find('committeename').text
-                    if not committee_info.committee_code.string == '전체 ': #전체 값은 제외
-                        insert_curs.execute(self.INSERT_SQL,(committeecode,committeename))
+                    if not committee_info.committee_code == '전체': #전체 값은 제외
+                        insert_curs.execute(self.INSERT_SQL,(committee_info.committeeCode.string,
+                                           committee_info.committeName))
             
             self.conn.commit();        
            
@@ -65,7 +63,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
             
     def print_committee(self): #입법 정보 xml 확인용 출력함
         try:
-            res=urllib.request.urlopen(self.url).read()
+            res=urllib.request.urlopen(self.url).read().decode()
             print(res)
         except Exception as e: #HTTP 에러
             print('출력 실패:',e)
