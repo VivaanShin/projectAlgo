@@ -40,15 +40,15 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
     def get_store_committee_info(self): 
         try:
             res=urllib.request.urlopen(self.url).read().decode()
-            print(res)
             soup=BeautifulSoup(res,'html.parser')
             
             with self.conn.cursor() as insert_curs:
                 for committee_info in soup.findAll('item'):
-                    if not committee_info.committee_code == '전체': #전체 값은 제외
-                        insert_curs.execute(self.INSERT_SQL,(committee_info.committeecode.string,
-                                           committee_info.committename.string))
-            
+                    if not committee_info.committee_code == '전체 ': #전체 값은 제외
+                        committeeCode=committee_info.find('committeecode').get_text()
+                        committeename=committee_info.find('committeename').get_text()
+                        insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename,committeeCode))
+                                            
             self.conn.commit();        
            
         except HTTPError as e: #HTTP 에러
