@@ -64,7 +64,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
             
     def print_committee(self): #입법 정보 xml 확인용 출력함
         try:
-            res=urllib.request.urlopen(self.committee_url).read()
+            res=urllib.request.urlopen(self.url).read()
             print(res)
         except Exception as e: #HTTP 에러
             print('출력 실패:',e)
