@@ -41,7 +41,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
     def get_store_committee_info(self): 
         try:
             res=requests.get(self.url).text
-            soup=BeautifulSoup(res,'html.parser')
+            soup=BeautifulSoup(res,'lxml')
             
             with self.conn.cursor() as insert_curs:
                 for committee_info in soup.findAll('item'):
