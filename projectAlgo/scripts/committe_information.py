@@ -41,9 +41,11 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
                     if not commit_count==1: #전체 값은 제외
                         committeeCode=committee_info.find('committeecode').get_text()
                         committeename=committee_info.find('committeename').get_text()
-                        print(insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename)))
-                        
-                        commit_count+=1
+                        print(committeeCode)
+                        print(committeename)
+                        insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename))
+                    
+                    commit_count+=1
             self.conn.commit();        
            
         except HTTPError as e: #HTTP 에러
