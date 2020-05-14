@@ -38,9 +38,9 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
             print('DB connection 실패')
             sys.exit(-1)
     
-    def get_store_committee_info(self): #의안 정보 저장시 소관위 정보 저장 및 사용을 위해 리스트를 먼저 만드는 함수 DB Select로 변경 
+    def get_store_committee_info(self): 
         try:
-            res=urllib.request.urlopen(self.committee_url).read()
+            res=urllib.request.urlopen(self.url).read()
             soup=BeautifulSoup(res,'html.parser')
             
             with self.conn.cursor() as insert_curs:
