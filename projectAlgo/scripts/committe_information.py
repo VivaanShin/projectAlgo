@@ -40,6 +40,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
     def get_store_committee_info(self): 
         try:
             res=urllib.request.urlopen(self.url).read().decode()
+            print(res)
             soup=BeautifulSoup(res,'html.parser')
             
             with self.conn.cursor() as insert_curs:
