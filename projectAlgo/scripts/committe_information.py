@@ -41,14 +41,15 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
         try:
             res=urllib.request.urlopen(self.url).read().decode()
             soup=BeautifulSoup(res,'html.parser')
-            
+            commit_count=1
             with self.conn.cursor() as insert_curs:
                 for committee_info in soup.findAll('item'):
-                    if not committee_info.find('committeecode').get_text() == '전체 ': #전체 값은 제외
+                    if not commit_count==1: #전체 값은 제외
                         committeeCode=committee_info.find('committeecode').get_text()
                         committeename=committee_info.find('committeename').get_text()
                         insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename,committeeCode))
-                                            
+                        
+                        commit_count+=1
             self.conn.commit();        
            
         except HTTPError as e: #HTTP 에러
