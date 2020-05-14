@@ -7,7 +7,7 @@ Created on Tue May 12 00:04:36 2020
 
 import sys
 import pymysql
-import urllib.request
+import requests
 import urllib.parse
 from bs4 import BeautifulSoup
 from urllib.error import URLError,HTTPError
@@ -40,7 +40,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
     
     def get_store_committee_info(self): 
         try:
-            res=urllib.request.urlopen(self.url).read().decode('utf-8')
+            res=requests.get(self.url).text
             soup=BeautifulSoup(res,'html.parser')
             
             with self.conn.cursor() as insert_curs:
