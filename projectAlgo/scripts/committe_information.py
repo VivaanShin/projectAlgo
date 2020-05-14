@@ -14,7 +14,7 @@ from urllib.error import URLError,HTTPError
 class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클래스
     OPEN_APL_URL='http://apis.data.go.kr/9710000/BillInfoService2/getCommitPetitionList?&ServiceKey='
     SERVICE_KEY=''
-    INSERT_SQL="""insert into tb_committee_info (committeeCode,committeen) 
+    INSERT_SQL="""insert into tb_committee_info (committeeCode,committeename) 
                   values(%s,%s)
                     """
     #후에 DB 정의되면 맞게 변경
@@ -26,7 +26,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
         print(self.url)
         try:
             self.conn=pymysql.connect(host='localhost',user='root',password=db_password
-                                      ,db='project_algo',charset='utf8') #후에 db상황에 맞게 수정
+                                      ,db='project_algo',charset='utf8')
         except pymysql.err.OperationalError: #db connection 실패
             print('DB connection 실패')
             sys.exit(-1)
@@ -41,8 +41,6 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
                     if not commit_count==1: #전체 값은 제외
                         committeeCode=committee_info.find('committeecode').get_text()
                         committeename=committee_info.find('committeename').get_text()
-                        print(committeeCode)
-                        print(committeename)
                         insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename))
                     
                     commit_count+=1
