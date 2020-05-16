@@ -40,7 +40,7 @@ passport.use(new LocalStrategy({ //후에 Admin 여부도 같이 삽입
                         if(!user[0].user_auth) //사용자가 이메일 인증을 했는지 확인
                             return done(null,false,{message:'이메일 인증을 해주세요!'});
                         else
-                            return done(null,{user_id:user[0].user_id,is_admin:user[0].is_admin}) //유저 아이디와 admin 여부를 저장
+                            return done(null,{user_id:user[0].user_id,is_admin:user[0].user_administrator}) //유저 아이디와 admin 여부를 저장
                     }
                     else{
                         return done(null,false,{message:'비밀번호가 틀립니다!.'})
