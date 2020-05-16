@@ -1,0 +1,76 @@
+{
+  "sftp://52.78.236.66:22@ubuntu": {
+    ".config": {},
+    ".gnupg": {},
+    ".profile": {
+      "type": "-",
+      "size": 807,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".pki": {},
+    ".sudo_as_admin_successful": {
+      "type": "-",
+      "size": 0,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".viminfo": {
+      "type": "-",
+      "size": 848,
+      "lmtime": 0,
+      "modified": false
+    },
+    "Python-3.7.4.tgz": {
+      "type": "-",
+      "size": 23017663,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".wget-hsts": {
+      "type": "-",
+      "size": 169,
+      "lmtime": 0,
+      "modified": false
+    },
+    "algo": {},
+    ".bashrc": {
+      "type": "-",
+      "size": 3771,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".cache": {},
+    ".ssh": {},
+    ".atom": {},
+    ".bash_logout": {
+      "type": "-",
+      "size": 220,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".mysql_history": {
+      "type": "-",
+      "size": 18175,
+      "lmtime": 0,
+      "modified": true
+    },
+    ".xsession": {
+      "type": "-",
+      "size": 14,
+      "lmtime": 0,
+      "modified": false
+    },
+    "Python-3.7.4": {},
+    ".idlerc": {},
+    ".npm": {},
+    ".bash_history": {
+      "type": "-",
+      "size": 5062,
+      "lmtime": 0,
+      "modified": true
+    },
+    ".local": {}
+  },
+  "$version": 1
+}
