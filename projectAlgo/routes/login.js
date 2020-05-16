@@ -9,7 +9,7 @@ const fs=require('fs');
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
-    password : 12345678, //dbPassword
+    password : '12345678', //dbPassword
     database : 'project_algo'
 };
 
