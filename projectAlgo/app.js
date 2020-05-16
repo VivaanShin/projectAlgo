@@ -12,7 +12,7 @@ var registerRouter = require('./routes/register');
 var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var passport=require('passport');
-
+var flash = require('flash');
 var app = express();
 
 // view engine setup

@@ -40,14 +40,9 @@ passport.use('local-join', new LocalStrategy({
 }))
 
 router.get('/', function (req, res, next) {
-  var msg;
-  var errMsg = req.flash('error');
-  if (errMsg) {
-    msg = errMsg;
-  }
+
   res.render('register', {
-    title: 'register',
-    message: msg
+    title: 'register'
   });
 });
 
