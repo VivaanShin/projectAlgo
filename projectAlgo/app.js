@@ -7,6 +7,8 @@ var logger = require('morgan');
 const session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var mainRouter = require('./routes/main');
+var registerRouter = require('./routes/register');
 var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var passport=require('passport');
@@ -24,9 +26,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/main', mainRouter);
+app.use('/register', registerRouter);
 app.use('/login',loginRouter);
 app.use('/logout',logoutRouter);
 
