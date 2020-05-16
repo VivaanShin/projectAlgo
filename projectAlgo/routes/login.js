@@ -9,9 +9,9 @@ const fs=require('fs');
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
-    password : fs.readFileSync('../scripts/dbPasswd'), //dbPassword
+    password : 12345678, //dbPassword
     database : 'project_algo'
-}; 
+};
 
 router.post('/',passport.authenticate('local', {failureRedirect: '../', failureFlash: true}), // 인증 실패 시 401 리턴
   function (req, res) {
@@ -21,7 +21,7 @@ router.post('/',passport.authenticate('local', {failureRedirect: '../', failureF
 passport.use(new LocalStrategy({ //후에 Admin 여부도 같이 삽입
     usernameField: 'user_id',
     passwordField: 'user_pw',
-    passReqToCallback: true 
+    passReqToCallback: true
   }, function (req, username, password, done) {
         var connection=mysql.createConnection(dbConfig);
         connection.query(`select * from tb_user_info where user_id=${connection.escape(user_id)}`,(err,user)=>{ //유저 정보 테이블에서 조회
