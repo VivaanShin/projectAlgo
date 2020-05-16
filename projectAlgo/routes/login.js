@@ -4,7 +4,7 @@ const isNotLoggedIn=require('../scripts/confirmLogin').isNotLoggedIn;
 const mysql=require('mysql');
 const express=require('express');
 const bcrypt = require('bcrypt-nodejs');
-const router=express.Router;
+const router=express.Router();
 const fs=require('fs');
 const dbConfig={
     host     : 'localhost',

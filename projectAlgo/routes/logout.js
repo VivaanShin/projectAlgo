@@ -1,5 +1,5 @@
 const express=require('express');
-const router=express.Router;
+const router=express.Router();
 //로그아웃 라우터
 router.post('/',function(req,res){
     req.logout();
