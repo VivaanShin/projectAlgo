@@ -13,7 +13,10 @@ var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var passport=require('passport');
 var flash = require('flash');
+var passportConfig=require('./passport');
 var app = express();
+
+passportConfig(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

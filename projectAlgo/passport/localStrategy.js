@@ -1,6 +1,13 @@
 const bcrypt = require('bcrypt-nodejs');
-const localStrategy=require('passport-local').Strategy;
-
+const LocalStrategy=require('passport-local').Strategy;
+const bcrypt = require('bcrypt-nodejs');
+const isNotLoggedIn=require('../scripts/confirmLogin').isNotLoggedIn;
+const dbConfig={
+    host     : 'localhost',
+    user     : 'root',
+    password : '12345678', //dbPassword
+    database : 'project_algo'
+};
 module.exports=(passport)=>{
     passport.use(new LocalStrategy({ //후에 Admin 여부도 같이 삽입
     usernameField: 'user_id',
