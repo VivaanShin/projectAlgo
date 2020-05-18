@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1">
-    <title>알Go뽑자 후보자 정보 사이트</title>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="/stylesheets/custom.min.css">
 
-    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
-    <link rel="stylesheet" href="/stylesheets/colorset.css">
-    <link rel="stylesheet" href="/stylesheets/apms.css">
-    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" , initial-scale="1">
+  <title>알Go뽑자 후보자 정보 사이트</title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+  <link rel="stylesheet" href="/stylesheets/custom.min.css">
+
+  <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/colorset.css">
+  <link rel="stylesheet" href="/stylesheets/apms.css">
+
   <style type="text/css">
-      .jumbotron {
-        background-image: url('./img/vote.jpg');
-        background-size:cover;
-        text-shadow : black 0.2em 0.2em 0.2em;
-        color:white;
-        padding-left:0;
-        padding-right:0;
-        padding-bottom:0;
+    .jumbotron {
+      background-image: url('./img/vote.jpg');
+      background-size: cover;
+      text-shadow: black 0.2em 0.2em 0.2em;
+      color: white;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
 
-      }
-     </style>
+    }
+  </style>
 
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="js/custom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="js/custom.js"></script>
 
 
-  </head>
+</head>
 
 
 
@@ -39,9 +40,9 @@
 
 <body>
 
-<!--로그인 안되어 있을시 로그인창 모달 팝업-->
+  <!--로그인 안되어 있을시 로그인창 모달 팝업-->
 
- <div class="modal fade" id="LoginModal" tabindex="-1"  role="dialog" style="width:35%; margin-top:22%; margin-left:32%;">
+  <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" style="width:35%; margin-top:22%; margin-left:32%;">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
 
@@ -49,41 +50,41 @@
 
           <h4 class="modal-title" id="myModalLabel">회원정보</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          
+
         </div>
 
 
-<!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
+        <!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
         <div class="modal-body">
 
-          <form id="sidebar_login_form" name="sidebar_login_form" method="post" action="#" autocomplete="off" role="form" class="form" onsubmit="return sidebar_login(this);">
+          <form id="sidebar_login_form" name="sidebar_login_form" method="post" action="/login" autocomplete="off" role="form" class="form" onsubmit="return sidebar_login(this);">
 
-    <input type="hidden" name="url" value="%2F">
-      <div class="form-group">  
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user gray"></i></span>
-          <input type="text" name="mb_id" id="sidebar_mb_id" class="form-control input-sm" placeholder="아이디" tabindex="91">
-        </div>
-      </div>
+            <input type="hidden" name="url" value="%2F">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user gray"></i></span>
+                <input type="text" name="mb_id" id="sidebar_mb_id" class="form-control input-sm" placeholder="아이디" tabindex="91">
+              </div>
+            </div>
 
-      <div class="form-group">  
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock gray"></i></span>
-          <input type="password" name="mb_password" id="sidebar_mb_password" class="form-control input-sm" placeholder="비밀번호" tabindex="92">
-        </div>
-      </div>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock gray"></i></span>
+                <input type="password" name="mb_password" id="sidebar_mb_password" class="form-control input-sm" placeholder="비밀번호" tabindex="92">
+              </div>
+            </div>
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-navy btn-block" tabindex="93">Login</button>    
-      </div>  
+            <div class="form-group">
+              <button type="submit" class="btn btn-navy btn-block" tabindex="93">Login</button>
+            </div>
 
-<ul class="sidebar-list list-links">
-      <li>
-        <a href="register.ejs">회원가입</a>
-      </li>
-</ul>
 
-    </form> <!--모달 바디의 끝-->
+
+          </form>
+          <!--모달 바디의 끝-->
+          <form action="/register" method="get">
+            <div><input type="submit" value="회원가입"></div>
+          </form>
 
 
 
@@ -100,9 +101,9 @@
 
 
 
-<!--로그인 되어있을 시 회원정보 모달 팝업-->
+  <!--로그인 되어있을 시 회원정보 모달 팝업-->
 
-  <div class="modal fade" id="Member_Modal" tabindex="-1"  role="dialog" style="width:35%; margin-top:22%; margin-left:32%;">
+  <div class="modal fade" id="Member_Modal" tabindex="-1" role="dialog" style="width:35%; margin-top:22%; margin-left:32%;">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
 
@@ -110,171 +111,173 @@
 
           <h4 class="modal-title" id="myModalLabel">A회원님, 환영합니다.</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          
+
         </div>
 
 
-<!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
+        <!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
         <div class="modal-body">
-            <input type="button" value="정보수정" style="margin-left: 70%; margin-bottom: 2%;" onClick="location.href='register_change.ejs'"></br>
-         <input type="button" value="로그아웃" style="margin-left: 70%; margin-bottom: 2%;">
+          <input type="button" value="정보수정" style="margin-left: 70%; margin-bottom: 2%;" onClick="location.href='register_change.ejs'"></br>
+          <input type="button" value="로그아웃" style="margin-left: 70%; margin-bottom: 2%;">
 
         </div>
       </div><!-- modal-content -->
     </div><!-- modal-dialog -->
   </div><!-- 회원정보 모달 끝-->
- 
 
 
-<!--top navbar의 시작 태그-->
-<div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+
+  <!--top navbar의 시작 태그-->
+  <div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
 
 
- <div class="container">
- 
-          <div class="text-center" style="padding-top:4%">
+    <div class="container">
 
-            <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
+      <div class="text-center" style="padding-top:4%">
 
-            <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
-            <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
-              <img src="img/profile_icon.jpg" alt="회원 아이콘">
-            </button>
+        <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
 
-            <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
-            <!--button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
+        <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
+        <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
+          <img src="img/profile_icon.jpg" alt="회원 아이콘">
+        </button>
+
+        <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
+        <!--button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
               <img src="img/profile_icon.jpg" alt="회원 아이콘">
             </button-->
 
 
-           </div>
+      </div>
 
 
-<!--로고-->
-     <div class="logo_name" sytle="">
+      <!--로고-->
+      <div class="logo_name" sytle="">
         <a href="home.ejs"><img src="img/logo_name.jpg" alt="알go뽑자 로고"></a>
-     </div>
+      </div>
 
 
 
 
 
-<!--정치인/선거구 검색창-->
-<div class="tsh" style="padding-top:7.5%">
-    <form name="formSearch" onsubmit="return false;" method="post" action="">
-      <input type="hidden" name="PageNumber" value="1">
-      <input type="hidden" name="searchArea" value="total">
-      <input type="hidden" name="searchCategory" value="total">
-      <input type="hidden" name="researchType" value="">
+      <!--정치인/선거구 검색창-->
+      <div class="tsh" style="padding-top:7.5%">
+        <form name="formSearch" onsubmit="return false;" method="post" action="">
+          <input type="hidden" name="PageNumber" value="1">
+          <input type="hidden" name="searchArea" value="total">
+          <input type="hidden" name="searchCategory" value="total">
+          <input type="hidden" name="researchType" value="">
 
-      <span>
-        <input type="text" title="검색어" id="sh_txt" name="searchQuery" value="" onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event);" style="ime-mode:active;" class="inp" placeholder="정치인/선거구 검색">
-      </span>
+          <span>
+            <input type="text" title="검색어" id="sh_txt" name="searchQuery" value="" onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event);" style="ime-mode:active;" class="inp"
+              placeholder="정치인/선거구 검색">
+          </span>
 
-      <a class="btn_gnbSch" href="javascript:goSearch();">
-      <img src="img/btn_gnbSch.png" alt="검색">
-      </a>
-    </form>
+          <a class="btn_gnbSch" href="javascript:goSearch();">
+            <img src="img/btn_gnbSch.png" alt="검색">
+          </a>
+        </form>
 
       </div>
 
 
 
 
-</div><!-- container -->
+    </div><!-- container -->
 
 
-</div><!--top navbar의 끝 태그-->
-
-
-
-
+  </div>
+  <!--top navbar의 끝 태그-->
 
 
 
 
 
 
-<div class="container" style="margin-top: 3%;">
-
-
-<!--메뉴탭 시작-->
-  <ul class="nav nav-tabs">
-
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">홈</a>
-    </li>
-
-
-
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#candidate_list">정치인 검색</a>
-    </li>
 
 
 
 
-    <li class="nav-item">
-      <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
+  <div class="container" style="margin-top: 3%;">
 
 
-      <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
-      <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
-      <!-->
+    <!--메뉴탭 시작-->
+    <ul class="nav nav-tabs">
 
-      
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">홈</a>
+      </li>
+
+
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#candidate_list">정치인 검색</a>
+      </li>
+
+
+
+
+      <li class="nav-item">
+        <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
+
+
+        <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
+        <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
+        <!-->
+
+
       <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-      <!--a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
+        <!--a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
       <!-->
 
-      <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-      <!-- a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
+        <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
+        <!-- a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
       <!-->
 
 
-    </li>
+      </li>
 
     </ul>
-<!--메뉴탭 끝-->
+    <!--메뉴탭 끝-->
 
 
 
 
 
 
-<div id="myTabContent" class="tab-content" >
+    <div id="myTabContent" class="tab-content">
 
-  <div class="tab-pane fade active show" id="home">
-   <div class="jumbotron"> 
-      <h1 class="text-center">알Go뽑자 정치인 정보 사이트입니다.</h1>
-      <br><br>      <br><br><br>
-      <h4 class="text-center">자신의 성향에 맞는 정치인을 찾아보세요!</h4>
-      <!--<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">정보</a></p>-->
-      <p class="text-center"></p>
+      <div class="tab-pane fade active show" id="home">
+        <div class="jumbotron">
+          <h1 class="text-center">알Go뽑자 정치인 정보 사이트입니다.</h1>
+          <br><br> <br><br><br>
+          <h4 class="text-center">자신의 성향에 맞는 정치인을 찾아보세요!</h4>
+          <!--<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">정보</a></p>-->
+          <p class="text-center"></p>
 
-<!--검색창-->
-  <form class="form-inline my-2">
-      <input class="form-control mr-sm-2" style="width: 24%; margin-left: 36%;" type="text" placeholder="정치인 검색">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
-    </form>
-      <br><br><br><br><br><br><br>
-<!--검색창 끝-->
+          <!--검색창-->
+          <form class="form-inline my-2">
+            <input class="form-control mr-sm-2" style="width: 24%; margin-left: 36%;" type="text" placeholder="정치인 검색">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
+          </form>
+          <br><br><br><br><br><br><br>
+          <!--검색창 끝-->
 
-<div class="bg-dark">
- <div class="text-right" style="padding-top:1%; padding-bottom:1%;">copyright ⓒ  2020 알Go뽑자 &nbsp;</div>
-</div>
+          <div class="bg-dark">
+            <div class="text-right" style="padding-top:1%; padding-bottom:1%;">copyright ⓒ 2020 알Go뽑자 &nbsp;</div>
+          </div>
 
-    </div>
-  </div>
-
-
+        </div>
+      </div>
 
 
 
 
 
 
-   <!--
+
+
+      <!--
     <form>
   <fieldset>
     <legend>회원 정보 수정</legend>
@@ -297,12 +300,12 @@
       <label for="exampleInputPassword1">비밀번호 수정</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 입력">
     </div>
- 
+
         <div class="form-group">
       <label for="exampleInputPassword1">비밀번호 재입력</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 재입력">
     </div>
-  
+
     <button type="submit" class="btn btn-primary">수정하기</button>
 
     <button type="submit" class="btn btn-primary">AI 매칭 설문조사하러가기</button>
@@ -311,18 +314,43 @@
 -->
 
 
-  
-
-
-
-  <div class="tab-pane fade" id="candidate_list">
-<div class="index__list--29YiJ districtList" data-id="6749"><div class="index__main--2axht main">
-  <div class="index__picture--2uwxb"><span style="background-size: cover; background-repeat: no-repeat; background-image: url(&quot;https://decodepolicy.s3.ap-northeast-2.amazonaws.com/elect/photo/image6749.JPG&quot;);"></span><span class="index__badge--2s1F0"></span></div><div class="index__right--2AOKK"><p class="index__party--1ANEh profileParty"><span style="background-color: rgb(16, 91, 170);">더불어민주당</span></p><p class="index__name--1YEBL"><span>이낙연</span>&nbsp;<span class="index__nameChina--17w5N">(李洛淵)</span></p><p class="index__birth--iMqVy">1952.12.20 (67세)</p><p class="index__job--2ZDtN">정당인</p></div></div><div class="index__school--3go2e school"><div class="index__leftTitle--1bVLT"><p>학력</p></div><div class="index__detail--14u0a"><p>서울대학교 법과대학 법학과 졸업</p></div></div><div class="index__experience--19jS7 experience"><div class="index__leftTitle--1bVLT"><p>경력</p></div><div class="index__detail--14u0a"><p>(현)민주당 코로나19국난극복위원장<br>(전)제45대 국무총리</p></div></div><div class="index__detailView--443sM detailView"><a class="index__detailBtn--14ryY"><p>후보 상세 보기</p></a></div></div>
-  </div>
 
 
 
 
+      <div class="tab-pane fade" id="candidate_list">
+        <div class="index__list--29YiJ districtList" data-id="6749">
+          <div class="index__main--2axht main">
+            <div class="index__picture--2uwxb"><span style="background-size: cover; background-repeat: no-repeat; background-image: url(&quot;https://decodepolicy.s3.ap-northeast-2.amazonaws.com/elect/photo/image6749.JPG&quot;);"></span><span
+                class="index__badge--2s1F0"></span></div>
+            <div class="index__right--2AOKK">
+              <p class="index__party--1ANEh profileParty"><span style="background-color: rgb(16, 91, 170);">더불어민주당</span></p>
+              <p class="index__name--1YEBL"><span>이낙연</span>&nbsp;<span class="index__nameChina--17w5N">(李洛淵)</span></p>
+              <p class="index__birth--iMqVy">1952.12.20 (67세)</p>
+              <p class="index__job--2ZDtN">정당인</p>
+            </div>
+          </div>
+          <div class="index__school--3go2e school">
+            <div class="index__leftTitle--1bVLT">
+              <p>학력</p>
+            </div>
+            <div class="index__detail--14u0a">
+              <p>서울대학교 법과대학 법학과 졸업</p>
+            </div>
+          </div>
+          <div class="index__experience--19jS7 experience">
+            <div class="index__leftTitle--1bVLT">
+              <p>경력</p>
+            </div>
+            <div class="index__detail--14u0a">
+              <p>(현)민주당 코로나19국난극복위원장<br>(전)제45대 국무총리</p>
+            </div>
+          </div>
+          <div class="index__detailView--443sM detailView"><a class="index__detailBtn--14ryY">
+              <p>후보 상세 보기</p>
+            </a></div>
+        </div>
+      </div>
 
 
 
@@ -332,154 +360,138 @@
 
 
 
-<!--설문조사-->
-  <div class="tab-pane fade" id="matching_survey">
-   
-<form>
-  <fieldset>
-    <legend>AI 설문조사</legend>
-  
+
+      <!--설문조사-->
+      <div class="tab-pane fade" id="matching_survey">
+
+        <form>
+          <fieldset>
+            <legend>AI 설문조사</legend>
 
 
- <div class="form-group">
-  <label> 귀하의 출생연도를 선택해주세요.</label>
-    <select class="custom-select">
-      <option selected="">귀하의 출생연도를 선택해주세요.</option>
-      <option value="1">1930</option>
-      <option value="2">~</option>
-      <option value="2">~</option>
-      <option value="3">2000</option>
-    </select>
-  </div>
 
-  <div class="form-group">
-      <label for="exampleTextarea">귀하의 직업을 입력해주세요.</label>
-      <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
+            <div class="form-group">
+              <label> 귀하의 출생연도를 선택해주세요.</label>
+              <select class="custom-select">
+                <option selected="">귀하의 출생연도를 선택해주세요.</option>
+                <option value="1">1930</option>
+                <option value="2">~</option>
+                <option value="2">~</option>
+                <option value="3">2000</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleTextarea">귀하의 직업을 입력해주세요.</label>
+              <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
+            </div>
+
+
+
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                <label>귀하의 정치 관심사에 점수를 주세요.</label>
+              </div>
+            </div>
+
+            <label>과학/IT</label>
+            <div class="form-group">
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+
+            <label>사회</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+            <label>경제</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+            <label>문화</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+
+
+            <label>정치</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">제출하기</button>
+          </fieldset>
+
+        </form>
+      </div>
+      <!--설문조사 끝-->
+
+
+
+
+
+
+
+
+
+
     </div>
+    <!--myTabContent-->
 
-
-
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group mr-2" role="group" aria-label="First group">
-    <label>귀하의 정치 관심사에 점수를 주세요.</label>
   </div>
-   </div>
-
-<label>과학/IT</label>
-    <div class="form-group">
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-
-  <label>사회</label>
- <div class="form-group">
-  
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-    <label>경제</label>
-       <div class="form-group">
-
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-    <label>문화</label>
-       <div class="form-group">
-
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-  
-
-   <label>정치</label>
-       <div class="form-group">
- 
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
- <button type="submit" class="btn btn-primary">제출하기</button>
- </fieldset>
-
-</form>
-  </div>
-<!--설문조사 끝-->
-
-
-  
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </div><!--myTabContent-->
-
-</div><!--container-->
+  <!--container-->
 
 
 
@@ -491,6 +503,3 @@
 </body>
 
 </html>
-
-
-
