@@ -21,12 +21,12 @@
       <label for="exampleInputPassword1">비밀번호 입력</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 입력">
     </div>
- 
+
         <div class="form-group">
       <label for="exampleInputPassword1">비밀번호 재입력</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 재입력">
     </div>
-  
+
     <button type="submit" class="btn btn-primary">가입하기</button>
 
   </fieldset>
@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/colorset.css">
     <link rel="stylesheet" href="css/apms.css">
-    
+
   <style type="text/css">
       .jumbotron {
         background-image: url('./img/vote.jpg');
@@ -213,7 +213,7 @@ $(document).ready(function(){
 
           <h4 class="modal-title" id="myModalLabel">회원정보</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          
+
         </div>
 
 
@@ -223,14 +223,14 @@ $(document).ready(function(){
           <form id="sidebar_login_form" name="sidebar_login_form" method="post" action="#" autocomplete="off" role="form" class="form" onsubmit="return sidebar_login(this);">
 
     <input type="hidden" name="url" value="%2F">
-      <div class="form-group">  
+      <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-user gray"></i></span>
           <input type="text" name="mb_id" id="sidebar_mb_id" class="form-control input-sm" placeholder="아이디" tabindex="91">
         </div>
       </div>
 
-      <div class="form-group">  
+      <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-lock gray"></i></span>
           <input type="password" name="mb_password" id="sidebar_mb_password" class="form-control input-sm" placeholder="비밀번호" tabindex="92">
@@ -238,8 +238,8 @@ $(document).ready(function(){
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-navy btn-block" tabindex="93">Login</button>    
-      </div>  
+        <button type="submit" class="btn btn-navy btn-block" tabindex="93">Login</button>
+      </div>
 
 <ul class="sidebar-list list-links">
       <li>
@@ -256,7 +256,7 @@ $(document).ready(function(){
       </div><!-- modal-content -->
     </div><!-- modal-dialog -->
   </div><!-- 모달로그인 창의 끝-->
- 
+
 
 
 <!--top navbar의 시작 태그-->
@@ -264,7 +264,7 @@ $(document).ready(function(){
 
 
  <div class="container">
- 
+
           <div class="text-center" style="padding-top:4%">
 
             <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
@@ -355,7 +355,7 @@ $(document).ready(function(){
       <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
       <!-->
 
-      
+
       <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
       <!--a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
       <!---->
@@ -382,14 +382,16 @@ $(document).ready(function(){
     <form action="register_finished.ejs" method="post" name="#">
       <fieldset>
        <legend>회원 정보 입력</legend>
-    
+
     <!--ID입력-->
     <div class="form-group">
-      <label for="staticEmail">회원ID</label></br>
-      <input type="text" class="form-control" name="userNM" placeholder="ID예제@naver.com" style="display:inline-block; width:48%; margin-right: 1%;">
-      <!--중복체크-->
-      <input type="button" class="btn btn-primary id="checkid" value="중복체크" style="width:10%;">
-    </div>
+      <form action="/">
+        <label for="staticEmail">회원ID</label></br>
+        <input type="text" class="form-control" name="userNM" placeholder="ID예제@naver.com" style="display:inline-block; width:48%; margin-right: 1%;">
+        <!--중복체크-->
+        <input type="button" class="btn btn-primary id="checkid" value="중복체크" style="width:10%;">
+        </form>
+
 
    <!--이메일 주소-->
     <div class="form-group">
@@ -401,7 +403,7 @@ $(document).ready(function(){
       <!--여기도 만약 이메일 검증되면 검증되었다고 표시해줄것-->
       <small id="emailHelp" class="form-text text-muted">이메일 인증을 위해 이메일을 잘 입력해주세요.</small>
     </div>
-      
+
     <!--전화번호-->
     <div class="form-group">
       <label for="exampleInputPassword1">전화번호 입력</label>
@@ -413,13 +415,13 @@ $(document).ready(function(){
       <label for="exampleInputPassword1">비밀번호 입력</label>
       <input type="password" class="form-control" id="Password" placeholder="비밀번호 입력">
     </div>
- 
+
     <!--비밀번호 재입력-->
     <div class="form-group">
       <label for="exampleInputPassword1">비밀번호 재입력</label>
       <input type="password" class="form-control" id="rePassword" placeholder="비밀번호 재입력">
     </div>
-  
+
    <!--가입버튼-->
     <button type="submit" class="btn btn-primary">가입하기</button>
 
@@ -433,7 +435,7 @@ $(document).ready(function(){
 
 
   <div class="tab-pane fade" id="home">
-   <div class="jumbotron"> 
+   <div class="jumbotron">
       <h1 class="text-center">알Go뽑자 정치인 정보 사이트입니다.</h1>
       <br><br>      <br><br><br>
       <h4 class="text-center">자신의 성향에 맞는 정치인을 찾아보세요!</h4>
@@ -485,12 +487,12 @@ $(document).ready(function(){
       <label for="exampleInputPassword1">비밀번호 수정</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 입력">
     </div>
- 
+
         <div class="form-group">
       <label for="exampleInputPassword1">비밀번호 재입력</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 재입력">
     </div>
-  
+
     <button type="submit" class="btn btn-primary">수정하기</button>
 
     <button type="submit" class="btn btn-primary">AI 매칭 설문조사하러가기</button>
@@ -499,7 +501,7 @@ $(document).ready(function(){
 -->
 
 
-  
+
 
 
 
@@ -521,11 +523,11 @@ $(document).ready(function(){
 
 <!--설문조사-->
   <div class="tab-pane fade" id="matching_survey">
-   
+
 <form>
   <fieldset>
     <legend>AI 설문조사</legend>
-  
+
 
 
  <div class="form-group">
@@ -569,7 +571,7 @@ $(document).ready(function(){
 
   <label>사회</label>
  <div class="form-group">
-  
+
     <button type="button" class="btn btn-secondary">1</button>
     <button type="button" class="btn btn-secondary">2</button>
     <button type="button" class="btn btn-secondary">3</button>
@@ -612,11 +614,11 @@ $(document).ready(function(){
      <button type="button" class="btn btn-secondary">10</button>
       </div>
 
-  
+
 
    <label>정치</label>
        <div class="form-group">
- 
+
     <button type="button" class="btn btn-secondary">1</button>
     <button type="button" class="btn btn-secondary">2</button>
     <button type="button" class="btn btn-secondary">3</button>
@@ -637,10 +639,10 @@ $(document).ready(function(){
 <!--설문조사 끝-->
 
 
-  
 
 
-   
+
+
 
 
 
@@ -678,7 +680,3 @@ $(document).ready(function(){
 </body>
 
 </html>
-
-
-
-
