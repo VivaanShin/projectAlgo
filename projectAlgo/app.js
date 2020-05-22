@@ -12,6 +12,10 @@ var registerRouter = require('./routes/register');
 var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var passport=require('passport');
+var politicianUserRouter=require('./routes/politicianUser');
+var adminMemberRouter=require('./routes/adminMember');
+var adminPoliticianRouter=require('./routes/adminPolitician');
+var searchRouter=require('./routes/searchPolitician');
 var flash = require('flash');
 var passportConfig=require('./passport');
 var app = express();
@@ -37,6 +41,10 @@ app.use('/main', mainRouter);
 app.use('/register', registerRouter);
 app.use('/login',loginRouter);
 app.use('/logout',logoutRouter);
+app.use('/politician',politicianUserRouter);
+app.use('/admin/member/',adminMemberRouter);
+app.use('/admin/politician',adminPoliticianRouter);
+app.use('/search',searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

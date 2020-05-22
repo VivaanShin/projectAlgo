@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue May 12 00:04:36 2020
+
 @author: User
 """
 
@@ -14,8 +15,14 @@ from urllib.error import URLError,HTTPError
 class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클래스
     OPEN_APL_URL='http://apis.data.go.kr/9710000/BillInfoService2/getCommitPetitionList?&ServiceKey='
     SERVICE_KEY=''
-    INSERT_SQL="""insert into tb_committee_info (committeeCode,committeename) 
-                  values(%s,%s)
+    INSERT_SQL="""insert into tb_committee_info (committeeCode,committeen)
+                    SELECT '%s','%s' from dual
+                    where not exists
+                    (
+                        select *
+                        from tb_
+                        where committeeCode=%s 
+                    )
                     """
     #후에 DB 정의되면 맞게 변경
     def __init__(self):
@@ -23,27 +30,24 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
             self.SERVICE_KEY=key_file.read() #SERVICE_KEY 초기화
             db_password=db_passwd_file.read()
         self.url=self.OPEN_APL_URL+self.SERVICE_KEY
-        print(self.url)
         try:
             self.conn=pymysql.connect(host='localhost',user='root',password=db_password
-                                      ,db='project_algo',charset='utf8')
+                                      ,db='project_algo',charset='utf8') #후에 db상황에 맞게 수정
         except pymysql.err.OperationalError: #db connection 실패
             print('DB connection 실패')
             sys.exit(-1)
     
-    def get_store_committee_info(self): 
+    def get_store_committee_info(self): #의안 정보 저장시 소관위 정보 저장 및 사용을 위해 리스트를 먼저 만드는 함수 DB Select로 변경 
         try:
-            res=urllib.request.urlopen(self.url).read().decode()
+            res=urllib.request.urlopen(self.committee_url).read()
             soup=BeautifulSoup(res,'html.parser')
-            commit_count=1
+            
             with self.conn.cursor() as insert_curs:
                 for committee_info in soup.findAll('item'):
-                    if not commit_count==1: #전체 값은 제외
-                        committeeCode=committee_info.find('committeecode').get_text()
-                        committeename=committee_info.find('committeename').get_text()
-                        insert_curs.execute(self.INSERT_SQL,(committeeCode,committeename))
-                    
-                    commit_count+=1
+                    if not committee_info.committee_code == '전체': #전체 값은 제외
+                        insert_curs.execute(self.INSERT_SQL,(committee_info.committeeCode.string,
+                                           committee_info.committeName))
+            
             self.conn.commit();        
            
         except HTTPError as e: #HTTP 에러
@@ -59,7 +63,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
             
     def print_committee(self): #입법 정보 xml 확인용 출력함
         try:
-            res=urllib.request.urlopen(self.url).read().decode()
+            res=urllib.request.urlopen(self.committee_url).read()
             print(res)
         except Exception as e: #HTTP 에러
             print('출력 실패:',e)

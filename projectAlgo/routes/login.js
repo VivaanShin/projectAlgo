@@ -1,5 +1,4 @@
 var passport = require('passport')
-const isNotLoggedIn=require('../scripts/confirmLogin').isNotLoggedIn;
 const express=require('express');
 const router=express.Router();
 

@@ -31,8 +31,9 @@ class ElectionCodeInformation: #코드 정보 open api에서 코드를 가져오
                 db_password=db_passwd_file.read()
                 
             self.url=self.OPEN_API_URL+self.SERVICE_KEY
+            print(self.url)
             self.conn=pymysql.connect(host='localhost',user='root',password=db_password
-                                      ,db='dbname',charset='utf8') #후에 db상황에 맞게 수정
+                                      ,db='project_algo',charset='utf8') #후에 db상황에 맞게 수정
         except pymysql.err.OperationalError as e: #db connection 실패
             print('DB connection 실패', e)
             sys.exit(-1)
@@ -75,7 +76,7 @@ class ElectionCodeInformation: #코드 정보 open api에서 코드를 가져오
 if __name__=='__main__':
     election_code=ElectionCodeInformation()
     election_code.print_code()
-    #election_code.get_store_election_code()
+    election_code.get_store_election_code()
             
     
     

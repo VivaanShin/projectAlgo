@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
@@ -14,10 +15,12 @@
     "express-session": "^1.17.1",
     "flash": "^1.1.0",
     "http-errors": "~1.6.3",
+    "moment": "^2.26.0",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "request": "^2.88.2",
     "supervisor": "^0.12.0"
   }
 }
