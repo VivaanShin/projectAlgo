@@ -11,8 +11,8 @@ const dbConfig={
   }; //후에 DB설정에 맞게 변경
 //후에 Admin 로그인 확인
 router.get('/',(req,res)=>{
-    if(!isAdmin(req))
-        render({status:401,message:"접근불가"});
+    /*if(!isAdmin(req))
+        render({status:401,message:"접근불가"});*/
     var connection=mysql.createConnection(dbConfig);
     
     connection.query('select * from tb_user_info',(err,members)=>{ //유저 정보 테이블에서 조회
