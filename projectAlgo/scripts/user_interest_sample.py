@@ -7,7 +7,7 @@ Created on Fri May 29 16:12:18 2020
 
 import pymysql
 
-INSERT_DATA="""insert into tb_user_interest values (%s,%s,%d,%d,$d,%d,%d,%d,%s)"""
+INSERT_DATA="""insert into tb_user_interest values (%s,%s,%d,%d,%d,%d,%d,%d,%s)"""
 conn=pymysql.connect(host='localhost',user='root',password='algoalgo'
                                       ,db='project_algo',charset='utf8')
 
