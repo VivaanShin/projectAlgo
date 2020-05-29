@@ -29,7 +29,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
         with open('legislationKey.txt','r') as key_file, open('dbPasswd.txt') as db_passwd_file:
             self.SERVICE_KEY=key_file.read() #SERVICE_KEY 초기화
             db_password=db_passwd_file.read()
-        self.url=self.OPEN_APL_URL+self.SERVICE_KEY
+        self.committee_url=self.OPEN_APL_URL+self.SERVICE_KEY
         try:
             self.conn=pymysql.connect(host='localhost',user='root',password=db_password
                                       ,db='project_algo',charset='utf8') #후에 db상황에 맞게 수정
@@ -39,7 +39,7 @@ class CommitteeInformation: #OPEN API에서 소관위 정보를 가져오는 클
     
     def get_store_committee_info(self): #의안 정보 저장시 소관위 정보 저장 및 사용을 위해 리스트를 먼저 만드는 함수 DB Select로 변경 
         try:
-            res=urllib.request.urlopen(self.committee_url).read()
+            res=urllib.request.urlopen(self.committee_url).read().decode('utf-8')
             soup=BeautifulSoup(res,'html.parser')
             
             with self.conn.cursor() as insert_curs:
