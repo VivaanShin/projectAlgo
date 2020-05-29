@@ -4,7 +4,7 @@ module.exports=(passport)=>{
     const dbConfig={
         host     : 'localhost',
         user     : 'root',
-        password : '12345678', //dbPassword
+        password : 'algoalgo', //dbPassword
         database : 'project_algo'
     };
     passport.serializeUser(function (user, done) {

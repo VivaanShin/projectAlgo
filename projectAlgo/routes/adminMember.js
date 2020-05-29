@@ -27,7 +27,7 @@ router.get('/',(req,res)=>{
         }
 
         resultData=Object.assign(status,memberResult); //상태값+모든 회원 Row
-        res.render('',resultData); //나중에 render할 view 설정
+        res.render('admin_page/admin.ejs',resultData); //나중에 render할 view 설정
         connection.end();
     });
 });

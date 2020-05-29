@@ -17,7 +17,7 @@ var flash = require('connect-flash');
 
 
 router.get('/', function(req, res, next) {
-  res.render('register', {
+  res.render('register.ejs', {
     title: 'register'
   });
 });

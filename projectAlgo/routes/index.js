@@ -6,7 +6,7 @@ var session = require('express-session');
 var flash = require('connect-flash');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Express' });
+  res.render('home.ejs', { title: 'Express' });
 });
 
 passport.use('local-join', new LocalStrategy({

@@ -5,16 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" , initial-scale="1">
   <title>알Go뽑자 후보자 정보 사이트</title>
-  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
-  <link rel="stylesheet" href="/stylesheets/custom.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/custom.min.css">
 
-  <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
-  <link rel="stylesheet" href="/stylesheets/colorset.css">
-  <link rel="stylesheet" href="/stylesheets/apms.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/colorset.css">
+  <link rel="stylesheet" href="/css/apms.css">
 
   <style type="text/css">
     .jumbotron {
-      background-image: url('./img/vote.jpg');
+      background-image: url('/img/vote.jpg');
       background-size: cover;
       text-shadow: black 0.2em 0.2em 0.2em;
       color: white;
@@ -29,7 +29,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  <script src="js/custom.js"></script>
+  <script src="/js/custom.js"></script>
 
 
 </head>
@@ -139,7 +139,7 @@
 
         <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
-          <img src="img/profile_icon.jpg" alt="회원 아이콘">
+          <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
 
         <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
@@ -153,7 +153,7 @@
 
       <!--로고-->
       <div class="logo_name" sytle="">
-        <a href="home.ejs"><img src="img/logo_name.jpg" alt="알go뽑자 로고"></a>
+        <a href="/"><img src="/img/logo_name.jpg" alt="알go뽑자 로고"></a>
       </div>
 
 
@@ -174,7 +174,7 @@
           </span>
 
           <a class="btn_gnbSch" href="javascript:goSearch();">
-            <img src="img/btn_gnbSch.png" alt="검색">
+            <img src="/img/btn_gnbSch.png" alt="검색">
           </a>
         </form>
 
