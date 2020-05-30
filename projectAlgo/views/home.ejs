@@ -57,20 +57,20 @@
         <!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
         <div class="modal-body">
 
-          <form id="sidebar_login_form" name="sidebar_login_form" method="post" action="/login" autocomplete="off" role="form" class="form" onsubmit="return sidebar_login(this);">
+          <form id="sidebar_login_form" name="sidebar_login_form" method="post" action="/login" autocomplete="off" role="form" class="form">
 
             <input type="hidden" name="url" value="%2F">
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user gray"></i></span>
-                <input type="text" name="mb_id" id="sidebar_mb_id" class="form-control input-sm" placeholder="아이디" tabindex="91">
+                <input type="text" name="user_id" id="user_id" class="form-control input-sm" placeholder="아이디" tabindex="91">
               </div>
             </div>
 
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock gray"></i></span>
-                <input type="password" name="mb_password" id="sidebar_mb_password" class="form-control input-sm" placeholder="비밀번호" tabindex="92">
+                <input type="password" name="user_pw" id="user_pw" class="form-control input-sm" placeholder="비밀번호" tabindex="92">
               </div>
             </div>
 
@@ -138,9 +138,11 @@
         <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
 
         <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
+        <% if( req.user != defined){ %>
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
+        <% } %>
 
         <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
         <!--button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
@@ -319,37 +321,74 @@
 
 
       <div class="tab-pane fade" id="candidate_list">
-        <div class="index__list--29YiJ districtList" data-id="6749">
-          <div class="index__main--2axht main">
-            <div class="index__picture--2uwxb"><span style="background-size: cover; background-repeat: no-repeat; background-image: url(&quot;https://decodepolicy.s3.ap-northeast-2.amazonaws.com/elect/photo/image6749.JPG&quot;);"></span><span
-                class="index__badge--2s1F0"></span></div>
-            <div class="index__right--2AOKK">
-              <p class="index__party--1ANEh profileParty"><span style="background-color: rgb(16, 91, 170);">더불어민주당</span></p>
-              <p class="index__name--1YEBL"><span>이낙연</span>&nbsp;<span class="index__nameChina--17w5N">(李洛淵)</span></p>
-              <p class="index__birth--iMqVy">1952.12.20 (67세)</p>
-              <p class="index__job--2ZDtN">정당인</p>
-            </div>
-          </div>
-          <div class="index__school--3go2e school">
-            <div class="index__leftTitle--1bVLT">
-              <p>학력</p>
-            </div>
-            <div class="index__detail--14u0a">
-              <p>서울대학교 법과대학 법학과 졸업</p>
-            </div>
-          </div>
-          <div class="index__experience--19jS7 experience">
-            <div class="index__leftTitle--1bVLT">
-              <p>경력</p>
-            </div>
-            <div class="index__detail--14u0a">
-              <p>(현)민주당 코로나19국난극복위원장<br>(전)제45대 국무총리</p>
-            </div>
-          </div>
-          <div class="index__detailView--443sM detailView"><a class="index__detailBtn--14ryY">
-              <p>후보 상세 보기</p>
-            </a></div>
-        </div>
+  
+    <div class="row">
+
+      <div class="col-lg-3">
+        <div class="form-group" style="margin-top:20%;">
+          <h4>정치인 상세 검색</h4><br><br>
+          <label>시도  </label>
+          <select class="custom-select" style="width:60%;">
+            <option selected="">선택</option>
+            <option value="1">서울특별시</option>
+            <option value="2">부산광역시</option>
+            <option value="3">대구광역시</option>
+          </select>
+        </div> 
+      </div>
+
+<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:70%; left : 20%; position:absolute;"  >
+</div>
+
+<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
+    <div style="display: block">
+    <div class="card border-light" style="width: 30%; margin-right:5%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+      <h4 class="card-title">title</h4>
+      <p class="card-text">???</p>
+      </div>
+    </div>
+
+    <div class="card border-light" style="width: 40%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+      <h4 class="card-title">d3.js 타이틀</h4>
+
+
+      <p class="card-text">???</p>
+      </div>
+    </div>
+    <div>
+
+      <div style="display: block">
+    <div class="card border-light" style="width: 40%; margin-right:5%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+      <h4 class="card-title">title</h4>
+      <p class="card-text">???</p>
+      </div>
+    </div>
+
+    <div class="card border-light" style="width: 40%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+      <h4 class="card-title">d3.js 타이틀</h4>
+      <p class="card-text">???</p>
+      </div>
+    </div>
+    <div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
       </div>
 
 

@@ -5,7 +5,7 @@ const isNotLoggedIn=require('../scripts/confirmLogin').isNotLoggedIn;
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
-    password : '12345678', //dbPassword
+    password : 'algoalgo', //dbPassword
     database : 'project_algo'
 };
 module.exports=(passport)=>{
