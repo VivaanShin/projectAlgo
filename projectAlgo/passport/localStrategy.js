@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt-nodejs');
 const LocalStrategy=require('passport-local').Strategy;
-const mysql=require('mysql');
+var mysql=require('mysql');
 const isNotLoggedIn=require('../scripts/confirmLogin').isNotLoggedIn;
 const dbConfig={
     host     : 'localhost',
