@@ -8,12 +8,12 @@ module.exports=(passport)=>{
         database : 'project_algo'
     };
     passport.serializeUser(function (user, done) {
-        console.log("passport serializeUser")
-        done(null, user)
+        console.log("passport serializeUser");
+        done(null, user);
     });
     
     passport.deserializeUser(function (user, done) {
-        console.log("passport serializeUser")
+        console.log("passport deserializeUser");
         var connection=mysql.createConnection(dbConfig);
         connection.query(`select user_id,user_administrator from tb_user_info where user_id=${connection.escape(user.user_id)}`
         ,(err,user)=>{ //유저 정보 테이블에서 조회
