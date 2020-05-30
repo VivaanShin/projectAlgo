@@ -7,14 +7,14 @@ var session = require('express-session');
 var flash = require('connect-flash');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  /*var user={};
+  var user={};
 
-  if(isNotLoggined){
+  if(isNotLoggined(req)){
     user={user:null}
   }
   else{
     user={user:req.user};
-  }*/
+  }
 
   res.render('home.ejs',{title:"hello"});
 });
