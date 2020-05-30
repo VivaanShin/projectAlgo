@@ -138,16 +138,13 @@
         <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
 
         <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
-        <% if( user != null){ %>
+        <% if(user==null){ %>
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
         <% } %>
 
         <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
-        <!--button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
-              <img src="img/profile_icon.jpg" alt="회원 아이콘">
-            </button-->
 
 
       </div>
