@@ -2,12 +2,22 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var isNotLoggined=require('../scripts/confirmLogin').isNotLoggedIn;
 var session = require('express-session');
 var flash = require('connect-flash');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home.ejs', { title: 'Express' });
+  var user={};
+
+  if(isNotLoggined){
+    user={user_id:null}
+  }
+  else{
+    user=req.user;
+  }
+  res.render('home.ejs',user);
 });
+
 
 passport.use('local-join', new LocalStrategy({
   usernameField: 'email',
