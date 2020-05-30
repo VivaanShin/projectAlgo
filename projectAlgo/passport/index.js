@@ -1,4 +1,5 @@
 const localStrategy=require('./localStrategy');
+const mysql=require('mysql');
 
 module.exports=(passport)=>{
     const dbConfig={
