@@ -8,6 +8,8 @@ const dbConfig={
     password : 'algoalgo', //dbPassword
     database : 'project_algo'
 };
+var connection=mysql.createConnection(dbConfig);
+
 module.exports=(passport)=>{
     passport.use(new LocalStrategy({ //후에 Admin 여부도 같이 삽입
     usernameField: 'user_id',
@@ -15,7 +17,6 @@ module.exports=(passport)=>{
     passReqToCallback: true
   }, function (req, user_id, user_pw, done) {
         console.log("passport start.")
-        var connection=mysql.createConnection(dbConfig);
         connection.query(`select * from tb_user_info where user_id=${connection.escape(user_id)}`,(err,user)=>{ //유저 정보 테이블에서 조회
             if(err)
                 return done(null,false, {message:'DB 오류!'});
