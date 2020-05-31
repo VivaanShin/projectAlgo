@@ -52,13 +52,13 @@ router.get('/',(req,res)=>{
             }                                           
         }
 
-        resultData=Object.assign(status,[searchResult,user]);
+        resultData={
+            searchResult:searchResult,
+            user:user
+        }
          //상태값+모든 검색된 정치인 정보 Row
         
-        console.log(h_area1);
-        console.log(h_area2);
-        console.log(resultData);
-        res.render('home.ejs', user); //나중에 render할 view 설정
+        res.render('home.ejs', resultData); //나중에 render할 view 설정
         connection.end();
     });
 });
