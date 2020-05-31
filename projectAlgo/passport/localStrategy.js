@@ -8,7 +8,6 @@ const dbConfig={
     password : 'algoalgo', //dbPassword
     database : 'project_algo'
 };
-var connection=mysql.createConnection(dbConfig);
 
 module.exports=(passport)=>{
     passport.use(new LocalStrategy({ //후에 Admin 여부도 같이 삽입
@@ -16,7 +15,8 @@ module.exports=(passport)=>{
     passwordField: 'user_pw',
     passReqToCallback: true
   }, function (req, user_id, user_pw, done) {
-        console.log("passport start.")
+        console.log("passport start.");
+        var connection=mysql.createConnection(dbConfig);
         connection.query(`select * from tb_user_info where user_id=${connection.escape(user_id)}`,(err,user)=>{ //유저 정보 테이블에서 조회
             if(err){
                 console.log('DB 오류!')
@@ -34,9 +34,11 @@ module.exports=(passport)=>{
             }
             //비밀번호 회원가입 시 bcrypt로 암호화
             bcrypt.compare(user_pw,user[0].user_pw,(err,result)=>{
+                    console(user_pw);
+                    console.log(user[0].user_pw);
                     if(result){
-                        console.log('로그인 성공');
-                        return done(null,{user_id:user[0].user_id,user_administratordmin:user[0].user_administrator}) //유저 아이디와 admin 여부를 저장
+                       console.log('로그인 성공');
+                       return done(null,{user_id:user[0].user_id,user_administratordmin:user[0].user_administrator}) //유저 아이디와 admin 여부를 저장
                     }
                     else{
                         console.log('로그인 실패');
