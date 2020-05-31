@@ -44,7 +44,7 @@ router.get('/',(req,res)=>{
 
         resultData=Object.assign(status,searchResult); //상태값+모든 검색된 정치인 정보 Row
         console.log(resultData);
-        res.render('',resultData); //나중에 render할 view 설정
+        res.render('home.ejs',resultData); //나중에 render할 view 설정
         connection.end();
     });
 });
