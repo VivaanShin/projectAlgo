@@ -32,7 +32,10 @@ router.get('/',(req,res)=>{
         var status={};
         var resultData={};
         if(typeof err!='undefined')
+        {
+            console.log(err.message);
             status={status:500};
+        }
         else{
             status={status:200};
             for(let i=0;i<politicians.length;i++){
