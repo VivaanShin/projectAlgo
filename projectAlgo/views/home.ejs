@@ -372,9 +372,8 @@
 
           <select class="custom-select" style="width:60%;" name="h_area1" onChange="cat1_change(this.value,h_area2)" >
 
-
-
-             <option value='1'>서울</option>
+           <option selected="">-선택-</option>
+           <option value='1'>서울</option>
            <option value='2'>부산</option>
            <option value='3'>대구</option>
            <option value='4'>인천</option>
@@ -407,7 +406,7 @@
         </div> 
       </div>
 
-<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:70%; left : 20%; position:absolute;"  >
+<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
 </div>
 
 
@@ -423,16 +422,22 @@
     <div class="card border-light" style="width: 35%; margin-right:5%;">
       <div class="card-header">
 
-        <span class="badge badge-primary">미래통합당</span>
+        <div style="display: inline-flex;">
+        <img src="/img/profile_icon_login.jpg" alt="회원 아이콘">
+        </div>
+
+        <div style="display: inline-block; margin-left: 14%; margin-top: 5%;">  
+        <span class="badge badge-primary"><%= searchResult[0].jdName %></span>
 
         <br>
-        <h3><!--% searchResult[0].politician_name %--></h3>
-        <p class="text-muted">생년월일</p>
-        <p class="text-muted">직업</p>
-
-
+        
+        <!--if(searchResult.length==0) 면 검색결과 없음.-->
+        <h3><%= searchResult[0].politician_name %></h3>
+        <p class="text-muted"><%= searchResult[0].politician_name %>
+        </p>
+        <p class="text-muted"><%= searchResult[0].career2 %></p>
       <button onclick='showRadar()'>그래프보기</button>
-      </div>
+       </div>
 
 
       <div class="card-body">
