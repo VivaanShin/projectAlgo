@@ -16,10 +16,10 @@ router.get('/',(req,res)=>{
     var user={};
 
     if(isNotLoggined(req)){
-      user={user:null}
+      user=null
     }
     else{
-      user={user:req.user};
+      user=req.user;
     }
 
     var h_area1=req.query.h_area1;
