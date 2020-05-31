@@ -46,12 +46,11 @@ router.get('/',(req,res)=>{
                 }
 
                 searchResult.push(politician);
-            }
+            }                                           
         }
-
-        resultData=Object.assign(status,[searchResult,user]); //상태값+모든 검색된 정치인 정보 Row
+         //상태값+모든 검색된 정치인 정보 Row
         console.log(resultData);
-        res.render('home.ejs',resultData); //나중에 render할 view 설정
+        res.render('home.ejs', Object.assign(status,[searchResult,user])); //나중에 render할 view 설정
         connection.end();
     });
 });
