@@ -25,7 +25,6 @@ router.get('/',(req,res)=>{
     var h_area1=req.query.h_area1;
     var h_area2=req.query.h_area2;
     var connection=mysql.createConnection(dbConfig);
-    var 
     connection.query(`select * from tb_politician_info 
     where sdName like '%s${connection.escape(h_area1)}%s' and sggName like '%s${connection.escape(h_area2)}%s'` //queryString은 req.query.politicianName
     ,(err,politicians)=>{
