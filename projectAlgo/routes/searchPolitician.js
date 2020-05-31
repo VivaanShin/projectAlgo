@@ -30,7 +30,7 @@ router.get('/',(req,res)=>{
     ,(err,politicians)=>{
         var searchResult=[];
         var status={};
-        var resultData={};
+        var user={};
         if(err)
             status={status:500};
         else{
@@ -48,9 +48,11 @@ router.get('/',(req,res)=>{
                 searchResult.push(politician);
             }                                           
         }
+
+        user=Object.assign(status,[searchResult,user])
          //상태값+모든 검색된 정치인 정보 Row
-        console.log(Object.assign(status,[searchResult,user]));
-        res.render('home.ejs', Object.assign(status,[searchResult,user])); //나중에 render할 view 설정
+        console.log(resultData);
+        res.render('home.ejs', resultData); //나중에 render할 view 설정
         connection.end();
     });
 });
