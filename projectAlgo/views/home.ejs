@@ -109,7 +109,7 @@
 
         <div class="modal-header">
 
-          <h4 class="modal-title" id="myModalLabel">A회원님, 환영합니다.</h4>
+          <h4 class="modal-title" id="myModalLabel">회원님, 환영합니다.</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
         </div>
@@ -142,10 +142,16 @@
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
-        <% } %>
+  
 
         <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
-
+         <% }else{ %>
+        <button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
+              <img src="/img/profile_icon_login.jpg" alt="회원 아이콘">
+            </button-->
+            <br>
+            <p></p>
+        <% } %>
 
       </div>
 
@@ -221,13 +227,16 @@
 
 
         <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
+         <!--% if(user==null){ %>
         <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
-        <!-->
+        <% } %-->
 
 
       <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
+         <!--% elif(user=null){ --%>
         <!--a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
-      <!-->
+      
+
 
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
         <!-- a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
