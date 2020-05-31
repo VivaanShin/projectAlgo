@@ -26,7 +26,7 @@ router.get('/',(req,res)=>{
     var h_area2=req.query.h_area2;
     var connection=mysql.createConnection(dbConfig);
     connection.query(`select * from tb_politician_info 
-    where sdName like '${connection.escape('%'+h_area1+'%')}' and sggName like '${connection.escape('%'+h_area2+'%')}` //queryString은 req.query.politicianName
+    where sdName like '%${h_area1}%' and sggName like '%${h_area2}%'` //나중에 sql injection 확인
     ,(err,politicians)=>{
         var searchResult=[];
         var status={};
