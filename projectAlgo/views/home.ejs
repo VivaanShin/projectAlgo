@@ -116,9 +116,12 @@
 
 
         <!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
-        <div class="modal-body">
+          <div class="modal-body">
           <input type="button" value="정보수정" style="margin-left: 70%; margin-bottom: 2%;" onClick="location.href='register_change.ejs'"></br>
-          <input type="button" value="로그아웃" style="margin-left: 70%; margin-bottom: 2%;">
+
+          <form method="post" action="/logout" role="form" class="form">
+          <input type="submit" value="로그아웃" style="margin-left: 70%; margin-bottom: 2%;">
+          </form>
 
         </div>
       </div><!-- modal-content -->
@@ -149,8 +152,9 @@
         <button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
               <img src="/img/profile_icon_login.jpg" alt="회원 아이콘">
             </button-->
-            <br>
-            <p></p>
+          <br>
+          <p>ID : <%= user.user_id %></p>
+
         <% } %>
 
       </div>
@@ -222,28 +226,35 @@
 
 
 
-      <li class="nav-item">
+
         <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
 
 
         <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
-         <!--% if(user==null){ %>
+        
+        <% if(user == null) { %>
+        <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
-        <% } %-->
+        </li>
+        <% } %>
 
 
-      <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-         <!--% elif(user=null){ --%>
-        <!--a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
-      
-
+        <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
+        <% if(user != null && user.user_age==null) { %>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
+        </li>
+        <%  } %>        
+        
 
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-        <!-- a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
-      <!-->
-
-
-      </li>
+        <% if(user != null && user.user_age!=null) { %>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
+        </li>
+        <%  } %>        
+        
+        
 
     </ul>
     <!--메뉴탭 끝-->
