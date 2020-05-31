@@ -34,11 +34,6 @@ module.exports=(passport)=>{
             }
             //비밀번호 회원가입 시 bcrypt로 암호화
             bcrypt.compare(user_pw,user[0].user_pw,(err,result)=>{
-                if (err){
-                    console.log(err.message);
-                    return done(null,false, {messsage:'bcrypt error!'});
-                }
-                else{
                     if(result){
                         console.log('로그인 성공');
                         return done(null,{user_id:user[0].user_id,user_administratordmin:user[0].user_administrator}) //유저 아이디와 admin 여부를 저장
@@ -48,7 +43,7 @@ module.exports=(passport)=>{
                         return done(null,false,{message:'비밀번호가 틀립니다!.'})
                     }
                 }
-            })
+            );
             connection.end();
         })
   }))
