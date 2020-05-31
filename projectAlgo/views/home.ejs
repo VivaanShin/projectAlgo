@@ -372,8 +372,29 @@
 
           <select class="custom-select" style="width:60%;" name="h_area1" onChange="cat1_change(this.value,h_area2)" >
 
+<!--
            <option selected="">-선택-</option>
-           <option value='1'>서울</option>
+           <option value='서울'>서울</option>
+           <option value='부산'>부산</option>
+           <option value='대구'>대구</option>
+           <option value='인천'>인천</option>
+           <option value='광주'>광주</option>
+           <option value='대전'>대전</option>
+           <option value='울산'>울산</option>
+           <option value='강원'>강원</option>
+           <option value='경기'>경기</option>
+           <option value='경남'>경남</option>
+           <option value='경북'>경북</option>
+           <option value='전남'>전남</option>
+           <option value='전북'>전북</option>
+           <option value='제주'>제주</option>
+           <option value='충남'>충남</option>
+           <option value='충북'>충북</option>
+          </select>
+-->
+
+
+             <option value='1'>서울</option>
            <option value='2'>부산</option>
            <option value='3'>대구</option>
            <option value='4'>인천</option>
@@ -389,15 +410,18 @@
            <option value='14'>제주</option>
            <option value='15'>충남</option>
            <option value='16'>충북</option>
-          </select>
+
+
+
+
 <br><br>
 
 <label>선거구</label><br>
   <select class="custom-select" style="width:60%; display:" name="h_area2">
    <option selected="">-선택-</option>
   </select>
-  </select><br><br>
-  <button type="submit" class="btn btn-primary" onclick='showRadar()' style="margin-left: 1%; width:57%;" >검색하기</button>
+  <br><br>
+  <button href="/search" class="btn btn-primary" style="margin-left: 1%; width:57%;">검색하기</button>
 
 </form>
         </div> 
@@ -422,7 +446,7 @@
         <span class="badge badge-primary">미래통합당</span>
 
         <br>
-        <h3>이름</h3>
+        <h3><!--% searchResult[0].politician_name %--></h3>
         <p class="text-muted">생년월일</p>
         <p class="text-muted">직업</p>
 
@@ -440,7 +464,7 @@
       <div class="card-header">
 
         <span class="badge badge-danger">더불어민주당</span>
-        <h3><%= politician_name[1] %></h3>
+        <h3>이름</h3>
         <p class="text-muted">생년월일</p>
         <p class="text-muted">직업</p>
       </div>
