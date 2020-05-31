@@ -35,9 +35,9 @@ module.exports=(passport)=>{
             //비밀번호 회원가입 시 bcrypt로 암호화
             bcrypt.compare(user_pw,user[0].user_pw,(err,result)=>{
                     bcrypt.hash(user_pw, null, null, function(err, hash) {
-                        console.log(hash);
+                        console.log("user_hash="+hash);
                     });
-                    console.log(user[0].user_pw);
+                    console.log("login_hash"+user[0].user_pw);
                     if(result){
                        console.log('로그인 성공');
                        return done(null,{user_id:user[0].user_id,user_administratordmin:user[0].user_administrator}) //유저 아이디와 admin 여부를 저장
