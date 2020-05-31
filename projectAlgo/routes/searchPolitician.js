@@ -13,7 +13,6 @@ const dbConfig={
 
 //router.get('/') querystring 사용시 사용
 router.get('/',(req,res)=>{
-
     var user={};
 
     if(isNotLoggined(req)){
