@@ -26,12 +26,12 @@ router.get('/',(req,res)=>{
     var h_area2=req.query.h_area2;
     var connection=mysql.createConnection(dbConfig);
     connection.query(`select * from tb_politician_info 
-    where sdName like '%s${connection.escape(h_area1)}%s' and sggName like '%s${connection.escape(h_area2)}%s'` //queryString은 req.query.politicianName
+    where sdName like '%${connection.escape(h_area1)}%' and sggName like '%${connection.escape(h_area2)}%'` //queryString은 req.query.politicianName
     ,(err,politicians)=>{
         var searchResult=[];
         var status={};
         var resultData={};
-        if(typeof err!='undefined')
+        if(err)
         {
             console.log(err.message);
             status={status:500};
