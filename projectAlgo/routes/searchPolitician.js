@@ -1,6 +1,6 @@
 // /search 라우터
 const express=require('express');
-
+var isNotLoggined=require('../scripts/confirmLogin').isNotLoggedIn;
 const mysql=require('mysql');
 const router=express.Router();
 const dbConfig={
@@ -14,10 +14,19 @@ const dbConfig={
 //router.get('/') querystring 사용시 사용
 router.get('/',(req,res)=>{
 
+    var user={};
+
+    if(isNotLoggined(req)){
+      user={user:null}
+    }
+    else{
+      user={user:req.user};
+    }
+
     var h_area1=req.query.h_area1;
     var h_area2=req.query.h_area2;
     var connection=mysql.createConnection(dbConfig);
-    
+    var 
     connection.query(`select * from tb_politician_info 
     where sdName like '%s${connection.escape(h_area1)}%s' and sggName like '%s${connection.escape(h_area2)}%s'` //queryString은 req.query.politicianName
     ,(err,politicians)=>{
@@ -42,7 +51,7 @@ router.get('/',(req,res)=>{
             }
         }
 
-        resultData=Object.assign(status,searchResult); //상태값+모든 검색된 정치인 정보 Row
+        resultData=Object.assign(status,[searchResult,user]); //상태값+모든 검색된 정치인 정보 Row
         console.log(resultData);
         res.render('home.ejs',resultData); //나중에 render할 view 설정
         connection.end();
