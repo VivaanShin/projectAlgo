@@ -34,7 +34,7 @@ module.exports=(passport)=>{
             }
             //비밀번호 회원가입 시 bcrypt로 암호화
             bcrypt.compare(user_pw,user[0].user_pw,(err,result)=>{
-                    console(user_pw);
+                    console.log(user_pw);
                     console.log(user[0].user_pw);
                     if(result){
                        console.log('로그인 성공');
