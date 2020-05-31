@@ -31,7 +31,7 @@ router.get('/',(req,res)=>{
         var searchResult=[];
         var status={};
         var resultData={};
-        if(err)
+        if(typeof err!='undefined')
             status={status:500};
         else{
             status={status:200};
