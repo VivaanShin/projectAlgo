@@ -1,7 +1,7 @@
 // /search 라우터
 const express=require('express');
 
-var isNotLoggined=require('../scripts/confirmLogin').isNotLoggedIn;
+var isLoggined=require('../scripts/confirmLogin').isLoggedIn;
 
 
 
@@ -17,13 +17,9 @@ const dbConfig={
 
 //router.get('/') querystring 사용시 사용
 router.get('/',(req,res)=>{
-    var user={};
 
-    if(isNotLoggined(req)){
-      user=null
-    }
-    else{
-      user=req.user;
+    if(isLoggined(req)){
+        var user=req.user;
     }
 
     var h_area1=req.query.h_area1;

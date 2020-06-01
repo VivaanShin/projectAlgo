@@ -37,10 +37,11 @@ module.exports=(passport)=>{
                     bcrypt.hash(user_pw, null, null, function(err, hash) {
                         console.log("user_hash="+hash);
                     });
-                    console.log("login_hash"+user[0].user_pw);
+                    console.log("login_hash="+user[0].user_pw);
                     if(result){
                        console.log('로그인 성공');
-                       return done(null,{user_id:user[0].user_id,user_state:user[0].user_user_state}) //유저 아이디와 admin 여부를 저장
+                       return done(null,{user_id:user[0].user_id,user_state:user[0].user_user_state,
+                        user_interest_check:user[0].user_interest_check}) //유저 아이디와 admin 여부를 저장
                     }
                     else{
                         console.log('로그인 실패');

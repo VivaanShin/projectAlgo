@@ -8,7 +8,7 @@ var flash = require('connect-flash');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(isLoggined(req)){
-    user={user:req.user};
+    var user=req.user;
     console.log(user);
 
     res.render('home.ejs',user);
