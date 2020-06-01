@@ -28,11 +28,19 @@
   });
 
   function cleanSource(html) {
+<<<<<<< HEAD
     html = html.replace(/Â¡Â¿/g, "&times;")
                .replace(/?/g, "&laquo;")
                .replace(/?/g, "&raquo;")
                .replace(/Â¡Ã§/g, "&larr;")
                .replace(/Â¡Ã¦/g, "&rarr;");
+=======
+    html = html.replace(/¡¿/g, "&times;")
+               .replace(/?/g, "&laquo;")
+               .replace(/?/g, "&raquo;")
+               .replace(/¡ç/g, "&larr;")
+               .replace(/¡æ/g, "&rarr;");
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
 
     var lines = html.split(/\n/);
 
@@ -55,6 +63,7 @@
     return lines;
   }
 
+<<<<<<< HEAD
 })();
 
 
@@ -453,3 +462,6 @@ function animate(elem,time) {
 var divVal = document.getElementById('chart-container');
 animate(divVal,600);
 }
+=======
+})();
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81

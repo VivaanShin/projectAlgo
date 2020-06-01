@@ -14,7 +14,11 @@
     
   <style type="text/css">
       .jumbotron {
+<<<<<<< HEAD
         background-image: url('/img/vote2.jpg');
+=======
+        background-image: url('/img/vote.jpg');
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
         background-size:cover;
         text-shadow : black 0.2em 0.2em 0.2em;
         color:white;
@@ -98,6 +102,7 @@
  
 
 
+<<<<<<< HEAD
   <!--top navbar의 시작 태그-->
   <div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
 
@@ -132,11 +137,42 @@
       <div class="logo_name" sytle="">
         <a href="/"><img src="/img/logo_name.jpg" alt="알go뽑자 로고"></a>
       </div>
+=======
+<!--top navbar의 시작 태그-->
+<div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+
+
+ <div class="container">
+ 
+          <div class="text-center" style="padding-top:4%">
+
+            <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
+
+            <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
+            <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
+              <img src="/img/profile_icon.jpg" alt="회원 아이콘">
+            </button>
+
+            <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
+            <!--button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
+              <img src="img/profile_icon.jpg" alt="회원 아이콘">
+            </button-->
+
+
+           </div>
+
+
+<!--로고-->
+     <div class="logo_name" sytle="">
+        <a href="/"><img src="/img/logo_name.jpg" alt="알go뽑자 로고"></a>
+     </div>
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
 
 
 
 
 
+<<<<<<< HEAD
       <!--정치인/선거구 검색창-->
       <div class="tsh" style="padding-top:7.5%">
         <form name="formSearch" onsubmit="return false;" method="post" action="">
@@ -154,18 +190,43 @@
             <img src="/img/btn_gnbSch.png" alt="검색">
           </a>
         </form>
+=======
+<!--정치인/선거구 검색창-->
+<div class="tsh" style="padding-top:7.5%">
+    <form name="formSearch" onsubmit="return false;" method="post" action="">
+      <input type="hidden" name="PageNumber" value="1">
+      <input type="hidden" name="searchArea" value="total">
+      <input type="hidden" name="searchCategory" value="total">
+      <input type="hidden" name="researchType" value="">
+
+      <span>
+        <input type="text" title="검색어" id="sh_txt" name="searchQuery" value="" onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event);" style="ime-mode:active;" class="inp" placeholder="정치인/선거구 검색">
+      </span>
+
+      <a class="btn_gnbSch" href="javascript:goSearch();">
+      <img src="img/btn_gnbSch.png" alt="검색">
+      </a>
+    </form>
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
 
       </div>
 
 
 
 
+<<<<<<< HEAD
     </div><!-- container -->
 
 
   </div>
   <!--top navbar의 끝 태그-->
 
+=======
+</div><!-- container -->
+
+
+</div><!--top navbar의 끝 태그-->
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
 
 
 
@@ -176,7 +237,11 @@
 
 
 
+<<<<<<< HEAD
 <div class="container" style="margin-top: 6%;">
+=======
+<div class="container" style="margin-top: 3%;">
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
 
 
 <!--메뉴탭 시작-->
@@ -195,6 +260,7 @@
 
 
 
+<<<<<<< HEAD
         <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
 
 
@@ -226,6 +292,30 @@
 
     </ul>
     <!--메뉴탭 끝-->
+=======
+    <li class="nav-item">
+      <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
+
+
+      <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
+      <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
+      <!-->
+
+      
+      <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
+      <!--a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
+      <!---->
+
+      <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
+      <!-- a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
+      <!-->
+
+
+    </li>
+
+    </ul>
+<!--메뉴탭 끝-->
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
 
 
 
@@ -243,7 +333,11 @@
     <!--ID입력-->
     <div class="form-group">
       <label for="staticEmail">회원ID</label></br>
+<<<<<<< HEAD
       <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID예제" style="display:inline-block; width:48%; margin-right: 1%;">
+=======
+      <input type="text" class="form-control" name="userNM" placeholder="ID예제@naver.com" style="display:inline-block; width:48%; margin-right: 1%;">
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
       <!--중복체크-->
       <input type="button" class="btn btn-primary name="user_id" id="user_id" value="중복체크" style="width:10%;">
     </div>
@@ -359,6 +453,7 @@
   
 
 
+<<<<<<< HEAD
       <div class="tab-pane fade" id="candidate_list">
   
     <div class="row">
@@ -460,6 +555,13 @@
     </div>
     </div>
       </div>
+=======
+
+  <div class="tab-pane fade" id="candidate_list">
+    <p>정치인 검색</p>
+  </div>
+
+>>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
 
 
 
