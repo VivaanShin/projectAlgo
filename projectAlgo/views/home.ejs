@@ -254,7 +254,7 @@
 
         <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
         
-        <% if(user == null) { %>
+        <% if(typeof user == 'undefined') { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
         </li>
@@ -262,7 +262,7 @@
 
 
         <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-        <% if(user != null && user.user_age==null) { %>
+        <% if(typeof user != 'undefined' && user_interest_check==0) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
         </li>
@@ -270,7 +270,7 @@
         
 
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-        <% if(user != null && user.user_age!=null) { %>
+        <% if(typeof user != 'undefined' && user_interest_check==1) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
         </li>
