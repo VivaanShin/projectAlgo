@@ -262,7 +262,7 @@
 
 
         <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-        <% if(typeof user != 'undefined' && user_interest_check==0) { %>
+        <% if(typeof user != 'undefined' && user.user_interest_check==0) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
         </li>
@@ -270,7 +270,7 @@
         
 
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-        <% if(typeof user != 'undefined' && user_interest_check==1) { %>
+        <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
         </li>
@@ -400,7 +400,7 @@
    <option selected="">-선택-</option>
   </select>
   <br><br>
-  <button href="/search" class="btn btn-primary" style="margin-left: 1%; width:57%;">검색하기</button>
+  <button href="/search?h_area1=서울&h_area2=구로구" class="btn btn-primary" style="margin-left: 1%; width:57%;">검색하기</button>
 
 </form>
         </div> 
