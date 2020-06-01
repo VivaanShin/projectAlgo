@@ -14,10 +14,7 @@ router.get('/', function(req, res, next) {
   }
   else{
     user={user:req.user};
-<<<<<<< HEAD
     console.log(user);
-=======
->>>>>>> 04d255e8d9aae116785cc48ba2492e6b55e1bb81
   }
 
   res.render('home.ejs',user);
