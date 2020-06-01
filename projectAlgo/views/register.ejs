@@ -14,7 +14,7 @@
     
   <style type="text/css">
       .jumbotron {
-        background-image: url('/img/vote.jpg');
+        background-image: url('/img/vote2.jpg');
         background-size:cover;
         text-shadow : black 0.2em 0.2em 0.2em;
         color:white;
@@ -98,76 +98,85 @@
  
 
 
-<!--top navbar의 시작 태그-->
-<div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+  <!--top navbar의 시작 태그-->
+  <div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
 
 
- <div class="container">
- 
-          <div class="text-center" style="padding-top:4%">
+    <div class="container">
 
-            <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
+      <div class="text-center" style="padding-top:4%">
 
-            <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
-            <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
-              <img src="/img/profile_icon.jpg" alt="회원 아이콘">
-            </button>
+        <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
 
-            <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
-            <!--button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
-              <img src="img/profile_icon.jpg" alt="회원 아이콘">
+        <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
+        <% if(user==null){ %>
+        <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
+          <img src="/img/profile_icon.jpg" alt="회원 아이콘">
+        </button>
+  
+
+        <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
+         <% }else{ %>
+        <button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
+              <img src="/img/profile_icon_login.jpg" alt="회원 아이콘">
             </button-->
+          <br>
+          <p style="margin-bottom:-3%;">ID : <%= user.user_id %></p>
+
+        <% } %>
+
+      </div>
 
 
-           </div>
-
-
-<!--로고-->
-     <div class="logo_name" sytle="">
+      <!--로고-->
+      <div class="logo_name" sytle="">
         <a href="/"><img src="/img/logo_name.jpg" alt="알go뽑자 로고"></a>
-     </div>
+      </div>
 
 
 
 
 
-<!--정치인/선거구 검색창-->
-<div class="tsh" style="padding-top:7.5%">
-    <form name="formSearch" onsubmit="return false;" method="post" action="">
-      <input type="hidden" name="PageNumber" value="1">
-      <input type="hidden" name="searchArea" value="total">
-      <input type="hidden" name="searchCategory" value="total">
-      <input type="hidden" name="researchType" value="">
+      <!--정치인/선거구 검색창-->
+      <div class="tsh" style="padding-top:7.5%">
+        <form name="formSearch" onsubmit="return false;" method="post" action="">
+          <input type="hidden" name="PageNumber" value="1">
+          <input type="hidden" name="searchArea" value="total">
+          <input type="hidden" name="searchCategory" value="total">
+          <input type="hidden" name="researchType" value="">
 
-      <span>
-        <input type="text" title="검색어" id="sh_txt" name="searchQuery" value="" onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event);" style="ime-mode:active;" class="inp" placeholder="정치인/선거구 검색">
-      </span>
+          <span>
+            <input type="text" title="검색어" id="sh_txt" name="searchQuery" value="" onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event);" style="ime-mode:active;" class="inp"
+              placeholder="정치인/선거구 검색">
+          </span>
 
-      <a class="btn_gnbSch" href="javascript:goSearch();">
-      <img src="img/btn_gnbSch.png" alt="검색">
-      </a>
-    </form>
+          <a class="btn_gnbSch" href="javascript:goSearch();">
+            <img src="/img/btn_gnbSch.png" alt="검색">
+          </a>
+        </form>
 
       </div>
 
 
 
 
-</div><!-- container -->
+    </div><!-- container -->
 
 
-</div><!--top navbar의 끝 태그-->
-
-
-
-
+  </div>
+  <!--top navbar의 끝 태그-->
 
 
 
 
 
 
-<div class="container" style="margin-top: 3%;">
+
+
+
+
+
+<div class="container" style="margin-top: 6%;">
 
 
 <!--메뉴탭 시작-->
@@ -186,28 +195,37 @@
 
 
 
-    <li class="nav-item">
-      <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
+        <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
 
 
-      <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
-      <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
-      <!-->
-
-      
-      <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-      <!--a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
-      <!---->
-
-      <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-      <!-- a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
-      <!-->
+        <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
+        
+        <% if(user == null) { %>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
+        </li>
+        <% } %>
 
 
-    </li>
+        <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
+        <% if(user != null && user.user_age==null) { %>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
+        </li>
+        <%  } %>        
+        
+
+        <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
+        <% if(user != null && user.user_age!=null) { %>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
+        </li>
+        <%  } %>        
+        
+        
 
     </ul>
-<!--메뉴탭 끝-->
+    <!--메뉴탭 끝-->
 
 
 
@@ -225,7 +243,7 @@
     <!--ID입력-->
     <div class="form-group">
       <label for="staticEmail">회원ID</label></br>
-      <input type="text" class="form-control" name="userNM" placeholder="ID예제@naver.com" style="display:inline-block; width:48%; margin-right: 1%;">
+      <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID예제" style="display:inline-block; width:48%; margin-right: 1%;">
       <!--중복체크-->
       <input type="button" class="btn btn-primary name="user_id" id="user_id" value="중복체크" style="width:10%;">
     </div>
@@ -341,11 +359,107 @@
   
 
 
+      <div class="tab-pane fade" id="candidate_list">
+  
+    <div class="row">
 
-  <div class="tab-pane fade" id="candidate_list">
-    <p>정치인 검색</p>
-  </div>
+      <div class="col-lg-3">
+        <div class="form-group" style="margin-top:20%;">
+          <h2>정치인 상세 검색</h2><br><br>
+    <form>
+          <label style="margin-right:5%;">시도</label><br>
 
+          <select class="custom-select" style="width:60%;" name="h_area1" onChange="cat1_change(this.value,h_area2)" >
+
+           <option selected="">-선택-</option>
+           <option value='1'>서울</option>
+           <option value='2'>부산</option>
+           <option value='3'>대구</option>
+           <option value='4'>인천</option>
+           <option value='5'>광주</option>
+           <option value='6'>대전</option>
+           <option value='7'>울산</option>
+           <option value='8'>강원</option>
+           <option value='9'>경기</option>
+           <option value='10'>경남</option>
+           <option value='11'>경북</option>
+           <option value='12'>전남</option>
+           <option value='13'>전북</option>
+           <option value='14'>제주</option>
+           <option value='15'>충남</option>
+           <option value='16'>충북</option>
+          </select>
+<br>
+<br>
+<br>
+<label>선거구</label><br>
+  <select class="custom-select" style="width:60%;" name="h_area2">
+   <option selected="">-선택-</option>
+  </select>
+
+
+
+
+
+</form>
+
+
+
+
+        </div> 
+      </div>
+
+<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:70%; left : 20%; position:absolute;"  >
+</div>
+
+<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
+    <div style="display: block">
+    <div class="card border-light" style="width: 35%; margin-right:5%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      </div>
+    </div>
+
+    <div class="card border-light" style="width: 35%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      </div>
+    </div>
+    </div>
+
+      <div style="display: block">
+    <div class="card border-light" style="width: 35%; margin-right:5%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+        <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      </div>
+    </div>
+
+    <div class="card border-light" style="width: 35%;">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      <p class="card-title">d3.js </p>
+      </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+      </div>
 
 
 

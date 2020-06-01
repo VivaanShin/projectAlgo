@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
   }
   else{
     user={user:req.user};
+    console.log(user);
   }
 
   res.render('home.ejs',user);
