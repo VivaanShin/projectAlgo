@@ -163,7 +163,7 @@
         <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
 
         <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
-        <% if(user==null){ %>
+        <% if(typeof user == 'undefined'){ %>
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
@@ -241,8 +241,8 @@
 
 
 
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#candidate_list">정치인 검색</a>
+      <li class="" >
+        <a class="nav-link" data-toggle="tab" href="/search.ejs">정치인 검색</a>
       </li>
 
 
@@ -418,22 +418,29 @@
 
 
 <div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-    
-  <div style="display: flex">
+    <% if(typeof searchResult!='undefined' && searchResult.length==0) { %>
+      <div class="card border-light" style="width: 35%; margin-right:5%;">
+        검색결과 없음.
+      </div>
+    <% } %>
 
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
+    <% if(typeof searchResult!='undefined' && searchResult.length > 0) { %>
+      
+      <% for (let i=0; i<searchResult.length; i++){ %> 
+
+  <div style="display: flex">
+        <div class="card border-light" style="width: 35%; margin-right:5%;">
       <div class="card-header" style="display: -webkit-box;" >
         <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">
         <div style=" margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary">미래통합당</span>
+        <span class="badge badge-primary"><%= searchResult[0].jdName %></span>
 
         <br>
         
-        <!--if(searchResult.length==0) 면 검색결과 없음.-->
-        <h3>이인영</h3>
-        <p class="text-muted">
+        <h3><%= searchResult[0].politician_name %></h3>
+        <p class="text-muted"><%= searchResult[0].politician_name %>
         </p>
-        <p class="text-muted">대학교수</p>
+        <p class="text-muted"><%= searchResult[0].career2 %></p>
       <button onclick='showRadar()'>그래프보기</button>
        </div>
      </div>
@@ -458,42 +465,9 @@
       </div>
     </div>
     </div>
+  <% } %>
+   <% } %>
 
-
-   <div style="display: flex">
-
-
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header">
-
-        <span class="badge badge-success">국민의당</span>
-        <h3>이름</h3>
-        <p class="text-muted">생년월일</p>
-        <p class="text-muted">직업</p>
-      </div>
-      
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-
-
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">
-                <span class="badge badge-warning">정의당</span>
-        <br>
-        <h3>이름</h3>
-        <br>
-        <p class="text-muted">생년월일</p>
-        <br>
-        <p class="text-muted">직업</p>
-    </div>
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-
-    </div><!--end of 2nd flex-->
 
     </div>
     </div>
