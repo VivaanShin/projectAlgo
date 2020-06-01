@@ -9,7 +9,9 @@ var flash = require('connect-flash');
 router.get('/', function(req, res, next) {
   if(isLoggined(req)){
     var user={user:req.user};
+    console.log("router get:"+user);
     console.log("router get:"+user.user_id);
+    console.log("router get:"+user.user_interest_check);
 
     res.render('home.ejs',user);
   }
