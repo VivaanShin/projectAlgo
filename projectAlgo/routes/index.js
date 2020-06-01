@@ -2,22 +2,20 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var isNotLoggined=require('../scripts/confirmLogin').isNotLoggedIn;
+var isLoggined=require('../scripts/confirmLogin').isLoggedIn;
 var session = require('express-session');
 var flash = require('connect-flash');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var user={};
-
-  if(isNotLoggined(req)){
-    user={user:null}
-  }
-  else{
+  if(isLoggined(req)){
     user={user:req.user};
     console.log(user);
-  }
 
-  res.render('home.ejs',user);
+    res.render('home.ejs',user);
+  }
+  else{
+    res.render('home.ejs');
+  }
 });
 
 
