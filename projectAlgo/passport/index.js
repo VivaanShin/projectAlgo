@@ -18,7 +18,8 @@ module.exports=(passport)=>{
         var connection=mysql.createConnection(dbConfig);
         connection.query(`select user_id,user_state user_interest_check from tb_user_info where user_id=${connection.escape(user.user_id)}`
         ,(err,user)=>{ //유저 정보 테이블에서 조회
-            console.log(user);
+            console.log(user.user_id);
+            console.log(user[0]);
             done(err,user[0]); // 세션에 admin 여부와 id만 저장
         });
     });
