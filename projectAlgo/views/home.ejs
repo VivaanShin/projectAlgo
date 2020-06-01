@@ -418,32 +418,31 @@
 
 
 <div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-    <div style="display: block">
+    
+  <div style="display: flex">
+
     <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header">
-
-        <div style="display: inline-flex;">
-        <img src="/img/profile_icon_login.jpg" alt="회원 아이콘">
-        </div>
-
-        <div style="display: inline-block; margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary"><%= searchResult[0].jdName %></span>
+      <div class="card-header" style="display: -webkit-box;" >
+        <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">
+        <div style=" margin-left: 14%; margin-top: 5%;">  
+        <span class="badge badge-primary">미래통합당</span>
 
         <br>
         
         <!--if(searchResult.length==0) 면 검색결과 없음.-->
-        <h3><%= searchResult[0].politician_name %></h3>
-        <p class="text-muted"><%= searchResult[0].politician_name %>
+        <h3>이인영</h3>
+        <p class="text-muted">
         </p>
-        <p class="text-muted"><%= searchResult[0].career2 %></p>
+        <p class="text-muted">대학교수</p>
       <button onclick='showRadar()'>그래프보기</button>
        </div>
-
+     </div>
 
       <div class="card-body">
       <div id="chart-container"></div>
       </div>
     </div>
+
 
     <div class="card border-light" style="width: 35%;">
       <div class="card-header">
@@ -460,10 +459,12 @@
     </div>
     </div>
 
-      <div style="display: block">
+
+   <div style="display: flex">
+
+
     <div class="card border-light" style="width: 35%; margin-right:5%;">
       <div class="card-header">
-
 
         <span class="badge badge-success">국민의당</span>
         <h3>이름</h3>
@@ -475,6 +476,7 @@
       <div id="chart-container"></div>
       </div>
     </div>
+
 
     <div class="card border-light" style="width: 35%;">
       <div class="card-header">
@@ -490,11 +492,12 @@
       <div id="chart-container"></div>
       </div>
     </div>
-    </div>
+
+    </div><!--end of 2nd flex-->
 
     </div>
     </div>
-      </div>
+      </div><!--candidate-->
 
 
 
