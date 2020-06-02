@@ -17,18 +17,17 @@ router.get('/',(req,res)=>{
     
     connection.query(`select * from tb_user_info as user, 
     tb_user_interest as interest where user.user_id=interest.user_id`,(err,members)=>{ //유저 정보 테이블에서 조회
-        var memberResult={memberList:[]};
         var status={};
         var resultData={};
-        if(err)
+        if(err){
             status={status:500};
+        }
         else{
             status={status:200};
-            memberResult.memberList=members; //Row 삽입
+            resultData.memberList=members;
         }
 
-        resultData.status=status;
-        resultData.memberResult=memberResult; //상태값+모든 회원 Row
+        resultData.status=status; //상태값+모든 회원 Row
         console.log(resultData);
         res.render('admin_page/admin.ejs',resultData); //나중에 render할 view 설정
         connection.end();
