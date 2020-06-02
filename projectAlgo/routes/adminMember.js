@@ -20,6 +20,7 @@ router.get('/',(req,res)=>{
         var status={};
         var resultData={};
         if(err){
+            console.log(err.message);
             status={status:500};
         }
         else{
