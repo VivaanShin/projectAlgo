@@ -9,20 +9,20 @@ const isLoggedin=require('../scripts/confirmLogin').isLoggedin;
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
-    password : '12345678',
+    password : 'algoalgo',
     database : 'project_algo'
   }; 
 
 //쿼리용 Promise들
-const getBillInfo=require('./queryPromiseUser').getBillInfo;
-const getPoliticianNameByNo=require('./queryPromiseUser').getPoliticianNameByNo;
-const getPoliticianAllAverageGrade=require('./queryPromiseUser').getPoliticianAllAverageGrade;
-const getPoliticianWeekAverageGrade=require('./queryPromiseUser').getPoliticianWeekAverageGrade;
-const getUserPoliticianGradeByWeek=require('./queryPromiseUser').getUserPoliticianGradeByWeek;
-const updateGradeInfoRecord=require('./queryPromiseUser').updateGradeInfoRecord;
-const updateUserPoliticianGrade=require('./queryPromiseUser').updateUserPoliticianGrade;
-const insertGradeInfoRecord=require('./queryPromiseUser').insertGradeInfoRecord;
-const insertUserPoliticianGrade=require('./queryPromiseUser').insertUserPoliticianGrade;
+const getBillInfo=require('./queryPromise').getBillInfo;
+const getPoliticianNameByNo=require('./queryPromise').getPoliticianNameByNo;
+const getPoliticianAllAverageGrade=require('./queryPromise').getPoliticianAllAverageGrade;
+const getPoliticianWeekAverageGrade=require('./queryPromise').getPoliticianWeekAverageGrade;
+const getUserPoliticianGradeByWeek=require('./queryPromise').getUserPoliticianGradeByWeek;
+const updateGradeInfoRecord=require('./queryPromise').updateGradeInfoRecord;
+const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
+const insertGradeInfoRecord=require('./queryPromise').insertGradeInfoRecord;
+const insertUserPoliticianGrade=require('./queryPromise').insertUserPoliticianGrade;
 
 router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     var connection = mysql.createConnection(dbConfig);
@@ -42,7 +42,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
 
                     let img='';
                     try{
-                        fs.statSync(`./public/images/${politician_no}`); //public 폴더에서 image를 가져옴
+                        fs.statSync(`./public/images/${politician_no}`); //public 폴더에서 image를 확인함
                         img={img:`/img/${politician_no}`};
                     }
                     catch{

@@ -17,7 +17,7 @@ module.exports=(passport)=>{
   }, function (req, user_id, user_pw, done) {
         console.log("passport start.");
         var connection=mysql.createConnection(dbConfig);
-        connection.query(`select * from tb_user_info where user_id=${connection.escape(user_id)}`,(err,user)=>{ //유저 정보 테이블에서 조회
+        connection.query(`select * from tb_user_info where user_id=?`,[user_id],(err,user)=>{ //유저 정보 테이블에서 조회
             if(err){
                 console.log('DB 오류!')
                 return done(null,false, {message:'DB 오류!'});
@@ -29,7 +29,7 @@ module.exports=(passport)=>{
             }
             else if(!user[0])
             {
-                console.log('이미 로그인 된 상태입니다!');
+                console.log('존재하지 않는 아이디 입니다.');
                 return done(null,false,{message:'존재하지 않는 아이디 입니다!'});
             }
             //비밀번호 회원가입 시 bcrypt로 암호화
