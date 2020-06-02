@@ -1,9 +1,7 @@
 // /search 라우터
 const express=require('express');
 
-var isNotLoggined=require('../scripts/confirmLogin').isNotLoggedIn;
-
-
+var isLoggined=require('../scripts/confirmLogin').isLoggedIn;
 
 const mysql=require('mysql');
 const router=express.Router();
@@ -17,15 +15,6 @@ const dbConfig={
 
 //router.get('/') querystring 사용시 사용
 router.get('/',(req,res)=>{
-    var user={};
-
-    if(isNotLoggined(req)){
-      user=null
-    }
-    else{
-      user=req.user;
-    }
-
     var h_area1=req.query.h_area1;
     var h_area2=req.query.h_area2;
     var connection=mysql.createConnection(dbConfig);
@@ -56,16 +45,18 @@ router.get('/',(req,res)=>{
             }                                           
         }
 
-        resultData={
-            searchResult:searchResult,
-            user:user
-        };
-         //상태값+모든 검색된 정치인 정보 Row
+
+        resultData.searchResult=resultData;
+        
+        if(isLoggined){
+            resultData.user=req.user;
+        }
+         //세션 상태값+모든 검색된 정치인 정보 Row
         
         console.log(searchResult);
         console.log(user);
         console.log(resultData);
-        res.render('search.ejs', resultData); //나중에 render할 view 설정
+        res.render('search.ejs', resultData); 
         connection.end();
     });
 });
