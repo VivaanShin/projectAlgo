@@ -1,7 +1,7 @@
 // /search 라우터
 const express=require('express');
 
-var isLoggined=require('../scripts/confirmLogin').isLoggedIn;
+var isNotLoggined=require('../scripts/confirmLogin').isNotLoggedIn;
 
 
 
@@ -17,9 +17,13 @@ const dbConfig={
 
 //router.get('/') querystring 사용시 사용
 router.get('/',(req,res)=>{
+    var user={};
 
-    if(isLoggined(req)){
-        var user=req.user;
+    if(isNotLoggined(req)){
+      user=null
+    }
+    else{
+      user=req.user;
     }
 
     var h_area1=req.query.h_area1;
@@ -61,7 +65,7 @@ router.get('/',(req,res)=>{
         console.log(searchResult);
         console.log(user);
         console.log(resultData);
-        res.render('home.ejs', resultData); //나중에 render할 view 설정
+        res.render('search.ejs', resultData); //나중에 render할 view 설정
         connection.end();
     });
 });
