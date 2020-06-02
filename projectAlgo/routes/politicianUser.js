@@ -66,14 +66,6 @@ router.get('/:politician_no/billInfo',async (req,res)=>{ //입법정보 라우�
     var status={};
 
     try{
-        //var billId=await getPoliticianBillId(politician_no);
-        /*if(billId[0]){
-            billId.foreach((id)=>{
-                legislation_info=await getBillInfo(id.issueId,politician_no,connection);
-                billInfo.billInfo.push(legislation_info);
-            });//모든 입법정보를 가져옴
-        }*/
-
         billInfo.billInfo=await getBillInfo(politician_no,connection);
 
         status={status:200};
