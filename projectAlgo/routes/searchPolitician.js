@@ -50,11 +50,11 @@ router.get('/',(req,res)=>{
         
         if(isLoggined){
             resultData.user=req.user;
+            console.log(user);
         }
          //세션 상태값+모든 검색된 정치인 정보 Row
         
         console.log(searchResult);
-        console.log(user);
         console.log(resultData);
         res.render('search.ejs', resultData); 
         connection.end();
