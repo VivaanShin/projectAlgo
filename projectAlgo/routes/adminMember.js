@@ -12,10 +12,11 @@ const dbConfig={
 //후에 Admin 로그인 확인
 router.get('/',(req,res)=>{
     /*if(!isAdmin(req))
-        render({status:401,message:"접근불가"});*/
+        res.render({status:401,message:"접근불가"});*/
     var connection=mysql.createConnection(dbConfig);
     
-    connection.query('select * from tb_user_info',(err,members)=>{ //유저 정보 테이블에서 조회
+    connection.query(`select * from tb_user_info as user, 
+    tb_user_interest as interest where user.user_id=interest.user_id`,(err,members)=>{ //유저 정보 테이블에서 조회
         var memberResult={memberList:[]};
         var status={};
         var resultData={};
@@ -26,10 +27,17 @@ router.get('/',(req,res)=>{
             memberResult.memberList=members; //Row 삽입
         }
 
-        resultData=Object.assign(status,memberResult); //상태값+모든 회원 Row
+        resultData.status=status;
+        resultData.memberResult=memberResult; //상태값+모든 회원 Row
+        console.log(resultData);
         res.render('admin_page/admin.ejs',resultData); //나중에 render할 view 설정
         connection.end();
     });
+});
+
+router.put('/',(req,res)=>{
+    var connection=mysql.createConnection(dbConfig);
+
 });
 
 module.exports=router;
