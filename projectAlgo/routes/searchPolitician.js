@@ -46,7 +46,7 @@ router.get('/',(req,res)=>{
         }
 
 
-        resultData.searchResult=resultData;
+        resultData.searchResult=searchResult;
         
         if(isLoggined){
             resultData.user=req.user;
