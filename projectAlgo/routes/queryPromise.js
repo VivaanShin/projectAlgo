@@ -196,7 +196,7 @@ exports.updateAdminUserInfo=function updateAdminUserInfo(user,connection){ //con
     })
 };
 
-exports.updateUserInterest=function updateUserInterest(user,connection){ //connection 하나를 전달 받아서 사용,동기형으로 사용자 정보를 업데이트 어드민에서 회원정보 수정시 사용 
+exports.updateUserInterest=function updateUserInterest(user,connection){ //connection 하나를 전달 받아서 사용,동기형으로 tb_user_interest update
     return new Promise((resolve,reject)=>{
         connection.query(`update tb_user_interest set user_job=?,user_age=?,itScience=?,economy=?,
         culture=?,society=?,politics=?,interest_date=? where user_id=?`,[user.user_job,user.user_age,user.itScience,user.economy
@@ -209,10 +209,32 @@ exports.updateUserInterest=function updateUserInterest(user,connection){ //conne
     })
 };
 
-exports.insertUserInterest=function insertUserInterest(user,connection){ //connection 하나를 전달 받아서 사용,동기형으로 사용자 정보를 업데이트 어드민에서 회원정보 수정시 사용 
+exports.insertUserInterest=function insertUserInterest(user,connection){ //connection 하나를 전달 받아서 사용,동기형으로 tb_user_interest insert
     return new Promise((resolve,reject)=>{
         connection.query(`insert into tb_user_interest valuese(?,?,?,?,?,?,?,?,?)`,[user.user_id,user.user_job,user.user_age,user.itScience,user.economy
             ,user.culture,user.society,user.politics,user.interest_date],
+        (err,user)=>{
+            if(err)
+                reject(err);
+            resolve(user);
+        });
+    })
+};
+
+exports.deleteUserInfo=function deleteUserInfo(user_id,connection){ //connection 하나를 전달 받아서 사용,동기형으로 tb_user_info delete
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_user_info where user_id=?`,[user_id],
+        (err,user)=>{
+            if(err)
+                reject(err);
+            resolve(user);
+        });
+    })
+};
+
+exports.deleteUserInterest=function deleteUserInterest(user_id,connection){ //connection 하나를 전달 받아서 사용,동기형으로 tb_user_interest delete
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_user_interest where user_id=?`,[user_id],
         (err,user)=>{
             if(err)
                 reject(err);

@@ -5,6 +5,9 @@ const getUserInterest=require('./queryPromise').getUserInterest;
 const updateAdminUserInfo=require('./queryPromise').updateAdminUserInfo;
 const updateUserInterest=require('./queryPromise').updateUserInterest;
 const insertUserInterest=require('./queryPromise').insertUserInterest;
+const deleteUserInfo=require('./queryPromise').deleteUserInfo;
+const deleteUserInterest=require('./queryPromise').deleteUserInterest;
+
 const mysql=require('mysql');
 const router=express.Router();
 const bcrypt=require('bcrypt-nodejs');
@@ -112,5 +115,28 @@ router.put('/',async (req,res)=>{
         res.redirect('/admin/member');
     }
 });
+
+router.delete('/',async (req,res)=>{
+    var connection=mysql.createConnection(dbConfig);
+
+    var user_id=req.body.user_id;
+    var user_interest_check=req.body.user_interest_check;
+
+    try{
+        await deleteUserInfo(user_id,connection); //우선 사용자 정보부터 삭제
+
+        if(user_interest_check){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
+            await deleteUserInterest(user_id,connection);
+            
+        }//나중에 사용자가 준 정보도 삭제 할 것인지 생각
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+        res.redirect('/admin/member');
+    }
+})
 
 module.exports=router;
