@@ -40,7 +40,7 @@ router.get('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.render('admin/grade_user.ejs',gradeInfoSet)
+        res.render('admin_page/grade_user.ejs',gradeInfoSet)
     }
 });
 
