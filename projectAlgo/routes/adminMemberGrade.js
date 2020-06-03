@@ -33,14 +33,14 @@ router.get('/',async (req,res)=>{
         }
 
         gradeInfoSet.gradeInfo=gradeInfo;
-        gradeInfoSet.gradeDetailInfo=await getUserGrade(connection);
+        gradeInfoSet.gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
     }
     catch(err){
         console.log(err.message);
     }
     finally{
         connection.end();
-        res.render('',gradeInfoSet) //후에 렌더링
+        res.render('admin/grade_user.ejs',gradeInfoSet)
     }
 });
 
