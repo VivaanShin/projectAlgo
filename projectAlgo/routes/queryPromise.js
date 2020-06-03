@@ -242,3 +242,25 @@ exports.deleteUserInterest=function deleteUserInterest(user_id,connection){ //co
         });
     })
 };
+
+exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connection){ //connection 하나를 전달 받아서 사용,동기형으로 사용자의 평점 부여 횟수와 평점 평균을 가져옴
+    return new Promise((resolve,reject)=>{
+        connection.query(`select COUNT(*) as count,AVG(grade_score) as avg from tb_user_politician_grade where user_id=?`,[user_id],
+        (err,countAndAvg)=>{
+            if(err)
+                reject(err);
+            resolve(countAndAvg);
+        });
+    })
+};
+
+exports.getUserGrade=function getUserGradeCountAndAvg(connection){ //connection 하나를 전달 받아서 사용,동기형으로 tn_user_politician_grade를 모두 가져옴
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_user_politician_grade`,
+        (err,userGrade)=>{
+            if(err)
+                reject(err);
+            resolve(userGrade);
+        });
+    })
+};

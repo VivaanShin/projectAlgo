@@ -13,12 +13,13 @@ var registerRouter = require('./routes/register');
 var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var politicianUserRouter=require('./routes/politicianUser');
+var searchRouter=require('./routes/searchPolitician');
 //여기까지 사용자 라우터
 
 var adminRouter=require('./routes/admin');
 var adminMemberRouter=require('./routes/adminMember');
 var adminPoliticianRouter=require('./routes/adminPolitician');
-var searchRouter=require('./routes/searchPolitician');
+var adminMemberGradeRouter=require('./routes/adminMemberGrade');
 //여기까지 어드민 라우터
 
 var flash = require('flash');
@@ -53,6 +54,7 @@ app.use('/search',searchRouter);
 app.use('/admin',adminRouter);
 app.use('/admin/member/',adminMemberRouter);
 app.use('/admin/politician',adminPoliticianRouter);
+app.use('/admin/membergrade',adminMemberGradeRouter);
 //여기까지 어드민 라우터
 
 

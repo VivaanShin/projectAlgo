@@ -10,7 +10,7 @@ const deleteUserInterest=require('./queryPromise').deleteUserInterest;
 
 const mysql=require('mysql');
 const router=express.Router();
-const bcrypt=require('bcrypt-nodejs');
+//const bcrypt=require('bcrypt-nodejs');
 const moment=require('moment');
 const dbConfig={
     host     : 'localhost',
@@ -127,7 +127,7 @@ router.delete('/',async (req,res)=>{
 
         if(user_interest_check){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
             await deleteUserInterest(user_id,connection);
-            
+
         }//나중에 사용자가 준 정보도 삭제 할 것인지 생각
     }
     catch(err){
