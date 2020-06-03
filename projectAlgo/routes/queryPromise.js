@@ -287,3 +287,25 @@ exports.insertBlackUser=function insertBlackUser(blackUser,connection){ //connec
         });
     })
 };
+
+exports.updateUnBlackInUserInfo=function updateBlackInUserInfo(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_info의 user_black을 1로 함
+    return new Promise((resolve,reject)=>{
+        connection.query(`update tb_user_info set user_black= 0 where user_id=?`,[user_id],
+        (err,user)=>{
+            if(err)
+                reject(err);
+            resolve(user);
+        });
+    })
+};
+
+exports.deleteBlackUser=function deleteBlackUser(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_black에 블랙할 유저 삽입
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_user_black where user_id=?`,[user_id],
+        (err,blackUser)=>{
+            if(err)
+                reject(err);
+            resolve(blackUser);
+        });
+    })
+};

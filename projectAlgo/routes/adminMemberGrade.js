@@ -7,6 +7,9 @@ const getUserGradeCountAndAvg=require('./queryPromise').getUserGradeCountAndAvg;
 const getUserGrade=require('./queryPromise').getUserGrade;
 const updateBlackInUserInfo=require('./queryPromise').updateBlackInUserInfo;
 const insertBlackUser=require('./queryPromise').insertBlackUser;
+const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
+const deleteBlackUser=require('./queryPromise').deleteBlackUser;
+
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
@@ -47,7 +50,7 @@ router.get('/',async (req,res)=>{
     }
 });
 
-router.put('/black',(req,res)=>{
+router.put('/black',async (req,res)=>{ //사용자 블랙등록
     var connection=mysql.createConnection(dbConfig);
     var blackUser={};
     blackUser.user_id=req.body.user_id;
@@ -58,6 +61,23 @@ router.put('/black',(req,res)=>{
     try{
         await updateBlackInUserInfo(blackUser.user_id,connection); //tb_user_info 업데이트
         await insertBlackUser(blackUser,connection); //tb_user_black에 데이터를 넣음
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+        res.redirect('/admin/membergrade')
+    }
+});
+
+router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
+    var connection=mysql.createConnection(dbConfig);
+    var blackUserId=req.body.user_id;
+
+    try{
+        await updateUnBlackInUserInfo(blackUserId,connection);//tb_user_info 업데이트
+        await deleteBlackUser(blackUserId,connection); //tb_user_black에 데이터를 삭제
     }
     catch(err){
         console.log(err.message);
