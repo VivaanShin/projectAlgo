@@ -26,6 +26,7 @@ router.get('/',async (req,res)=>{
             var oneUser={};
             oneUser.user_id=userInfo[i].user_id;
             oneUser.user_email=userInfo[i].user_email;
+            oneUser.user_black=userInfo[i].user_black;
             var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection);
 
             oneUser.count=usersGradeCountAndAvg.count;
