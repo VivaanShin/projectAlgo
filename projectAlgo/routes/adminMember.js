@@ -1,9 +1,14 @@
 //admin/member 라우터
 const express=require('express');
-const getAllUserInfo=require('./queryPromise').getAllUserInfo();
-const getUserInterest=require('./queryPromise').getUserInterest();
+const getAllUserInfo=require('./queryPromise').getAllUserInfo;
+const getUserInterest=require('./queryPromise').getUserInterest;
+const updateAdminUserInfo=require('./queryPromise').updateAdminUserInfo;
+const updateUserInterest=require('./queryPromise').updateUserInterest;
+const insertUserInterest=require('./queryPromise').insertUserInterest;
 const mysql=require('mysql');
 const router=express.Router();
+const bcrypt=require('bcrypt-nodejs');
+const moment=require('moment');
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
@@ -62,13 +67,50 @@ router.get('/',async (req,res)=>{
         resultData.status=500;
     }
     finally{
-        res.render('/admin_page/admin.ejs',resultData);
+        res.render('admin_page/admin.ejs',resultData);
     }
 });
 
-router.put('/',(req,res)=>{
+router.put('/',async (req,res)=>{
     var connection=mysql.createConnection(dbConfig);
+    var user={};
+    user.user_id=req.body.id;
+    //var user_pw=bcrypt.hash(req.body.user_pw, null, null);
+    user.user_email=req.body.user_email;
+    user.user_phone=req.body.user_phone;
+    user.user_state=req.body.user_state;
+    user.user_interest_check=req.body.user_interest_check;
 
+    try{
+        await updateAdminUserInfo(user,connection);
+        
+        if(user_interest_check){ //interest_check가 true라면 tb_user_interest도 업데이트
+            user.user_job=req.body.user_job;
+            user.user_age=req.body.user_age;
+            user.itScience=req.body.itScience;
+            user.economy=req.body.economy;
+            user.culture=req.body.culture;
+            user.society=req.body.society;
+            user.politics=req.body.politics;
+            user.interest_date=moment().format('YYYY-MM-DD');
+
+            var user_interest=await getUserInterest(connection);
+
+            if(user_interest.length > 0){ //이미 관심사 매칭을 수행한 적이 있다면
+                await updateUserInterest(user,connection); //update
+            }
+            else{ //아니면 insert
+                await insertUserInterest(user,connection);
+            }
+        }
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+        res.redirect('/admin/member');
+    }
 });
 
 module.exports=router;
