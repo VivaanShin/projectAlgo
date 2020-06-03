@@ -47,7 +47,7 @@ exports.getPoliticianAllAverageGrade=function getPoliticianAllAverageGrade(polit
                 reject(err);
             }   
             connection.end();
-            resolve(avg_grade); //해당 기간의 정치인 평점 평균
+            resolve(avg_grade); //해당  정치인 평점 평균
         });
     });
 }
@@ -138,7 +138,7 @@ exports.insertGradeInfoRecord=function insertGradeInfoRecord(connection,user_id,
     return new Promise((resolve,reject)=>{
         connection.query(`insert into tb_gradeinfo_record(grade_st_date,grade_ed_date,
             user_id,politician_no,
-            grade_score values(?,?,?,?,?)`,[moment().day(0),moment().day(6),user_id,politician_no,grade_score],
+            grade_score values(?,?,?,?,?)`,[moment().day(0).format('YYYY-MM-DD'),moment().day(6).format('YYYY-MM-DD'),user_id,politician_no,grade_score],
                      (err,user_grade)=>{
                 if(err) {
                     reject(err);
@@ -211,7 +211,7 @@ exports.updateUserInterest=function updateUserInterest(user,connection){ //conne
 
 exports.insertUserInterest=function insertUserInterest(user,connection){ //connection 하나를 전달 받아서 사용,동기형으로 tb_user_interest insert
     return new Promise((resolve,reject)=>{
-        connection.query(`insert into tb_user_interest valuese(?,?,?,?,?,?,?,?,?)`,[user.user_id,user.user_job,user.user_age,user.itScience,user.economy
+        connection.query(`insert into tb_user_interest values(?,?,?,?,?,?,?,?,?)`,[user.user_id,user.user_job,user.user_age,user.itScience,user.economy
             ,user.culture,user.society,user.politics,user.interest_date],
         (err,user)=>{
             if(err)
@@ -261,6 +261,29 @@ exports.getUserGrade=function getUserGradeCountAndAvg(connection){ //connection 
             if(err)
                 reject(err);
             resolve(userGrade);
+        });
+    })
+};
+
+exports.updateBlackInUserInfo=function updateBlackInUserInfo(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_info의 user_black을 1로 함
+    return new Promise((resolve,reject)=>{
+        connection.query(`update tb_user_info set user_black= 1 where user_id=?`,[user_id],
+        (err,user)=>{
+            if(err)
+                reject(err);
+            resolve(user);
+        });
+    })
+};
+
+exports.insertBlackUser=function insertBlackUser(blackUser,connection){ //connection 하나를 전달 받아서 사용,tb_user_black에 블랙할 유저 삽입
+    return new Promise((resolve,reject)=>{
+        connection.query(`insert into tb_user_black values(?,?,?,?)`,[blackUser.black_st_date,blackUser.black_ed_date,
+        blackUser.user_id,blackUser.black_reason],
+        (err,blackUser)=>{
+            if(err)
+                reject(err);
+            resolve(blackUser);
         });
     })
 };
