@@ -75,6 +75,9 @@ router.get('/',async (req,res)=>{
 });
 
 router.put('/',async (req,res)=>{
+    /*if(!isAdmin(req)){
+        return;
+    }*/
     var connection=mysql.createConnection(dbConfig);
     var user={};
     user.user_id=req.body.id;
@@ -117,6 +120,9 @@ router.put('/',async (req,res)=>{
 });
 
 router.delete('/',async (req,res)=>{
+    /*if(!isAdmin(req)){
+        return;
+    }*/
     var connection=mysql.createConnection(dbConfig);
 
     var user_id=req.body.user_id;

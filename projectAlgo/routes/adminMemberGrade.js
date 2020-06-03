@@ -20,9 +20,11 @@ const dbConfig={
 };
 
 router.get('/',async (req,res)=>{
+    /*if(!isAdmin(req)){
+        res.render({status:401, message="접근불가"});
+    }*/
     var connection=mysql.createConnection(dbConfig);
-    var gradeInfoSet={};
-
+    var resultData={};
     try{
         var userInfo=await getAllUserInfo(connection);
         var gradeInfo=[];
@@ -40,10 +42,12 @@ router.get('/',async (req,res)=>{
             gradeInfo.push(oneUser);
         }
 
-        gradeInfoSet.gradeInfo=gradeInfo;
-        gradeInfoSet.gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
+        resultData.gradeInfo=gradeInfo;
+        resultData.gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
+        resultData.status=200;
     }
     catch(err){
+        resultData.status=500;
         console.log(err.message);
     }
     finally{
@@ -53,6 +57,8 @@ router.get('/',async (req,res)=>{
 });
 
 router.put('/black',async (req,res)=>{ //사용자 블랙등록
+    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
+        return;*/
     var connection=mysql.createConnection(dbConfig);
     var blackUser={};
     blackUser.user_id=req.body.user_id;
@@ -74,6 +80,8 @@ router.put('/black',async (req,res)=>{ //사용자 블랙등록
 });
 
 router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
+    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
+        return;*/
     var connection=mysql.createConnection(dbConfig);
     var blackUserId=req.body.user_id;
 
@@ -91,6 +99,8 @@ router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
 });
 
 router.put('/',async (req,res)=>{ //tb_user_politician_grade update
+    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
+        return;*/
     var connection=mysql.createConnection(dbConfig);
     var updateUserGrade={};
     updateUserGrade.user_id=req,body.user_id;
@@ -111,6 +121,8 @@ router.put('/',async (req,res)=>{ //tb_user_politician_grade update
 });
 
 router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
+    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
+        return;*/
     var connection=mysql.createConnection(dbConfig);
     var deleteUserGrade={};
     deleteUserGrade.user_id=req,body.user_id;
