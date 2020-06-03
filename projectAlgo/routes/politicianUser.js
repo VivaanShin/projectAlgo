@@ -23,6 +23,7 @@ const updateGradeInfoRecord=require('./queryPromise').updateGradeInfoRecord;
 const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
 const insertGradeInfoRecord=require('./queryPromise').insertGradeInfoRecord;
 const insertUserPoliticianGrade=require('./queryPromise').insertUserPoliticianGrade;
+const getPoliticianGradeByUser=require('./queryPromise').getPoliticianGradeByUser;
 
 router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     var connection = mysql.createConnection(dbConfig);
@@ -144,7 +145,7 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
 
     var connection = mysql.createConnection(dbConfig);
     var grade_score=req.body.grade_score;
-    var user_id=req.body.grade;
+    var user_id=req.body.user_id;
     var politician_no=req.params.politician_no;
     var dayInfo=moment.format('YYYY-MM-DD');
 
@@ -156,7 +157,15 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
             await updateUserPoliticianGrade(connection,user_id,politician_no,grade_score);
         }
         else{ //아니면 값을 넣어줌
-            await insertGradeInfoRecord(connection,user_id,politician_no,grade_score);
+
+            var userGrade=await getPoliticianGradeByUser(user_id,connection);
+            
+            if(userGrade.length){//해당 정치인에게 평점을 준 적이 있다면
+                await updateUserPoliticianGrade(connection,user_id,politician_no,grade_score);
+            }
+            else{ // 아니라면
+                await insertGradeInfoRecord(connection,user_id,politician_no,grade_score);
+            }
             await insertUserPoliticianGrade(connection,user_id,politician_no,grade_score);
         }
 

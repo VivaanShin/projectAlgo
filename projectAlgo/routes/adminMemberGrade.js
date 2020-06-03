@@ -9,6 +9,8 @@ const updateBlackInUserInfo=require('./queryPromise').updateBlackInUserInfo;
 const insertBlackUser=require('./queryPromise').insertBlackUser;
 const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
 const deleteBlackUser=require('./queryPromise').deleteBlackUser;
+const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
+const deleteUserPoliticianGrade=require('./queryPromise').deleteUserPoliticianGrade;
 
 const dbConfig={
     host     : 'localhost',
@@ -46,7 +48,7 @@ router.get('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.render('admin_page/grade_user.ejs',gradeInfoSet)
+        res.render('admin_page/grade_user.ejs',gradeInfoSet);
     }
 });
 
@@ -67,7 +69,7 @@ router.put('/black',async (req,res)=>{ //사용자 블랙등록
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade')
+        res.redirect('/admin/membergrade');
     }
 });
 
@@ -84,8 +86,46 @@ router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade')
+        res.redirect('/admin/membergrade');
     }
-})
+});
 
+router.put('/',async (req,res)=>{ //tb_user_politician_grade update
+    var connection=mysql.createConnection(dbConfig);
+    var updateUserGrade={};
+    updateUserGrade.user_id=req,body.user_id;
+    updateUserGrade.politician_no=req.body.politician_no;
+    updateUserGrade.grade_score=req.body.grade_score;
+
+    try{
+        await updateUserPoliticianGrade(connection,updateUserGrade.user_id,updateUserGrade.politician_no,updateUserGrade.grade_score);
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+        res.redirect('/admin/membergrade');
+    }
+
+});
+
+router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
+    var connection=mysql.createConnection(dbConfig);
+    var deleteUserGrade={};
+    deleteUserGrade.user_id=req,body.user_id;
+    deleteUserGrade.politician_no=req.body.politician_no;
+
+    try{
+        await deleteUserPoliticianGrade(deleteUserGrade.user_id,deleteUserGrade.politician_no,connection);
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+        res.redirect('/admin/membergrade');
+    }
+
+});
 module.exports=router;

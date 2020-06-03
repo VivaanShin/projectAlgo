@@ -50,7 +50,7 @@ exports.getPoliticianAllAverageGrade=function getPoliticianAllAverageGrade(polit
             resolve(avg_grade); //해당  정치인 평점 평균
         });
     });
-}
+};
 
 exports.getPoliticianWeekAverageGrade=function getPoliticianWeekAverageGrade(politician_no,weekDay){ //정치인 평점 중 두번째 인자와 주가 같은 값을 가져옴
     return new Promise((resolve,reject)=>{
@@ -288,7 +288,7 @@ exports.insertBlackUser=function insertBlackUser(blackUser,connection){ //connec
     })
 };
 
-exports.updateUnBlackInUserInfo=function updateBlackInUserInfo(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_info의 user_black을 1로 함
+exports.updateUnBlackInUserInfo=function updateBlackInUserInfo(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_info의 user_black을 0으로 함
     return new Promise((resolve,reject)=>{
         connection.query(`update tb_user_info set user_black= 0 where user_id=?`,[user_id],
         (err,user)=>{
@@ -299,13 +299,35 @@ exports.updateUnBlackInUserInfo=function updateBlackInUserInfo(user_id,connectio
     })
 };
 
-exports.deleteBlackUser=function deleteBlackUser(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_black에 블랙할 유저 삽입
+exports.deleteBlackUser=function deleteBlackUser(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_black에 블랙해제할 유저 삭제
     return new Promise((resolve,reject)=>{
         connection.query(`delete from tb_user_black where user_id=?`,[user_id],
         (err,blackUser)=>{
             if(err)
                 reject(err);
             resolve(blackUser);
+        });
+    })
+};
+
+exports.getPoliticianGradeByUser=function deleteBlackUser(user_id,connection){ //connection 하나를 전달 받아서 사용,user_id로 조회
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_user_politician_grade where user_id=?`,[user_id],
+        (err,grade)=>{
+            if(err)
+                reject(err);
+            resolve(grade);
+        });
+    })
+};
+
+exports.deleteUserPoliticianGrade=function deleteUserPoliticianGrade(user_id,politician_no,connection){ //
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_user_politician_grade where user_id=? and politician_no=?`,[user_id,politician_no],
+        (err,grade)=>{
+            if(err)
+                reject(err);
+            resolve(grade);
         });
     })
 };
