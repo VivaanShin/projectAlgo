@@ -33,14 +33,12 @@ router.get('/',async (req,res)=>{
         var user_info=await getAllUserInfo(connection); //모든 유저 정보 가져옴
     
         for(let i=0;i<user_info.length;i++){ //유저 정보를 하나씩 조회하여
-            var one_user_info=user_info[i];
-            var one_user_interest={}; //관심사 정보 temp
+            var oneUserInfo=userInfo[i];
+            var oneUserInterest={}; //관심사 정보 temp
 
-            console.log("User:"+one_user_info);
-
-            if(one_user_info.user_interest_check){
-                one_user_interest=await getUserInterest(one_user_info.user_id,connection); //관심사 매칭을 수행 한 적이 있다면, 테이블에서 가져옴
-                one_user_info.user_job=one_user_interest.user_job;
+            if(oneUserInfo.user_interest_check){//관심사 매칭을 수행 한 적이 있다면, 테이블에서 가져옴
+                oneUserInterest=await getUserInterest(one_user_info.user_id,connection); 
+                oneUserInfo.user_job=one_user_interest.user_job;
                 one_user_info.user_age=one_user_interest.user_age;
                 one_user_info.itScience=one_user_interest.itScience;
                 one_user_info.economy=one_user_interest.economy;
@@ -61,6 +59,7 @@ router.get('/',async (req,res)=>{
                 one_user_info.society=0
                 one_user_info.interest_date="0000-00-00";
             }
+            console.log("User:"+one_user_info);
         }
 
         resultData.status=200;

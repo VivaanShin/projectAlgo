@@ -88,3 +88,9 @@ router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
         res.redirect('/admin/legislation')
     }
 });
+
+router.delete('/',async (req,res)=>{
+    var connection = mysql.createConnection(dbConfig);
+});
+
+module.exports=router;
