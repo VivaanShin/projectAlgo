@@ -401,3 +401,16 @@ exports.deletePoliticianLegislationRel=function deletePoliticianLegislationRel(i
         });
     })
 };
+
+exports.getgradeInfoRecord=function getgradeInfoRecord(connection){ //tb_politician_legislation update
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_gradeinfo_record`
+        ,(err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
