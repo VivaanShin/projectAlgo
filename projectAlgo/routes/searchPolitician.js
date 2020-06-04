@@ -56,8 +56,8 @@ router.get('/',(req,res)=>{
         
         console.log(searchResult);
         console.log(resultData);
-        res.render('search.ejs', resultData); 
         connection.end();
+        res.render('search.ejs', resultData); 
     });
 });
 

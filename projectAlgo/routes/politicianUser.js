@@ -48,11 +48,12 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
                     }
                     catch{
                         if (err.code === 'ENOENT') {
-                            img={img:`/images/default`}; //Default Image
+                            img=`/images/default`; //Default Image
                           }
                     }
-                    returnPoliticianInfo=Object.assign(politicianResult,img);
-                    resultData=Object.assign({status:200},returnPoliticianInfo);
+                    resultData=politicianResult;
+                    resultData.img=img
+                    resultData.status=200;
                 }
                 connection.end();
                 res.render('',resultData);// 나중에 render할 view 설정
@@ -64,7 +65,6 @@ router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 
     connection.connect();
     var resultData={}; //배열에 입법 정보 저장
     var politician_no=req.params.politician_no;
-    var status={};
 
     try{
        resultData.legislation_info=await getLegislationInfo(politician_no,connection);
@@ -74,9 +74,9 @@ router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 
         resultData.status=500;
     }
     finally{
-        resultData.status=
-        res.render('',resultData); //나중에 프론트엔드 완성되면 view 지정
         connection.end();
+        res.render('',resultData); //나중에 프론트엔드 완성되면 view 지정
+        
     }
 });
 
@@ -84,7 +84,7 @@ router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
     try{
         var politician_name=await getPoliticianNameByNo(req.params.politician_no);
         var rawNewsData=await getPoliticianNewsJSON(politician_name[0].politician_name);
-        var articleList={articleList:[]};
+        var articleList=[];
         var status={};
 
         for(let i=0;i<rawNewsData.length;i++){
@@ -94,16 +94,18 @@ router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
                 articleDay:String(moment(String(rawNewsData[i].pubDate)).format(YYYY.MM.DD))
             };
 
-            articleList.articleList.push(push_news_data);
+            articleList.push(push_news_data);
         }
-        status={status:200};
+        status=200;
     }
     catch(err){
-        status={status:500};
+        console.log(err.message);
+        status=500;
     }
 
     finally{
-        resultData=Object.assign(status,articleList);
+        resultData.articleList=articleList;
+        resultData.status=status;
         res.render('',resultData);//나중에 프론트엔드 완성되면 view 지정
     }
 });
@@ -113,24 +115,24 @@ router.get('/:politician_no/grade',async (req,res)=>{ //정치인 평점 정보 
         var status={};
         var resultData={};
         var politician_no=req.params.politician_no;
-        var grade_score={grade_score : await getPoliticianAllAverageGrade(politician_no)};
-        var gradeList={gradeList:[]};
+        var gradeAllAveragescore=await getPoliticianAllAverageGrade(politician_no);
+        var gradeList=[];
         var weekDay=moment().day(0).format('YYYY-MM-DD'); //해당 주 월요일부터 4주까지 
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
             weekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
-            weekElements={weekGrade:weekGrade,weekDay:weekDay}
-            gradeList.gradeList.push(weekElements);
+            weekElements={weekGrade:weekGrade,weekDay:weekDay};
+            gradeList.push(weekElements);
             weekDay=moment.day(i*-7).format('YYYY-MM-DD');
         }
-        status={status:200};
-        resultData=Object.assign(grade_score,gradeList);
+        status=200;
+        resultData.grade_score=gradeAllAveragescore;
+        resultData.gradeList=gradeList;
     }
     catch(err){
-        status={status:500};
+        status=500;
     }
     finally{
-        resultData=Object.assign(status,resultData)
         res.render('',resultData) //나중에 프론트엔드 완성되면 view 지정
     }
 });
@@ -167,14 +169,15 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
             }
             await insertUserPoliticianGrade(connection,user_id,politician_no,grade_score);
         }
-
-        var gradeAverage=await getPoliticianAllAverageGrade(politician_no);
-        res.render('',{status:200,gradeAverage:gradeAverage});
-        connection.end();
+        
     }
     catch(err){
-        res.render('',{status:500,message:"DB 에러!"});
+        console.log(err.message)
+    }
+
+    finally{
         connection.end();
+        res.redirect(`/${req.params.politician_no}/grade`);
     }
 });
 module.exports=router;
