@@ -14,7 +14,7 @@ const dbConfig={
   }; 
 
 //쿼리용 Promise들
-const getBillInfo=require('./queryPromise').getBillInfo;
+const getLegislationInfo=require('./queryPromise').getLegislationInfo;
 const getPoliticianNameByNo=require('./queryPromise').getPoliticianNameByNo;
 const getPoliticianAllAverageGrade=require('./queryPromise').getPoliticianAllAverageGrade;
 const getPoliticianWeekAverageGrade=require('./queryPromise').getPoliticianWeekAverageGrade;
@@ -59,23 +59,22 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             });
 });
 
-router.get('/:politician_no/billInfo',async (req,res)=>{ //입법정보 라우터
+router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 라우터
     var connection = mysql.createConnection(dbConfig);
     connection.connect();
-    var billInfo={billInfo:[]}; //배열에 입법 정보 저장
+    var resultData={}; //배열에 입법 정보 저장
     var politician_no=req.params.politician_no;
     var status={};
 
     try{
-        billInfo.billInfo=await getBillInfo(politician_no,connection);
-
-        status={status:200};
+       resultData.legislation_info=await getLegislationInfo(politician_no,connection);
+       resultData.status=200;
     }
     catch(err){
-        status={status:500};
+        resultData.status=500;
     }
     finally{
-        resultData=Object.assign(status,billInfo);
+        resultData.status=
         res.render('',resultData); //나중에 프론트엔드 완성되면 view 지정
         connection.end();
     }
