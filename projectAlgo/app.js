@@ -55,8 +55,9 @@ app.use('/search',searchRouter);
 app.use('/admin',adminRouter);
 app.use('/admin/member',adminMemberRouter);
 app.use('/admin/politician',adminPoliticianRouter);
-app.use('/admin/membergrade',adminMemberGradeRouter);
-app.use('/admin/legislation',adminLegislationRouter)
+app.use('/admin/member_grade',adminMemberGradeRouter);
+app.use('/admin/legislation',adminLegislationRouter);
+app.use('/admin/politician_grade',adminLegislationRouter);
 //여기까지 어드민 라우터
 
 

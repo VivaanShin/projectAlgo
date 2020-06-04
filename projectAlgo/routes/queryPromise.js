@@ -402,15 +402,45 @@ exports.deletePoliticianLegislationRel=function deletePoliticianLegislationRel(i
     })
 };
 
-exports.getgradeInfoRecord=function getgradeInfoRecord(connection){ //tb_politician_legislation update
+exports.getGradeInfoRecord=function getGradeInfoRecord(connection){ //tb_tb_gradeinfo_record select
     return new Promise((resolve,reject)=>{
         connection.query(`select * from tb_gradeinfo_record`
-        ,(err,legislation)=>{
+        ,(err,grade)=>{
             if(err)
                 reject(err);
             
-            console.log(legislation);
-            resolve(legislation);
+            console.log(grade);
+            resolve(grade);
+        });
+    })
+};
+
+exports.updateAdminGradeInfoRecord=function updateGradeInfoRecord(grade,connection){ //tb_gradeinfo_record update 어드민페이지용
+    return new Promise((resolve,reject)=>{
+        connection.query(`update tb_gradeinfo_record set grade_st_date=?, grade_ed_date=? user_id=?,politician_no=?,grade_score=? where grade_st_date=?
+        and user_id=? and politician_no=?`,[grade.grade_st_date,grade.grade_ed_date,grade.user_id,grade.politician_no,grade.grade_score,grade.grade_st_date
+            ,grade.user_id,grade.politician_no]
+        ,(err,grade)=>{
+            if(err)
+                reject(err);
+            
+            console.log(grade);
+            resolve(grade);
+        });
+    })
+};
+
+exports.deleteGradeInfoRecord=function deleteGradeInfoRecord(grade,connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`delect from tb_gradeinfo_record where where grade_st_date=?
+        and user_id=? and politician_no=?`,[grade.grade_st_date
+            ,grade.user_id,grade.politician_no]
+        ,(err,grade)=>{
+            if(err)
+                reject(err);
+            
+            console.log(grade);
+            resolve(grade);
         });
     })
 };
