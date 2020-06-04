@@ -4,7 +4,7 @@ const router=express.Router();
 router.post('/',function(req,res){
     req.logout();
     req.session.destroy(function (err){
-        res.redirect('../');
+        res.redirect('/');
     });
 });
 

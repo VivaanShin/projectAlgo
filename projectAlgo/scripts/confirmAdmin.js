@@ -1,9 +1,7 @@
 const isLoggedIn=require('./confirmLogin').isLoggedIn;
 
 exports.isAdmin=(req)=>{
-    if(!isLoggedIn(req)) 
-        return false;
-    else if (!(req.user.user_administrator)) 
+    if(!isLoggedIn(req) || req.user.user_state != 2) 
         return false;
     else 
         return true;

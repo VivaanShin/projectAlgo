@@ -163,7 +163,7 @@
         <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
 
         <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
-        <% if(user==null){ %>
+        <% if(typeof user == 'undefined'){ %>
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
@@ -240,21 +240,16 @@
       </li>
 
 
-
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#candidate_list">정치인 검색</a>
+      <li class="nav-item" >
+        <a class="nav-link" href="/search">정치인 검색</a>
       </li>
-
-
-
 
 
         <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
 
 
         <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
-        
-        <% if(user == null) { %>
+        <% if(typeof user == 'undefined') { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
         </li>
@@ -262,7 +257,7 @@
 
 
         <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-        <% if(user != null && user.user_age==null) { %>
+        <% if(typeof user != 'undefined' && user.user_interest_check==0) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
         </li>
@@ -270,7 +265,7 @@
         
 
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-        <% if(user != null && user.user_age!=null) { %>
+        <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
         </li>
@@ -353,153 +348,6 @@
   </fieldset>
 </form>
 -->
-
-
-
-
-
-
-      <div class="tab-pane fade" id="candidate_list">
-  
-    <div class="row">
-
-      <div class="col-lg-3">
-        <div class="form-group" style="margin-top:20%;">
-          <h2>정치인 상세 검색</h2><br><br>
-
-              <form>
-          <label style="margin-right:5%;">시도</label><br>
-
-          <select class="custom-select" style="width:60%;" name="h_area1" onChange="cat1_change(this.value,h_area2)" >
-
-           <option selected="">-선택-</option>
-           <option value='1'>서울</option>
-           <option value='2'>부산</option>
-           <option value='3'>대구</option>
-           <option value='4'>인천</option>
-           <option value='5'>광주</option>
-           <option value='6'>대전</option>
-           <option value='7'>울산</option>
-           <option value='8'>강원</option>
-           <option value='9'>경기</option>
-           <option value='10'>경남</option>
-           <option value='11'>경북</option>
-           <option value='12'>전남</option>
-           <option value='13'>전북</option>
-           <option value='14'>제주</option>
-           <option value='15'>충남</option>
-           <option value='16'>충북</option>
-</select>
-
-
-
-<br><br>
-
-<label>선거구</label><br>
-  <select class="custom-select" style="width:60%; display:" name="h_area2">
-   <option selected="">-선택-</option>
-  </select>
-  <br><br>
-  <button href="/search" class="btn btn-primary" style="margin-left: 1%; width:57%;">검색하기</button>
-
-</form>
-        </div> 
-      </div>
-
-<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
-</div>
-
-
-<textarea style="display:none;" id="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
-  문재인,50,30,50,30,20
-  나의성향,20,30,40,50,60
- </textarea>
-
-
-
-<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-    
-  <div style="display: flex">
-
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header" style="display: -webkit-box;" >
-        <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">
-        <div style=" margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary">미래통합당</span>
-
-        <br>
-        
-        <!--if(searchResult.length==0) 면 검색결과 없음.-->
-        <h3>이인영</h3>
-        <p class="text-muted">
-        </p>
-        <p class="text-muted">대학교수</p>
-      <button onclick='showRadar()'>그래프보기</button>
-       </div>
-     </div>
-
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-
-
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">
-
-        <span class="badge badge-danger">더불어민주당</span>
-        <h3>이름</h3>
-        <p class="text-muted">생년월일</p>
-        <p class="text-muted">직업</p>
-      </div>
-    
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-    </div>
-
-
-   <div style="display: flex">
-
-
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header">
-
-        <span class="badge badge-success">국민의당</span>
-        <h3>이름</h3>
-        <p class="text-muted">생년월일</p>
-        <p class="text-muted">직업</p>
-      </div>
-      
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-
-
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">
-                <span class="badge badge-warning">정의당</span>
-        <br>
-        <h3>이름</h3>
-        <br>
-        <p class="text-muted">생년월일</p>
-        <br>
-        <p class="text-muted">직업</p>
-    </div>
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-
-    </div><!--end of 2nd flex-->
-
-    </div>
-    </div>
-      </div><!--candidate-->
-
-
 
 
 

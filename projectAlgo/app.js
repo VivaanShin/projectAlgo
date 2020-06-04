@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport=require('passport');
 
 const session = require('express-session');
 var indexRouter = require('./routes/index');
@@ -12,11 +13,16 @@ var registerRouter = require('./routes/register');
 var registerCheckRouter = require('./routes/register_check');
 var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
-var passport=require('passport');
 var politicianUserRouter=require('./routes/politicianUser');
+var searchRouter=require('./routes/searchPolitician');
+//여기까지 사용자 라우터
+
+var adminRouter=require('./routes/admin');
 var adminMemberRouter=require('./routes/adminMember');
 var adminPoliticianRouter=require('./routes/adminPolitician');
-var searchRouter=require('./routes/searchPolitician');
+var adminMemberGradeRouter=require('./routes/adminMemberGrade');
+//여기까지 어드민 라우터
+
 var flash = require('flash');
 var passportConfig=require('./passport');
 var app = express();
@@ -44,9 +50,15 @@ app.use('/register_check', registerCheckRouter);
 app.use('/login',loginRouter);
 app.use('/logout',logoutRouter);
 app.use('/politician',politicianUserRouter);
+app.use('/search',searchRouter);
+//여기까지 사용자 use
+
+app.use('/admin',adminRouter);
 app.use('/admin/member/',adminMemberRouter);
 app.use('/admin/politician',adminPoliticianRouter);
-app.use('/search',searchRouter);
+app.use('/admin/membergrade',adminMemberGradeRouter);
+//여기까지 어드민 라우터
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
