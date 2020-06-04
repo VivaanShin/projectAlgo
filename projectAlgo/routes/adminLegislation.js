@@ -10,6 +10,8 @@ const dbConfig={
 
 const getAllLegislation=require('./queryPromise').getAllLegislation;
 const insertPoliticianLegislation=require('./queryPromise').insertPoliticianLegislation;
+const deletePoliticianLegislation=require('./queryPromise').deletePoliticianLegislation;
+const deletePoliticianLegislationRel=require('./queryPromise').deletePoliticianLegislationRel;
 
 router.get('/',async (req,res)=>{
     /*if(!isAdmin(req)){
@@ -35,18 +37,18 @@ router.put('/',async (req,res)=>{ //입법정보 저장
         return;
     }*/
     var connection = mysql.createConnection(dbConfig);
-    var new_legislation={};
-    new_legislation.issue_id=req.body.issue_id;
-    new_legislation.issue_no=req.body.issue_no;
-    new_legislation.issue_name=req.body.issue_name;
-    new_legislation.proposerKind=req.body.proposerKind;
-    new_legislation.proposeDt=req.body.proposeDt;
-    new_legislation.procDt=req.body.procDt;
-    new_legislation.generalResult=req.body.generalResult;
-    new_legislation.summary=req.body.summary;
-    new_legislation.procStageCd=req.body.procStageCd;
-    new_legislation.passGubn=req.body.passGubn;
-    new_legislation.curr_committee=req.body.curr_committee;
+    var newLegislation={};
+    newLegislation.issue_id=req.body.issue_id;
+    newLegislation.issue_no=req.body.issue_no;
+    newLegislation.issue_name=req.body.issue_name;
+    newLegislation.proposerKind=req.body.proposerKind;
+    newLegislation.proposeDt=req.body.proposeDt;
+    newLegislation.procDt=req.body.procDt;
+    newLegislation.generalResult=req.body.generalResult;
+    newLegislation.summary=req.body.summary;
+    newLegislation.procStageCd=req.body.procStageCd;
+    newLegislation.passGubn=req.body.passGubn;
+    newLegislation.curr_committee=req.body.curr_committee;
 
     try{
         await insertPoliticianLegislation(new_legislation,connection);
@@ -56,7 +58,7 @@ router.put('/',async (req,res)=>{ //입법정보 저장
     }
     finally{
         connection.end();
-        res.redirect('/admin/legislation')
+        res.redirect('/admin/legislation');
     }
 });
 router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
@@ -65,18 +67,18 @@ router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
     }*/
 
     var connection = mysql.createConnection(dbConfig);
-    var update_legislation={};
-    update_legislation.issue_id=req.pa.issue_id;
-    update_legislation.issue_no=req.body.issue_no;
-    update_legislation.issue_name=req.body.issue_name;
-    update_legislation.proposerKind=req.body.proposerKind;
-    update_legislation.proposeDt=req.body.proposeDt;
-    update_legislation.procDt=req.body.procDt;
-    update_legislation.generalResult=req.body.generalResult;
-    update_legislation.summary=req.body.summary;
-    update_legislation.procStageCd=req.body.procStageCd;
-    update_legislation.passGubn=req.body.passGubn;
-    update_legislation.curr_committee=req.body.curr_committee;
+    var updateLegislation={};
+    updateLegislation.issue_id=req.pa.issue_id;
+    updateLegislation.issue_no=req.body.issue_no;
+    updateLegislation.issue_name=req.body.issue_name;
+    updateLegislation.proposerKind=req.body.proposerKind;
+    updateLegislation.proposeDt=req.body.proposeDt;
+    updateLegislation.procDt=req.body.procDt;
+    updateLegislation.generalResult=req.body.generalResult;
+    updateLegislation.summary=req.body.summary;
+    updateLegislation.procStageCd=req.body.procStageCd;
+    updateLegislation.passGubn=req.body.passGubn;
+    updateLegislation.curr_committee=req.body.curr_committee;
     try{
         await updatePoliticianLegislation(update_legislation,connection);
     }
@@ -85,12 +87,25 @@ router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
     }
     finally{
         connection.end();
-        res.redirect('/admin/legislation')
+        res.redirect('/admin/legislation');
     }
 });
 
-router.delete('/',async (req,res)=>{
+router.delete('/',async (req,res)=>{ //입법정보 삭제
     var connection = mysql.createConnection(dbConfig);
+    var deleteLegislationId=req.body.issue_id;
+
+    try{
+        await deletePoliticianLegislation(deleteLegislationId,connection);
+        await deletePoliticianLegislationRel(deleteLegislationId,connection);
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+        res.redirect('/admin/legislation');
+    }
 });
 
 module.exports=router;

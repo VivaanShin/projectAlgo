@@ -375,3 +375,29 @@ exports.updatePoliticianLegislation=function updatePoliticianLegislation(legisla
         });
     })
 };
+
+exports.deletePoliticianLegislation=function deletePoliticianLegislation(issue_id,connection){ //tb_politician_legislation update
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_politician_legislation where issue_id=?`,[issue_id]
+        ,(err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
+
+exports.deletePoliticianLegislationRel=function deletePoliticianLegislationRel(issue_id,connection){ //tb_politician_legislation update
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_politician_legislation_rel where issue_id=?`,[issue_id]
+        ,(err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
