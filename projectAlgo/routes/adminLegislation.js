@@ -8,9 +8,9 @@ const dbConfig={
     database : 'project_algo'
 };
 
-const getAllLegislationJoinToRel=require('./queryPromise').getAllLegislationJoinToRel;
+const getAllLegislation=require('./queryPromise').getAllLegislation;
 const insertPoliticianLegislation=require('./queryPromise').insertPoliticianLegislation;
-const insertPoliticianLegislationRel=require('./queryPromise').insertPoliticianLegislationRel;
+
 router.get('/',async (req,res)=>{
     /*if(!isAdmin(req)){
         res.render({status:401,message:"접근불가"});
@@ -19,7 +19,7 @@ router.get('/',async (req,res)=>{
     var connection = mysql.createConnection(dbConfig);
     var resultData={};
     try{
-        resultData.legislation=await getAllLegislationJoinToRel(connection); //tb_politician_legislation+,tb_politician_legislation_rel
+        resultData.legislation=await getAllLegislation(connection); //tb_politician_legislation
     }
     catch(err){
         console.log(err.message);
@@ -37,7 +37,6 @@ router.put('/',async (req,res)=>{ //입법정보 저장
     var connection = mysql.createConnection(dbConfig);
     var new_legislation={};
     new_legislation.issue_id=req.body.issue_id;
-    new_legislation.politician_no=req.body.politician_no;
     new_legislation.issue_no=req.body.issue_no;
     new_legislation.issue_name=req.body.issue_name;
     new_legislation.proposerKind=req.body.proposerKind;
@@ -51,7 +50,6 @@ router.put('/',async (req,res)=>{ //입법정보 저장
 
     try{
         await insertPoliticianLegislation(new_legislation,connection);
-        await insertPoliticianLegislationRel(new_legislation,connection);
     }
     catch(err){
         console.log(err.message);
@@ -67,6 +65,26 @@ router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
     }*/
 
     var connection = mysql.createConnection(dbConfig);
-    
-
+    var update_legislation={};
+    update_legislation.issue_id=req.pa.issue_id;
+    update_legislation.issue_no=req.body.issue_no;
+    update_legislation.issue_name=req.body.issue_name;
+    update_legislation.proposerKind=req.body.proposerKind;
+    update_legislation.proposeDt=req.body.proposeDt;
+    update_legislation.procDt=req.body.procDt;
+    update_legislation.generalResult=req.body.generalResult;
+    update_legislation.summary=req.body.summary;
+    update_legislation.procStageCd=req.body.procStageCd;
+    update_legislation.passGubn=req.body.passGubn;
+    update_legislation.curr_committee=req.body.curr_committee;
+    try{
+        await updatePoliticianLegislation(update_legislation,connection);
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+        res.redirect('/admin/legislation')
+    }
 });

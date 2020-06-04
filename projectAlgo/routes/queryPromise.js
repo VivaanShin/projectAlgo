@@ -332,9 +332,9 @@ exports.deleteUserPoliticianGrade=function deleteUserPoliticianGrade(user_id,pol
     })
 };
 
-exports.getAllLegislationJoinToRel=function getAllLegislationJoinToRel(connection){ //tb_politician_legislation+,tb_politician_legislation_rel
+exports.getAllLegislation=function getAllLegislation(connection){ //tb_politician_legislation select
     return new Promise((resolve,reject)=>{
-        connection.query(`select * from tb_politician_legislation as leg,tb_politician_legislation_rel as rel where leg.issue_id=rel.issue_id`,
+        connection.query(`select * from tb_politician_legislation`,
         (err,legislation)=>{
             if(err)
                 reject(err);
@@ -360,9 +360,12 @@ exports.insertPoliticianLegislation=function insertPoliticianLegislation(legisla
     })
 };
 
-exports.insertPoliticianLegislationRel=function insertPoliticianLegislationRel(legislation,connection){ //tb_politician_legislation_rel insert
+exports.updatePoliticianLegislation=function updatePoliticianLegislation(legislation,connection){ //tb_politician_legislation update
     return new Promise((resolve,reject)=>{
-        connection.query(`insert into tb_politician_legislation values(?,?)`,[legislation.issue_id,legislation.politician_no]
+        connection.query(`update tb_politician_legislation set issue_id=?,issue_no=?,issue_name=?,proposerKind=?,
+        proposeDt=?,procDt=?,generalResult=?,summary=?,procStageCd=?,passGubn=?,curr_committee=? where issue_id=?)`,[legislation.issue_id,legislation.issue_no,
+        legislation.issue_name,legislation.proposerKind,legislation.proposeDt,legislation.procDt,legislation.generalResult,
+    legislation.summary,legislation.procStageCd,legislation.passGubn,legislation.curr_committee,legislation.issue_id]
         ,(err,legislation)=>{
             if(err)
                 reject(err);
