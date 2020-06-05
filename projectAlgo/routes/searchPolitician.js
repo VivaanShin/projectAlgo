@@ -18,9 +18,9 @@ router.get('/',(req,res)=>{
     var h_area1=req.query.h_area1;
     var h_area2=req.query.h_area2;
     var resultData={};
-
+    var connection=mysql.createConnection(dbConfig);
+    
     if(typeof h_area1 !='undefined' && typeof h_area2 !='undefined'){
-        var connection=mysql.createConnection(dbConfig);
         connection.query(`select * from tb_politician_info 
         where sdName like ? and sggName like ?`, //선거구와 시도 이름으로 가져옴
         ['%'+h_area1+'%','%'+h_area2+'%'],(err,politicians)=>{
