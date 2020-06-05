@@ -17,6 +17,11 @@ const dbConfig={
 router.get('/',(req,res)=>{
     var h_area1=req.query.h_area1;
     var h_area2=req.query.h_area2;
+
+    if(typeof h_area1 !='undefined' && typeof h_area2 !='undefined'){
+        console.log(h_area1);
+        console.log(h_area2);
+    }
     var connection=mysql.createConnection(dbConfig);
     connection.query(`select * from tb_politician_info 
     where sdName like ? and sggName like ?` //선거구와 시도 이름으로 가져옴
