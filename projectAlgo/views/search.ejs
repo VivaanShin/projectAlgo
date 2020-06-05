@@ -367,7 +367,7 @@
         <div class="form-group" style="margin-top:20%;">
           <h2>정치인 상세 검색</h2><br><br>
 
-              <form>
+         <form>
           <label style="margin-right:5%;">시도</label><br>
 
           <select class="custom-select" style="width:60%;" name="h_area1" onChange="cat1_change(this.value,h_area2)" >
@@ -396,7 +396,7 @@
 <br><br>
 
 <label>선거구</label><br>
-  <select class="custom-select" style="width:60%"; name="h_area2">
+  <select class="custom-select" style="width:60%;" name="h_area2">
    <option selected="">-선택-</option>
   </select>
   <br><br>
@@ -410,10 +410,6 @@
 </div>
 
 
-<textarea style="display:none;" id="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
-  문재인,50,30,50,30,20
-  나의성향,20,30,40,50,60
- </textarea>
 
 
 
@@ -425,8 +421,14 @@
     <% } %>
 
     <% if(typeof searchResult!='undefined' && searchResult.length > 0) { %>
-      
-  <div style="display: flex">
+
+  <div style="display: flex">  
+  
+  <textarea style="display:none;" id="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
+<%= searchResult[0].politician_name %>,<%= searchResult[0].society %>,<%= searchResult[0].economy %>,<%= searchResult[0].itScience %>,<%= searchResult[0].politics %>,<%= searchResult[0].culture %>
+  </textarea>
+
+
         <div class="card border-light" style="width: 35%; margin-right:5%;">
       <div class="card-header" style="display: -webkit-box;" >
         <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">

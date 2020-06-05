@@ -479,6 +479,93 @@
 
 
 
+ <!--매칭서비스-->
+      <div class="tab-pane fade" id="matching_service">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+        
+
+
+
+
+      </div>
+
+<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
+</div>
+
+
+<textarea style="display:none;" id="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
+  문재인,50,30,50,30,20
+  나의성향,20,30,40,50,60
+ </textarea>
+
+
+
+<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
+    <% if(typeof searchResult!='undefined' && searchResult.length==0) { %>
+      <div class="card border-light" style="width: 35%; margin-right:5%;">
+        검색결과 없음.
+      </div>
+    <% } %>
+
+    <% if(typeof searchResult!='undefined'  && searchResult.length > 0) { %>
+      
+  <div style="display: flex">
+        <div class="card border-light" style="width: 35%; margin-right:5%;">
+      <div class="card-header" style="display: -webkit-box;" >
+        <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">
+        <div style=" margin-left: 14%; margin-top: 5%;">  
+        <span class="badge badge-primary"><%= searchResult[0].jdName %></span>
+
+        <br>
+        
+        <h3><%= searchResult[0].politician_name %></h3>
+        <p class="text-muted"><%= searchResult[0].politician_name %>
+        </p>
+        <p class="text-muted"><%= searchResult[0].career2 %></p>
+      <button onclick='showRadar()'>그래프보기</button>
+       </div>
+     </div>
+
+      <div class="card-body">
+      <div id="chart-container"></div>
+      </div>
+    </div>
+
+
+    <div class="card border-light" style="width: 35%;">
+      <div class="card-header">
+
+        <span class="badge badge-danger">더불어민주당</span>
+        <h3>이름</h3>
+        <p class="text-muted">생년월일</p>
+        <p class="text-muted">직업</p>
+      </div>
+    
+      <div class="card-body">
+      <div id="chart-container"></div>
+      </div>
+    </div>
+    </div>
+
+   <% } %>
+
+
+    </div><!--col8-->
+    </div><!--row-->
+      </div>
+      <!--매칭서비스-->
+
+
+
+
+
+
+
+
+
 
     </div>
     <!--myTabContent-->
