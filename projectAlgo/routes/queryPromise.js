@@ -444,3 +444,18 @@ exports.deleteGradeInfoRecord=function deleteGradeInfoRecord(grade,connection){ 
         });
     })
 };
+
+exports.searchPoliticianBySdNameAndSggName=function searchPoliticianBySdNameAndSggName(sdName,sggName,connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_politician_info 
+        where sdName like ? and sggName like ?`,
+        ['%'+sdName+'%','%'+sggName+'%']
+        ,(err,politicians)=>{
+            if(err)
+                reject(err);
+            
+            console.log(politicians);
+            resolve(politicians);
+        });
+    })
+};
