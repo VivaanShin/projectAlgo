@@ -6,7 +6,7 @@ const dbConfig={
     database : 'project_algo'
 };
   
-exports.getBillInfo=function getBillInfo(politician_no,connection){ //여러번 호출되므로 connection 하나를 전달 받아서 사용,동기형으로 입법 정보를 가져옴 
+exports.getLegislationInfo=function getLegislationInfo(politician_no,connection){ //connection 하나를 전달 받아서 사용,동기형으로 입법 정보를 가져옴 
     return new Promise((resolve,reject)=>{
         connection.query(`select * from tb_politician_legislation as pl, tb_politician_legislation_rel as rel 
         where pl.issue_id=rel.issue_id and rel.politician_no=?`,
@@ -23,14 +23,14 @@ exports.getPoliticianNameByNo=function getPoliticianNameByNo(politician_no){
         var connection = mysql.createConnection(dbConfig);
         connection.connect();
         connection.query(`select politician_name from tb_politician_info
-        where politician_no=?`,[politician_no],(err,issueId)=>{
+        where politician_no=?`,[politician_no],(err,name)=>{
             if(err) 
             {
                 connection.end();
                 reject(err);
             }   
             connection.end();
-            resolve(issueId); //정치인 아이디를 가져옴
+            resolve(name); //정치인 아이디를 가져옴
         });
     });
 };
@@ -310,7 +310,7 @@ exports.deleteBlackUser=function deleteBlackUser(user_id,connection){ //connecti
     })
 };
 
-exports.getPoliticianGradeByUser=function deleteBlackUser(user_id,connection){ //connection 하나를 전달 받아서 사용,user_id로 조회
+exports.getPoliticianGradeByUser=function getPoliticianGradeByUser(user_id,connection){ //connection 하나를 전달 받아서 사용,user_id로 조회
     return new Promise((resolve,reject)=>{
         connection.query(`select * from tb_user_politician_grade where user_id=?`,[user_id],
         (err,grade)=>{
@@ -321,12 +321,125 @@ exports.getPoliticianGradeByUser=function deleteBlackUser(user_id,connection){ /
     })
 };
 
-exports.deleteUserPoliticianGrade=function deleteUserPoliticianGrade(user_id,politician_no,connection){ //
+exports.deleteUserPoliticianGrade=function deleteUserPoliticianGrade(user_id,politician_no,connection){ //tb_politician_grade 삭제
     return new Promise((resolve,reject)=>{
         connection.query(`delete from tb_user_politician_grade where user_id=? and politician_no=?`,[user_id,politician_no],
         (err,grade)=>{
             if(err)
                 reject(err);
+            resolve(grade);
+        });
+    })
+};
+
+exports.getAllLegislation=function getAllLegislation(connection){ //tb_politician_legislation select
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_politician_legislation`,
+        (err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
+
+exports.insertPoliticianLegislation=function insertPoliticianLegislation(legislation,connection){ //tb_politician_legislation insert
+    return new Promise((resolve,reject)=>{
+        connection.query(`insert into tb_politician_legislation values(?,?,?,?,?,?,?,?,?,?,?)`,[legislation.issue_id,legislation.issue_no,
+        legislation.issue_name,legislation.proposerKind,legislation.proposeDt,legislation.procDt,legislation.generalResult,
+    legislation.summary,legislation.procStageCd,legislation.passGubn,legislation.curr_committee]
+        ,(err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
+
+exports.updatePoliticianLegislation=function updatePoliticianLegislation(legislation,connection){ //tb_politician_legislation update
+    return new Promise((resolve,reject)=>{
+        connection.query(`update tb_politician_legislation set issue_id=?,issue_no=?,issue_name=?,proposerKind=?,
+        proposeDt=?,procDt=?,generalResult=?,summary=?,procStageCd=?,passGubn=?,curr_committee=? where issue_id=?)`,[legislation.issue_id,legislation.issue_no,
+        legislation.issue_name,legislation.proposerKind,legislation.proposeDt,legislation.procDt,legislation.generalResult,
+    legislation.summary,legislation.procStageCd,legislation.passGubn,legislation.curr_committee,legislation.issue_id]
+        ,(err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
+
+exports.deletePoliticianLegislation=function deletePoliticianLegislation(issue_id,connection){ //tb_politician_legislation update
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_politician_legislation where issue_id=?`,[issue_id]
+        ,(err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
+
+exports.deletePoliticianLegislationRel=function deletePoliticianLegislationRel(issue_id,connection){ //tb_politician_legislation update
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_politician_legislation_rel where issue_id=?`,[issue_id]
+        ,(err,legislation)=>{
+            if(err)
+                reject(err);
+            
+            console.log(legislation);
+            resolve(legislation);
+        });
+    })
+};
+
+exports.getGradeInfoRecord=function getGradeInfoRecord(connection){ //tb_tb_gradeinfo_record select
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_gradeinfo_record`
+        ,(err,grade)=>{
+            if(err)
+                reject(err);
+            
+            console.log(grade);
+            resolve(grade);
+        });
+    })
+};
+
+exports.updateAdminGradeInfoRecord=function updateGradeInfoRecord(grade,connection){ //tb_gradeinfo_record update 어드민페이지용
+    return new Promise((resolve,reject)=>{
+        connection.query(`update tb_gradeinfo_record set grade_st_date=?, grade_ed_date=? user_id=?,politician_no=?,grade_score=? where grade_st_date=?
+        and user_id=? and politician_no=?`,[grade.grade_st_date,grade.grade_ed_date,grade.user_id,grade.politician_no,grade.grade_score,grade.grade_st_date
+            ,grade.user_id,grade.politician_no]
+        ,(err,grade)=>{
+            if(err)
+                reject(err);
+            
+            console.log(grade);
+            resolve(grade);
+        });
+    })
+};
+
+exports.deleteGradeInfoRecord=function deleteGradeInfoRecord(grade,connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`delect from tb_gradeinfo_record where where grade_st_date=?
+        and user_id=? and politician_no=?`,[grade.grade_st_date
+            ,grade.user_id,grade.politician_no]
+        ,(err,grade)=>{
+            if(err)
+                reject(err);
+            
+            console.log(grade);
             resolve(grade);
         });
     })

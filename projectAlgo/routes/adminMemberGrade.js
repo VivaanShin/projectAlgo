@@ -115,7 +115,7 @@ router.put('/',async (req,res)=>{ //tb_user_politician_grade update
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade');
+        res.redirect('/admin/member_grade');
     }
 
 });
@@ -136,7 +136,7 @@ router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade');
+        res.redirect('/admin/member_grade');
     }
 
 });

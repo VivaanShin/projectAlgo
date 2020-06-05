@@ -33,34 +33,32 @@ router.get('/',async (req,res)=>{
         var user_info=await getAllUserInfo(connection); //모든 유저 정보 가져옴
     
         for(let i=0;i<user_info.length;i++){ //유저 정보를 하나씩 조회하여
-            var one_user_info=user_info[i];
-            var one_user_interest={}; //관심사 정보 temp
+            var oneUserInfo=userInfo[i];
+            var oneUserInterest={}; //관심사 정보 temp
 
-            console.log("User:"+one_user_info);
-
-            if(one_user_info.user_interest_check){
-                one_user_interest=await getUserInterest(one_user_info.user_id,connection); //관심사 매칭을 수행 한 적이 있다면, 테이블에서 가져옴
-                one_user_info.user_job=one_user_interest.user_job;
-                one_user_info.user_age=one_user_interest.user_age;
-                one_user_info.itScience=one_user_interest.itScience;
-                one_user_info.economy=one_user_interest.economy;
-                one_user_info.culture=one_user_interest.culture;
-                one_user_info.politics=one_user_interest.politics;
-                one_user_info.society=one_user_interest.society;
-                one_user_info.interest_date=one_user_interest.interest_date;
-
-                memberList.push(one_user_info);
+            if(oneUserInfo.user_interest_check){//관심사 매칭을 수행 한 적이 있다면, 테이블에서 가져옴
+                oneUserInterest=await getUserInterest(one_user_info.user_id,connection); 
+                oneUserInfo.user_job=one_user_interest.user_job;
+                oneUserInfo.user_age=one_user_interest.user_age;
+                oneUserInfo.itScience=one_user_interest.itScience;
+                oneUserInfo.economy=one_user_interest.economy;
+                oneUserInfo.culture=one_user_interest.culture;
+                oneUserInfo.politics=one_user_interest.politics;
+                oneUserInfo.society=one_user_interest.society;
+                oneUserInfo.interest_date=one_user_interest.interest_date;
             }
             else{ //없으면 Default 값으로 저장
-                one_user_info.user_job="없음";
-                one_user_info.user_age=0;
-                one_user_info.itScience=0;
-                one_user_info.economy=0;
-                one_user_info.culture=0;
-                one_user_info.politics=0;
-                one_user_info.society=0
-                one_user_info.interest_date="0000-00-00";
+                oneUserInfo.user_job="없음";
+                oneUserInfo.user_age=0;
+                oneUserInfo.itScience=0;
+                oneUserInfo.economy=0;
+                oneUserInfo.culture=0;
+                oneUserInfo.politics=0;
+                oneUserInfo.society=0
+                oneUserInfo.interest_date="0000-00-00";
             }
+            memberList.push(one_user_info);
+            console.log("User:"+one_user_info);
         }
 
         resultData.status=200;

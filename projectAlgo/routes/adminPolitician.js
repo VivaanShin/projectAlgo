@@ -16,26 +16,21 @@ router.get('/',(req,res)=>{
   
   var connection=mysql.createConnection(dbConfig);  
   connection.query('select * from tb_politician_info',(err,politicians)=>{ //정치인 테이블에서 조회
-      var politicianResult={};
-      var status={};
       var resultData={};
       if(err)     
-          status={status:500};
+          resultData.status=500;
       
       else{
-          status={status:200};
-          politicianResult=politicians;//JSON->Javascript 객체로 전환
-      }
-
-      resultData.status=status;
-      resultData.politicianResult=politicianResult; //상태값+모든 정치인 정보 row
+          resultData.status=200;
+          resultData.politicianResult=politicians;//상태값+모든 정치인 정보 row
+      } 
       connection.end();
       res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
       
     });
 });
 
-router.put('/insert',(req,res)=>{ //정치인 정보 등록
+router.put('/',(req,res)=>{ //정치인 정보 등록
     /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
           return;*/
 

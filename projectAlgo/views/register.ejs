@@ -1,29 +1,49 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1">
-    <title>알Go뽑자 후보자 정보 사이트</title>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/custom.min.css">
 
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/colorset.css">
-    <link rel="stylesheet" href="/css/apms.css">
-    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" , initial-scale="1">
+  <title>알Go뽑자 후보자 정보 사이트</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/custom.min.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/colorset.css">
+  <link rel="stylesheet" href="/css/apms.css">
+
+  <!--link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"-->
+  <link rel="stylesheet" href="/css/radar-chart.css">
+
   <style type="text/css">
-      .jumbotron {
-        background-image: url('/img/vote2.jpg');
-        background-size:cover;
-        text-shadow : black 0.2em 0.2em 0.2em;
-        color:white;
-        padding-left:0;
-        padding-right:0;
-        padding-bottom:0;
+    .jumbotron {
+      background-image: url('/img/vote2.jpg');
+      background-size: cover;
+      text-shadow: black 0.2em 0.2em 0.2em;
+      color: white;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+    }
 
-      }
-     </style>
+     .radar-chart .area {
+      fill-opacity: 0.7;
+    }
+    .radar-chart.focus .area {
+      fill-opacity: 0.3;
+    }
+    .radar-chart.focus .area.focused {
+      fill-opacity: 0.9;
+    }
+    .area.germany, .germany .circle {
+      fill: #FFD700;
+      stroke: none;
+    }
+    .area.argentina, .argentina .circle {
+      fill: #ADD8E6;
+      stroke: none;
+    }
+  </style>
 
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -31,20 +51,20 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="/js/custom.js"></script>
 
+  <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+  <script type="text/javascript" src="/css/radar-chart.js"></script>
+
+</head>
 
 
 
-
-
-
-  </head>
 
 
 <body>
 
-<!--로그인 안되어있을때 로그인창 모달 팝업-->
+  <!--로그인 안되어 있을시 로그인창 모달 팝업-->
 
- <div class="modal fade" id="LoginModal" tabindex="-1"  role="dialog" style="width:35%; margin-top:22%; margin-left:32%;">
+  <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" style="width:35%; margin-top:22%; margin-left:32%;">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
 
@@ -52,41 +72,41 @@
 
           <h4 class="modal-title" id="myModalLabel">회원정보</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          
+
         </div>
 
 
-<!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
+        <!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
         <div class="modal-body">
 
-          <form id="sidebar_login_form" name="sidebar_login_form" method="post" action="#" autocomplete="off" role="form" class="form" onsubmit="return sidebar_login(this);">
+          <form id="sidebar_login_form" name="sidebar_login_form" method="post" action="/login" autocomplete="off" role="form" class="form">
 
-    <input type="hidden" name="url" value="%2F">
-      <div class="form-group">  
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user gray"></i></span>
-          <input type="text" name="mb_id" id="sidebar_mb_id" class="form-control input-sm" placeholder="아이디" tabindex="91">
-        </div>
-      </div>
+            <input type="hidden" name="url" value="%2F">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user gray"></i></span>
+                <input type="text" name="user_id" id="user_id" class="form-control input-sm" placeholder="아이디" tabindex="91">
+              </div>
+            </div>
 
-      <div class="form-group">  
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock gray"></i></span>
-          <input type="password" name="mb_password" id="sidebar_mb_password" class="form-control input-sm" placeholder="비밀번호" tabindex="92">
-        </div>
-      </div>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock gray"></i></span>
+                <input type="password" name="user_pw" id="user_pw" class="form-control input-sm" placeholder="비밀번호" tabindex="92">
+              </div>
+            </div>
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-navy btn-block" tabindex="93">Login</button>    
-      </div>  
+            <div class="form-group">
+              <button type="submit" class="btn btn-navy btn-block" tabindex="93">Login</button>
+            </div>
 
-<ul class="sidebar-list list-links">
-      <li>
-        <a href="/register">회원가입</a>
-      </li>
-</ul>
 
-    </form> <!--모달 바디의 끝-->
+
+          </form>
+          <!--모달 바디의 끝-->
+          <form action="/register" method="get">
+            <div><input type="submit" value="회원가입"></div>
+          </form>
 
 
 
@@ -94,8 +114,42 @@
         </div>
       </div><!-- modal-content -->
     </div><!-- modal-dialog -->
-  </div><!-- 모달로그인 창의 끝-->
- 
+  </div><!-- 모달로그인 끝-->
+
+
+
+
+
+
+
+
+  <!--로그인 되어있을 시 회원정보 모달 팝업-->
+
+  <div class="modal fade" id="Member_Modal" tabindex="-1" role="dialog" style="width:35%; margin-top:22%; margin-left:32%;">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h4 class="modal-title" id="myModalLabel">회원님, 환영합니다.</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+
+
+        <!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
+          <div class="modal-body">
+          <input type="button" value="정보수정" style="margin-left: 70%; margin-bottom: 2%;" onClick="location.href='/register_change'"></br>
+
+          <form method="post" action="/logout" role="form" class="form">
+          <input type="submit" value="로그아웃" style="margin-left: 70%; margin-bottom: 2%;">
+          </form>
+
+        </div>
+      </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+  </div><!-- 회원정보 모달 끝-->
+
 
 
   <!--top navbar의 시작 태그-->
@@ -109,7 +163,7 @@
         <!--회원아이콘 클릭시 세션 여부에 따른 조건문을 여기에 넣어주어야 합니다.-->
 
         <!--조건문 : 로그인 안되어 있을 시 아래의 #LoginModal로 이동하는 버튼 생성-->
-        <% if(user==null){ %>
+        <% if(typeof user == 'undefined'){ %>
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
@@ -175,32 +229,27 @@
 
 
 
-
-<div class="container" style="margin-top: 6%;">
-
-
-<!--메뉴탭 시작-->
-  <ul class="nav nav-tabs">
-
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#home">홈</a>
-    </li>
+  <div class="container" style="margin-top: 6%;">
 
 
+    <!--메뉴탭 시작-->
+    <ul class="nav nav-tabs">
 
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#candidate_list">정치인 검색</a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">홈</a>
+      </li>
 
 
+      <li class="nav-item" >
+        <a class="nav-link" href="/search">정치인 검색</a>
+      </li>
 
 
         <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
 
 
         <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
-        
-        <% if(user == null) { %>
+        <% if(typeof user == 'undefined') { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
         </li>
@@ -208,7 +257,7 @@
 
 
         <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-        <% if(user != null && user.user_age==null) { %>
+        <% if(typeof user != 'undefined' && user.user_interest_check==0) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
         </li>
@@ -216,7 +265,7 @@
         
 
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-        <% if(user != null && user.user_age!=null) { %>
+        <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
         <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
         </li>
@@ -232,12 +281,13 @@
 
 
 
-<div id="myTabContent" class="tab-content" >
+    <div id="myTabContent" class="tab-content">
 
-  <!--회원가입-->
+
+<!--회원가입-->
   <div class="tab-pane fade active show" id="register">
-    <form action="/register_finished" method="post" name="#">
-      <fieldset>
+    <form action="/register_finished" method="post" name="">
+
        <legend>회원 정보 입력</legend>
     
     <!--ID입력-->
@@ -279,47 +329,44 @@
   
    <!--가입버튼-->
     <button type="submit" class="btn btn-primary">가입하기</button>
-
-  </fieldset>
 </form>
-
-
-
   </div><!--회원가입끝-->
 
 
 
-  <div class="tab-pane fade" id="home">
-   <div class="jumbotron"> 
-      <h1 class="text-center">알Go뽑자 정치인 정보 사이트입니다.</h1>
-      <br><br>      <br><br><br>
-      <h4 class="text-center">자신의 성향에 맞는 정치인을 찾아보세요!</h4>
-      <!--<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">정보</a></p>-->
-      <p class="text-center"></p>
-
-<!--검색창-->
-  <form class="form-inline my-2">
-      <input class="form-control mr-sm-2" style="width: 24%; margin-left: 36%;" type="text" placeholder="정치인 검색">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
-    </form>
-      <br><br><br><br><br><br><br>
-<!--검색창 끝-->
-
-<div class="bg-dark">
- <div class="text-right" style="padding-top:1%; padding-bottom:1%;">copyright ⓒ  2020 알Go뽑자 &nbsp;</div>
-</div>
-
-    </div>
-  </div>
 
 
+      <div class="tab-pane fade" id="home">
+        <div class="jumbotron">
+          <h1 class="text-center">알Go뽑자 정치인 정보 사이트입니다.</h1>
+          <br><br> <br><br><br>
+          <h4 class="text-center">자신의 성향에 맞는 정치인을 찾아보세요!</h4>
+          <!--<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">정보</a></p>-->
+          <p class="text-center"></p>
 
+          <!--검색창-->
+          <form class="form-inline my-2">
+            <input class="form-control mr-sm-2" style="width: 24%; margin-left: 36%;" type="text" placeholder="정치인 검색">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
+          </form>
+          <br><br><br><br><br><br><br>
+          <!--검색창 끝-->
 
+          <div class="bg-dark">
+            <div class="text-right" style="padding-top:1%; padding-bottom:1%;">copyright ⓒ 2020 알Go뽑자 &nbsp;</div>
+          </div>
+
+        </div>
+      </div>
 
 
 
 
-   <!--
+
+
+
+
+      <!--
     <form>
   <fieldset>
     <legend>회원 정보 수정</legend>
@@ -342,12 +389,12 @@
       <label for="exampleInputPassword1">비밀번호 수정</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 입력">
     </div>
- 
+
         <div class="form-group">
       <label for="exampleInputPassword1">비밀번호 재입력</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호 재입력">
     </div>
-  
+
     <button type="submit" class="btn btn-primary">수정하기</button>
 
     <button type="submit" class="btn btn-primary">AI 매칭 설문조사하러가기</button>
@@ -356,270 +403,141 @@
 -->
 
 
-  
-
-
-      <div class="tab-pane fade" id="candidate_list">
-  
-    <div class="row">
-
-      <div class="col-lg-3">
-        <div class="form-group" style="margin-top:20%;">
-          <h2>정치인 상세 검색</h2><br><br>
-    <form>
-          <label style="margin-right:5%;">시도</label><br>
-
-          <select class="custom-select" style="width:60%;" name="h_area1" onChange="cat1_change(this.value,h_area2)" >
-
-           <option selected="">-선택-</option>
-           <option value='1'>서울</option>
-           <option value='2'>부산</option>
-           <option value='3'>대구</option>
-           <option value='4'>인천</option>
-           <option value='5'>광주</option>
-           <option value='6'>대전</option>
-           <option value='7'>울산</option>
-           <option value='8'>강원</option>
-           <option value='9'>경기</option>
-           <option value='10'>경남</option>
-           <option value='11'>경북</option>
-           <option value='12'>전남</option>
-           <option value='13'>전북</option>
-           <option value='14'>제주</option>
-           <option value='15'>충남</option>
-           <option value='16'>충북</option>
-          </select>
-<br>
-<br>
-<br>
-<label>선거구</label><br>
-  <select class="custom-select" style="width:60%;" name="h_area2">
-   <option selected="">-선택-</option>
-  </select>
 
 
 
 
+      <!--설문조사-->
+      <div class="tab-pane fade" id="matching_survey">
 
-</form>
+        <form>
+          <fieldset style="margin-bottom: 5%;">
+            <legend>AI 설문조사</legend>
 
 
 
+            <div class="form-group">
+              <label> 귀하의 출생연도를 선택해주세요.</label>
+              <select class="custom-select">
+                <option selected="">귀하의 출생연도를 선택해주세요.</option>
+                <option value="1">1930</option>
+                <option value="2">~</option>
+                <option value="2">~</option>
+                <option value="3">2000</option>
+              </select>
+            </div>
 
-        </div> 
+            <div class="form-group">
+              <label for="exampleTextarea">귀하의 직업을 입력해주세요.</label>
+              <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
+            </div>
+
+
+
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                <label>귀하의 정치 관심사에 점수를 주세요.</label>
+              </div>
+            </div>
+
+            <label>과학/IT</label>
+            <div class="form-group">
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+
+            <label>사회</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+            <label>경제</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+            <label>문화</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+
+
+            <label>정치</label>
+            <div class="form-group">
+
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+              <button type="button" class="btn btn-secondary">8</button>
+              <button type="button" class="btn btn-secondary">9</button>
+              <button type="button" class="btn btn-secondary">10</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">제출하기</button>
+          </fieldset>
+
+        </form>
       </div>
+      <!--설문조사 끝-->
 
-<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:70%; left : 20%; position:absolute;"  >
-</div>
 
-<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-    <div style="display: block">
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      </div>
-    </div>
 
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      </div>
-    </div>
-    </div>
 
-      <div style="display: block">
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      </div>
-    </div>
 
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      <p class="card-title">d3.js </p>
-      </div>
-    </div>
-    </div>
+
+
+
+
 
     </div>
-    </div>
-      </div>
+    <!--myTabContent-->
 
-
-
-
-
-
-
-
-
-
-
-
-<!--설문조사-->
-  <div class="tab-pane fade" id="matching_survey">
-   
-<form>
-  <fieldset>
-    <legend>AI 설문조사</legend>
-  
-
-
- <div class="form-group">
-  <label> 귀하의 출생연도를 선택해주세요.</label>
-    <select class="custom-select">
-      <option selected="">귀하의 출생연도를 선택해주세요.</option>
-      <option value="1">1930</option>
-      <option value="2">~</option>
-      <option value="2">~</option>
-      <option value="3">2000</option>
-    </select>
   </div>
-
-  <div class="form-group">
-      <label for="exampleTextarea">귀하의 직업을 입력해주세요.</label>
-      <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
-    </div>
-
-
-
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group mr-2" role="group" aria-label="First group">
-    <label>귀하의 정치 관심사에 점수를 주세요.</label>
-  </div>
-   </div>
-
-<label>과학/IT</label>
-    <div class="form-group">
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-
-  <label>사회</label>
- <div class="form-group">
-  
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-    <label>경제</label>
-       <div class="form-group">
-
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-    <label>문화</label>
-       <div class="form-group">
-
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
-  
-
-   <label>정치</label>
-       <div class="form-group">
- 
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-     <button type="button" class="btn btn-secondary">5</button>
-     <button type="button" class="btn btn-secondary">6</button>
-     <button type="button" class="btn btn-secondary">7</button>
-     <button type="button" class="btn btn-secondary">8</button>
-     <button type="button" class="btn btn-secondary">9</button>
-     <button type="button" class="btn btn-secondary">10</button>
-      </div>
-
- <button type="submit" class="btn btn-primary">제출하기</button>
- </fieldset>
-
-</form>
-  </div>
-<!--설문조사 끝-->
-
-
-  
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </div><!--myTabContent-->
-
-</div><!--container-->
+  <!--container-->
 
 
 
@@ -631,7 +549,3 @@
 </body>
 
 </html>
-
-
-
-
