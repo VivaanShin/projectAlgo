@@ -26,20 +26,26 @@
       padding-bottom: 0;
     }
 
-     .radar-chart .area {
+    .radar-chart .area {
       fill-opacity: 0.7;
     }
+
     .radar-chart.focus .area {
       fill-opacity: 0.3;
     }
+
     .radar-chart.focus .area.focused {
       fill-opacity: 0.9;
     }
-    .area.germany, .germany .circle {
+
+    .area.germany,
+    .germany .circle {
       fill: #FFD700;
       stroke: none;
     }
-    .area.argentina, .argentina .circle {
+
+    .area.argentina,
+    .argentina .circle {
       fill: #ADD8E6;
       stroke: none;
     }
@@ -138,11 +144,11 @@
 
 
         <!-- 여기 모달 바디가 아이디 비밀번호 입력 폼입니다.-->
-          <div class="modal-body">
+        <div class="modal-body">
           <input type="button" value="정보수정" style="margin-left: 70%; margin-bottom: 2%;" onClick="location.href='/register_change'"></br>
 
           <form method="post" action="/logout" role="form" class="form">
-          <input type="submit" value="로그아웃" style="margin-left: 70%; margin-bottom: 2%;">
+            <input type="submit" value="로그아웃" style="margin-left: 70%; margin-bottom: 2%;">
           </form>
 
         </div>
@@ -167,17 +173,17 @@
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
-  
+
 
         <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
-         <% }else{ %>
+        <% }else{ %>
         <button type="button" class="btn btn" data-toggle="modal" data-target="#Member_Modal" aria-hidden="true">
-              <img src="/img/profile_icon_login.jpg" alt="회원 아이콘">
-            </button-->
+          <img src="/img/profile_icon_login.jpg" alt="회원 아이콘">
+          </button-->
           <br>
           <p style="margin-bottom:-3%;">ID : <%= user.user_id %></p>
 
-        <% } %>
+          <% } %>
 
       </div>
 
@@ -240,38 +246,38 @@
       </li>
 
 
-      <li class="nav-item" >
+      <li class="nav-item">
         <a class="nav-link" href="/search">정치인 검색</a>
       </li>
 
 
-        <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
+      <!--여기도 세션 여부에 따른 조건문을 달아줘야함-->
 
 
-        <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
-        <% if(typeof user == 'undefined') { %>
-        <li class="nav-item">
+      <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
+      <% if(typeof user == 'undefined') { %>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
-        </li>
-        <% } %>
+      </li>
+      <% } %>
 
 
-        <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
-        <% if(typeof user != 'undefined' && user.user_interest_check==0) { %>
-        <li class="nav-item">
+      <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
+      <% if(typeof user != 'undefined' && user.user_interest_check==0) { %>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
-        </li>
-        <%  } %>        
-        
+      </li>
+      <%  } %>
 
-        <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
-        <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
-        <li class="nav-item">
+
+      <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
+      <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
-        </li>
-        <%  } %>        
-        
-        
+      </li>
+      <%  } %>
+
+
 
     </ul>
     <!--메뉴탭 끝-->
@@ -284,53 +290,54 @@
     <div id="myTabContent" class="tab-content">
 
 
-<!--회원가입-->
-  <div class="tab-pane fade active show" id="register">
-    <form action="/register_finished" method="post" name="">
+      <!--회원가입-->
+      <div class="tab-pane fade active show" id="register">
+        <form action="/register" method="post" name="">
 
-       <legend>회원 정보 입력</legend>
-    
-    <!--ID입력-->
-    <div class="form-group">
-      <label for="staticEmail">회원ID</label></br>
-      <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID예제" style="display:inline-block; width:48%; margin-right: 1%;">
-      <!--중복체크-->
-      <input type="button" class="btn btn-primary name="user_id" id="user_id" value="중복체크" style="width:10%;">
-    </div>
+          <legend>회원 정보 입력</legend>
 
-   <!--이메일 주소-->
-    <div class="form-group">
-      <label for="exampleInputEmail1">이메일 주소 입력</label></br>
-      <input type="email" class="form-control" name="user_email" id="user_email" aria-describedby="emailHelp" placeholder="ID예제@naver.com" style="display:inline-block; width:48%; margin-right: 1%;">
-      <!--중복체크-->
-      <input type="button" class="btn btn-primary id="checkemail" value="이메일 검증" style="width:10%;">
+          <!--ID입력-->
+          <div class="form-group">
+            <label for="staticEmail">회원ID</label></br>
+            <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID예제" style="display:inline-block; width:48%; margin-right: 1%;">
+            <!--중복체크-->
+            <input type="button" class="btn btn-primary" name=" user_id" id="user_id" value="중복체크" style="width:10%;">
+          </div>
 
-      <!--여기도 만약 이메일 검증되면 검증되었다고 표시해줄것-->
-      <small id="emailHelp" class="form-text text-muted">이메일 인증을 위해 이메일을 잘 입력해주세요.</small>
-    </div>
-      
-    <!--전화번호-->
-    <div class="form-group">
-      <label for="exampleInputPassword1">전화번호 입력</label>
-      <input type="text" class="form-control" name="user_phone" id="user_phone" placeholder="010-XXXX-XXXX">
-    </div>
+          <!--이메일 주소-->
+          <div class="form-group">
+            <label for="exampleInputEmail1">이메일 주소 입력</label></br>
+            <input type="email" class="form-control" name="user_email" id="user_email" aria-describedby="emailHelp" placeholder="ID예제@naver.com" style="display:inline-block; width:48%; margin-right: 1%;">
+            <!--중복체크-->
+            <input type="button" class="btn btn-primary" id=" checkemail" value="이메일 검증" style="width:10%;">
 
-    <!--비밀번호-->
-    <div class="form-group">
-      <label for="exampleInputPassword1">비밀번호 입력</label>
-      <input type="password" class="form-control" name="user_pw" id="user_pw" placeholder="비밀번호 입력">
-    </div>
- 
-    <!--비밀번호 재입력-->
-    <div class="form-group">
-      <label for="exampleInputPassword1">비밀번호 재입력</label>
-      <input type="password" class="form-control" name="user_re_pw" id="user_re_pw" placeholder="비밀번호 재입력">
-    </div>
-  
-   <!--가입버튼-->
-    <button type="submit" class="btn btn-primary">가입하기</button>
-</form>
-  </div><!--회원가입끝-->
+            <!--여기도 만약 이메일 검증되면 검증되었다고 표시해줄것-->
+            <small id="emailHelp" class="form-text text-muted">이메일 인증을 위해 이메일을 잘 입력해주세요.</small>
+          </div>
+
+          <!--전화번호-->
+          <div class="form-group">
+            <label for="exampleInputPassword1">전화번호 입력</label>
+            <input type="text" class="form-control" name="user_phone" id="user_phone" placeholder="010-XXXX-XXXX">
+          </div>
+
+          <!--비밀번호-->
+          <div class="form-group">
+            <label for="exampleInputPassword1">비밀번호 입력</label>
+            <input type="password" class="form-control" name="user_pw" id="user_pw" placeholder="비밀번호 입력">
+          </div>
+
+          <!--비밀번호 재입력-->
+          <div class="form-group">
+            <label for="exampleInputPassword1">비밀번호 재입력</label>
+            <input type="password" class="form-control" name="user_re_pw" id="user_re_pw" placeholder="비밀번호 재입력">
+          </div>
+
+          <!--가입버튼-->
+          <button type="submit" class="btn btn-primary">가입하기</button>
+        </form>
+      </div>
+      <!--회원가입끝-->
 
 
 

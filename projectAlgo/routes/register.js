@@ -17,13 +17,21 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var twoFactor = require('node-totp');
 
+
+router.post('/',passport.authenticate('local-join', {successRedirect:'/', failureRedirect: '/register', failureFlash: true}), // 인증 실패 시 401 리턴
+  function (req, res) {
+    console.log("redirect")
+    res.redirect('/');
+  });
+
+
 //라우터 처리
 router.get('/', (req, res) => {
   console.log('get join url'); //로그인 인증 실패시 다시 이리로 들어옴.
   var msg;
   var errMsg = req.flash('error');
   if (errMsg) msg = errMsg;
-  res.render('register.ejs', {
+  res.render('register', {
     'message': msg
   })
 });
