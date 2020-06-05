@@ -244,11 +244,13 @@ function cat1_change(key,sel){
     var data = [];
     var chart = RadarChart.chart();
   
-  var c = document.getElementById("data").value,
+  var c = document.getElementsByName("data").value,
       w = 200,
       h = 200,
   csv = c.split("\n").map(function(i){return i.split(",")})
   headers = []
+
+
   csv.forEach(function(item, i){
     if(i==0){
       headers = item;
@@ -265,23 +267,12 @@ function cat1_change(key,sel){
       data.push(newSeries);
     }
   })
+
+
+
 RadarChart.defaultConfig.radius = 3;
 RadarChart.defaultConfig.w = w;
 RadarChart.defaultConfig.h = h;
 RadarChart.draw("#chart-container", data);
-function animate(elem,time) {
-    if( !elem) return;
-    var to = elem.offsetTop;
-    var from = window.scrollY;
-    var start = new Date().getTime(),
-        timer = setInterval(function() {
-            var step = Math.min(1,(new Date().getTime()-start)/time);
-            window.scrollTo(0,(from+step*(to-from))+1);
-            if( step == 1){ clearInterval(timer);};
-        },25);
-        window.scrollTo(0,(from+1));
-    }
 
-var divVal = document.getElementById('chart-container');
-animate(divVal,600);
 }

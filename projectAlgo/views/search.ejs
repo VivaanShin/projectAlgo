@@ -421,51 +421,38 @@
     <% } %>
 
     <% if(typeof searchResult!='undefined' && searchResult.length > 0) { %>
-
-  <div style="display: flex">  
+    
+     <% for(var i=0; i < searchResult.length; i++){ %>
+  <div style="display: inline-block;">  
   
-  <textarea style="display:none;" id="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
-<%= searchResult[0].politician_name %>,<%= searchResult[0].society %>,<%= searchResult[0].economy %>,<%= searchResult[0].itScience %>,<%= searchResult[0].politics %>,<%= searchResult[0].culture %>
+  <textarea style="display:none;" class="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
+<%= searchResult[i].politician_name %>,<%= searchResult[i].society %>,<%= searchResult[i].economy %>,<%= searchResult[i].itScience %>,<%= searchResult[i].politics %>,<%= searchResult[i].culture %>
   </textarea>
 
 
-        <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header" style="display: -webkit-box;" >
+    <div class="card border-light" style="width: 35%; margin-right:5%;">
+        <div class="card-header" style="display: -webkit-box;" >
         <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">
         <div style=" margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary"><%= searchResult[0].jdName %></span>
+        <span class="badge badge-primary"><%= searchResult[i].jdName %></span>
 
         <br>
         
-        <h3><%= searchResult[0].politician_name %></h3>
-        <p class="text-muted"><%= searchResult[0].politician_name %>
+        <h3><%= searchResult[i].politician_name %></h3>
+        <p class="text-muted"><%= searchResult[i].politician_name %>
         </p>
-        <p class="text-muted"><%= searchResult[0].career2 %></p>
-      <button onclick='showRadar()'>그래프보기</button>
+        <p class="text-muted"><%= searchResult[i].career2 %></p>
        </div>
-     </div>
+        </div>
 
       <div class="card-body">
-      <div id="chart-container"></div>
+      <div class="chart-container"></div>
       </div>
+      <script>  showRadar();</script>
+
     </div>
-
-
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">
-
-        <span class="badge badge-danger">더불어민주당</span>
-        <h3>이름</h3>
-        <p class="text-muted">생년월일</p>
-        <p class="text-muted">직업</p>
-      </div>
-    
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-    </div>
-
+  </div>
+   <% } %>
    <% } %>
 
 
