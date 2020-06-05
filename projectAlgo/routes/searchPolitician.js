@@ -24,7 +24,7 @@ router.get('/',async (req,res)=>{
             var searchResult=[];
             h_area1=h_area1.replace('+',' ');
             h_area2=h_area2.replace('+',' ');
-            await searchPoliticianBySdNameAndSggName(h_area1,h_area2,connection);
+            var politicians=await searchPoliticianBySdNameAndSggName(h_area1,h_area2,connection);
 
             for(let i=0;i<politicians.length;i++){
                 politician={
