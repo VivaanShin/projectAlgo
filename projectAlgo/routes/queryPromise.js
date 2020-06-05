@@ -459,3 +459,16 @@ exports.searchPoliticianBySdNameAndSggName=function searchPoliticianBySdNameAndS
         });
     })
 };
+
+exports.getPoliticianInterestByNo=function getPoliticianInterestByNo(politician_no,connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_politician_interest where politician_no=?`,[politician_no]
+        ,(err,politician)=>{
+            if(err)
+                reject(err);
+            
+            console.log(politician);
+            resolve(politician);
+        });
+    })
+};

@@ -2,7 +2,7 @@
 const express=require('express');
 var isLoggined=require('../scripts/confirmLogin').isLoggedIn;
 const searchPoliticianBySdNameAndSggName=require('./queryPromise').searchPoliticianBySdNameAndSggName;
-
+const getPoliticianInterestByNo=require('./queryPromise').getPoliticianInterestByNo;
 const mysql=require('mysql');
 const router=express.Router();
 const dbConfig={
@@ -31,12 +31,20 @@ router.get('/',async (req,res)=>{
                     politician_name:politicians[i].politician_name,
                     jdName:politicians[i].jdName,
                     birthday:politicians[i].birthday,
+                    career1:politicians[i].career1,
                     career2:politicians[i].career2,
                     img:"/images/"+politicians[i].politician_no,
                     link:"/poltician/"+politicians[i].politician_no
                 }
 
-                    searchResult.push(politician);
+                var politician_interest=await getPoliticianInterestByNo(politician_no,connection); //정치인 관심사 정보를 가져옴
+                politician.itScience=politician_interest.itScience;
+                politician.economy=politician_interest.economy;
+                politician.culture=politician_interest.culture;
+                politician.society=politician_interest.society;
+                politician.politics=politician_interest.politics;
+
+                searchResult.push(politician);
             }                                           
             resultData.searchResult=searchResult;
             console.log(searchResult);
