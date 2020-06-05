@@ -19,6 +19,8 @@ router.get('/',(req,res)=>{
     var h_area2=req.query.h_area2.replace(' ','');
 
     if(typeof h_area1 !='undefined' && typeof h_area2 !='undefined'){
+        h_area1=h_area1.replace(' ','');
+        h_area2=h_area2.replace(' ','');
         console.log('%'+h_area1+'%');
         console.log('%'+h_area2+'%');
     }
