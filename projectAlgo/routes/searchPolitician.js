@@ -15,8 +15,8 @@ const dbConfig={
 
 //router.get('/') querystring 사용시 사용
 router.get('/',(req,res)=>{
-    var h_area1=req.query.h_area1;
-    var h_area2=req.query.h_area2;
+    var h_area1=req.query.h_area1.replace(' ','');
+    var h_area2=req.query.h_area2.replace(' ','');
 
     if(typeof h_area1 !='undefined' && typeof h_area2 !='undefined'){
         console.log('%'+h_area1+'%');
