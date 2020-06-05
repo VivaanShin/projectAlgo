@@ -38,6 +38,7 @@ router.get('/',async (req,res)=>{
                 }
 
                 var politician_interest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보를 가져옴
+                console.log(politician_interest);
                 politician.itScience=politician_interest.itScience;
                 politician.economy=politician_interest.economy;
                 politician.culture=politician_interest.culture;
