@@ -89,7 +89,7 @@ passport.use('local-join', new LocalStrategy({
             if (err) return done(err);
             return done(null, user_id)
           });
-
+          /*
           async sendMail(user_email) {
             try {
               const mailConfig = {
@@ -114,6 +114,7 @@ passport.use('local-join', new LocalStrategy({
               console.log(error)
             }
           }
+          */
           res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
         }
       }
