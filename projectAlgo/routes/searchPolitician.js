@@ -47,6 +47,7 @@ router.get('/',(req,res)=>{
             }
 
             resultData.searchResult=searchResult;
+            console.log(searchResult);
         });
     }
 
@@ -57,7 +58,6 @@ router.get('/',(req,res)=>{
     }
          //세션 상태값+모든 검색된 정치인 정보 Row
         
-    console.log(searchResult);
     console.log(resultData);
     connection.end();
     res.render('search.ejs', resultData);
