@@ -51,7 +51,7 @@ passport.deserializeUser(function(id, done) {
 
 
 //user_id, user_email, user_pw, user_pw_check, user_phone,
-
+/*
 passport.use('local-join', new LocalStrategy({
   usernameField: 'user_id',
   passwordField: 'user_pw',
@@ -89,7 +89,7 @@ passport.use('local-join', new LocalStrategy({
             if (err) return done(err);
             return done(null, user_id)
           });
-          /*
+
           async sendMail(user_email) {
             try {
               const mailConfig = {
@@ -114,7 +114,7 @@ passport.use('local-join', new LocalStrategy({
               console.log(error)
             }
           }
-          */
+
           res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
         }
       }
@@ -123,37 +123,6 @@ passport.use('local-join', new LocalStrategy({
     }
   })
 }))
-
-/*
-router.post('/idcheck', function(req, res, next) {
-  console.log('req.body: ', req.body);
-  var id = req.body.user_id;
-
-  function idcheck(id){
-    return new Promise(function(resolve, reject) {
-    var sql = 'SELECT * FROM `tb_user_info` WHERE `user_id`=?';
-    var dbOptions = {
-      host: dbConfig.host,
-      port: dbConfig.port,
-      user: dbConfig.user,
-      password: dbConfig.password,
-      database: dbConfig.database
-    };
-    var conn = mysql.createConnection(dbOptions);
-    console.log(dbOptions);
-    conn.connect();
-    conn.query(sql, id, function(err, results, fields) {
-      if (err) {
-        console.log(err);
-      }
-      if (!results[0]) {
-        console.log("중복없음")
-        return res.send('아이디 사용이 가능합니다!');
-      }
-    })
-  })
-};
-});
 */
 
 module.exports = router;
