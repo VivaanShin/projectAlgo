@@ -39,11 +39,11 @@ router.get('/',async (req,res)=>{
 
                 var politician_interest=await getPoliticianInterestByNo(politicians[i].politician_no,connection); //정치인 관심사 정보를 가져옴
                 console.log(politician_interest);
-                politician.itScience=politician_interest.itScience;
-                politician.economy=politician_interest.economy;
-                politician.culture=politician_interest.culture;
-                politician.society=politician_interest.society;
-                politician.politics=politician_interest.politics;
+                politician.itScience=politician_interest[0].itScience;
+                politician.economy=politician_interest[0].economy;
+                politician.culture=politician_interest[0].culture;
+                politician.society=politician_interest[0].society;
+                politician.politics=politician_interest[0].politics;
 
                 searchResult.push(politician);
             }                                           
