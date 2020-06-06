@@ -66,7 +66,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                    sgTypecode=int(item.find('sgtypecode').get_text())
                    sggName=item.find('sggname').get_text()
                    sdName=item.find('sdname').get_text()
-                   wiwName=item.find('wiwname').get_text() if item.wiwName else '없음'
+                   wiwName=item.find('wiwname').get_text() if item.find('wiwname') else '없음'
                    jdName=item.find('jdname').get_text()
                    gender=1 if item.find('gender').get_text()=='남' else 2
                    birthday=item.find('birthday').get_text()
@@ -77,9 +77,9 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                    eduId=int(item.find("eduid").get_text())
                    edu=item.find('edu').get_text()
                    career1=item.find('career1').get_text()
-                   career2=item.find('career2').get_text() if item.career2 else '없음'
-                   dugsu=int(item.find('dugsu').get_text()) if item.dugsu else 0
-                   dugyul=float(item.find('dugyul').get_text()) if item.dugyul else 0.0
+                   career2=item.find('career2').get_text() if item.find('career2') else '없음'
+                   dugsu=int(item.find('dugsu').get_text()) if item.find('dugsu') else 0
+                   dugyul=float(item.find('dugyul').get_text()) if item.find('dugyul') else 0.0
                
               
                    curs.execute(self.INSERT_POLITICIAN_DATA,(politician_no,politician_name,sgId,sgTypecode,sggName,
