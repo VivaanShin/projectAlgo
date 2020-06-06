@@ -20,8 +20,8 @@ router.get('/', (req, res) => {
   });
   connection.connect();
 
-  var user_email = req.param('user_email');
-  var user_token = req.param('user_token');
+  var user_email = req.param.user_email;
+  var user_token = req.param.user_token;
 
   var sql = 'select `user_token` from `tb_user_info` where `user_email`=?';
   connection.query(sql, [user_email], function(err, rows, fields) {
