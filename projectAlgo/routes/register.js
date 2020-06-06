@@ -20,13 +20,13 @@ var twoFactor = require('node-totp');
 
 
 router.post('/', passport.authenticate('local-join', {
-    successRedirect: '/home',
+    successRedirect: '/',
     failureRedirect: '/register',
     failureFlash: true
   }), // 인증 실패 시 401 리턴
   function(req, res) {
     console.log("redirect")
-    res.redirect('/home');
+    res.redirect('/');
   });
 
 
