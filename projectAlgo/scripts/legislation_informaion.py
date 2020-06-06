@@ -167,6 +167,8 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
             for politician_name in self.politician_name_list:
                 for committee_code in self.committee_list: #소관위 값을 위해 소관위 코드정보를 참조
                     print(type(committee_code))
+                    print(politician_name[0])
+                    print(type(politician_name[0]))
                     res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+urllib.parse.quote_plus(committee_code)).read().decode()
                     print(res)
         except Exception as e: #HTTP 에러
