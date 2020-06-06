@@ -78,12 +78,12 @@ passport.use('local-join', new LocalStrategy({
   console.log("user_phone: ", user_phone);
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
-  var sql = 'select * from tb_user_info where user_id =?';
-  connection.query(sql, [user_id], function(err, datas) {
+  var sql = 'select * from `tb_user_info` where `user_id` =?';
+  connection.query(sql, [user_id], function(err, results, fields) {
     if (err) return done(null, false, {
       message: 'DB error'
     });
-    if (datas.length) {
+    if (results.length) {
       console.log('existed user');
       return done(null, false, {
         message: 'your user_id is already used'
