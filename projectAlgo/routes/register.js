@@ -65,7 +65,7 @@ passport.use('local-join', new LocalStrategy({
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
   var sql = 'select * from test where user_id =?';
-  var query = connection.query(sql, [user_id], function(err, datas) {
+  connection.query(sql, [user_id], function(err, datas) {
     if (err) return done(err);
     if (datas.length) {
       console.log('existed user');
@@ -90,9 +90,10 @@ passport.use('local-join', new LocalStrategy({
           console.log("user_hash=" + hash);
         });
 
-
-        var sql = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token) values(?,?,?,?,?,?)';
-        var query = client.query(sql, [user_id, user_pw, user_phone, user_email, 0, user_token], function(err, datas) {
+        //DB에 회원정보 저장
+        var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token) values(?,?,?,?,?,?)';
+        //var query2 =
+        connection.query(sql2, [user_id, user_pw, user_phone, user_email, 0, user_token], function(err, datas) {
           if (err) return done(err);
           return done(null, user_id)
         });
@@ -146,6 +147,7 @@ passport.use('local-join', new LocalStrategy({
                     }
                   }
         */
+        connection.end();
         res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
       }
     }
