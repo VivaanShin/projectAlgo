@@ -37,9 +37,7 @@ router.get('/',async (req,res)=>{
                     img:"/images/"+politicians[i].politician_no,
                     link:"/poltician/"+politicians[i].politician_no
                 };
-                console.log(politician);
                 var politician_interest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보를 가져옴
-                console.log(politician_interest);
                 politician.itScience=politician_interest[0].itScience;
                 politician.economy=politician_interest[0].economy;
                 politician.culture=politician_interest[0].culture;
