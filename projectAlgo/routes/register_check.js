@@ -10,7 +10,7 @@ require('dotenv').config(); //.env파일 사용(인증메일정보)
 
 
 
-router.get('/', (req, res)=>{
+router.get('/', (req, res) => {
   console.log('register_check join url');
   const connection = mysql.createConnection({
     host: 'localhost',
@@ -24,22 +24,22 @@ router.get('/', (req, res)=>{
   var user_token = req.param('user_token');
 
   var sql = 'select `user_token` from `tb_user_info` where `user_email`=?';
-  connection.query(sql, [user_email], function(err, rows, fields){
-    if(err){
+  connection.query(sql, [user_email], function(err, rows, fields) {
+    if (err) {
       console.log(err);
-    }else{
-      if(user_token != rows[0].user_token){
+    } else {
+      if (user_token != rows[0].user_token) {
         console.log('token mismatch');
         res.render('/register');
-      }else{
+      } else {
         var sql2 = 'update `tb_user_info` set `user_state`=1 where `user_email`=? ';
-        connection.query(sql2, [user_email], function(err,rows, fields){
-          if(err){
+        connection.query(sql2, [user_email], function(err, rows, fields) {
+          if (err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
-          } else{
+          } else {
             console.log("register success!");
-            res.render('/home');
+            res.render('/');
           }
         })
       }
