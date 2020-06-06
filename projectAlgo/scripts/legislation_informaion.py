@@ -25,7 +25,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                               """
     INSERT_LEGISLATION=""" insert into tb_politician_legislation (issue_id,issue_no,issue_name,proposerKind,
                            proposeDt,procDt,generalResult,summary,procStageCd,passGubn,curr_committee)
-                           select '%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s' from dual
+                           select %s, %s, %s, %s,%s,%s,%s,%s,%s,%s,%s from dual
                            where not exists
                            (
                                select * 
@@ -34,7 +34,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                            )
                        """
     INSERT_REL=""" insert into tb_politician_legislation_rel (issue_id,politician_no)
-                   select '%s','%s' from dual
+                   select %s,%s from dual
                    where not exists
                    (
                        select *
@@ -54,7 +54,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                        where politician_no=%s
                    )
                """ #해당 테이블이 모두 FK이므로 참조하는 테이블에 데이터가 있는지도 확인
-    SELECT_COMMITTEE="""select committeeCode from tb_"""
+    SELECT_COMMITTEE="""select committeeCode from tb_committee_info"""
     #후에 소관위 테이블 설정되면 변경
     def __init__(self):
         with open('legislationKey.txt','r') as key_file, open('dbPasswd.txt') as db_passwd_file:
@@ -105,8 +105,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
             with self.conn.cursor() as insert_curs:
                 for politician_name in self.politician_name_list:
                     for committee_code in self.committee_list: #소관위 값을 위해 소관위 코드정보를 참조 DB에서 가져오는 코드로 변경
-                        res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])
-                                               +'&curr_committee='+urllib.parse.qutoe_plus(committee_code)).read().decode('utf-8')
+                        res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+urllib.parse.qutoe_plus(committee_code)).read().decode()
                         print(res)
                         soup=BeautifulSoup(res,'html.parser')
                     
@@ -116,16 +115,16 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                         if(legislation_list): #발의한 의안이 있을 시만 동작
                     #정치인 이름으로 아이디를 가져옴
                             for legislation in legislation_list:
-                                issue_id=legislation.billId.string
-                                issue_no=legislation.billNo.string
-                                issue_name=legislation.billName.string
-                                proposerKind=legislation.proposerKind.string
-                                proposeDt=legislation.proposeDt.string
-                                procDt=legislation.procDt.string if legislation.procDt else '0000-00-00'
-                                generalResult=legislation.generalResult.string if legislation.generalResult else '없음'
-                                summary=legislation.summary.string if legislation.summary else '없음'
-                                procStageCd=legislation.procStageCd.string
-                                passGubn=legislation.passGubn.string
+                                issue_id=legislation.find("billid").get_text()
+                                issue_no=legislation.find("billno").get_text()
+                                issue_name=legislation.find("billName").get_text()
+                                proposerKind=legislation.find("proposerkind").get_text()
+                                proposeDt=legislation.find("proposedt").get_text()
+                                procDt=legislation.find("procdt").get_text() if legislation.find("procdt") else '0000-00-00'
+                                generalResult=legislation.find("generalresult").get_text() if legislation.find("generalresult") else '없음'
+                                summary=legislation.find("summary").get_text() if legislation.find("summary") else '없음'
+                                procStageCd=legislation.find("procstagecd").get_text()
+                                passGubn=legislation.find("passgubn").get_text()
                                 curr_committee=int(committee_code)
                                 
                                 insert_curs.execute(self.INSERT_LEGISLATION,(issue_id,issue_no,issue_name,proposerKind,
@@ -165,18 +164,8 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
         try:
             for politician_name in self.politician_name_list:
                 for committee_code in self.committee_list: #소관위 값을 위해 소관위 코드정보를 참조
-                    res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])
-                                               +'&curr_committee='+urllib.parse.qutoe_plus(committee_code)).read().decode('utf-8')
+                    res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+urllib.parse.qutoe_plus(committee_code)).read().decode()
                     print(res)
-        except Exception as e: #HTTP 에러
-            print('출력 실패:',e)
-            sys.exit(-1)
-    
-    def print_committee(self): #소관위 정보 xml 확인용
-        self.get_request_info()
-        try:
-            res=urllib.request.urlopen(self.committee_url).read().decode('utf-8')
-            print(res);
         except Exception as e: #HTTP 에러
             print('출력 실패:',e)
             sys.exit(-1)
@@ -187,7 +176,6 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
 if __name__ =='__main__':
     legislation_information=LegislationInformaion()
     legislation_information.print_leg()
-    legislation_information.print_committee()
     legislation_information.get_store_legislation()
     legislation_information.store_legislation_rel()
         
