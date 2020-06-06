@@ -86,6 +86,7 @@ passport.use('local-join', new LocalStrategy({
       var joincondition = 0;
       var sql = 'select * from `tb_user_info` where `user_id` =?';
       connection.query(sql, [user_id], function(err, results, fields) {
+        console.log("results: ", results);
         if (err) return done(null, false, {
           message: 'DB error'
         });
