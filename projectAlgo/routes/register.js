@@ -110,7 +110,9 @@ passport.use('local-join', new LocalStrategy({
         var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token) values(?,?,?,?,?,?)';
         //var query2 =
         connection.query(sql2, [user_id, user_pw, user_phone, user_email, 0, user_token], function(err, datas) {
-          if (err) return done(err);
+          if (err) return done(null, false, {
+            message: 'DB error'
+          });
           return done(null, user_id)
         });
 
