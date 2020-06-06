@@ -48,7 +48,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
     def get_store_politician_information(self):
         self.get_url()
         try:
-           res=urllib.request.urlopen(self.get_politician_url).read().decode()
+           res=urllib.request.urlopen(self.get_politician_url).read()
            soup=BeautifulSoup(res,'html.parser')
            
            with self.conn.cursor() as curs:
