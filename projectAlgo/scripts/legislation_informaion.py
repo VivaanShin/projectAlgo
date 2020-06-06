@@ -62,6 +62,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
             db_password=db_passwd_file.read()
         self.url=self.OPEN_API_URL+self.SERVICE_KEY
         self.regislation_rel=[] #정치인과 입법정보 관계 저장 튜플 리스트
+        self.committee_list=[]
         try:
             self.conn=pymysql.connect(host='localhost',user='root',password=db_password
                                       ,db='project_algo',charset='utf8') #후에 db상황에 맞게 수정
