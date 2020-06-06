@@ -10,7 +10,7 @@ import urllib.parse
 from bs4 import BeautifulSoup
 
 NAVER_URL='https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query='
-IMAGE_FOLDER_PATH='../../public/images/'
+IMAGE_FOLDER_PATH='../public/images/'
 def get_politician_image(politician_name,politician_no): #정치인의 이미지를 네이버에서 가져오는 모듈
     url=NAVER_URL+urllib.parse.quote_plus(politician_name)
     

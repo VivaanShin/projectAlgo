@@ -88,8 +88,10 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                    print(politician_name+" insert");
                
                #이미지를 크롤링하는 함수를 통해 이미지를 저장
-                   get_politician_image.get_politician_image(politician_name, politician_no)
-                   print(politician_name+" image saved");
+                   if(get_politician_image.get_politician_image(politician_name, politician_no)):
+                       print(politician_name+" image saved")
+                   else:
+                       print(politician_name+" image not saved")
            self.conn.commit()
                
         except HTTPError as e: #HTTP 에러
