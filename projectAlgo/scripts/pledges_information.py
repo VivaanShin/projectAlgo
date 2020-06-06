@@ -20,7 +20,7 @@ class PromisesInformation:
      #21대 국회의원 정보만 필요하므로 하나만 가져옴
      GET_POLITICIAN_ID='select politicition_no from tb_politician_info'
      INSERT_SQL="""insert into tb_pledges_info (prmsOrd,politician_no,prmsRealmName,prmsTitle,prmsCont,prmsState)
-                    SELECT '%s','%s', '%s', '%s', '%s', '%s' from dual
+                    SELECT %s,%s, %s, %s, %s, %s from dual
                     where not exists
                     (
                         select *
@@ -74,13 +74,13 @@ class PromisesInformation:
                  # 정치인의 모든 공약 정보를 세팅함
                      prms_list=[]
                      prms_index=1 #값을 가져올 인덱스
-                     prmsCnt=int(soup.find('item').prmsCnt.string)
+                     prmsCnt=int(soup.find('item').prmsCnt.get_text())
                  
                  #item 항목에서 모두 가져옴
                      for prms in soup.findAll('item'):
-                         prmsRealmName=prms.find('prmsRealmName'+str(prms_index)).string if prms.find('prmsRealmName'+str(prms_index)) else '없음'
-                         prmsTitle=prms.find('prmsTitle'+str(prms_index)).string
-                         prmsCont=prms.find('prmsCont'+str(prms_index)).string if prms.find('prmsCont'+str(prms_index)) else '없음'
+                         prmsRealmName=prms.find('prmsRealmName'+str(prms_index)).get_text() if prms.find('prmsRealmName'+str(prms_index)) else '없음'
+                         prmsTitle=prms.find('prmsTitle'+str(prms_index)).get_text()
+                         prmsCont=prms.find('prmsCont'+str(prms_index)).get_text() if prms.find('prmsCont'+str(prms_index)) else '없음'
                          new_prms_dic={}
                      
                          new_prms_dic['prmsRealmName']=prmsRealmName
@@ -125,6 +125,6 @@ class PromisesInformation:
 if __name__=='__main__':
     promise_information=PromisesInformation()
     promise_information.print_prms()
-    #promise_information.get_store_promises_information()
+    promise_information.get_store_promises_information()
             
                 
