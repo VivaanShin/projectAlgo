@@ -62,7 +62,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                #모든 칼럼 값을 가져옴
                    politician_no=int(item.find('huboid').get_text())
                    politician_name=item.find('name').get_text()
-                   sgId=item.sgId=item.find('sgId').get_text()
+                   sgId=item.sgId=item.find('sgid').get_text()
                    sgTypecode=int(item.find('sgTypecode').get_text())
                    sggName=item.find('sggName').get_text()
                    sdName=item.find('sdName').get_text()
@@ -98,10 +98,10 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
         except URLError as e: #URL 에러
             print('URL 실패: ', e.reason)
             sys.exit(-1)
-        #except Exception as e: #DB 에러
-            #print('DB 에러: ',e)
-            #self.conn.rollback()
-            #sys.exit(-1)
+        except Exception as e: #DB 에러
+            print('DB 에러: ',e)
+            self.conn.rollback()
+            sys.exit(-1)
     
     def print_politician_info(self): #정치인 정보 출력 확인용 함수
         self.get_url()
