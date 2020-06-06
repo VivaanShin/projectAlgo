@@ -241,10 +241,11 @@ function cat1_change(key,sel){
 
 
  function showRadar(){
+
     var data = [];
     var chart = RadarChart.chart();
   
-  var c = document.getElementsByName("data").value,
+  var c = document.getElementById("data").value,
       w = 200,
       h = 200,
   csv = c.split("\n").map(function(i){return i.split(",")})
