@@ -81,8 +81,8 @@ passport.use('local-join', new LocalStrategy({
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
 
-  function joincheck(){
-    return new Promise(function(resolve, reject){
+  function joincheck() {
+    return new Promise(function(resolve, reject) {
       var joincondition = 0;
       var sql = 'select * from `tb_user_info` where `user_id` =?';
       connection.query(sql, [user_id], function(err, results, fields) {
@@ -111,7 +111,7 @@ passport.use('local-join', new LocalStrategy({
       })
     })
   }
-  joincheck().then(function(joincondition){
+  joincheck().then(function(joincondition) {
     console.log(joincondition);
     if (joincondition == 1) {
       // 이메일 인증 토큰값 생성
@@ -124,6 +124,27 @@ passport.use('local-join', new LocalStrategy({
       bcrypt.hash(user_pw, null, null, function(err, hash) {
         console.log("user_hash=" + hash);
         user_pw = hash;
+        var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token, user_black, user_interest_check) values(?,?,?,?,?,?,?,?)';
+        var params2 = [user_id, user_pw, user_phone, user_email, 0, user_token, 0, 0];
+        console.log("params2", params2);
+        //var query2 =
+        connection.query(sql2, params2, function(err, rows, fields) {
+          console.log("query2 in");
+          if (err) {
+            console.log("query2 err");
+            return done(null, false, {
+              message: 'DB2 error'
+            });
+          } else {
+            res.render('home', {
+              'message': "query2 success"
+            })
+          }
+        });
+
+        //DB에 회원정보 저장
+
+        /*
         var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token, user_black, user_interest_check) values(?,?,?,?,?,?,?,?)';
         var params2 = [user_id, user_pw, user_phone, user_email, 0, user_token,0,0];
         console.log("params2", params2);
@@ -139,11 +160,10 @@ passport.use('local-join', new LocalStrategy({
             console.log("query2 success");
             console.log("회원정보 입력 데이터", rows.insertId);
           }
+          */
+
+
       });
-      console.log("해쉬변경후 비번", user_pw);
-
-
-
       function sendMail(user_email, email_url) {
         const mailConfig = {
           service: 'Naver',
@@ -166,30 +186,8 @@ passport.use('local-join', new LocalStrategy({
 
       };
       sendMail(user_email, email_url);
-      //DB에 회원정보 저장
-
-      /*
-      var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token, user_black, user_interest_check) values(?,?,?,?,?,?,?,?)';
-      var params2 = [user_id, user_pw, user_phone, user_email, 0, user_token,0,0];
-      console.log("params2", params2);
-      //var query2 =
-      connection.query(sql2, params2, function(err, rows, fields) {
-        console.log("query2 in");
-        if (err) {
-          console.log("query2 err");
-          return done(null, false, {
-            message: 'DB2 error'
-          });
-        } else{
-          console.log("query2 success");
-          console.log("회원정보 입력 데이터", rows.insertId);
-        }
-        */
-
-
-      });
     }
-  }).catch(function(err){
+  }).catch(function(err) {
     console.log('error', err);
   })
 
