@@ -12,19 +12,19 @@ require('dotenv').config(); //.env파일 사용(인증메일정보)
 
 router.get('/', (req, res)=>{
   console.log('register_check join url');
-  const conn = mysql.createConnection({
+  const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '12345678', //dbPassword
+    password: 'algoalgo', //dbPassword
     database: 'project_algo'
   });
-  conn.connect();
+  connection.connect();
 
   var user_email = req.param("user_email");
   var user_token = req.param("user_token");
 
   var sql = `select 'user_token' from tb_user_info where user_email=?`;
-  var query = conn.query(sql, [user_email], function(err, rows, fields){
+  var query = connection.query(sql, [user_email], function(err, rows, fields){
     if(err){
       console.log(err);
     }else{
@@ -34,7 +34,7 @@ router.get('/', (req, res)=>{
         res.render('/');
       }else{
         var sql2 = `update tb_user_info set user_state=1 where user_email=? `;
-        var query2 = conn.query(sql2, [user_email], function(err,rows, fields){
+        var query2 = connection.query(sql2, [user_email], function(err,rows, fields){
           if(err){
             console.log(err);
             res.status(500).send('Internal Server Error');
@@ -47,7 +47,7 @@ router.get('/', (req, res)=>{
     }
   })
 
-conn.end();
+connection.end();
 })
 
 
