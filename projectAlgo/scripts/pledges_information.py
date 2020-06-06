@@ -18,7 +18,7 @@ class PromisesInformation:
      SERVICE_KEY=''
      #추후 db에 맞게 수정
      #21대 국회의원 정보만 필요하므로 하나만 가져옴
-     GET_POLITICIAN_ID='select politicition_no from tb_politician_info'
+     GET_POLITICIAN_ID='select politician_no from tb_politician_info'
      INSERT_SQL="""insert into tb_pledges_info (prmsOrd,politician_no,prmsRealmName,prmsTitle,prmsCont,prmsState)
                     SELECT %s,%s, %s, %s, %s, %s from dual
                     where not exists
