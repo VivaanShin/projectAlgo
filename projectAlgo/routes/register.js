@@ -111,11 +111,15 @@ passport.use('local-join', new LocalStrategy({
         var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token) values(?,?,?,?,?,?)';
         //var query2 =
         connection.query(sql2, [user_id, user_pw, user_phone, user_email, 0, user_token], function(err, datas) {
-          if (err) return done(null, false, {
-            message: 'DB2 error'
-          });
-          console.log("회원정보 입력 데이터", datas);
-          return done(null, user_id)
+          if (err) {
+            return done(null, false, {
+              message: 'DB2 error'
+            });
+          } else {
+            console.log("회원정보 입력 데이터", datas);
+            return done(null, user_id)
+          }
+
         });
 
         function sendMail(user_email, email_url) {
@@ -167,7 +171,7 @@ passport.use('local-join', new LocalStrategy({
                     }
                   }
         */
-        setTimeout(function(){
+        setTimeout(function() {
           console.log("DB connection end");
           connection.end();
         }, 20000);
