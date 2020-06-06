@@ -89,7 +89,7 @@ class PromisesInformation:
                          new_prms_dic['prmsCont']=prmsCont
                          new_prms_dic['prmsOrd']=prms_index #공약 순번이 정보에 없을 경우를 대비해서, item의 순서대로 공약 순번 저장
                          
-                         `print(prmsRealmName)
+                         print(prmsRealmName)
                          print(prmsTitle)
                          print(prmsCont)
                          
