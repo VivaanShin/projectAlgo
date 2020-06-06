@@ -31,7 +31,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
         with open('politicianKey.txt','r') as key_file, open('dbPasswd.txt') as db_passwd_file:
             self.SERVICE_KEY=key_file.read() #SERVICE_KEY 초기화
             db_password=db_passwd_file.read()
-        with open('sgId.txt') as sdId_file, open('sgTypecode') as sd_code_file:
+        with open('sgId.txt') as sdId_file, open('sgTypecode.txt') as sd_code_file:
             self.sgId=sdId_file.read()
             self.sgType=sd_code_file.read()
         self.url=self.OPEN_API_URL+self.SERVICE_KEY
