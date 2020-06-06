@@ -52,8 +52,7 @@ class PromisesInformation:
             
      def get_request_info(self):
          try:
-            self.get_promises_url=self.url+'&sgId='+urllib.parse.quote_plus(self.sgId)
-            +'&sgTypecode='+urllib.parse.quote_plus(self.sgType)+'&cnddtId='
+            self.get_promises_url=self.url+'&sgId='+urllib.parse.quote_plus(self.sgId)+'&sgTypecode='+urllib.parse.quote_plus(self.sgType)+'&cnddtId='
             #모든 정치인의 공약정보를 가져오기 위해 정치인 정보 테이블에서 모든 정치인의 ID를 가져옴
             with self.conn.cursor() as curs:
                 curs.execute(self.GET_POLITICIAN_ID)
