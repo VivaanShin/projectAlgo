@@ -24,11 +24,12 @@ def get_politician_image(politician_name,politician_no): #정치인의 이미지
         
         else:
             img_thumb=soup.find('ul',class_='same_list2 _content list4 over') #동명이인이 많이 존재시 처리
+            img_url=img_thumb.find('li').find('img')['src']
             
             if img_thumb: #동명이인이 많지 않을 때 처리
                 soup.find('ul',class_='same_list2 _content ')
+                img_url=img_thumb.find('li').find('div').find('img')['src']
                 
-            img_url=img_thumb.find('li').find('img')['src']
             print(img_url)
             
         urllib.request.urlretrieve(img_url,IMAGE_FOLDER_PATH+str(politician_no)+'.jpg')
