@@ -28,6 +28,7 @@ def get_politician_image(politician_name,politician_no): #정치인의 이미지
             
             if img_thumb: #동명이인이 많지 않을 때 처리
                 img_thumb=soup.find('ul',class_='same_list2 _content ')
+                print(img_thumb)
                 img_url=img_thumb.find('li').find('div',class_='temp').find('a').find('img')['src']
                 
             print(img_url)
