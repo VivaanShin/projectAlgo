@@ -147,10 +147,10 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
         except URLError as e: #URL 에러
             print('URL 실패: ', e.reason)
             sys.exit(-1)
-        except Exception as e: #DB 에러
-            self.conn.rollback()
-            print('DB 에러: ',e)
-            sys.exit(-1)
+        #except Exception as e: #DB 에러
+            #self.conn.rollback()
+            #print('DB 에러: ',e)
+            #sys.exit(-1)
     def store_legislation_rel(self): #반드시 의안정보랑 정치인 신상정보 저장된 상태에서 사용
         try:
             with self.conn.cursor() as select_curs, self.conn.cursor() as insert_curs:
