@@ -32,8 +32,8 @@ router.get('/', (req, res)=>{
         console.log('token mismatch');
         res.render('/');
       }else{
-        var sql2 = `update tb_user_info set user_state=1 where user_email=? `;
-        var query2 = connection.query(sql2, [user_email], function(err,rows, fields){
+        var sql2 = 'update `tb_user_info` set `user_state`=1 where `user_email`=? ';
+        connection.query(sql2, [user_email], function(err,rows, fields){
           if(err){
             console.log(err);
             res.status(500).send('Internal Server Error');
