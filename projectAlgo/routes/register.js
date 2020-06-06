@@ -103,6 +103,7 @@ passport.use('local-join', new LocalStrategy({
       }
     }
   })
+  console.log(joincondition);
   if(joincondition == 1){
     // 이메일 인증 토큰값 생성
     var newSecret = twoFactor.generateSecret();
