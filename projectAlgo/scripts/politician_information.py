@@ -79,7 +79,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                    career1=item.find('career1').get_text()
                    career2=item.find('career2').get_text() if item.career2 else '없음'
                    dugsu=int(item.find('dugsu').get_text()) if item.dugsu else 0
-                   dugyul=int(item.find('dugyul').get_text()) if item.dugyul else 0
+                   dugyul=float(item.find('dugyul').get_text()) if item.dugyul else 0.0
                
               
                    curs.execute(self.INSERT_POLITICIAN_DATA,(politician_no,politician_name,sgId,sgTypecode,sggName,
