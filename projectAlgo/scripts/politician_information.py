@@ -98,9 +98,9 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
         except URLError as e: #URL 에러
             print('URL 실패: ', e.reason)
             sys.exit(-1)
-        except Exception as e: #DB 에러
-            print('DB 에러: ',e)
-            self.conn.rollback()
+        #except Exception as e: #DB 에러
+            #print('DB 에러: ',e)
+            #self.conn.rollback()
             #sys.exit(-1)
     
     def print_politician_info(self): #정치인 정보 출력 확인용 함수
