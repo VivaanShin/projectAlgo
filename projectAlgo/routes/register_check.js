@@ -30,7 +30,6 @@ router.get('/', (req, res)=>{
     }else{
       if(user_token != rows[0].user_token){
         console.log('token mismatch');
-        res.send('token mismatch');
         res.render('/');
       }else{
         var sql2 = `update tb_user_info set user_state=1 where user_email=? `;
