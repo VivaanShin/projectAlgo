@@ -164,7 +164,7 @@ passport.use('local-join', new LocalStrategy({
                   }
         */
         connection.end();
-        res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
+        //res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
       }
     }
   })
