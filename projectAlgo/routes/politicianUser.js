@@ -34,9 +34,9 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
                 var resultData={};
                 
                 if(err)
-                    resultData={status:500}; //DB 오류
+                    resultData.status; //DB 오류
                 else if(politicianInfo[0])
-                    resultData={status:404} ;//데이터가 없으므로 404로
+                    resultData.status=404;//데이터가 없으므로 404로
                 else{
                   //신상정보+이미지 파일 경로
                     politicianResult=politicianInfo[0];
@@ -55,6 +55,10 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
                     resultData.img=img
                     resultData.status=200;
                 }
+
+                if(isLoggedin(req)){
+                    resultData.user=req.user;
+                }
                 connection.end();
                 res.render('',resultData);// 나중에 render할 view 설정
             });
@@ -69,6 +73,10 @@ router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 
     try{
        resultData.legislation_info=await getLegislationInfo(politician_no,connection);
        resultData.status=200;
+
+       if(isLoggedin(req)){
+           resultData.user=req.user;
+       }
     }
     catch(err){
         resultData.status=500;
@@ -97,6 +105,10 @@ router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
             articleList.push(push_news_data);
         }
         status=200;
+
+        if(isLoggedin(req)){
+            resultData.user=req.user;
+        }
     }
     catch(err){
         console.log(err.message);
@@ -128,6 +140,10 @@ router.get('/:politician_no/grade',async (req,res)=>{ //정치인 평점 정보 
         status=200;
         resultData.grade_score=gradeAllAveragescore;
         resultData.gradeList=gradeList;
+
+        if(isLoggedin(req)){
+            resultData.user=req.user;
+        }
     }
     catch(err){
         status=500;
