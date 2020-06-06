@@ -18,7 +18,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
     OPEN_API_URL='http://apis.data.go.kr/9760000/WinnerInfoInqireService2/getWinnerInfoInqire?serviceKey='
     SERVICE_KEY=''
     INSERT_POLITICIAN_DATA="""insert into tb_politician_info (politician_no,politician_name,sgId,sgTypecode,
-               sggName,sdName,wiwName,jdName,gender,birtyday,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,
+               sggName,sdName,wiwName,jdName,gender,birthday,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,
                prmsCnt,prmsRate)
                select %s, %s, %s, %s, %s, %s, %s, %s, 
                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s from dual
