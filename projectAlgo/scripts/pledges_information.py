@@ -53,6 +53,7 @@ class PromisesInformation:
      def get_request_info(self):
          try:
             self.get_promises_url=self.url+'&sgId='+urllib.parse.quote_plus(self.sgId)+'&sgTypecode='+urllib.parse.quote_plus(self.sgType)+'&cnddtId='
+            print(get_promises_url)
             #모든 정치인의 공약정보를 가져오기 위해 정치인 정보 테이블에서 모든 정치인의 ID를 가져옴
             with self.conn.cursor() as curs:
                 curs.execute(self.GET_POLITICIAN_ID)
@@ -88,7 +89,7 @@ class PromisesInformation:
                          new_prms_dic['prmsCont']=prmsCont
                          new_prms_dic['prmsOrd']=prms_index #공약 순번이 정보에 없을 경우를 대비해서, item의 순서대로 공약 순번 저장
                          
-                         print(prmsRealmName)
+                         `print(prmsRealmName)
                          print(prmsTitle)
                          print(prmsCont)
                          
@@ -117,7 +118,8 @@ class PromisesInformation:
         self.get_request_info()
         try:
            for politician_id in self.politician_id_list:
-                 res=urllib.request.urlopen(self.get_promises_url+urllib.parse.quote_plus(str(politician_id[0]))).read().decode('utf-8')
+                 url=self.get_promises_url+urllib.parse.quote_plus(str(politician_id[0]))
+                 res=urllib.request.urlopen(url).read().decode()
                  print(res)
         except Exception as e: #HTTP 에러
             print('출력 실패:',e)
