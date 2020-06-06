@@ -63,7 +63,7 @@ passport.use('local-join', new LocalStrategy({
   emailField: 'user_email',
   phoneFiled: 'user_phone',
   passReqToCallback: true
-}, function(req, user_id, user_email, user_pw, user_pw_check, user_phone, done) {
+}, function(req, user_id, user_pw,  done) {
   console.log("local-join in");
   console.log(req.body);
   var user_id = req.body.user_id;
@@ -95,6 +95,7 @@ passport.use('local-join', new LocalStrategy({
           message: 'your password is mismatch'
         });
       } else {
+        console.log("등록절차")
         // 이메일 인증 토큰값 생성
         var newSecret = twoFactor.generateSecret();
         var newToken = twoFactor.generateToken(newSecret.secret);
@@ -111,7 +112,7 @@ passport.use('local-join', new LocalStrategy({
         //var query2 =
         connection.query(sql2, [user_id, user_pw, user_phone, user_email, 0, user_token], function(err, datas) {
           if (err) return done(null, false, {
-            message: 'DB error'
+            message: 'DB2 error'
           });
           return done(null, user_id)
         });
