@@ -59,7 +59,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                for item in soup.findAll('item'):
                
                #모든 칼럼 값을 가져옴
-                   politician_no=int(item.find("huboid").get_text)
+                   politician_no=int(item.find("huboid").get_text())
                    politician_name=item.find("name").get_text()
                    sgId=item.sgId=item.find("sgId").get_text()
                    sgTypecode=int(item.find("sgTypecode").get_text())
