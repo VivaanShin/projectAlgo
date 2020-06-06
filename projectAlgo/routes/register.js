@@ -160,12 +160,9 @@ passport.use('local-join', new LocalStrategy({
           return done(null, false, {
             message: 'DB2 error'
           });
-        } else {
-          console.log("회원정보 입력 데이터", results.insertId);
-          return done(null, true, {
-            message: 'user_info Insert success'
-          });
         }
+        console.log("회원정보 입력 데이터", results.insertId);
+
 
       });
     }
