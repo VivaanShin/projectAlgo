@@ -120,7 +120,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                             for legislation in legislation_list:
                                 issue_id=legislation.find("billid").get_text()
                                 issue_no=legislation.find("billno").get_text()
-                                issue_name=legislation.find("billName").get_text()
+                                issue_name=legislation.find("billname").get_text()
                                 proposerKind=legislation.find("proposerkind").get_text()
                                 proposeDt=legislation.find("proposedt").get_text()
                                 procDt=legislation.find("procdt").get_text() if legislation.find("procdt") else '0000-00-00'
