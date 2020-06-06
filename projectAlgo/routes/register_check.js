@@ -24,7 +24,7 @@ router.get('/', (req, res)=>{
   var user_token = req.param('user_token');
 
   var sql = 'select `user_token` from `tb_user_info` where `user_email`=?';
-  var query = connection.query(sql, [user_email], function(err, rows, fields){
+  connection.query(sql, [user_email], function(err, rows, fields){
     if(err){
       console.log(err);
     }else{
@@ -46,7 +46,10 @@ router.get('/', (req, res)=>{
     }
   })
 
-connection.end();
+  setTimeout(function() {
+    console.log("DB connection end");
+    connection.end();
+  }, 10000);
 })
 
 
