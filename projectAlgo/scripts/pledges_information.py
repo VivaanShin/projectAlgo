@@ -38,7 +38,7 @@ class PromisesInformation:
             self.SERVICE_KEY=key_file.read() #SERVICE_KEY 초기화 
             db_password=db_passwd_file.read()
             
-        with open('sgId.txt') as sdId_file, open('sgTypecode') as sd_code_file:
+        with open('sgId.txt') as sdId_file, open('sgTypecode.txt') as sd_code_file:
             self.sgId=sdId_file.read()
             self.sgType=sd_code_file.read()
             
@@ -68,7 +68,7 @@ class PromisesInformation:
          try:
              with self.conn.cursor() as insert_curs, self.conn.cursor() as update_curs:
                  for politician_id in self.politician_id_list:
-                     res=urllib.request.urlopen(self.get_promises_url+urllib.parse.quote_plus(str(politician_id[0]))).read().decode('utf-8')
+                     res=urllib.request.urlopen(self.get_promises_url+urllib.parse.quote_plus(str(politician_id[0]))).read().decode()
                      soup=BeautifulSoup(res,'html.parser')
                  
                  # 정치인의 모든 공약 정보를 세팅함
@@ -78,9 +78,9 @@ class PromisesInformation:
                  
                  #item 항목에서 모두 가져옴
                      for prms in soup.findAll('item'):
-                         prmsRealmName=prms.find('prmsRealmName'+str(prms_index)).get_text() if prms.find('prmsRealmName'+str(prms_index)) else '없음'
-                         prmsTitle=prms.find('prmsTitle'+str(prms_index)).get_text()
-                         prmsCont=prms.find('prmsCont'+str(prms_index)).get_text() if prms.find('prmsCont'+str(prms_index)) else '없음'
+                         prmsRealmName=prms.find('prmsrealmname'+str(prms_index)).get_text() if prms.find('prmsrealmname'+str(prms_index)) else '없음'
+                         prmsTitle=prms.find('prmstitle'+str(prms_index)).get_text()
+                         prmsCont=prms.find('prmscont'+str(prms_index)).get_text() if prms.find('prmscont'+str(prms_index)) else '없음'
                          new_prms_dic={}
                      
                          new_prms_dic['prmsRealmName']=prmsRealmName
@@ -95,6 +95,7 @@ class PromisesInformation:
                      #prmsState default=0
                          insert_curs.execute(self.INSERT_SQL,(insert_prms['prmsOrd'],politician_id[0],insert_prms['prmsRealmName'],
                                   insert_prms['prmsTitle'],insert_prms['prmsCont'],0,insert_prms['prmsOrd'],politician_id[0]))
+                         
             
                      update_curs.execute(self.UPDATE_SQL,(prmsCnt,politician_id[0])) #공약정보 저장 한 뒤 정치인 공약 수 갱신
              self.conn.commit()        
