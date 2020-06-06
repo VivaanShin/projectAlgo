@@ -455,9 +455,9 @@
 
       <div class="card-body">
 
-      <div id="chart-container"></div>
+      <div id="chart-container<%= searchResult[i].politician_no %>"></div>
       </div>
-      <script>  showRadar(); </script>
+      <script>  showRadar("<%= searchResult[i].politician_no %>"); </script>
 
     </div>
   </div>

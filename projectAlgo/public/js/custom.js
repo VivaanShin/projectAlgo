@@ -239,13 +239,12 @@ function cat1_change(key,sel){
 
 
 
-
- function showRadar(){
+ function showRadar(id){
 
     var data = [];
     var chart = RadarChart.chart();
   
-  var c = document.getElementById("data").value,
+  var c = document.getElementById(id).value,
       w = 200,
       h = 200,
   csv = c.split("\n").map(function(i){return i.split(",")})
@@ -274,6 +273,7 @@ function cat1_change(key,sel){
 RadarChart.defaultConfig.radius = 3;
 RadarChart.defaultConfig.w = w;
 RadarChart.defaultConfig.h = h;
-RadarChart.draw("#chart-container", data);
+RadarChart.draw("#chart-container"+id, data);
 
 }
+
