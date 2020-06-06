@@ -66,6 +66,11 @@ passport.use('local-join', new LocalStrategy({
 }, function(req, user_id, user_email, user_pw, user_pw_check, user_phone, done) {
   console.log("local-join in");
   console.log(req.body);
+  var user_id = req.body.user_id;
+  var user_pw = req.body.user_pw;
+  var user_pw_check = req.body.user_re_pw;
+  var user_email = req.body.user_email;
+  var user_phone = req.body.user_phone;
   console.log("user_id: ", user_id);
   console.log("user_pw: ", user_pw);
   console.log("user_pw_check: ", user_pw_check);
