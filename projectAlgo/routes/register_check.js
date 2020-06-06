@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
             res.status(500).send('Internal Server Error');
           } else {
             console.log("register success!");
-            res.render('/');
+            res.render('/home');
           }
         })
       }
