@@ -81,12 +81,17 @@ class PromisesInformation:
                          prmsTitle=prms.find('prmstitle'+str(prms_index)).get_text()
                          prmsCont=prms.find('prmscont'+str(prms_index)).get_text() if prms.find('prmscont'+str(prms_index)) else '없음'
                          new_prms_dic={}
+                         
                      
                          new_prms_dic['prmsRealmName']=prmsRealmName
                          new_prms_dic['prmsTitle']=prmsTitle
                          new_prms_dic['prmsCont']=prmsCont
                          new_prms_dic['prmsOrd']=prms_index #공약 순번이 정보에 없을 경우를 대비해서, item의 순서대로 공약 순번 저장
-                     
+                         
+                         print(prmsRealmName)
+                         print(prmsTitle)
+                         print(prmsCont)
+                         
                          prms_list.append(new_prms_dic)
                          prms_index+=1
                  #가져온 항목들을 모두 저장
