@@ -35,7 +35,7 @@ router.get('/',async (req,res)=>{
                     career1:politicians[i].career1,
                     career2:politicians[i].career2,
                     img:"/images/"+politicians[i].politician_no,
-                    link:"/poltician/"+politicians[i].politician_no
+                    link:"/politician/"+politicians[i].politician_no
                 };
                 var politician_interest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보를 가져옴
                 politician.itScience=politician_interest[0].itScience;
