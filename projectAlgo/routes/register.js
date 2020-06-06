@@ -180,7 +180,7 @@ passport.use('local-join', new LocalStrategy({
   setTimeout(function() {
     console.log("DB connection end");
     connection.end();
-  }, 10000);
+  }, 2000);
 }))
 
 
