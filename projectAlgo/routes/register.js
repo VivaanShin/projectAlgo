@@ -114,6 +114,7 @@ passport.use('local-join', new LocalStrategy({
           if (err) return done(null, false, {
             message: 'DB2 error'
           });
+          console.log("회원정보 입력 데이터", datas);
           return done(null, user_id)
         });
 
