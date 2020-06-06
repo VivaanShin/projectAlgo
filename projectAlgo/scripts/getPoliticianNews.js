@@ -9,6 +9,7 @@ exports.getPoliticianNewsJSON=async function getPoliticianNewsJSON(politician_na
                 if (res.statusCode != 200) {
                     reject('상태코드 오류:' + res.statusCode); //200이 아닌 다른코드가 왔을 시는 오류
                 }
+                console.log(body);
                 resolve(body);
             })
         });
@@ -16,8 +17,8 @@ exports.getPoliticianNewsJSON=async function getPoliticianNewsJSON(politician_na
     var result={}
     var options={ 
         headers : {
-            "X-Naver-Client-Id" : fs.readFileSync('newsClientId.txt'), //클라이언트 ID 
-            "X-Naver-Client-Secret" : fs.readFileSync('newsClientSecret.txt') //클라이언트 Secret 
+            "X-Naver-Client-Id" : fs.readFileSync('../script/newsClientId.txt'), //클라이언트 ID 
+            "X-Naver-Client-Secret" : fs.readFileSync('../script/newsClientSecret.txt') //클라이언트 Secret 
         },
         encoding: "utf-8",
         method : 'get',
