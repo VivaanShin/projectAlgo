@@ -59,10 +59,18 @@ passport.deserializeUser(function(id, done) {
 passport.use('local-join', new LocalStrategy({
   usernameField: 'user_id',
   passwordField: 'user_pw',
+  passwordcheckField: 'user_pw_check',
+  emailField: 'user_email',
+  phoneFiled: 'user_phone',
   passReqToCallback: true
 }, function(req, user_id, user_email, user_pw, user_pw_check, user_phone, done) {
   console.log("local-join in");
-  console.log(req, user_id, user_email, user_pw, user_pw_check, user_phone);
+  console.log(req.body);
+  console.log("user_id: ", user_id);
+  console.log("user_pw: ", user_pw);
+  console.log("user_pw_check: ", user_pw_check);
+  console.log("user_email: ", user_email);
+  console.log("user_phone: ", user_phone);
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
   var sql = 'select * from tb_user_info where user_id =?';
