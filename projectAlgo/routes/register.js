@@ -123,7 +123,9 @@ passport.use('local-join', new LocalStrategy({
       //비밀번호 해쉬값변경
       bcrypt.hash(user_pw, null, null, function(err, hash) {
         console.log("user_hash=" + hash);
+        user_pw = hash;
       });
+      console.log("해쉬변경후 비번", user_pw);
 
 
 
