@@ -259,7 +259,7 @@
         <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
         <% if(typeof user != 'undefined' && user.user_interest_check==0) { %>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#matching_survey">AI매칭설문조사</a>
+        <a class="nav-link" href="/matching_survey">AI매칭설문조사</a>
         </li>
         <%  } %>        
         
@@ -267,7 +267,7 @@
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
         <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#match_service">AI매칭결과</a>
+        <a class="nav-link" href="/matching_service">AI매칭결과</a>
         </li>
         <%  } %>        
         
@@ -354,122 +354,7 @@
 
 
 
-      <!--설문조사-->
-      <div class="tab-pane fade" id="matching_survey">
-
-        <form>
-          <fieldset style="margin-bottom: 5%;">
-            <legend>AI 설문조사</legend>
-
-
-
-            <div class="form-group">
-              <label> 귀하의 출생연도를 선택해주세요.</label>
-              <select class="custom-select">
-                <option selected="">귀하의 출생연도를 선택해주세요.</option>
-                <option value="1">1930</option>
-                <option value="2">~</option>
-                <option value="2">~</option>
-                <option value="3">2000</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="exampleTextarea">귀하의 직업을 입력해주세요.</label>
-              <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
-            </div>
-
-
-
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group mr-2" role="group" aria-label="First group">
-                <label>귀하의 정치 관심사에 점수를 주세요.</label>
-              </div>
-            </div>
-
-            <label>과학/IT</label>
-            <div class="form-group">
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-
-            <label>사회</label>
-            <div class="form-group">
-
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-            <label>경제</label>
-            <div class="form-group">
-
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-            <label>문화</label>
-            <div class="form-group">
-
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-
-
-            <label>정치</label>
-            <div class="form-group">
-
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-            <button type="submit" class="btn btn-primary">제출하기</button>
-          </fieldset>
-
-        </form>
-      </div>
-      <!--설문조사 끝-->
+     
 
 
 
@@ -478,85 +363,6 @@
 
 
 
-
- <!--매칭서비스-->
-      <div class="tab-pane fade" id="matching_service">
-
-    <div class="row">
-
-      <div class="col-lg-3">
-        
-
-
-
-
-      </div>
-
-<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
-</div>
-
-
-<textarea style="display:none;" id="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
-  문재인,50,30,50,30,20
-  나의성향,20,30,40,50,60
- </textarea>
-
-
-
-<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-    <% if(typeof searchResult!='undefined' && searchResult.length==0) { %>
-      <div class="card border-light" style="width: 35%; margin-right:5%;">
-        검색결과 없음.
-      </div>
-    <% } %>
-
-    <% if(typeof searchResult!='undefined'  && searchResult.length > 0) { %>
-      
-  <div style="display: flex">
-        <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header" style="display: -webkit-box;" >
-        <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">
-        <div style=" margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary"><%= searchResult[0].jdName %></span>
-
-        <br>
-        
-        <h3><%= searchResult[0].politician_name %></h3>
-        <p class="text-muted"><%= searchResult[0].politician_name %>
-        </p>
-        <p class="text-muted"><%= searchResult[0].career2 %></p>
-      <button onclick='showRadar()'>그래프보기</button>
-       </div>
-     </div>
-
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-
-
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">
-
-        <span class="badge badge-danger">더불어민주당</span>
-        <h3>이름</h3>
-        <p class="text-muted">생년월일</p>
-        <p class="text-muted">직업</p>
-      </div>
-    
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-    </div>
-
-   <% } %>
-
-
-    </div><!--col8-->
-    </div><!--row-->
-      </div>
-      <!--매칭서비스-->
 
 
 

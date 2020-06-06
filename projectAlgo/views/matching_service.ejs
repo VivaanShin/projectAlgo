@@ -372,44 +372,21 @@
 
       <div class="col-lg-3">
         <div class="form-group" style="margin-top:20%;">
-          <h2>정치인 상세 검색</h2><br><br>
-
-         <form>
-          <label style="margin-right:5%;">시도</label><br>
-
-          <select class="custom-select" style="width:60%;" name="h_area1" onChange="cat1_change(this.value,h_area2)" >
-
-           <option selected="">-선택-</option>
-           <option value='서울'>서울</option>
-           <option value='부산'>부산</option>
-           <option value='대구'>대구</option>
-           <option value='인천'>인천</option>
-           <option value='광주'>광주</option>
-           <option value='대전'>대전</option>
-           <option value='울산'>울산</option>
-           <option value='강원'>강원</option>
-           <option value='경기'>경기</option>
-           <option value='경남'>경남</option>
-           <option value='경북'>경북</option>
-           <option value='전남'>전남</option>
-           <option value='전북'>전북</option>
-           <option value='제주'>제주</option>
-           <option value='충남'>충남</option>
-           <option value='충북'>충북</option>
-</select>
+          <h2>나의 정치 성향</h2><br><br>
+  <textarea style="display:none;" id="1" cols="60" rows="15">내정치성향,사회,경제,과학,정치,문화
+<%= searchResult.user_id %>,<%= searchResult.society %>,<%= searchResult.economy %>,<%= searchResult.itScience %>,<%= searchResult.politics %>,<%= searchResult.culture %>
+  </textarea>
 
 
+    <div class="card border-light" style="width: 35%; margin-right:5%;">
+  
+      <div class="card-body">
+      <div id="chart-container1"></div>
+      </div>
+      <script>  showRadar(1); </script>
 
-<br><br>
-
-<label>선거구</label><br>
-  <select class="custom-select" style="width:60%;" name="h_area2">
-   <option selected="">-선택-</option>
-  </select>
-  <br><br>
-  <button class="btn btn-primary" style="margin-left: 1%; width:57%;">검색하기</button>
-
-</form>
+    </div>
+       
         </div> 
       </div>
 
@@ -421,15 +398,10 @@
 
 
 <div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-    <% if(typeof searchResult!='undefined' && searchResult.length==0) { %>
-      <div class="card border-light" style="width: 35%; margin-right:5%;">
-        검색결과 없음.
-      </div>
-    <% } %>
 
-    <% if(typeof searchResult!='undefined' && searchResult.length > 0) { %>
+
     
-     <% for(var i=0; i < searchResult.length; i++){ %>
+     <% for(var i=0; i < 10; i++){ %>
   <div style="display: inline-block;">  
   
   <textarea style="display:none;" id="<%= searchResult[i].politician_no %>" cols="60" rows="15">이름,사회,경제,과학,정치,문화
@@ -460,12 +432,12 @@
     </div>
   </div>
    <% } %>
-   <% } %>
 
 
     </div><!--col8-->
     </div><!--row-->
       </div><!--candidate_list-->
+
 
 
 
