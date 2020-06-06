@@ -15,7 +15,7 @@ const dbConfig={
 
 //쿼리용 Promise들
 const getLegislationInfo=require('./queryPromise').getLegislationInfo;
-const getPoliticianNameByNo=require('./queryPromise').getPoliticianNameByNo;
+//const getPoliticianNameByNo=require('./queryPromise').getPoliticianNameByNo;
 const getPoliticianAllAverageGrade=require('./queryPromise').getPoliticianAllAverageGrade;
 const getPoliticianWeekAverageGrade=require('./queryPromise').getPoliticianWeekAverageGrade;
 const getUserPoliticianGradeByWeek=require('./queryPromise').getUserPoliticianGradeByWeek;
@@ -24,48 +24,80 @@ const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGr
 const insertGradeInfoRecord=require('./queryPromise').insertGradeInfoRecord;
 const insertUserPoliticianGrade=require('./queryPromise').insertUserPoliticianGrade;
 const getPoliticianGradeByUser=require('./queryPromise').getPoliticianGradeByUser;
-
+//const getPoliticianInterestByNo=require('./queryPromise').getPoliticianInterestByNo;
+const getPoliticianInfoByNo=require('./queryPromise').getPoliticianInfoByNo;
 router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
+    var resultData={};
     var connection = mysql.createConnection(dbConfig);
     connection.connect();
-    politician_no=req.params.politician_no;
-    connection.query(`select * from tb_politician_info where politician_no=${connection.escape(politician_no)}`,
-            (err,politicianInfo)=>{
-                var resultData={};
-                
-                if(err)
-                    resultData.status; //DB 오류
-                else if(politicianInfo[0])
-                    resultData.status=404;//데이터가 없으므로 404로
-                else{
-                  //신상정보+이미지 파일 경로
-                    politicianResult=politicianInfo[0];
+    var politician_no=req.params.politician_no;
+    try{
+        var politicianInfo=await getPoliticianInfoByNo(politician_no,connection)[0];
 
-                    let img='';
-                    try{
-                        fs.statSync(`./public/images/${politician_no}`); //public 폴더에서 image를 확인함
-                        img={img:`/img/${politician_no}`};
-                    }
-                    catch{
-                        if (err.code === 'ENOENT') {
-                            img=`/images/default`; //Default Image
-                          }
-                    }
-                    resultData=politicianResult;
-                    resultData.img=img
-                    resultData.status=200;
-                }
+        try{
+            fs.statSync(`./public/images/${politician_no}`);
+            politicianInfo.img=`/img/${politician_no}`;
+            resultData.status=200;
+        }
+        catch{
+            if (err.code === 'ENOENT') {
+                politicianInfo.img=`/images/default`; //Default Image
+            }
+        }
 
-                if(isLoggedin(req)){
-                    resultData.user=req.user;
-                }
-                connection.end();
-                console.log(resultData);
-                res.render('candidate_info.ejs',resultData);// 나중에 render할 view 설정
-            });
+        console.log(politicianInfo);
+        resultData.politicianInfo=politicianInfo;
+        var politicianLegislationInfo=await getLegislationInfo(politician_no,connection);
+        resultData.politicianLegislationInfo=politicianLegislationInfo; //정치인 기본 정보
+        var rawNewsData=await getPoliticianNewsJSON(politicianInfo.politician_name);
+        var articleList=[];
+
+        for(let i=0;i<rawNewsData.length;i++){ 
+            var push_news_data={
+                articleTitle:rawNewsData[i].title,
+                articleLink:rawNewsData[i].originallink,
+                articleDay:String(moment(String(rawNewsData[i].pubDate)).format(YYYY.MM.DD))
+            };
+
+            articleList.push(push_news_data);
+        }
+        console.log(articleList);
+        resultData.articleList=articleList;//정치인 뉴스 정보
+
+        var gradeScore=await getPoliticianAllAverageGrade(politician_no)[0].grade_score; //정치인 전체 평균
+        console.log(gradeScore);
+        resultData.gradeScore=gradeScore;
+        var gradeList=[]; //정치인 주당 평균
+
+        var weekDay=moment().day(0).format('YYYY-MM-DD'); //해당 주 월요일부터 4주까지 
+        
+        for (let i=0;i<4;i++){//4주 까지 가져옴
+            weekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay)[0].avg;
+            weekElements={weekGrade:weekGrade,weekDay:weekDay};
+            gradeList.push(weekElements);
+            weekDay=moment.day(i*-7).format('YYYY-MM-DD');
+        }
+
+        console.log(gradeList);
+        resultData.gradeList=gradeList;
+
+        if(isLoggedin(req)){ //로그인 정보
+            resultData.user=req.user;
+        }
+        resultData.status=200;
+    }
+    catch(err){
+         resultData.status=500;
+         console.log(err.message);
+    }
+    finally{
+        connection.end();
+        console.log(resultData);
+        res.render('candidate_info.ejs',resultData);
+    }
 });
 
-router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 라우터
+/*router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 라우터
     var connection = mysql.createConnection(dbConfig);
     connection.connect();
     var resultData={}; //배열에 입법 정보 저장
@@ -87,9 +119,9 @@ router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 
         res.render('',resultData); //나중에 프론트엔드 완성되면 view 지정
         
     }
-});
+});*/
 
-router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
+/*router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
     try{
         var politician_name=await getPoliticianNameByNo(req.params.politician_no);
         var rawNewsData=await getPoliticianNewsJSON(politician_name[0].politician_name);
@@ -122,8 +154,8 @@ router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
         res.render('',resultData);//나중에 프론트엔드 완성되면 view 지정
     }
 });
-
-router.get('/:politician_no/grade',async (req,res)=>{ //정치인 평점 정보 라우터
+*/
+/*router.get('/:politician_no/grade',async (req,res)=>{ //정치인 평점 정보 라우터
     try{
         var status={};
         var resultData={};
@@ -152,7 +184,7 @@ router.get('/:politician_no/grade',async (req,res)=>{ //정치인 평점 정보 
     finally{
         res.render('',resultData) //나중에 프론트엔드 완성되면 view 지정
     }
-});
+});*/
 
 router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
 
@@ -194,7 +226,8 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
 
     finally{
         connection.end();
-        res.redirect(`/${req.params.politician_no}/grade`);
+        //res.redirect(`/${req.params.politician_no}/grade`);
+        res.redirect(`/politician/${req.params.politician_no}`);
     }
 });
 module.exports=router;

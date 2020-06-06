@@ -39,7 +39,7 @@ exports.getPoliticianAllAverageGrade=function getPoliticianAllAverageGrade(polit
     return new Promise((resolve,reject)=>{
         var connection = mysql.createConnection(dbConfig);
         connection.connect();
-        connection.query(`select arg(grade_score) from tb_user_politician_grade
+        connection.query(`select avg(grade_score) as grade_score from tb_user_politician_grade
         group by politician_no having politician_no=?`,[politician_no],(err,avg_grade)=>{
             if(err) 
             {
@@ -56,7 +56,7 @@ exports.getPoliticianWeekAverageGrade=function getPoliticianWeekAverageGrade(pol
     return new Promise((resolve,reject)=>{
         var connection = mysql.createConnection(dbConfig);
         connection.connect();
-        connection.query(`select arg(grade_score) from tb_gradeinfo_record 
+        connection.query(`select avg(grade_score) as avg from tb_gradeinfo_record 
         where year(grade_st_date)=? and week(grade_st_date,1)=?
         group by politician_no having politician_no=?`,[moment(weekDay).year(),moment(weekDay).week(),politician_no],(err,avg_grade)=>{
             if(err) 
@@ -463,6 +463,19 @@ exports.searchPoliticianBySdNameAndSggName=function searchPoliticianBySdNameAndS
 exports.getPoliticianInterestByNo=function getPoliticianInterestByNo(politician_no,connection){ //tb_gradeinfo_record delete 
     return new Promise((resolve,reject)=>{
         connection.query(`select * from tb_politician_interest where politician_no=?`,[politician_no]
+        ,(err,politician)=>{
+            if(err)
+                reject(err);
+            
+            console.log(politician);
+            resolve(politician);
+        });
+    })
+};
+
+exports.getPoliticianInfoByNo=function getPoliticianInfoByNo(politician_no,connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_politician_info where politician_no=?`,[politician_no]
         ,(err,politician)=>{
             if(err)
                 reject(err);
