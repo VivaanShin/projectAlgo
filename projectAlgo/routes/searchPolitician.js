@@ -28,7 +28,7 @@ router.get('/',async (req,res)=>{
 
             for(let i=0;i<politicians.length;i++){
                 politician={
-                    politician_no:politician_no[i].politician_no,
+                    politician_no:politicians[i].politician_no,
                     politician_name:politicians[i].politician_name,
                     jdName:politicians[i].jdName,
                     birthday:politicians[i].birthday,
@@ -37,8 +37,8 @@ router.get('/',async (req,res)=>{
                     img:"/images/"+politicians[i].politician_no,
                     link:"/poltician/"+politicians[i].politician_no
                 };
-
-                var politician_interest=await getPoliticianInterestByNo(politicians[i].politician_no,connection); //정치인 관심사 정보를 가져옴
+                console.log(politician);
+                var politician_interest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보를 가져옴
                 console.log(politician_interest);
                 politician.itScience=politician_interest[0].itScience;
                 politician.economy=politician_interest[0].economy;
