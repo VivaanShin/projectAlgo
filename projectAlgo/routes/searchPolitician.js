@@ -28,7 +28,7 @@ router.get('/',async (req,res)=>{
 
             for(let i=0;i<politicians.length;i++){
                 politician={
-                    politician_no:politician_no[i],politician_no,
+                    politician_no:politician_no[i].politician_no,
                     politician_name:politicians[i].politician_name,
                     jdName:politicians[i].jdName,
                     birthday:politicians[i].birthday,
