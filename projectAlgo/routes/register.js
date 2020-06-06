@@ -62,6 +62,7 @@ passport.use('local-join', new LocalStrategy({
   passReqToCallback: true
 }, function(req, user_id, user_email, user_pw, user_pw_check, user_phone, done) {
   console.log("local-join in");
+  console.log(req, user_id, user_email, user_pw, user_pw_check, user_phone);
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
   var sql = 'select * from tb_user_info where user_id =?';
