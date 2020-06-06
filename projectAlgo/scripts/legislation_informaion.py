@@ -123,7 +123,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                                 issue_name=legislation.find("billname").get_text()
                                 proposerKind=legislation.find("proposerkind").get_text()
                                 proposeDt=legislation.find("proposedt").get_text()
-                                procDt=legislation.find("procdt").get_text() if legislation.find("procdt") else '0000-00-00'
+                                procDt=legislation.find("procdt").get_text() if legislation.find("procdt") else '0001-01-01'
                                 generalResult=legislation.find("generalresult").get_text() if legislation.find("generalresult") else '없음'
                                 summary=legislation.find("summary").get_text() if legislation.find("summary") else '없음'
                                 procStageCd=legislation.find("procstagecd").get_text()
