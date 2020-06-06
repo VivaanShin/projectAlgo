@@ -63,7 +63,7 @@ passport.use('local-join', new LocalStrategy({
   emailField: 'user_email',
   phoneFiled: 'user_phone',
   passReqToCallback: true
-}, function(req, user_id, user_pw,  done) {
+}, function(req, user_id, user_pw, done) {
   console.log("local-join in");
   console.log(req.body);
   var user_id = req.body.user_id;
@@ -80,7 +80,7 @@ passport.use('local-join', new LocalStrategy({
   connection.connect();
   var sql = 'select * from tb_user_info where user_id =?';
   connection.query(sql, [user_id], function(err, datas) {
-    if (err) return  done(null, false, {
+    if (err) return done(null, false, {
       message: 'DB error'
     });
     if (datas.length) {
@@ -167,7 +167,11 @@ passport.use('local-join', new LocalStrategy({
                     }
                   }
         */
-        connection.end();
+        setTimeout(function(){
+          console.log("DB connection end");
+          connection.end();
+        }, 20000);
+        //connection.end();
         //res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
       }
     }
