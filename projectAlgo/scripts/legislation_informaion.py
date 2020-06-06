@@ -175,6 +175,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
 
 if __name__ =='__main__':
     legislation_information=LegislationInformaion()
+    legislation_information.get_committee_info()
     legislation_information.print_leg()
     legislation_information.get_store_legislation()
     legislation_information.store_legislation_rel()
