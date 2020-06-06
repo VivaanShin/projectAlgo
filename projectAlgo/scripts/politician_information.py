@@ -21,7 +21,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                sggName,sdName,wiwName,jdName,gender,birtyday,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,
                prmsCnt,prmsRate)
                select %s, %s, %s, %s, %s, %s, %s, %s, 
-               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, from dual
+               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s from dual
                where not exists
                (
                    select * from tb_politician_info
