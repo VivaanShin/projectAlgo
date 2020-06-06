@@ -154,15 +154,17 @@ passport.use('local-join', new LocalStrategy({
       var params2 = [user_id, user_pw, user_phone, user_email, 0, user_token];
       console.log("params2", params2);
       //var query2 =
-      connection.query(sql2, params2, function(err, rows, fields) {
+      connection.query(sql2, params2, function(err, results) {
         console.log("query2 in");
         if (err) {
           return done(null, false, {
             message: 'DB2 error'
           });
         } else {
-          console.log("회원정보 입력 데이터", rows.insertId);
-          return done(null, user_id)
+          console.log("회원정보 입력 데이터", results.insertId);
+          return done(null, true, {
+            message: 'user_info Insert success'
+          });
         }
 
       });
