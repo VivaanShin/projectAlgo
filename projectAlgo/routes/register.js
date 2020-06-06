@@ -155,6 +155,7 @@ passport.use('local-join', new LocalStrategy({
       console.log("params2", params2);
       //var query2 =
       connection.query(sql2, params2, function(err, rows, fields) {
+        console.log("query2 in");
         if (err) {
           return done(null, false, {
             message: 'DB2 error'
