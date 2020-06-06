@@ -66,7 +66,7 @@ passport.use('local-join', new LocalStrategy({
   connection.connect();
   var sql = 'select * from test where user_id =?';
   var query = connection.query(sql, [user_id], function(err, datas) {
-    if (err) return done(err);
+    if (err) {return done(err);}
     if (datas.length) {
       console.log('existed user');
       return done(null, false, {
