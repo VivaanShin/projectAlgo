@@ -17,6 +17,8 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var twoFactor = require('node-totp');
 
+//회원가입 조건 충족 확인 변수
+var joincondition = 0;
 
 router.post('/', passport.authenticate('local-join', {
     successRedirect: '/',
@@ -64,7 +66,7 @@ passport.use('local-join', new LocalStrategy({
   phoneFiled: 'user_phone',
   passReqToCallback: true
 }, function(req, user_id, user_pw, done) {
-  var joincondition = 0;
+
   console.log("local-join in");
   console.log(req.body);
   var user_id = req.body.user_id;
@@ -98,13 +100,12 @@ passport.use('local-join', new LocalStrategy({
       } else {
         console.log("회원가입 조건 만족");
         joincondition = 1
-        return joincondition
         //res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
       }
     }
   })
   console.log(joincondition);
-  if(joincondition == 1){
+  if (joincondition == 1) {
     // 이메일 인증 토큰값 생성
     var newSecret = twoFactor.generateSecret();
     var newToken = twoFactor.generateToken(newSecret.secret);
