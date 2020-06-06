@@ -23,16 +23,15 @@ def get_politician_image(politician_name,politician_no): #정치인의 이미지
             img_url=img_thumb.find('img')['src']
         
         else:
-            img_thumb=soup.find('ul',class_='temp') #동명이인이 많이 존재시 처리
-            print(img_thumb)
-            img_url=img_thumb.find('img')['src']
-                
+            img_thumb=soup.select_one("""#people_info_z > div.same_people > 
+                                      ul:nth-child(1) > li:nth-child(1) > div.temp > a > img""") #동명이인이 많이 존재시 처리
+            
+            img_url=img_thumb['src']
             print(img_url)
             
         urllib.request.urlretrieve(img_url,IMAGE_FOLDER_PATH+str(politician_no)+'.jpg')
         #이미지 이름은 당선인 정보에서 가져오는 정치인 코드로 함
         return True
-             
     except:
         return False
 
