@@ -118,9 +118,10 @@ class PromisesInformation:
         self.get_request_info()
         try:
            for politician_id in self.politician_id_list:
-                 url=self.get_promises_url+urllib.parse.quote_plus(str(politician_id[0]))
-                 res=urllib.request.urlopen(url).read().decode()
-                 print(res)
+               url=self.get_promises_url+urllib.parse.quote_plus(str(politician_id[0]))
+               print(url)
+               res=urllib.request.urlopen(url).read().decode()
+               print(res)
         except Exception as e: #HTTP 에러
             print('출력 실패:',e)
             sys.exit(-1)
