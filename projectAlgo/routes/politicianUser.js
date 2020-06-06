@@ -5,7 +5,7 @@ const mysql=require('mysql');
 const getPoliticianNewsJSON=require('../scripts/getPoliticianNews').getPoliticianNewsJSON; //JSON방식으로 네이버 API에서 기사 정보를 가져오는 모듈함수
 const moment=require('moment'); //시간 조작 모듈
 const router=express.Router();
-const isLoggedin=require('../scripts/confirmLogin').isLoggedin;
+const isLoggedin=require('../scripts/confirmLogin').isLoggedIn;
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
