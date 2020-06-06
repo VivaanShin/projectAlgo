@@ -136,9 +136,9 @@ passport.use('local-join', new LocalStrategy({
               message: 'DB2 error'
             });
           } else {
-            res.render('home', {
-              'message': "query2 success"
-            })
+            return done(null, true, {
+              message: 'success'
+            });
           }
         });
 
