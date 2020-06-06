@@ -24,7 +24,7 @@ const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGr
 const insertGradeInfoRecord=require('./queryPromise').insertGradeInfoRecord;
 const insertUserPoliticianGrade=require('./queryPromise').insertUserPoliticianGrade;
 const getPoliticianGradeByUser=require('./queryPromise').getPoliticianGradeByUser;
-//const getPoliticianInterestByNo=require('./queryPromise').getPoliticianInterestByNo;
+const getPoliticianInterestByNo=require('./queryPromise').getPoliticianInterestByNo;
 const getPoliticianInfoByNo=require('./queryPromise').getPoliticianInfoByNo;
 router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     var resultData={};
@@ -44,6 +44,13 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
                 politicianInfo.img=`/images/default`; //Default Image
             }
         }
+
+        var politicianInterest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보
+        politicianInfo.itScience=politicianInterest[0].itScience;
+        politicianInfo.economy=politicianInterest[0].economy;
+        politicianInfo.culture=politicianInterest[0].culture;
+        politicianInfo.society=politicianInterest[0].society;
+        politicianInfo.politics=politicianInterest[0].politics;
 
         console.log(politicianInfo);
         resultData.politicianInfo=politicianInfo;
