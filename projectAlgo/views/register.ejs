@@ -293,13 +293,14 @@
           <div class="form-group">
             <label for="staticEmail">회원ID</label></br>
             <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID예제" style="display:inline-block; width:48%; margin-right: 1%;">
+
             <!--중복체크-->
             <input type="button" class="btn btn-primary" name=" user_id" id="user_id" value="중복체크" style="width:10%;">
           </div>
 
           <!--이메일 주소-->
           <div class="form-group">
-            <label for="exampleInputEmail1">이메일 주소 입력</label></br>
+            <label for="exampleInputEmail1">이메일 주소 입력</label><br>
             <input type="email" class="form-control" name="user_email" id="user_email" aria-describedby="emailHelp" placeholder="ID예제@naver.com" style="display:inline-block; width:48%; margin-right: 1%;">
             <!--중복체크-->
             <input type="button" class="btn btn-primary" id=" checkemail" value="이메일 검증" style="width:10%;">
@@ -307,6 +308,7 @@
             <!--여기도 만약 이메일 검증되면 검증되었다고 표시해줄것-->
             <small id="emailHelp" class="form-text text-muted">이메일 인증을 위해 이메일을 잘 입력해주세요.</small>
           </div>
+
 
           <!--전화번호-->
           <div class="form-group">
@@ -327,9 +329,12 @@
           </div>
 
           <!--가입버튼-->
-          <button type="submit" class="btn btn-primary">가입하기</button>
+          <button onclick = "location.href = /register_finished" class="btn btn-primary">가입하기</button>
+
         </form>
+
       </div>
+    </div>
       <!--회원가입끝-->
 
 
