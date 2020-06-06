@@ -68,7 +68,7 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                    sdName=item.find('sdname').get_text()
                    wiwName=item.find('wiwname').get_text() if item.wiwName else '없음'
                    jdName=item.find('jdname').get_text()
-                   gender='M' if item.find('gender').get_text()=='남' else 'F'
+                   gender=1 if item.find('gender').get_text()=='남' else 2
                    birthday=item.find('birthday').get_text()
                    age=item.find('age').get_text()
                    addr=item.find('addr').get_text()
