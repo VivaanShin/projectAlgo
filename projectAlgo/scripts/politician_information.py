@@ -59,26 +59,26 @@ class PoliticianInformation: # open api에서 정치인 신상정보를 가져�
                for item in soup.findAll('item'):
                
                #모든 칼럼 값을 가져옴
-                   politician_no=int(item.huboid.get_text())
-                   politician_name=item.name.get_text()
-                   sgId=item.sgId=item.sgId.get_text()
-                   sgTypecode=int(item.sgTypecode.get_text())
-                   sggName=item.sggName.get_text()
-                   sdName=item.sggName.get_text()
-                   wiwName=item.wiwName.get_text() if item.wiwName else '없음'
-                   jdName=item.jdName.get_text()
-                   gender='M' if item.gender.get_text()=='남' else 'F'
-                   birthday=item.birthday.get_text()
-                   age=item.age.get_text()
-                   addr=item.addr.get_text()
-                   jobId=int(item.jobId.get_text())
-                   job=item.job.get_text()
-                   eduId=int(item.eduId.get_text())
-                   edu=item.edu.get_text()
-                   career1=item.career1.get_text()
-                   career2=item.career2.get_text() if item.get_text() else '없음'
-                   dugsu=int(item.dugsu.get_text()) if item.get_text() else 0
-                   dugyul=int(item.dugyul.get_text()) if item.get_text() else 0
+                   politician_no=int(item.find("huboid").get_text)
+                   politician_name=item.find("name").get_text()
+                   sgId=item.sgId=item.find("sgId").get_text()
+                   sgTypecode=int(item.find("sgTypecode").get_text())
+                   sggName=item.find("sggName").get_text()
+                   sdName=item.find("sdName").get_text()
+                   wiwName=item.find("wiwName").get_text() if item.wiwName else '없음'
+                   jdName=item.find("jdName").get_text()
+                   gender='M' if item.find("gender").get_text()=='남' else 'F'
+                   birthday=item.find("birthday").get_text()
+                   age=item.find("age").get_text()
+                   addr=item.find("addr").get_text()
+                   jobId=int(item.find("jobId").get_text())
+                   job=item.find("job").get_text()
+                   eduId=int(item.find("eduId").get_text())
+                   edu=item.find("edu").get_text()
+                   career1=item.find("career1").get_text()
+                   career2=item.find("career2").get_text() if item.get_text() else '없음'
+                   dugsu=int(item.find("dugsu").get_text()) if item.get_text() else 0
+                   dugyul=int(item.find("dugyul").get_text()) if item.get_text() else 0
                
               
                    curs.execute(self.INSERT_POLITICIAN_DATA,(politician_no,politician_name,sgId,sgTypecode,sggName,
