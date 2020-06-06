@@ -105,6 +105,7 @@ passport.use('local-join', new LocalStrategy({
             console.log("회원가입 조건 만족");
             joincondition = 1
             resolve(joincondition);
+            connection.end();
             //res.send('<script type="text/javascript">alert("이메일을 확인하세요."); window.location="/";</script>');
           }
         }
@@ -150,6 +151,7 @@ passport.use('local-join', new LocalStrategy({
       };
       sendMail(user_email, email_url);
       //DB에 회원정보 저장
+      connection.connect();
       var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token) values(?,?,?,?,?,?)';
       var params2 = [user_id, user_pw, user_phone, user_email, 0, user_token];
       console.log("params2", params2);
