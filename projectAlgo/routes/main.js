@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   else{
     user=req.user;
   }
-  res.render('main',user);
+  res.render('home',user);
 });
 
 
