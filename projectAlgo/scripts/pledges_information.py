@@ -60,7 +60,7 @@ class PromisesInformation:
                 self.politician_id_list=curs.fetchall()
             #필수 요청값만 넣음
          except Exception as e:
-            print('db 에러:'+e)
+            print('db 에러:',e)
     
      def get_store_promises_information(self):
          self.get_request_info()

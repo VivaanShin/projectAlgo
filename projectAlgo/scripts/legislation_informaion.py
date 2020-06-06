@@ -78,7 +78,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                  curs.execute(self.GET_POLITICIAN_NAME)
                  self.politician_name_list=curs.fetchall()
          except Exception as e:
-            print('db 에러:'+e)
+            print('db 에러:',e)
     def get_committee_info(self): #의안 정보 저장시 소관위 정보 저장 및 사용을 위해 리스트를 먼저 만드는 함수
         try:
             with self.conn.cursor() as select_curs:
