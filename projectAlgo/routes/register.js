@@ -8,7 +8,7 @@ require('dotenv').config(); //.env파일 사용(인증메일정보)
 const dbConfig = {
   host: 'localhost',
   user: 'root',
-  password: '12345678', //dbPassword
+  password: 'algoalgo', //dbPassword
   database: 'project_algo'
 };
 var passport = require('passport');
@@ -66,9 +66,7 @@ passport.use('local-join', new LocalStrategy({
   connection.connect();
   var sql = 'select * from test where user_id =?';
   var query = connection.query(sql, [user_id], function(err, datas) {
-    if (err) return done(err, false, {
-      message: 'error'
-    });
+    if (err) return done(err);
     if (datas.length) {
       console.log('existed user');
       return done(null, false, {
