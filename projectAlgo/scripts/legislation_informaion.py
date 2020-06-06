@@ -106,7 +106,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
             with self.conn.cursor() as insert_curs:
                 for politician_name in self.politician_name_list:
                     for committee_code in self.committee_list: #소관위 값을 위해 소관위 코드정보를 참조 DB에서 가져오는 코드로 변경
-                        res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+urllib.parse.qutoe_plus(committee_code)).read().decode()
+                        res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+urllib.parse.quote_plus(committee_code)).read().decode()
                         print(res)
                         soup=BeautifulSoup(res,'html.parser')
                     
@@ -165,7 +165,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
         try:
             for politician_name in self.politician_name_list:
                 for committee_code in self.committee_list: #소관위 값을 위해 소관위 코드정보를 참조
-                    res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+urllib.parse.qutoe_plus(committee_code)).read().decode()
+                    res=urllib.request.urlopen(self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+urllib.parse.quote_plus(committee_code)).read().decode()
                     print(res)
         except Exception as e: #HTTP 에러
             print('출력 실패:',e)
