@@ -109,8 +109,10 @@ passport.use('local-join', new LocalStrategy({
 
         //DB에 회원정보 저장
         var sql2 = 'insert into tb_user_info(user_id, user_pw, user_phone, user_email, user_state, user_token) values(?,?,?,?,?,?)';
+        var params2 = [user_id, user_pw, user_phone, user_email, 0, user_token];
+        console.log("params2", params2);
         //var query2 =
-        connection.query(sql2, [user_id, user_pw, user_phone, user_email, 0, user_token], function(err, datas) {
+        connection.query(sql2, params2, function(err, datas) {
           if (err) {
             return done(null, false, {
               message: 'DB2 error'
