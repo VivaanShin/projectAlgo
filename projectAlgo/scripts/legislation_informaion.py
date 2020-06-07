@@ -19,7 +19,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
     START_ORD='20'
     END_ORD='21'
     GBN=urllib.parse.quote_plus('dae_num_name')
-    GET_POLITICIAN_NAME='select politician_name from tb_politician_info'
+    GET_POLITICIAN_NAME='select politician_name from tb_politician_info order by politician_no'
     GET_POLITICIAN_ID_BY_NAME="""select politician_id from tb_politician_info
                               where politician_name=%s
                               """
