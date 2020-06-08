@@ -113,7 +113,6 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                         print(committee_code)
                         url=self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+str(committee_code)
                         res=urllib.request.urlopen(url).read().decode()
-                        print(res)
                         soup=BeautifulSoup(res,'html.parser')
                     
                         #정치인이 발의한 의안 리스트  
@@ -122,6 +121,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                         if(legislation_list): #발의한 의안이 있을 시만 동작
                     #정치인 이름으로 아이디를 가져옴
                             for legislation in legislation_list:
+                                print(legislation)
                                 issue_id=legislation.find("billid").get_text()
                                 issue_no=legislation.find("billno").get_text()
                                 issue_name=legislation.find("billname").get_text()
@@ -143,6 +143,8 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                                                                             procStageCd,passGubn,curr_committee,issue_id))
                                 
                                 self.regislation_rel.append((politician_name[0],issue_id))
+                                print("insert complete")
+                                print(" ")
                                 #입법정보 저장
             self.conn.commit()
         except HTTPError as e: #HTTP 에러
@@ -188,7 +190,6 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
 if __name__ =='__main__':
     legislation_information=LegislationInformaion()
     legislation_information.get_committee_info()
-    #legislation_information.print_leg()
     legislation_information.get_store_legislation()
     legislation_information.store_legislation_rel()
         
