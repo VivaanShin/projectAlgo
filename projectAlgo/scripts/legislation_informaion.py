@@ -134,7 +134,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                                     summary='없음'
                                 else:
                                     summary=summary_container.get_text()[:1000]
-                                procStageCd=legislation.find("procstagecd").get_text()
+                                procStageCd=legislation.find("procstagecd").get_text() if legislation.find("procstagecd") else "없음"
                                 passGubn=legislation.find("passgubn").get_text()
                                 curr_committee=int(committee_code)
                                 
