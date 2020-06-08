@@ -113,6 +113,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                         print(committee_code)
                         url=self.get_legislation_url+'&mem_name='+urllib.parse.quote_plus(politician_name[0])+'&curr_committee='+str(committee_code)
                         res=urllib.request.urlopen(url).read().decode()
+                        print(res)
                         soup=BeautifulSoup(res,'html.parser')
                     
                         #정치인이 발의한 의안 리스트  
