@@ -11,7 +11,7 @@ const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
 const deleteBlackUser=require('./queryPromise').deleteBlackUser;
 const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
 const deleteUserPoliticianGrade=require('./queryPromise').deleteUserPoliticianGrade;
-
+const pagingNum=10;
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
@@ -25,11 +25,35 @@ router.get('/',async (req,res)=>{
     }*/
     var connection=mysql.createConnection(dbConfig);
     var resultData={};
+    var gradePage=req.query.grade_page; //유저 평점 관리 페이지
+    var detailPage=req.query.detail_page; //유저 평점 상세정보 페이지
     try{
         var userInfo=await getAllUserInfo(connection);
+        var gradeTotal=userInfo.length;
+        resultData.gradeTotal=gradeTotal;
         var gradeInfo=[];
 
-        for (let i=0;i<userInfo.length;i++){ //유저평점관리 render
+        if(typeof gradePage=='undefined' || typeof detailPage =='undefined'){
+            res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+            return;
+        }
+
+        gradePage=Number(gradePage);
+        detailPage=Number(detailPage);
+
+        var startGradePage=(gradePage-1)*pagingNum;
+
+        if(gradePage <=0 || gradePage>gradeTotal/pagingNum){//잘 못된 페이지처리
+            res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+            return;
+        }
+        else if(gradePage==gradeTotal/pagingNum){ //마지막 페이지 처리
+            var endGradePage=gradeTotal;
+        }
+        else{ //일반적인 페이지처리
+            var endGradePage=gradePage*pagingNum;
+        }
+        for (let i=startGradePage;i<endGradePage;i++){ //유저평점관리 render
             var oneUser={};
             oneUser.user_id=userInfo[i].user_id;
             oneUser.user_email=userInfo[i].user_email;
@@ -43,7 +67,23 @@ router.get('/',async (req,res)=>{
         }
 
         resultData.gradeInfo=gradeInfo;
-        resultData.gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
+        var gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
+        var detailTotal=gradeDetailInfo.length;
+        resultData.detailTotal=detailTotal;
+
+        var startDetailPage=(detailPage-1)*pagingNum;
+
+        if(detailPage <=0 || detailPage>detailTotal/pagingNum){
+            res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+            return;
+        }
+        else if(detailPage==detailTotal/pagingNum){
+            resultData.gradeDetailInfo=gradeDetailInfo.slice(startDetailPage);
+        }
+        else{
+            var endDetailPage=detailPage*pagingNum;
+            resultData.gradeDetailInfo=gradeDetailInfo.slice(startDetailPage,endDetailPage);
+        }
         resultData.status=200;
     }
     catch(err){
@@ -52,7 +92,7 @@ router.get('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.render('admin_page/grade_user.ejs',gradeInfoSet);
+        res.render('admin_page/grade_user.ejs',resultData);
     }
 });
 
@@ -75,7 +115,7 @@ router.put('/black',async (req,res)=>{ //사용자 블랙등록
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade');
+        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
     }
 });
 
@@ -94,7 +134,7 @@ router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade');
+        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
     }
 });
 
@@ -115,7 +155,7 @@ router.put('/',async (req,res)=>{ //tb_user_politician_grade update
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade');
+        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
     }
 
 });
@@ -136,7 +176,7 @@ router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade');
+        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
     }
 
 });

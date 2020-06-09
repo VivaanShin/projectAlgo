@@ -21,7 +21,6 @@ router.get('/',async (req,res)=>{
     var connection = mysql.createConnection(dbConfig);
     var resultData={};
     var page=req.query.page;
-
     try{
 
         if(typeof page=='undefined'){
@@ -29,17 +28,21 @@ router.get('/',async (req,res)=>{
             return;
         }
 
+        page=Number(page);
+
         var startPage=(page-1)*10;
         var allLegislation=await getAllLegislation(connection); //tb_politician_legislation
+        var total=allLegislation.length;
+        resultData.total=total;
 
-        if(page <=0 || page> allLegislation.length/pagingNum){// 잘 못된 페이지 처리
+        if(page <=0 || page> total/pagingNum){// 잘 못된 페이지 처리
             res.redirect('/admin/legislation?page=1');
             return;
         }
-        else if(page==allLegislation.length/pagingNum){
+        else if(page==total/pagingNum){ //마지막 페이지처리
             resultData.legislation=allLegislation.slice(startPage);
         }
-        else{
+        else{ //일반적인 페이지 처리
             var endPage=page*pagingNum;
             resultData.legislation=allLegislation.slice(startPage,endPage);
         }

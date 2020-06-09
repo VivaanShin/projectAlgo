@@ -37,11 +37,14 @@ router.get('/',async (req,res)=>{
         var startPage=(page-1)*pagingNum;
         var endPage;
         var total=user_info.length;
+        resultData.total=total;
 
         if(typeof page == 'undefined'){
             res.redirect('/admin/member?page=1');
             return;
         }
+
+        page=Number(page);
 
         if(page <=0 || page> total/pagingNum){ //잘 못된 페이지 처리
             res.redirect('/admin/member?page=1');
@@ -49,7 +52,7 @@ router.get('/',async (req,res)=>{
         }
 
         else if(page==total/pagingNum){ //마지막페이지 처리
-            endPage=user_info.length;
+            endPage=total;
         }
         else{
             endPage=page*pagingNum;

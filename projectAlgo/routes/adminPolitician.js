@@ -16,11 +16,12 @@ router.get('/',(req,res)=>{
     render({status:401,message:"접근불가"});*/
 
     var page=req.query.page;
-    var total=0;
     if(typeof page=='undefined'){
         res.redirect('/admin/politician?page=1');
         return;
     }
+
+    page=Number(page);
   
     var connection=mysql.createConnection(dbConfig);  
     connection.query('select * from tb_politician_info',(err,politicians)=>{ //정치인 테이블에서 조회
@@ -31,7 +32,8 @@ router.get('/',(req,res)=>{
         else{
             resultData.status=200;
             //resultData.politicianResult=politicians;//상태값+모든 정치인 정보 row
-            total=politicians.length;
+            var total=politicians.length;
+            resultData.total=total;
             var startPage=(page-1)*pagingNum;
 
             if(page<=0 || page > total/pagingNum){ //잘 못된 페이지가 들어왔을 시
