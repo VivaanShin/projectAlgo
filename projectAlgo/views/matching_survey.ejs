@@ -49,8 +49,8 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
   <script src="/js/custom.js"></script>
-
   <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
   <script type="text/javascript" src="/css/radar-chart.js"></script>
 
@@ -236,7 +236,7 @@
     <ul class="nav nav-tabs">
 
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#home">홈</a>
+        <a class="nav-link" data-toggle="tab" href="#home">홈</a>
       </li>
 
 
@@ -251,7 +251,7 @@
         <!--조건문 로그인이 안되어 있을때 클릭 시 로그인 모달 폼 띄어준다.-->
         <% if(typeof user == 'undefined') { %>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
+        <a class="nav-link active" data-toggle="modal" data-target="#LoginModal">정치성향 설문조사</a>
         </li>
         <% } %>
 
@@ -286,117 +286,1935 @@
  <!--설문조사-->
       <div class="tab-pane fade active show" id="matching_survey">
 
-        <form>
-          <fieldset style="margin-bottom: 5%;">
-            <legend>AI 설문조사</legend>
+<div class="wrap">
+  <h1 class="likert-header">AI매칭서비스를 위한 설문조사입니다.</h1>
+  <h5 class="likert-header">귀하의 정치관심사에 점수를 주세요.</h5>
+  
+  <form action="">
+
+    <label class="statement" style="margin-bottom: 3%;">과학/IT 분야</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="itScience_sec" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="itScience_sec" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+ <label class="statement" style="margin-bottom: 3%;">모바일</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="mobile" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="mobile" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">인터넷SNS</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="internet_sns" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="internet_sns" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">통신</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="communication" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="communication" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">IT일반</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="It_common" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="It_common" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+ <label class="statement" style="margin-bottom: 3%;">보안/해킹</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="security" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="security" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">컴퓨터</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="computer" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="computer" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">게임</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="game" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="game" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+<label class="statement" style="margin-bottom: 3%;">과학일반</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="science_common" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="science_common" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+<label class="statement" style="margin-bottom: 3%;">경제 분야</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="economy_sec" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_sec" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+<label class="statement" style="margin-bottom: 3%;">금융</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="finance" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="finance" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+ <label class="statement" style="margin-bottom: 3%;">증권</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="stock" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="stock" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+ <label class="statement" style="margin-bottom: 3%;">산업 분야</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="industry" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="industry" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">중소기업/벤쳐</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="small_venture" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="small_venture" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+  
+<label class="statement" style="margin-bottom: 3%;">부동산</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="property" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="property" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+ <label class="statement" style="margin-bottom: 3%;">글로벌경제</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="global_economy" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="global_economy" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+<label class="statement" style="margin-bottom: 3%;">생활경제</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="living_economy" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="living_economy" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">경제일반</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="economy_common" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="economy_common" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">문화 분야</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="culture_sec" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_sec" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">건강</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="health" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="health" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">전시공연</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="exhibit_performance" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="exhibit_performance" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+ <label class="statement" style="margin-bottom: 3%;">미술건축</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="art_architecture" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="art_architecture" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">교통</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="traffic" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="traffic" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">여행</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="travel" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="travel" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+<label class="statement" style="margin-bottom: 3%;">종교</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="religion" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="religion" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+
+<label class="statement" style="margin-bottom: 3%;">문화일반</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="culture_common" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="culture_common" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">음식</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="food" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="food" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">사회 분야</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="society_sec" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="society_sec" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">사건사고</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="event_accident" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="event_accident" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+ <label class="statement" style="margin-bottom: 3%;">교육</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="education" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="education" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">노동</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="work" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="work" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">언론</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="media" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="media" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">환경</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="environment" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="environment" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">인권/복지</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="humanrights_welfare" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="humanrights_welfare" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">식품/의료</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="food_medical" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="food_medical" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">사회일반</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="society_common" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="society_common" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+ <label class="statement" style="margin-bottom: 3%;">정치 분야</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="politics_sec" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_sec" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+ <label class="statement" style="margin-bottom: 3%;">청와대</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="bluehouse" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="bluehouse" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">국회정당</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="assembly_party" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="assembly_party" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">북한</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="northkorea" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="northkorea" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">행정</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="administration" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="administration" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">국방/외교</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="defense_diplomacy" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="defense_diplomacy" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+<label class="statement" style="margin-bottom: 3%;">정치일반</label>
+    <ul class='likert' style="width: 110%; margin-left: 3%;">
+      <li>
+        <input type="radio" name="politics_common" value="1">
+        <label>1</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="2">
+        <label>2</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="3">
+        <label>3</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="4">
+        <label>4</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="5">
+        <label>5</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="6">
+        <label>6</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="7">
+        <label>7</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="8">
+        <label>8</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="9">
+        <label>9</label>
+      </li>
+      <li>
+        <input type="radio" name="politics_common" value="10">
+        <label>10</label>
+      </li>
+ </ul>
+
+    <div class="buttons">
+      <button class="btn btn-primary">제출하기</button>
+    </div>
+  </form>
+</div>
 
 
 
-            <div class="form-group">
-              <label> 귀하의 출생연도를 선택해주세요.</label>
-              <select class="custom-select">
-                <option selected="">귀하의 출생연도를 선택해주세요.</option>
-                <option value="1">1930</option>
-                <option value="2">~</option>
-                <option value="2">~</option>
-                <option value="3">2000</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="exampleTextarea">귀하의 직업을 입력해주세요.</label>
-              <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
-            </div>
 
 
 
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group mr-2" role="group" aria-label="First group">
-                <label>귀하의 정치 관심사에 점수를 주세요.</label>
-              </div>
-            </div>
-
-            <label>과학/IT</label>
-            <div class="form-group">
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-
-            <label>사회</label>
-            <div class="form-group">
-
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-            <label>경제</label>
-            <div class="form-group">
-
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
-
-            <label>문화</label>
-            <div class="form-group">
-
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
 
 
 
-            <label>정치</label>
-            <div class="form-group">
 
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">4</button>
-              <button type="button" class="btn btn-secondary">5</button>
-              <button type="button" class="btn btn-secondary">6</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">8</button>
-              <button type="button" class="btn btn-secondary">9</button>
-              <button type="button" class="btn btn-secondary">10</button>
-            </div>
 
-            <button type="submit" class="btn btn-primary">제출하기</button>
-          </fieldset>
 
-        </form>
+
+
+
+
+
+
       </div>
       <!--설문조사 끝-->
 
@@ -487,87 +2305,7 @@
 
 
 
- <!--매칭서비스-->
-      <div class="tab-pane fade" id="matching_service">
-
-    <div class="row">
-
-      <div class="col-lg-3">
-        
-
-
-
-
-      </div>
-
-<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
-</div>
-
-
-<textarea style="display:none;" id="data" cols="60" rows="15">이름,사회,경제,과학,정치,문화
-  문재인,50,30,50,30,20
-  나의성향,20,30,40,50,60
- </textarea>
-
-
-
-<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-    <% if(typeof searchResult!='undefined' && searchResult.length==0) { %>
-      <div class="card border-light" style="width: 35%; margin-right:5%;">
-        검색결과 없음.
-      </div>
-    <% } %>
-
-    <% if(typeof searchResult!='undefined'  && searchResult.length > 0) { %>
-      
-  <div style="display: flex">
-        <div class="card border-light" style="width: 35%; margin-right:5%;">
-      <div class="card-header" style="display: -webkit-box;" >
-        <img src="/img/profile_icon_login.jpg" alt="회원 아이콘" style="margin-top: 35%;">
-        <div style=" margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary"><%= searchResult[0].jdName %></span>
-
-        <br>
-        
-        <h3><%= searchResult[0].politician_name %></h3>
-        <p class="text-muted"><%= searchResult[0].politician_name %>
-        </p>
-        <p class="text-muted"><%= searchResult[0].career2 %></p>
-      <button onclick='showRadar()'>그래프보기</button>
-       </div>
-     </div>
-
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-
-
-    <div class="card border-light" style="width: 35%;">
-      <div class="card-header">
-
-        <span class="badge badge-danger">더불어민주당</span>
-        <h3>이름</h3>
-        <p class="text-muted">생년월일</p>
-        <p class="text-muted">직업</p>
-      </div>
-    
-      <div class="card-body">
-      <div id="chart-container"></div>
-      </div>
-    </div>
-    </div>
-
-   <% } %>
-
-
-    </div><!--col8-->
-    </div><!--row-->
-      </div>
-      <!--매칭서비스-->
-
-
-
+ 
 
 
 
@@ -580,7 +2318,6 @@
 
   </div>
   <!--container-->
-
 
 
 
