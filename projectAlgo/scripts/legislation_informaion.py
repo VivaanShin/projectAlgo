@@ -164,7 +164,7 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                 for rel_info in self.regislation_rel:
                     select_curs.execute(self.GET_POLITICIAN_ID_BY_NAME,(rel_info[0]))
                     politician_no=select_curs.fetchone()[0]
-                    insert_curs.execute(self.INSERT_REL,(rel_info[1],politician_no,rel_info[1],politician_no))
+                    insert_curs.execute(self.INSERT_REL,(rel_info[1],politician_no,rel_info[1],politician_no,rel_info[1],politician_no))
                     
             self.conn.commit()
         except Exception as e: #DB 에러

@@ -82,7 +82,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             weekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay)[0].avg;
             weekElements={weekGrade:weekGrade,weekDay:weekDay};
             gradeList.push(weekElements);
-            weekDay=moment.day(i*-7).format('YYYY-MM-DD');
+            weekDay=moment.day((i+1)*-7).format('YYYY-MM-DD');
         }
 
         console.log(gradeList);
