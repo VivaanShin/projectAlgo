@@ -366,11 +366,11 @@
 
 
 
-      <div class="tab-pane fade  active show" id="candidate_list">
+      <div class="tab-pane fade  active show" id="candidate_list" style="margin-bottom: 10%;">
   
-    <div class="row">
+    <div class="row"  style="display:flex;">
 
-      <div class="col-lg-3">
+      <div class="" style="width:23%; padding-left:3%;">
         <div class="form-group" style="margin-top:20%;">
           <h2>정치인 상세 검색</h2><br><br>
 
@@ -413,57 +413,97 @@
         </div> 
       </div>
 
-<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
+
+<div class="" style="margin-left:3%; margin-right:2%; border-left : 2px solid  grey; width:5%; height:100;"  >
 </div>
 
 
 
 
 
-<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
+<div class="" style="width: 55%; display: block;">
     <% if(typeof searchResult!='undefined' && searchResult.length==0) { %>
-      <div class="card border-light" style="width: 35%; margin-right:5%;">
+      <div class="card border-light" style="height:50%; width: 35%; margin-right:5%;">
         검색결과 없음.
       </div>
     <% } %>
 
+
+
+
     <% if(typeof searchResult!='undefined' && searchResult.length > 0) { %>
-    
+
+
+      
      <% for(var i=0; i < searchResult.length; i++){ %>
-  <div style="display: inline-block;">  
+
+     <% if( i%2==0 ) { %>
+
+        <div style="display: flex; margin-bottom: 3%;">
+
+     <% } %>
+
+  <div style="display: block; height: 55%; width:270px; margin-right:5%; border:4px groove currentColor; ">  
   
   <textarea style="display:none;" id="<%= searchResult[i].politician_no %>" cols="60" rows="15">이름,사회,경제,과학,정치,문화
 <%= searchResult[i].politician_name %>,<%= searchResult[i].society %>,<%= searchResult[i].economy %>,<%= searchResult[i].itScience %>,<%= searchResult[i].politics %>,<%= searchResult[i].culture %>
   </textarea>
 
 
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-        <div class="card-header" style="display: -webkit-box;" >
-        <img src="<%= searchResult[i].img %>" alt="정치인 사진" style="margin-top: 35%;">
-        <div style=" margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary"><%= searchResult[i].jdName %></span>
-
-        <br>
+ 
+      <div class="" style="display:flex; height:60%;" >
         
+        <img src="<%= searchResult[i].img %>" alt="정치인 사진" style="text-align: center; width:300px; height:220px;">
+       
+       <div style="padding-top: 5%; padding-left:3%; border-left:4px groove currentColor; width:60%;">  
+        
+        <% if(searchResult[i].jdName=='미래통합당'){ %>
+        <span class="badge badge-primary">
+
+
+        <%} else if(searchResult[i].jdName=='더불어민주당'){ %>
+        <span class="badge badge-danger">
+
+        <%} else{ %>
+        <span class="badge badge-dark">
+        <% } %>
+
+
+          <%= searchResult[i].jdName %></span>
+        
+        <br>
         <h3><%= searchResult[i].politician_name %></h3>
-        <p class="text-muted"><%= searchResult[i].politician_name %>
-        </p>
+        <p class="text-muted"><%= searchResult[i].birthday %></p>
         <p class="text-muted"><%= searchResult[i].career2 %></p>
        </div>
+
+      </div>
+
+      <div class="" style="padding-top: 5%; border-top:4px groove currentColor; text-align: center;">
+      <div id="chart-container<%= searchResult[i].politician_no %>"></div>
+      <script>  showRadar(<%= searchResult[i].politician_no %>); </script>
+      </div>
+  </div>
+
+
+     <% if( i%2==1 ) { %>
+
         </div>
 
-      <div class="card-body">
-      <div id="chart-container<%= searchResult[i].politician_no %>"></div>
-      </div>
-      <script>  showRadar(<%= searchResult[i].politician_no %>); </script>
+     <% } %>
 
-    </div>
-  </div>
+
+  
    <% } %>
+
+
+
    <% } %>
 
 
     </div><!--col8-->
+
+
     </div><!--row-->
       </div><!--candidate_list-->
 
