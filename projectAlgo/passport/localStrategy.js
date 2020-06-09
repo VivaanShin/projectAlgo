@@ -39,12 +39,18 @@ module.exports=(passport)=>{
                     });
                     console.log("login_hash="+user[0].user_pw);
                     if(result){
-                       console.log('로그인 성공');
-                       return done(null,{user_id:user[0].user_id,user_state:user[0].user_state,
-                        user_interest_check:user[0].user_interest_check}) //유저 아이디와 admin 여부를 저장
+                        if(!user[0].user_state){
+                            console.log("이메일 미인증");
+                            return done(null,false,{message:'이메일 인증을 먼저 해주세요!'});
+                        }
+                        else{
+                            console.log('로그인 성공');
+                            return done(null,{user_id:user[0].user_id,user_state:user[0].user_state,
+                             user_interest_check:user[0].user_interest_check}) //유저 아이디와 admin 여부를 저장
+                        }
                     }
                     else{
-                        console.log('로그인 실패');
+                        console.log('비밀번호가 틀립니다!');
                         return done(null,false,{message:'비밀번호가 틀립니다!.'})
                     }
                 }
