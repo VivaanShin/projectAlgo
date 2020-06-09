@@ -16,7 +16,7 @@ var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var politicianUserRouter=require('./routes/politicianUser');
 var searchRouter=require('./routes/searchPolitician');
-var mathingSurveyRouter=require('./routes/matching_survey');
+var matchingSurveyRouter=require('./routes/matching_survey');
 //여기까지 사용자 라우터
 
 var adminRouter=require('./routes/admin');
