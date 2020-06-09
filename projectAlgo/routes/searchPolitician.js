@@ -34,7 +34,7 @@ router.get('/',async (req,res)=>{
                     birthday:politicians[i].birthday,
                     career1:politicians[i].career1,
                     career2:politicians[i].career2,
-                    img:"/images/"+politicians[i].politician_no,
+                    img:"/images/"+politicians[i].politician_no+".jpg",
                     link:"/politician/"+politicians[i].politician_no
                 };
                 var politician_interest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보를 가져옴
