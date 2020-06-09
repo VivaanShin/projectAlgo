@@ -7,6 +7,7 @@ const dbConfig={
     password : 'algoalgo',
     database : 'project_algo'
 };
+const pagingNum=10; //한 페이지 갯수 10개
 const getGradeInfoRecord=require('./queryPromise').getGradeInfoRecord;
 const updateAdminGradeInfoRecord=require('./queryPromise').updateAdminGradeInfoRecord;
 const deleteGradeInfoRecord=require('./queryPromise').deleteGradeInfoRecord;
@@ -17,9 +18,31 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
 
     var connection=mysql.createConnection(dbConfig);
     var resultData={};
+    var page=req.query.page;
+
+    if(typeof page =='undefined'){
+        res.redirect('/admin/politician_grade?page=1');
+        return;
+    }
+
+    page=Number(page);
 
     try{
-        resultData.gradeInfoRecord=await getGradeInfoRecord(connection); 
+        var gradeInfoRecord=await getGradeInfoRecord(connection);
+        var total=gradeInfoRecord.length;
+        var startPage=(page-1)*10;
+        
+        if(page <=0 || page >total/pagingNum){//잘 못된 페이지 처리
+            res.redirect('/admin/politician_grade?page=1');
+            return;
+        }
+        else if(page==total/pagingNum) { //마지막 페이지 처리
+            resultData.gradeInfoRecord=gradeInfoRecord.slice(startPage);
+        }
+        else{
+            var endPage=page*10;
+            resultData.gradeInfoRecord=gradeInfoRecord.slice(startPage,endPage);
+        }
     }
     catch(err){
         console.log(err.message);
@@ -52,7 +75,7 @@ router.put('/',async (req,res)=>{ //정치인 평점 정보 수정
     }
     finally{
         connection.end();
-        res.redirect('/admin/politician_grade'); //view 설정
+        res.redirect('/admin/politician_grade?page=1'); //view 설정
     }
 });
 
@@ -77,7 +100,7 @@ router.delete('/',async (req,res)=>{ //정치인 평점 정보 삭제
     }
     finally{
         connection.end();
-        res.redirect('/admin/politician_grade'); //view 설정
+        res.redirect('/admin/politician_grade?page=1'); //view 설정
     }
 });
 module.exports=router;
