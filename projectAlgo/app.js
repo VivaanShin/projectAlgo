@@ -16,6 +16,7 @@ var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var politicianUserRouter=require('./routes/politicianUser');
 var searchRouter=require('./routes/searchPolitician');
+var surveyRouter=require('./routes/survey');
 //여기까지 사용자 라우터
 
 var adminRouter=require('./routes/admin');
@@ -53,6 +54,7 @@ app.use('/login',loginRouter);
 app.use('/logout',logoutRouter);
 app.use('/politician',politicianUserRouter);
 app.use('/search',searchRouter);
+app.use('/survey',surveyRouter);
 //여기까지 사용자 use
 
 app.use('/admin',adminRouter);
