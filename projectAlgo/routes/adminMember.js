@@ -17,7 +17,9 @@ const dbConfig={
     user     : 'root',
     password : 'algoalgo',
     database : 'project_algo'
-  }; 
+  };
+
+const pagingNum=10; //페이지 하나당 10개
   
 //후에 Admin 로그인 확인
 router.get('/',async (req,res)=>{
@@ -31,8 +33,29 @@ router.get('/',async (req,res)=>{
 
     try{
         var user_info=await getAllUserInfo(connection); //모든 유저 정보 가져옴
+        var page=req.query.page;
+        var startPage=(page-1)*pagingNum;
+        var endPage;
+        var total=user_info.length;
+
+        if(typeof page == 'undefined'){
+            res.redirect('/admin/member?page=1');
+            return;
+        }
+
+        if(page <=0 || page> total/pagingNum){ //잘 못된 페이지 처리
+            res.redirect('/admin/member?page=1');
+            return;
+        }
+
+        else if(page==total/pagingNum){ //마지막페이지 처리
+            endPage=user_info.length;
+        }
+        else{
+            endPage=page*pagingNum;
+        }
     
-        for(let i=0;i<user_info.length;i++){ //유저 정보를 하나씩 조회하여
+        for(let i=startPage;i<endPage;i++){ //유저 정보를 하나씩 조회하여
             var oneUserInfo=userInfo[i];
             var oneUserInterest={}; //관심사 정보 temp
 
@@ -113,7 +136,7 @@ router.put('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.redirect('/admin/member');
+        res.redirect('/admin/member?page=1');
     }
 });
 
@@ -139,7 +162,7 @@ router.delete('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.redirect('/admin/member');
+        res.redirect('/admin/member?page=1');
     }
 })
 

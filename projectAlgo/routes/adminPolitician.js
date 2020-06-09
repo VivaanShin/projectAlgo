@@ -8,26 +8,49 @@ const dbConfig={
     user     : 'root',
     password : 'algoalgo',
     database : 'project_algo'
-  }; 
+};
+const pagingNum=10; //페이징 한 페이지에 10개 
 //Admin 로그인 테스트 필요
 router.get('/',(req,res)=>{
   /*if(!isAdmin(req))
     render({status:401,message:"접근불가"});*/
+
+    var page=req.query.page;
+    var total=0;
+    if(typeof page=='undefined'){
+        res.redirect('/admin/politician?page=1');
+        return;
+    }
   
-  var connection=mysql.createConnection(dbConfig);  
-  connection.query('select * from tb_politician_info',(err,politicians)=>{ //정치인 테이블에서 조회
-      var resultData={};
-      if(err)     
-          resultData.status=500;
+    var connection=mysql.createConnection(dbConfig);  
+    connection.query('select * from tb_politician_info',(err,politicians)=>{ //정치인 테이블에서 조회
+        var resultData={};
+        if(err)     
+            resultData.status=500;
       
-      else{
-          resultData.status=200;
-          resultData.politicianResult=politicians;//상태값+모든 정치인 정보 row
-      } 
-      connection.end();
-      res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
+        else{
+            resultData.status=200;
+            //resultData.politicianResult=politicians;//상태값+모든 정치인 정보 row
+            total=politicians.length;
+            var startPage=(page-1)*pagingNum;
+
+            if(page<=0 || page > total/pagingNum){ //잘 못된 페이지가 들어왔을 시
+                res.redirect('/admin/politician?page=1');
+                return;
+            }
+            else if(page == total/pagingNum){ //마지막 페이지 처리
+                resultData.politicianResult=politicians.slice(startPage);
+            }
+            else{ //일반적인 페이지 처리
+                var endPage=page*pagingNum;
+                resultData.politicianResult=politicians.slice(startPage,endPage);
+
+            }
+        } 
+        connection.end();
+        res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
       
-    });
+      });
 });
 
 router.put('/',(req,res)=>{ //정치인 정보 등록
@@ -65,7 +88,7 @@ router.put('/',(req,res)=>{ //정치인 정보 등록
                         if(err)
                             console.log(err.message);
         
-                        res.redirect('/admin/politician');
+                        res.redirect('/admin/politician?page=1');
                    });
     
 });
@@ -109,7 +132,7 @@ router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
                         if(err)
                             console.log(err.message);
                         
-                        res.redirect('admin/politician');
+                        res.redirect('admin/politician?page=1');
                    });
 });
 
@@ -123,7 +146,7 @@ router.delete('/:politician_no',(req,res)=>{ //정치인 정보 삭제
         if(err)
             console.log(err.message);
         
-        res.redirect('admin/politician');
+        res.redirect('admin/politician?page=1');
     });
 });
 module.exports=router;

@@ -12,7 +12,7 @@ const getAllLegislation=require('./queryPromise').getAllLegislation;
 const insertPoliticianLegislation=require('./queryPromise').insertPoliticianLegislation;
 const deletePoliticianLegislation=require('./queryPromise').deletePoliticianLegislation;
 const deletePoliticianLegislationRel=require('./queryPromise').deletePoliticianLegislationRel;
-
+const pagingNum=10; //한 페이지에 10개
 router.get('/',async (req,res)=>{
     /*if(!isAdmin(req)){
         res.render({status:401,message:"접근불가"});
@@ -20,8 +20,29 @@ router.get('/',async (req,res)=>{
 
     var connection = mysql.createConnection(dbConfig);
     var resultData={};
+    var page=req.query.page;
+
     try{
-        resultData.legislation=await getAllLegislation(connection); //tb_politician_legislation
+
+        if(typeof page=='undefined'){
+            res.redirect('/admin/legislation?page=1');
+            return;
+        }
+
+        var startPage=(page-1)*10;
+        var allLegislation=await getAllLegislation(connection); //tb_politician_legislation
+
+        if(page <=0 || page> allLegislation.length/pagingNum){// 잘 못된 페이지 처리
+            res.redirect('/admin/legislation?page=1');
+            return;
+        }
+        else if(page==allLegislation.length/pagingNum){
+            resultData.legislation=allLegislation.slice(startPage);
+        }
+        else{
+            var endPage=page*pagingNum;
+            resultData.legislation=allLegislation.slice(startPage,endPage);
+        }
     }
     catch(err){
         console.log(err.message);
@@ -58,7 +79,7 @@ router.put('/',async (req,res)=>{ //입법정보 저장
     }
     finally{
         connection.end();
-        res.redirect('/admin/legislation');
+        res.redirect('/admin/legislation?page=1');
     }
 });
 router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
@@ -87,7 +108,7 @@ router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
     }
     finally{
         connection.end();
-        res.redirect('/admin/legislation');
+        res.redirect('/admin/legislation/page=1');
     }
 });
 
@@ -104,7 +125,7 @@ router.delete('/',async (req,res)=>{ //입법정보 삭제
     }
     finally{
         connection.end();
-        res.redirect('/admin/legislation');
+        res.redirect('/admin/legislation/page=1');
     }
 });
 
