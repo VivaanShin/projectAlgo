@@ -5,6 +5,7 @@ const dbConfig={
     password : 'algoalgo',
     database : 'project_algo'
 };
+const mysql=require('mysql');
   
 exports.getLegislationInfo=function getLegislationInfo(politician_no,connection){ //connection 하나를 전달 받아서 사용,동기형으로 입법 정보를 가져옴 
     return new Promise((resolve,reject)=>{
@@ -56,7 +57,7 @@ exports.getPoliticianWeekAverageGrade=function getPoliticianWeekAverageGrade(pol
     return new Promise((resolve,reject)=>{
         var connection = mysql.createConnection(dbConfig);
         connection.connect();
-        connection.query(`select avg(grade_score) as avg from tb_gradeinfo_record 
+        connection.query(`select avg(grade_score) as grade_score from tb_gradeinfo_record 
         where year(grade_st_date)=? and week(grade_st_date,1)=?
         group by politician_no having politician_no=?`,[moment(weekDay).year(),moment(weekDay).week(),politician_no],(err,avg_grade)=>{
             if(err) 
