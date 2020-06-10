@@ -31,7 +31,6 @@ exports.getPoliticianNewsJSON=async function getPoliticianNewsJSON(politician_na
     try{
         var body=await getSyncRequestData(options); //반환 받은 값을 JSON으로 변환
         result=JSON.parse(body).items; //items 반환(기사 리스트)
-        console.log(result);
     }
     catch(err){
         console.log('ERROR:'+err);
