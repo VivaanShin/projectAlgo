@@ -46,7 +46,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             }
         }
 
-        var politicianInterest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보
+        var politicianInterest=await getPoliticianInterestByNo(politician_no,connection); //정치인 관심사 정보
         politicianInfo.itScience=politicianInterest[0].itScience;
         politicianInfo.economy=politicianInterest[0].economy;
         politicianInfo.culture=politicianInterest[0].culture;
