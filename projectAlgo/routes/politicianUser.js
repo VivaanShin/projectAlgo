@@ -106,7 +106,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             }
             weekElements={weekGrade:weekGrade,weekDay:weekDay};
             gradeList.push(weekElements);
-            weekDay=moment.day((i+1)*-7).format('YYYY-MM-DD');
+            weekDay=moment().day((i+1)*-7).format('YYYY-MM-DD');
         }
 
         console.log(gradeList);
