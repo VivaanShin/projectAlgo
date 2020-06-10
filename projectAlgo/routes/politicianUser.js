@@ -7,23 +7,6 @@ const getPoliticianNewsJSON=require('../scripts/getPoliticianNews').getPoliticia
 const moment=require('moment'); //시간 조작 모듈
 const router=express.Router();
 const isLoggedin=require('../scripts/confirmLogin').isLoggedIn;
-const getImagePath=function getImagePath(imgPath){ //파일 경로 확인
-    return new Promise((resolve,reject)=>{
-        fs.stat(imgPath,(err,status)=>{
-            if(err){
-                if(err.code=='ENOENT'){
-                    resolve(false);
-                }
-                else{
-                    reject(err);
-                }
-            }
-            else{
-                resolve(true);
-            }
-        }) 
-    });
-};
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
@@ -52,18 +35,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     try{
         var tempPoliticianInfo=await getPoliticianInfoByNo(politician_no,connection);
         var politicianInfo=tempPoliticianInfo[0];
-       
-        var imgPath=pathUtil.normalize(__dirname+`../public/images/${politician_no}.jpg`);
-        console.log(imgPath);
-        var isImgExist=await getImagePath(imgPath);
-
-        if(isImgExist){
-            politicianInfo.img=`/img/${politician_no}.jpg`;
-        }
-        else{
-            politicianInfo.img=`/img/default.jpg`;
-        }
-        resultData.status=200;
+        politicianInfo.img=`/img/${politician_no}.jpg`;
 
         var politicianInterest=await getPoliticianInterestByNo(politician_no,connection); //정치인 관심사 정보
         //politicianInfo.itScience=politicianInterest[0].itScience;
@@ -78,7 +50,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         politicianInfo.society=8;
         politicianInfo.politics=3;
 
-        console.log(politicianInfo);
         resultData.politicianInfo=politicianInfo;
         var politicianLegislationInfo=await getLegislationInfo(politician_no,connection);
         resultData.politicianLegislationInfo=politicianLegislationInfo; //정치인 기본 정보
