@@ -47,11 +47,17 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         }
 
         var politicianInterest=await getPoliticianInterestByNo(politician_no,connection); //정치인 관심사 정보
-        politicianInfo.itScience=politicianInterest[0].itScience;
-        politicianInfo.economy=politicianInterest[0].economy;
-        politicianInfo.culture=politicianInterest[0].culture;
-        politicianInfo.society=politicianInterest[0].society;
-        politicianInfo.politics=politicianInterest[0].politics;
+        //politicianInfo.itScience=politicianInterest[0].itScience;
+        //politicianInfo.economy=politicianInterest[0].economy;
+        //politicianInfo.culture=politicianInterest[0].culture;
+        //politicianInfo.society=politicianInterest[0].society;
+        //politicianInfo.politics=politicianInterest[0].politics;
+
+        politicianInfo.itScience=4;
+        politicianInfo.economy=7;
+        politicianInfo.culture=6;
+        politicianInfo.society=8;
+        politicianInfo.politics=3;
 
         console.log(politicianInfo);
         resultData.politicianInfo=politicianInfo;
