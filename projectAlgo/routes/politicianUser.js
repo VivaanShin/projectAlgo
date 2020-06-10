@@ -37,7 +37,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         var politicianInfo=tempPoliticianInfo[0];
 
         try{
-            fs.statSync(path.resolve(__dirname, `../public/images/${politician_no}.jpg`));
+            fs.statSync(pathUtil.resolve(__dirname, `../public/images/${politician_no}.jpg`));
             politicianInfo.img=`/img/${politician_no}.jpg`;
         }
         catch(err){
