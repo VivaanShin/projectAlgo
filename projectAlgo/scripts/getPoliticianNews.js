@@ -17,8 +17,8 @@ exports.getPoliticianNewsJSON=async function getPoliticianNewsJSON(politician_na
     var result={}
     var options={ 
         headers : {
-            "X-Naver-Client-Id" : fs.readFileSync('../script/newsClientId.txt'), //클라이언트 ID 
-            "X-Naver-Client-Secret" : fs.readFileSync('../script/newsClientSecret.txt') //클라이언트 Secret 
+            "X-Naver-Client-Id" : fs.readFileSync('./script/newsClientId.txt'), //클라이언트 ID 
+            "X-Naver-Client-Secret" : fs.readFileSync('./script/newsClientSecret.txt') //클라이언트 Secret 
         },
         encoding: "utf-8",
         method : 'get',
