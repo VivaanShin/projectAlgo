@@ -1,5 +1,6 @@
 ///politician{politicianId} 라우터들
 const express=require('express');
+const pathUtil=require('path');
 const fs=require('fs')
 const mysql=require('mysql');
 const getPoliticianNewsJSON=require('../scripts/getPoliticianNews').getPoliticianNewsJSON; //JSON방식으로 네이버 API에서 기사 정보를 가져오는 모듈함수
@@ -39,7 +40,8 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         console.log(__dirname);
 
         try{
-            fs.statSync(`../public/images/${politician_no}.jpg`);
+            var imgPath=pathUtil.normalize(`../public/images/${politician_no}.jpg`);
+            fs.statSync(`imgPath`);
             politicianInfo.img=`/img/${politician_no}.jpg`;
             resultData.status=200;
         }
@@ -119,6 +121,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     }
     finally{
         connection.end();
+        console.log(resultData.status);
         res.render('candidate_info.ejs',resultData);
     }
 });
