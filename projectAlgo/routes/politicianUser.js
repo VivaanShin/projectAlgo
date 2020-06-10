@@ -52,12 +52,9 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     try{
         var tempPoliticianInfo=await getPoliticianInfoByNo(politician_no,connection);
         var politicianInfo=tempPoliticianInfo[0];
-
-        console.log(politicianInfo);
-        console.log(__dirname);
-
        
         var imgPath=pathUtil.normalize(__dirname+`../public/images/${politician_no}.jpg`);
+        console.log(imgPath);
         var isImgExist=await getImagePath(imgPath);
 
         if(isImgExist){
