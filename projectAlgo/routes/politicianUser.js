@@ -33,6 +33,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     var politician_no=req.params.politician_no;
     try{
         var politicianInfo=await getPoliticianInfoByNo(politician_no,connection)[0];
+        console.log(politicianInfo);
 
         try{
             fs.statSync(`./public/images/${politician_no}`);
