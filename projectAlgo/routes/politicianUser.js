@@ -32,7 +32,9 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     connection.connect();
     var politician_no=req.params.politician_no;
     try{
-        var politicianInfo=await getPoliticianInfoByNo(politician_no,connection)[0];
+        var tempPoliticianInfo=await getPoliticianInfoByNo(politician_no,connection);
+        var politicianInfo=tempPoliticianInfo[0];
+        
         console.log(politicianInfo);
 
         try{
