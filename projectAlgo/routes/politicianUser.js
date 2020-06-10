@@ -36,9 +36,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         var tempPoliticianInfo=await getPoliticianInfoByNo(politician_no,connection);
         var politicianInfo=tempPoliticianInfo[0];
 
-        console.log(politicianInfo);
-        console.log(__dirname);
-
         try{
             fs.statSync(path.resolve(__dirname, `../public/images/${politician_no}.jpg`));
             politicianInfo.img=`/img/${politician_no}.jpg`;
@@ -49,6 +46,8 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
                 politicianInfo.img=`/images/default.jpg`; //Default Image
             }
         }
+
+        console.log(politicianInfo.img);
 
         var politicianInterest=await getPoliticianInterestByNo(politician_no,connection); //정치인 관심사 정보
         //politicianInfo.itScience=politicianInterest[0].itScience;
@@ -121,7 +120,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     }
     finally{
         connection.end();
-        console.log(resultData.status);
         res.render('candidate_info.ejs',resultData);
     }
 });
