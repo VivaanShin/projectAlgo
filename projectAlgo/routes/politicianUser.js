@@ -36,6 +36,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         var politicianInfo=tempPoliticianInfo[0];
 
         console.log(politicianInfo);
+        console.log(__dirname);
 
         try{
             fs.statSync(`../public/images/${politician_no}.jpg`);
