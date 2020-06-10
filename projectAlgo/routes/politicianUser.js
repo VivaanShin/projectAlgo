@@ -34,17 +34,17 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     try{
         var tempPoliticianInfo=await getPoliticianInfoByNo(politician_no,connection);
         var politicianInfo=tempPoliticianInfo[0];
-        
+
         console.log(politicianInfo);
 
         try{
-            fs.statSync(`./public/images/${politician_no}.jpg`);
+            fs.statSync(`../public/images/${politician_no}.jpg`);
             politicianInfo.img=`/img/${politician_no}.jpg`;
             resultData.status=200;
         }
         catch(err){
             if (err.code === 'ENOENT') {
-                politicianInfo.img=`/images/default`; //Default Image
+                politicianInfo.img=`/images/default.jpg`; //Default Image
             }
         }
 
