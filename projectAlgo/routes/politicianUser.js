@@ -57,7 +57,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         console.log(__dirname);
 
        
-        var imgPath=pathUtil.normalize(`../public/images/${politician_no}.jpg`);
+        var imgPath=pathUtil.normalize(__dirname+`../public/images/${politician_no}.jpg`);
         var isImgExist=await getImagePath(imgPath);
 
         if(isImgExist){
