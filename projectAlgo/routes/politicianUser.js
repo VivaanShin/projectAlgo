@@ -86,7 +86,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         var tempGradeScore=await getPoliticianAllAverageGrade(politician_no); //정치인 전체 평균
         var gradeScore=0;
 
-        if(typeof tempGradeScore !='undefined'){
+        if(tempGradeScore.length > 0){
             gradeScore=tempGradeScore[0].grade_score;
             console.log(gradeScore);
         }
@@ -98,7 +98,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         for (let i=0;i<4;i++){//4주 까지 가져옴
             var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
             var weekGrade=0;
-            if(typeof tempWeekGrade !='undefined'){
+            if(tempWeekGrade.length > 0){
                 weekGrade=tempWeekGrade[0].grade_score;
                 console(weekGrade);
             }
