@@ -7,6 +7,23 @@ const getPoliticianNewsJSON=require('../scripts/getPoliticianNews').getPoliticia
 const moment=require('moment'); //시간 조작 모듈
 const router=express.Router();
 const isLoggedin=require('../scripts/confirmLogin').isLoggedIn;
+const getImagePath=function getImagePath(imgPath){ //파일 경로 확인
+    return new Promise((resolve,reject)=>{
+        fs.stat(imgPath,(err,status)=>{
+            if(err){
+                if(err.code=='ENOENT'){
+                    resolve(false);
+                }
+                else{
+                    reject(err);
+                }
+            }
+            else{
+                resolve(true);
+            }
+        }) 
+    });
+};
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
@@ -39,18 +56,17 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         console.log(politicianInfo);
         console.log(__dirname);
 
-        try{
-            var imgPath=pathUtil.normalize(`../public/images/${politician_no}.jpg`);
-            console.log(imgPath);
-            fs.statSync(imgPath);
+       
+        var imgPath=pathUtil.normalize(`../public/images/${politician_no}.jpg`);
+        var isImgExist=await getImagePath(imgPath);
+
+        if(isImgExist){
             politicianInfo.img=`/img/${politician_no}.jpg`;
-            resultData.status=200;
         }
-        catch(err){
-            if (err.code === 'ENOENT') {
-                politicianInfo.img=`/images/default.jpg`; //Default Image
-            }
+        else{
+            politicianInfo.img=`/img/default.jpg`;
         }
+        resultData.status=200;
 
         var politicianInterest=await getPoliticianInterestByNo(politician_no,connection); //정치인 관심사 정보
         //politicianInfo.itScience=politicianInterest[0].itScience;
