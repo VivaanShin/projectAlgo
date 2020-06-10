@@ -80,15 +80,25 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         console.log(articleList);
         resultData.articleList=articleList;//정치인 뉴스 정보
 
-        var gradeScore=await getPoliticianAllAverageGrade(politician_no)[0].grade_score; //정치인 전체 평균
-        console.log(gradeScore);
+        var tempGradeScore=await getPoliticianAllAverageGrade(politician_no); //정치인 전체 평균
+        var gradeScore=0;
+
+        if(typeof tempGradeScore !='undefined'){
+            gradeScore=tempGradeScore[0].grade_score;
+            console.log(gradeScore);
+        }
         resultData.gradeScore=gradeScore;
         var gradeList=[]; //정치인 주당 평균
 
         var weekDay=moment().day(0).format('YYYY-MM-DD'); //해당 주 월요일부터 4주까지 
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
-            weekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay)[0].avg;
+            var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
+            var weekGrade=0;
+            if(typeof tempWeekGrade !='undefined'){
+                weekGrade=tempWeekGrade[0].grade_score;
+                console(weekGrade);
+            }
             weekElements={weekGrade:weekGrade,weekDay:weekDay};
             gradeList.push(weekElements);
             weekDay=moment.day((i+1)*-7).format('YYYY-MM-DD');
