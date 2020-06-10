@@ -9,7 +9,6 @@ exports.getPoliticianNewsJSON=async function getPoliticianNewsJSON(politician_na
                 if (res.statusCode != 200) {
                     reject('상태코드 오류:' + res.statusCode); //200이 아닌 다른코드가 왔을 시는 오류
                 }
-                console.log(body);
                 resolve(body);
             })
         });
@@ -33,7 +32,7 @@ exports.getPoliticianNewsJSON=async function getPoliticianNewsJSON(politician_na
         result=JSON.parse(body).items; //items 반환(기사 리스트)
     }
     catch(err){
-        console.log('ERROR:'+err);
+        console.log(err.message);
     }
     finally{
             return result;
