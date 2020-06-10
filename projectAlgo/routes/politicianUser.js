@@ -65,7 +65,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         var politicianLegislationInfo=await getLegislationInfo(politician_no,connection);
         resultData.politicianLegislationInfo=politicianLegislationInfo; //정치인 기본 정보
         var rawNewsData=await getPoliticianNewsJSON(politicianInfo.politician_name);
-        console.log(rawNewsData);
         var articleList=[];
 
         for(let i=0;i<rawNewsData.length;i++){ 
@@ -78,16 +77,15 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             articleList.push(push_news_data);
         }
         resultData.articleList=articleList;//정치인 뉴스 정보
+        console.log(resultData.articleList);
 
         var tempGradeScore=await getPoliticianAllAverageGrade(politician_no); //정치인 전체 평균
         var gradeScore=0;
 
         if(tempGradeScore.length > 0){
             gradeScore=tempGradeScore[0].grade_score;
-            console.log(gradeScore);
         }
         resultData.gradeScore=gradeScore;
-        console.log(resultData.gradeScore);
         var gradeList=[]; //정치인 주당 평균
 
         var weekDay=moment().day(0).format('YYYY-MM-DD'); //해당 주 월요일부터 4주까지 
@@ -103,8 +101,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             gradeList.push(weekElements);
             weekDay=moment().day((i+1)*-7).format('YYYY-MM-DD');
         }
-
-        console.log(gradeList);
         resultData.gradeList=gradeList;
 
         if(isLoggedin(req)){ //로그인 정보
