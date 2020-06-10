@@ -80,8 +80,8 @@ class LegislationInformaion: #OPEN API에서 의안 정보를 가져오는 클�
                  #self.politician_name_list=curs.fetchall()[:50] #50명 먼저 법안 저장
                  #self.politician_name_list=curs.fetchall()[50:100] #50~100
                  #self.politician_name_list=curs.fetchall()[100:150] #100~150
-                 self.politician_name_list=curs.fetchall()[150:200] #150~200
-                 #self.politician_name_list=curs.fetchall()[200:] 200~
+                 #self.politician_name_list=curs.fetchall()[150:200] #150~200
+                 self.politician_name_list=curs.fetchall()[200:] #200~
          except Exception as e:
             print('db 에러:',e)
     def get_committee_info(self): #의안 정보 저장시 소관위 정보 저장 및 사용을 위해 리스트를 먼저 만드는 함수
