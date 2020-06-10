@@ -77,7 +77,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             var push_news_data={
                 articleTitle:rawNewsData[i].title,
                 articleLink:rawNewsData[i].originallink,
-                articleDay:String(moment(String(rawNewsData[i].pubDate)).format(YYYY.MM.DD))
+                articleDay:String(moment(String(rawNewsData[i].pubDate)).format('YYYY.MM.DD'))
             };
 
             articleList.push(push_news_data);
