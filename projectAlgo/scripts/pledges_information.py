@@ -41,7 +41,6 @@ class PromisesInformation:
         with open('sgId.txt') as sdId_file, open('sgTypecode.txt') as sd_code_file:
             self.sgId=sdId_file.read()
             self.sgType=sd_code_file.read()
-            self.sgType=4;
             
         self.url=self.OPEN_API_URL+self.SERVICE_KEY
         try:
