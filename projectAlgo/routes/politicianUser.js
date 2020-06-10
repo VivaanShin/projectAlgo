@@ -118,7 +118,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     }
     finally{
         connection.end();
-        console.log(resultData);
         res.render('candidate_info.ejs',resultData);
     }
 });
