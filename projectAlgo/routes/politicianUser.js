@@ -38,7 +38,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
 
         try{
             fs.statSync(pathUtil.resolve(__dirname, `../public/images/${politician_no}.jpg`));
-            politicianInfo.img=`/img/${politician_no}.jpg`;
+            politicianInfo.img=`/images/${politician_no}.jpg`;
         }
         catch(err){
             if (err.code === 'ENOENT') {
