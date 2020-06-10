@@ -40,7 +40,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             politicianInfo.img=`/img/${politician_no}`;
             resultData.status=200;
         }
-        catch{
+        catch(err){
             if (err.code === 'ENOENT') {
                 politicianInfo.img=`/images/default`; //Default Image
             }
