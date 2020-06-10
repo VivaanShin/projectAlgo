@@ -280,6 +280,3 @@ RadarChart.draw("#chart-container"+id, data);
 
 
 
-
-
-
