@@ -69,8 +69,8 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             var title=String(rawNewsData[i].title);
 
             title=title.replace(/<br\/>/ig,"\n");
-            title=title.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig,"");
-            
+            title=title.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig," ");
+
             var push_news_data={
                 articleTitle:title,
                 articleLink:rawNewsData[i].originallink,
