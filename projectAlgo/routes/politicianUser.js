@@ -214,8 +214,8 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     }
 
     var connection = mysql.createConnection(dbConfig);
-    var grade_score=req.body.grade_score;
-    var user_id=req.body.user_id;
+    var grade_score=Number(req.body.grade_score);
+    var user_id=req.user.user_id;
     var politician_no=req.params.politician_no;
     var dayInfo=moment().format('YYYY-MM-DD');
 
