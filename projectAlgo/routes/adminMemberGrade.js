@@ -35,7 +35,8 @@ router.get('/',async (req,res)=>{
         var gradeInfo=[];
 
         if(typeof gradePage=='undefined' || typeof detailPage =='undefined'){
-            page=1
+            gradePage=1;
+            detailPage=1;
         }
 
         gradePage=Number(gradePage);
