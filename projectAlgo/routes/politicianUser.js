@@ -75,7 +75,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             articleList.push(push_news_data);
         }
         resultData.articleList=articleList;//정치인 뉴스 정보
-        console.log(resultData.articleList);
 
         var tempGradeScore=await getPoliticianAllAverageGrade(politician_no); //정치인 전체 평균
         var gradeScore=0;
@@ -93,7 +92,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             var weekGrade=0;
             if(tempWeekGrade.length > 0){
                 weekGrade=tempWeekGrade[0].grade_score;
-                console(weekGrade);
             }
             weekElements={weekGrade:weekGrade,weekDay:weekDay};
             gradeList.push(weekElements);
