@@ -36,7 +36,7 @@ router.get('/',async (req,res)=>{
         var page=req.query.page;
         var startPage=(page-1)*pagingNum;
         var endPage;
-        var total=user_info.length;
+        var total=userInfo.length;
         resultData.total=total;
 
         if(typeof page == 'undefined'){
