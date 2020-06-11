@@ -22,8 +22,7 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
     var page=req.query.page;
 
     if(typeof page =='undefined'){
-        res.redirect('/admin/politician_grade?page=1');
-        return;
+        page=1
     }
 
     page=Number(page);

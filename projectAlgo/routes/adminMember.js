@@ -40,8 +40,7 @@ router.get('/',async (req,res)=>{
         resultData.total=total;
 
         if(typeof page == 'undefined'){
-            res.redirect('/admin/member?page=1');
-            return;
+            page=1;
         }
 
         page=Number(page);

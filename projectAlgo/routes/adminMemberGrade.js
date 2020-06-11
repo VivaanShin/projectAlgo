@@ -35,8 +35,7 @@ router.get('/',async (req,res)=>{
         var gradeInfo=[];
 
         if(typeof gradePage=='undefined' || typeof detailPage =='undefined'){
-            res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
-            return;
+            page=1
         }
 
         gradePage=Number(gradePage);

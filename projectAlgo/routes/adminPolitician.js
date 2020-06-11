@@ -17,8 +17,7 @@ router.get('/',(req,res)=>{
 
     var page=req.query.page;
     if(typeof page=='undefined'){
-        res.redirect('/admin/politician?page=1');
-        return;
+        page=1;
     }
 
     page=Number(page);

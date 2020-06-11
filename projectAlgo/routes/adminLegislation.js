@@ -24,8 +24,7 @@ router.get('/',async (req,res)=>{
     try{
 
         if(typeof page=='undefined'){
-            res.redirect('/admin/legislation?page=1');
-            return;
+            page=1
         }
 
         page=Number(page);
