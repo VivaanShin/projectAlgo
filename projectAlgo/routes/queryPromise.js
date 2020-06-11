@@ -93,7 +93,7 @@ exports.updateGradeInfoRecord=function updateGradeinfoRecord(connection,user_id,
     connection.query(`update tb_gradeinfo_record set grade_score=?
                  where user_id=?
                  and politician_no=? and 
-                 year(grade_st_date)=? and week(grade_st_date,1)=?`,[grade_score,user_id,politician_no,moment(weekDay).year(),moment(weekDay).week()],
+                 year(grade_st_date)=? and week(grade_st_date,0)=?`,[grade_score,user_id,politician_no,moment(weekDay).year(),moment(weekDay).week()],
                  (err,user_grade)=>{
             if(err) {
                 reject(err);

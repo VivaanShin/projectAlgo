@@ -86,7 +86,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         resultData.gradeScore=gradeScore;
         var gradeList=[]; //정치인 주당 평균
 
-        var weekDay=moment().day(0).format('YYYY-MM-DD'); //해당 주 월요일부터 4주까지 
+        var weekDay=moment().day().format('YYYY-MM-DD'); //해당 주 일요일부터 4주까지 
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
             var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
@@ -209,6 +209,7 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
 
     if(!isLoggedin(req)){ //로그인 여부 확인
         res.render('',{status:500,message:"로그인 해 주세요."});
+        res.redirect(`/politician/${req.params.politician_no}`);
         return;
     }
 
