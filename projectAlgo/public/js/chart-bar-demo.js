@@ -27,18 +27,21 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+
+
+function barChart(day1,day2,day3,day4,grade1,grade2,grade3,grade4){
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: [day1, day2, day3, day4],
     datasets: [{
       label: "평점",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [5, 7, 2, 8, 9, 10],
+      data: [5, 4, 3, grade4],
     }],
   },
   options: {
@@ -53,15 +56,16 @@ var myBarChart = new Chart(ctx, {
     },
     scales: {
       xAxes: [{
+
         time: {
-          unit: 'month'
+          unit:'week'
         },
         gridLines: {
           display: false,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 4
         },
         maxBarThickness: 25,
       }],
@@ -109,3 +113,5 @@ var myBarChart = new Chart(ctx, {
     },
   }
 });
+
+}

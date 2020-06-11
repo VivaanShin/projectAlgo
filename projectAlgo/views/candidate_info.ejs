@@ -378,7 +378,7 @@
              <tbody>
                <tr>
                   <td><%= politicianInfo.sggName %></td>
-                  <td><img src="<%= politicianInfo.img %>" alt="정치인 사진" style="text-align: center; width:300px; height:220px;"></td>
+                  <td><img src="<%= politicianInfo.img %>" alt="정치인 사진" style="text-align: center; width:150px; height:180px;"></td>
                   <td><%= politicianInfo.jdName %></td>
                   <td><%= politicianInfo.politician_name %></td>
                   <td><%= politicianInfo.birthday %></td>
@@ -400,13 +400,24 @@
     <div style="display: flex; margin-right: 3%;">
     <div style="margin-right: 40%; width:30%;">
     <h4 class="">누적 평점</h4>
-    <h1> <%= gradeScore.grade_score %></h1>
+    <h1> <%= gradeScore%></h1>
     </div>
 
 
-   <form>
+   <form method="post" action="/politician/<%= politicianInfo.politician_no %>/grade?_method=put">
     <div style="text-align: right; right: 3%; float:right;">
-    <h5 class="">오늘 날짜</h5> 
+    <h5 class="">
+      <script type="text/javascript">
+        let today = new Date();   
+
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let day = today.getDay();  // 요일
+
+        document.write(year + '년 ' + month + '월 ' + date+'일 ')
+      </script>
+    </h5> 
     <select class="custom-select" style="width:60%;">
       <option selected="">-평점-</option>
       <option value='1'>1점</option>
@@ -427,6 +438,7 @@
                   
     <div class="chart-bar">
     <canvas id="myBarChart"></canvas>
+
     </div>
    </div>
 
@@ -483,40 +495,37 @@
         </div> <!--end of 누적,공약-->
 
 
-  <div class="" style="display: flex;"> <!--세번째 파트-->
+  <div class="" style="display: flex; margin-bottom: 10%;"> <!--세번째 파트-->
 
-     <div class="col-lg-3" style="padding-top: 5%; text-align: center;">
-      <h4 class="">정치인 정치 성향</h4>
+     <div class="" style="width:23%; padding-left:3%;">
+     
   
       <textarea style="display:none;" id="<%= politicianInfo.politician_no %>" cols="60" rows="15">이름,사회,경제,과학,정치,문화
-      홍길동,1,2,3,4,5
+      <%= politicianInfo.politician_name %>,<%= politicianInfo.society %>,<%= politicianInfo.economy %>,<%= politicianInfo.culture %>,<%= politicianInfo.society %>,<%= politicianInfo.politics %>
       </textarea>
 
 
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
+      <div style="display: block;
+    text-align: center;
+    padding-top: 5%;
+    border: 4px groove currentColor; ">  
         
-        <div class="card-header" style="display: -webkit-box;" >
-        </div>
-        
-        <div class="card-body">
-          <div id="chart-container<%= politicianInfo.politician_no %>"></div>
-        </div>
-        
-        <script>  showRadar(); </script>
+        <h4 class="">정치인 정치 성향</h4>
 
+        <div id="chart-container<%= politicianInfo.politician_no %>"></div>
+        <script>  showRadar(<%= politicianInfo.politician_no %>); </script>
+
+      </div>
     </div>
-     </div>
 
 
-
-     <div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
-     </div>
+<div class="" style="margin-left:3%; margin-right:2%; border-left : 2px solid  grey; width:5%; height:100;"  >
+</div>
       
 
 
-     <div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
+     <div class="" style="width:55%;"><!--발의섹션-->
     
-    <div class="" style="width:95%; display: block;">
     
     <div style="margin-bottom:5%;">
     <h4 class="">정치인 발의 내용</h4>
@@ -549,11 +558,11 @@
     </div>
 
 
-   </div>
 
 
 
-     </div>
+
+     </div><!--발의-->
 
 
   </div>
@@ -599,5 +608,6 @@
 
   <!-- Page level custom scripts -->
   <script src="/js/chart-bar-demo.js"></script>
+  <script>barChart("<%= gradeList[0].weekDay %>" , "<%= gradeList[1].weekDay %>" ,"<%= gradeList[2].weekDay %>" ,"<%= gradeList[3].weekDay %>",<%= gradeList[0].weekGrade %>,<%= gradeList[1].weekGrade %>,<%= gradeList[2].weekGrade %>,<%= gradeList[3].weekGrade %>);</script>
 
 </html>
