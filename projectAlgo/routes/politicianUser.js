@@ -89,6 +89,8 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
             var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
+            print(tempWeekGrade);
+            
             var weekGrade=0;
             if(tempWeekGrade.length > 0){
                 weekGrade=tempWeekGrade[0].grade_score;
