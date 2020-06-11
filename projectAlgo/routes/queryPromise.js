@@ -58,7 +58,7 @@ exports.getPoliticianWeekAverageGrade=function getPoliticianWeekAverageGrade(pol
         var connection = mysql.createConnection(dbConfig);
         connection.connect();
         connection.query(`select avg(grade_score) as grade_score from tb_gradeinfo_record 
-        where year(grade_st_date)=? and week(grade_st_date,1)=?
+        where year(grade_st_date)=? and week(grade_st_date,0)=?
         group by politician_no having politician_no=?`,[moment(weekDay).year(),moment(weekDay).week(),politician_no],(err,avg_grade)=>{
             if(err) 
             {
