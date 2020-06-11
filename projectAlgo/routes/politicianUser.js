@@ -118,6 +118,13 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             console.log(isGivedGrade);
             resultData.isGivedGrade=isGivedGrade;
         }
+
+        var message=req.session.message;
+
+        if(typeof message != 'undefined'){
+            resultData.message=message;
+            delete req.session.message;
+        }
     }
     catch(err){
          resultData.status=500;

@@ -16,7 +16,18 @@ router.get('/', function(req, res, next) {
     res.render('home.ejs',user);
   }
   else{
-    res.render('home.ejs');
+
+    var message=req.session.message;
+
+    if(typeof message != 'undefined'){
+        resultData.message=message;
+        delete req.session.message;
+
+        res.render('home.ejs',message);
+    }
+    else{
+      res.render('home.ejs');
+    }
   }
 });
 

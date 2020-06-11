@@ -61,6 +61,13 @@ router.get('/',async (req,res)=>{
         }
          //세션 상태값+모든 검색된 정치인 정보 Row
 
+         var message=req.session.message;
+
+         if(typeof message != 'undefined'){
+             resultData.message=message;
+             delete req.session.message;
+         }
+         
          resultData.status=200;
     }
     catch(err){
