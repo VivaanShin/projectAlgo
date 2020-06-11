@@ -358,14 +358,14 @@
   
        <div class="row" style="display: contents;">
 
-        <div class="candidate_info1">
+        <div class="candidate_info1" style="width:110%;">
           <h2>정치인 상세 검색</h2><br>
            <table class="table table-hover">
             <thead>
               <tr>
                 <th style="width:5%; text-align:center;">선거구</th>
                 <th style="width:5%; text-align:center;">사진</th>
-                <th style="width:8%; text-align:center;">소속</th>
+                <th style="width:5%; text-align:center;">소속</th>
                 <th style="width:5%; text-align:center;">성명</th>
                 <th style="width:5%; text-align:center;">생년월일</th>
                 <th style="width:5%; text-align:center;">주소</th>
@@ -377,15 +377,15 @@
 
              <tbody>
                <tr>
-                  <td><%= politicianInfo.sggName %></td>
-                  <td><img src="<%= politicianInfo.img %>" alt="정치인 사진" style="text-align: center; width:150px; height:180px;"></td>
-                  <td><%= politicianInfo.jdName %></td>
-                  <td><%= politicianInfo.politician_name %></td>
-                  <td><%= politicianInfo.birthday %></td>
-                  <td><%= politicianInfo.addr %></td>
-                  <td><%= politicianInfo.job %></td>
-                  <td><%= politicianInfo.edu %></td>
-                  <td><%= politicianInfo.career2 %></td>
+                  <td style="text-align:center; padding-top: 6%;"><%= politicianInfo.sggName %></td>
+                  <td style="text-align:center;"><img src="<%= politicianInfo.img %>" alt="정치인 사진" style="text-align: center; width:150px; height:180px;"></td>
+                  <td style="text-align:center; padding-top: 6%;"><%= politicianInfo.jdName %></td>
+                  <td style="text-align:center; padding-top: 6%;" ><%= politicianInfo.politician_name %></td>
+                  <td style="text-align:center; padding-top: 6%;"><%= politicianInfo.birthday %></td>
+                  <td style="text-align:center; padding-top: 5%;"><%= politicianInfo.addr %></td>
+                  <td style="text-align:center; padding-top: 6%;"><%= politicianInfo.job %></td>
+                  <td style="text-align:center; padding-top: 5%;"><%= politicianInfo.edu %></td>
+                  <td style="text-align:center; padding-top: 5%;"><%= politicianInfo.career2 %></td>
                </tr>
              </tbody>
            </table>
@@ -395,8 +395,12 @@
 
 
 <div class="" style="display: flex; margin-bottom: 8%;">
-   <div class="" style="width:45%; margin-right:8%;">
+
+
+   <div class="" style="width:45%; margin-right:8%; padding-top: 3%;">
     
+
+   <div>
     <div style="display: flex; margin-right: 3%;">
     <div style="margin-right: 40%; width:30%;">
     <h4 class="">누적 평점</h4>
@@ -404,7 +408,7 @@
     </div>
 
 
-   <form method="post" action="/politician/<%= politicianInfo.politician_no %>/grade?_method=put">
+   
     <div style="text-align: right; right: 3%; float:right;">
     <h5 class="">
       <script type="text/javascript">
@@ -418,7 +422,8 @@
         document.write(year + '년 ' + month + '월 ' + date+'일 ')
       </script>
     </h5> 
-    <select class="custom-select" style="width:60%;">
+    <form method="post" action="/politician/<%= politicianInfo.politician_no %>/grade?_method=put">
+    <select class="custom-select" name="grade" style="width:60%;">
       <option selected="">-평점-</option>
       <option value='1'>1점</option>
       <option value='2'>2점</option>
@@ -431,73 +436,36 @@
       <option value='9'>9점</option>
       <option value='10'>10점</option>
     </select>
-    <button class="btn btn-primary" style="margin-top: 3%;">평점주기</button>
+    <button class="btn btn-primary" style="margin-top: 3%;"
+    >평점주기</button>
+
+<script type="text/javascript">
+  function checkG(login){
+
+  if(login=='undefined')
+  alert("로그인이 필요한 서비스입니다.");
+}
+</script>
+    
+
+   </form>
+
     </div>
-     </form>
+  
     </div>
                   
     <div class="chart-bar">
     <canvas id="myBarChart"></canvas>
 
     </div>
-   </div>
-
-
-
-    <div class="" style="width:45%; display: block;">
-    <div style="margin-bottom:5%;">
-    <h4 class="">공약 상세 리스트</h4>
-    </div>
-
-    <div style="display: flex;">
-
-    <div style="padding-top: 15%; margin-right:5%;">
-    <h6>공약 이행도</h6>
-    <h1> 60%</h1>
-    </div>
-
-    <div style="width: 70%; height: 70%;">
-    <table class="table table-hover">
-            <thead>
-              <tr>
-                <th style="width:5%; text-align:center;">번호</th>
-                <th style="width:5%; text-align:center;">공약내용</th>
-              </tr>
-             </thead>
-
-             <tbody>
-               <tr>
-                  <td>1</td>
-                  <td>일자리 창출</td>
-               </tr>
-
-               <tr>
-                  <td>1</td>
-                  <td>일자리 창출</td>
-               </tr>
-               
-               <tr>
-                  <td>1</td>
-                  <td>일자리 창출</td>
-               </tr>
-
-               <tr>
-                  <td>1</td>
-                  <td>일자리 창출</td>
-               </tr>
-
-             </tbody>
-           </table>
-    </div>
   </div>
 
-   </div>
-        </div> <!--end of 누적,공약-->
 
-
-  <div class="" style="display: flex; margin-bottom: 10%;"> <!--세번째 파트-->
-
-     <div class="" style="width:23%; padding-left:3%;">
+     <div class="" style="width: 70%;
+    padding-left: 3%;
+    height: 45%;
+    margin-top: 10%;
+    margin-left: 10%;">
      
   
       <textarea style="display:none;" id="<%= politicianInfo.politician_no %>" cols="60" rows="15">이름,사회,경제,과학,정치,문화
@@ -508,19 +476,120 @@
       <div style="display: block;
     text-align: center;
     padding-top: 5%;
-    border: 4px groove currentColor; ">  
+    border: 4px groove currentColor; width: 110%;
+    height: 105%;">  
         
-        <h4 class="">정치인 정치 성향</h4>
+        <h1 class="">정치인 정치 성향</h1>
 
-        <div id="chart-container<%= politicianInfo.politician_no %>"></div>
+        <div id="chart-container<%= politicianInfo.politician_no %>" style="padding-top: 5%;"></div>
         <script>  showRadar(<%= politicianInfo.politician_no %>); </script>
 
       </div>
     </div>
 
 
-<div class="" style="margin-left:3%; margin-right:2%; border-left : 2px solid  grey; width:5%; height:100;"  >
-</div>
+
+
+   </div>
+
+
+
+
+
+
+    <div class="" style="width:45%; display: block;">
+    <div style="margin-bottom:5%;">
+    <h4 class="">최근 뉴스 기사</h4>
+    </div>
+
+
+    <div style="width: 70%; height: 70%;">
+    <table class="table table-hover" style="width: max-content;">
+            <thead>
+              <tr>
+                <th style="width:5%; text-align:center;">번호</th>
+                <th style="width:14%; text-align:center;">제목</th>
+                <th style="width:5%; text-align:center;">날짜</th>
+              </tr>
+             </thead>
+
+             <tbody>
+               <tr>
+                  <td style="text-align:center;">1</td>
+                  <td style="text-align:center;"><a href="<%= articleList[0].articleLink%>" target="_blank"><%= articleList[0].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[0].articleDay%></td>
+               </tr>
+
+               <tr>
+                  <td style="text-align:center;">2</td>
+                  <td style="text-align:center;"><a href="<%= articleList[1].articleLink%>" target="_blank"><%= articleList[1].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[1].articleDay%></td>
+               </tr>
+               
+               <tr>
+                  <td style="text-align:center;">3</td>
+                  <td style="text-align:center;"><a href="<%= articleList[2].articleLink%>" target="_blank"><%= articleList[2].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[2].articleDay%></td>
+               </tr>
+
+                <tr>
+                  <td style="text-align:center;">4</td>
+                  <td style="text-align:center;"><a href="<%= articleList[3].articleLink%>" target="_blank"><%= articleList[3].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[3].articleDay%></td>
+               </tr>
+
+                               <tr>
+                  <td style="text-align:center;">5</td>
+                  <td style="text-align:center;"><a href="<%= articleList[4].articleLink%>" target="_blank"><%= articleList[4].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[4].articleDay%></td>
+               </tr>
+
+                               <tr>
+                  <td style="text-align:center;">6</td>
+                  <td style="text-align:center;"><a href="<%= articleList[5].articleLink%>" target="_blank"><%= articleList[5].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[5].articleDay%></td>
+               </tr>
+
+                               <tr>
+                  <td style="text-align:center;">7</td>
+                  <td style="text-align:center;"><a href="<%= articleList[6].articleLink%>" target="_blank"><%= articleList[6].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[6].articleDay%></td>
+               </tr>
+
+                               <tr>
+                  <td style="text-align:center;">8</td>
+                  <td style="text-align:center;"><a href="<%= articleList[7].articleLink%>" target="_blank"><%= articleList[7].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[7].articleDay%></td>
+               </tr>
+
+                               <tr>
+                  <td style="text-align:center;">9</td>
+                  <td style="text-align:center;"><a href="<%= articleList[8].articleLink%>" target="_blank"><%= articleList[8].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[8].articleDay%></td>
+               </tr>
+
+                               <tr>
+                  <td style="text-align:center;">10</td>
+                  <td style="text-align:center;"><a href="<%= articleList[9].articleLink%>" target="_blank"><%= articleList[9].articleTitle%></a></td>
+                  <td style="text-align:center;"><%= articleList[9].articleDay%></td>
+               </tr>
+
+             </tbody>
+           </table>
+    </div>
+
+
+
+   </div>
+        </div> <!--end of 누적,공약-->
+
+
+  <div class="" style="display: flex; margin-bottom: 10%;"> <!--세번째 파트-->
+
+
+
+
+
       
 
 
@@ -538,7 +607,6 @@
             <thead>
               <tr>
                 <th style="width:5%; text-align:center;">의안명</th>
-                <th style="width:5%; text-align:center;">제안자</th>
                 <th style="width:5%; text-align:center;">소관위원회</th>
                 <th style="width:5%; text-align:center;">추진일자</th>
                 <th style="width:5%; text-align:center;">의결결과</th>
@@ -547,11 +615,10 @@
 
              <tbody>
                <tr>
-                  <td>유아법</td>
-                  <td>서영교등 11인</td>
-                  <td>교육</td>
-                  <td>위원회 회부</td>
-                  <td></td>
+                  <td><%= politicianLegislationInfo[0].issue_name%></td>
+                  <td><%= politicianLegislationInfo[0].curr_committee%></td>
+                  <td><%= politicianLegislationInfo[0].proposeDt%></td>
+                  <td><%= politicianLegislationInfo[0].generalResult%></td>
                </tr>
              </tbody>
            </table>
