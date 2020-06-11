@@ -221,7 +221,7 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     try{
         var grade_info=await getUserPoliticianGradeByWeek(connection,user_id,politician_no,dayInfo);
 
-        if(grade_info.length){ //이미 이번주에 평점을 주었다면 업데이트
+        if(grade_info.length > 0){ //이미 이번주에 평점을 주었다면 업데이트
             await updateGradeInfoRecord(connection,user_id,politician_no,dayInfo,grade_score);
             await updateUserPoliticianGrade(connection,user_id,politician_no,grade_score);
         }
@@ -233,9 +233,9 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
                 await updateUserPoliticianGrade(connection,user_id,politician_no,grade_score);
             }
             else{ // 아니라면
-                await insertGradeInfoRecord(connection,user_id,politician_no,grade_score);
+                await insertUserPoliticianGrade(connection,user_id,politician_no,grade_score);
             }
-            await insertUserPoliticianGrade(connection,user_id,politician_no,grade_score);
+            await insertGradeInfoRecord(connection,user_id,politician_no,grade_score);
         }
         
     }
