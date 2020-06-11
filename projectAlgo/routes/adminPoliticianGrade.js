@@ -11,6 +11,7 @@ const pagingNum=10; //한 페이지 갯수 10개
 const getGradeInfoRecord=require('./queryPromise').getGradeInfoRecord;
 const updateAdminGradeInfoRecord=require('./queryPromise').updateAdminGradeInfoRecord;
 const deleteGradeInfoRecord=require('./queryPromise').deleteGradeInfoRecord;
+const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
     /*if(!isAdmin(req)){
         res.render({status:401, message="접근불가"});

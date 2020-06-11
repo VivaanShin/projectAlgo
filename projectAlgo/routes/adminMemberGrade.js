@@ -2,6 +2,7 @@ const express=require('express');
 const mysql=require('mysql');
 const moment=require('moment');
 const router=express.Router();
+const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 const getAllUserInfo=require('./queryPromise').getAllUserInfo;
 const getUserGradeCountAndAvg=require('./queryPromise').getUserGradeCountAndAvg;
 const getUserGrade=require('./queryPromise').getUserGrade;

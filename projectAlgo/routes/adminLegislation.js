@@ -7,7 +7,7 @@ const dbConfig={
     password : 'algoalgo',
     database : 'project_algo'
 };
-
+const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 const getAllLegislation=require('./queryPromise').getAllLegislation;
 const insertPoliticianLegislation=require('./queryPromise').insertPoliticianLegislation;
 const deletePoliticianLegislation=require('./queryPromise').deletePoliticianLegislation;
