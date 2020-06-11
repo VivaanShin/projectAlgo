@@ -23,8 +23,8 @@ router.get('/',async (req,res)=>{
         if(typeof h_area1 !='undefined' && typeof h_area2 !='undefined'){
             var searchResult=[];
             console.log(h_area2);
-            h_area1=h_area1.replace('+','');
-            h_area2=h_area2.replace('+','');
+            h_area1=h_area1.replace(' ','');
+            h_area2=h_area2.replace(' ','');
             var politicians=await searchPoliticianBySdNameAndSggName(h_area1,h_area2,connection);
 
             for(let i=0;i<politicians.length;i++){
