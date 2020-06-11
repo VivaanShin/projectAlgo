@@ -23,7 +23,7 @@ exports.getPoliticianNewsJSON=async function getPoliticianNewsJSON(politician_na
         method : 'get',
         url : 'https://openapi.naver.com/v1/search/news.json',
         qs : {
-                query : politician_name, //검색할 정치인 이름
+                query : politician_name+" 의원", //검색할 정치인 이름
                 sort : "date" //날짜 순으로 정렬
         }
     };
