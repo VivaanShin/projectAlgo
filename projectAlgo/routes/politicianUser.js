@@ -66,8 +66,13 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         var articleList=[];
 
         for(let i=0;i<rawNewsData.length;i++){ 
+            var title=String(rawNewsData[i].title);
+
+            title=title.replace(/<br\/>/ig,"\n");
+            title=title.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig,"");
+            
             var push_news_data={
-                articleTitle:String(rawNewsData[i].title).replace(/(<([^>]+)>)/ig,""),
+                articleTitle:title,
                 articleLink:rawNewsData[i].originallink,
                 articleDay:String(moment(String(rawNewsData[i].pubDate)).format('YYYY.MM.DD'))
             };
