@@ -216,7 +216,7 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     var grade_score=Number(req.body.grade);
     var user_id=req.user.user_id;
     var politician_no=req.params.politician_no;
-    var dayInfo=moment().format('YYYY-MM-DD');
+    var dayInfo=moment().isoWeekday(0).format('YYYY-MM-DD');
 
     try{
         var grade_info=await getUserPoliticianGradeByWeek(connection,user_id,politician_no,dayInfo);
