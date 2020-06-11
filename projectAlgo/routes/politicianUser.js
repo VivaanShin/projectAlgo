@@ -229,7 +229,7 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
 
             var userGrade=await getPoliticianGradeByUser(user_id,connection);
             
-            if(userGrade.length){//해당 정치인에게 평점을 준 적이 있다면
+            if(userGrade.length > 0){//해당 정치인에게 평점을 준 적이 있다면
                 await updateUserPoliticianGrade(connection,user_id,politician_no,grade_score);
             }
             else{ // 아니라면
