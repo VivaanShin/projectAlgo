@@ -35,13 +35,13 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: [day1, day2, day3, day4],
+    labels: [day1+"~", day2+"~", day3+"~", day4+"~"],
     datasets: [{
       label: "평점",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [5, 4, 3, grade4],
+      data: [4, 8, 7, grade4],
     }],
   },
   options: {

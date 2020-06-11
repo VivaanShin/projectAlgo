@@ -203,13 +203,13 @@ function cat1_change(key,sel){
  if(key=='울산'){index=7;}
  if(key=='강원'){index=8;}
  if(key=='경기'){index=9;}
- if(key=='경남'){index=10;}
- if(key=='경북'){index=11;}
- if(key=='전남'){index=12;}
- if(key=='전북'){index=13;}
+ if(key=='경상남도'){index=10;}
+ if(key=='경상북도'){index=11;}
+ if(key=='전라남도'){index=12;}
+ if(key=='전라북도'){index=13;}
  if(key=='제주'){index=14;}
- if(key=='충남'){index=15;}
- if(key=='충북'){index=16;}
+ if(key=='충청남도'){index=15;}
+ if(key=='충청북도'){index=16;}
 
 
 
@@ -276,6 +276,12 @@ RadarChart.defaultConfig.h = h;
 RadarChart.draw("#chart-container"+id, data);
 
 }
+
+
+
+
+
+
 
 
 
