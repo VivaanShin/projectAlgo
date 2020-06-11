@@ -89,7 +89,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
             var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
-
             console.log(tempWeekGrade);
             var weekGrade=0;
             if(tempWeekGrade.length > 0){
@@ -100,7 +99,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             weekDay=moment().day((i+1)*-7).format('YYYY-MM-DD');
         }
         resultData.gradeList=gradeList.reverse();
-        console.log(resultData.gradeList);
 
         if(isLoggedin(req)){ //로그인 정보
             resultData.user=req.user;
@@ -218,11 +216,6 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     var user_id=req.user.user_id;
     var politician_no=req.params.politician_no;
     var dayInfo=moment().format('YYYY-MM-DD');
-
-    console.log(grade_score);
-    console.log(user_id);
-    console.log(politician_no);
-    console.log(dayInfo);
 
     try{
         var grade_info=await getUserPoliticianGradeByWeek(connection,user_id,politician_no,dayInfo);
