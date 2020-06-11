@@ -45,8 +45,7 @@ router.get('/',async (req,res)=>{
         var startGradePage=(gradePage-1)*pagingNum;
 
         if(gradePage <=0 || gradePage>gradeTotal/pagingNum){//잘 못된 페이지처리
-            res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
-            return;
+            gradePage=1;
         }
         else if(gradePage==gradeTotal/pagingNum){ //마지막 페이지 처리
             var endGradePage=gradeTotal;
@@ -75,8 +74,7 @@ router.get('/',async (req,res)=>{
         var startDetailPage=(detailPage-1)*pagingNum;
 
         if(detailPage <=0 || detailPage>detailTotal/pagingNum){
-            res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
-            return;
+            detailPage=1;
         }
         else if(detailPage==detailTotal/pagingNum){
             resultData.gradeDetailInfo=gradeDetailInfo.slice(startDetailPage);

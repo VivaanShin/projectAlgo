@@ -46,8 +46,7 @@ router.get('/',async (req,res)=>{
         page=Number(page);
 
         if(page <=0 || page> total/pagingNum){ //잘 못된 페이지 처리
-            res.redirect('/admin/member?page=1');
-            return;
+            page=1
         }
 
         else if(page==total/pagingNum){ //마지막페이지 처리

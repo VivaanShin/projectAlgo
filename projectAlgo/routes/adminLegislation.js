@@ -35,8 +35,7 @@ router.get('/',async (req,res)=>{
         resultData.total=total;
 
         if(page <=0 || page> total/pagingNum){// 잘 못된 페이지 처리
-            res.redirect('/admin/legislation?page=1');
-            return;
+            page=1;
         }
         else if(page==total/pagingNum){ //마지막 페이지처리
             resultData.legislation=allLegislation.slice(startPage);

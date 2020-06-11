@@ -33,7 +33,7 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
         var startPage=(page-1)*10;
         
         if(page <=0 || page >total/pagingNum){//잘 못된 페이지 처리
-            res.redirect('/admin/politician_grade?page=1');
+            page=1
             return;
         }
         else if(page==total/pagingNum) { //마지막 페이지 처리
