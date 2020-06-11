@@ -50,7 +50,7 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
     }
     finally{
         connection.end();
-        res.render('',resultData); //view 설정
+        res.render('admin_page/grade_candidate.ejs',resultData); //view 설정
     }
 });
 

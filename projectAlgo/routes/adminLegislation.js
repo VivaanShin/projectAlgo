@@ -53,7 +53,7 @@ router.get('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.render()//view 설정
+        res.render('',resultData)//view 설정
     }
 });
 router.put('/',async (req,res)=>{ //입법정보 저장
