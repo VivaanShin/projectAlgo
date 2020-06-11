@@ -35,7 +35,7 @@ router.get('/',async (req,res)=>{
         var gradeInfo=[];
 
         if(typeof gradePage=='undefined' || typeof detailPage =='undefined'){
-            res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+            res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
             return;
         }
 
@@ -45,7 +45,7 @@ router.get('/',async (req,res)=>{
         var startGradePage=(gradePage-1)*pagingNum;
 
         if(gradePage <=0 || gradePage>gradeTotal/pagingNum){//잘 못된 페이지처리
-            res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+            res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
             return;
         }
         else if(gradePage==gradeTotal/pagingNum){ //마지막 페이지 처리
@@ -75,7 +75,7 @@ router.get('/',async (req,res)=>{
         var startDetailPage=(detailPage-1)*pagingNum;
 
         if(detailPage <=0 || detailPage>detailTotal/pagingNum){
-            res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+            res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
             return;
         }
         else if(detailPage==detailTotal/pagingNum){
@@ -116,7 +116,7 @@ router.put('/black',async (req,res)=>{ //사용자 블랙등록
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
     }
 });
 
@@ -135,7 +135,7 @@ router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
     }
 });
 
@@ -156,7 +156,7 @@ router.put('/',async (req,res)=>{ //tb_user_politician_grade update
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
     }
 
 });
@@ -177,7 +177,7 @@ router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
     }
     finally{
         connection.end();
-        res.redirect('/admin/membergrade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
     }
 
 });
