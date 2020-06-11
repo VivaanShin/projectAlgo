@@ -98,6 +98,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             weekDay=moment().day((i+1)*-7).format('YYYY-MM-DD');
         }
         resultData.gradeList=gradeList.reverse();
+        console.log(resultData.gradeList);
 
         if(isLoggedin(req)){ //로그인 정보
             resultData.user=req.user;
