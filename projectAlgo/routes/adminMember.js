@@ -32,7 +32,7 @@ router.get('/',async (req,res)=>{
     var memberList=[];
 
     try{
-        var user_info=await getAllUserInfo(connection); //모든 유저 정보 가져옴
+        var userInfo=await getAllUserInfo(connection); //모든 유저 정보 가져옴
         var page=req.query.page;
         var startPage=(page-1)*pagingNum;
         var endPage;
