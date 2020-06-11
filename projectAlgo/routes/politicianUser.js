@@ -206,7 +206,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
 router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
 
     if(!isLoggedin(req)){ //로그인 여부 확인
-        res.render('',{status:500,message:"로그인 해 주세요."});
         res.redirect(`/politician/${req.params.politician_no}`);
         return;
     }
