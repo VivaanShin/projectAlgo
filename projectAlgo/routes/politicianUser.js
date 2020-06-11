@@ -221,7 +221,7 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     try{
         var grade_info=await getUserPoliticianGradeByWeek(connection,user_id,politician_no,dayInfo);
 
-        console.log(grade_info.length);
+        console.log(moment(dayInfo).isoWeek());
 
         if(grade_info.length > 0){ //이미 이번주에 평점을 주었다면 업데이트
             await updateGradeInfoRecord(connection,user_id,politician_no,dayInfo,grade_score);
