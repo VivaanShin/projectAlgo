@@ -70,7 +70,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
 
             title=title.replace(/<br\/>/ig,"\n");
             title=title.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig," ");
-            title=title.replace(/&quot;/g," ");
+            title=title.replace(/[&quot;]/g," ");
 
             var push_news_data={
                 articleTitle:title,
