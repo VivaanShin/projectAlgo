@@ -137,7 +137,7 @@ exports.updateUserPoliticianGrade=function updateUserPoliticianGrade(connection,
 
 exports.insertGradeInfoRecord=function insertGradeInfoRecord(connection,user_id,politician_no,grade_score){
     return new Promise((resolve,reject)=>{
-        connection.query(`insert into tb_gradeinfo_record values(?,?,?,?,?)`,[moment().day(0).format('YYYY-MM-DD'),moment().day(6).format('YYYY-MM-DD'),user_id,politician_no,grade_score],
+        connection.query(`insert into tb_gradeinfo_record values(?,?,?,?,?)`,[moment().isoWeekday(0).format('YYYY-MM-DD'),moment().isoWeekday(6).format('YYYY-MM-DD'),user_id,politician_no,grade_score],
                      (err,user_grade)=>{
                 if(err) {
                     reject(err);
