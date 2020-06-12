@@ -119,12 +119,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             console.log(isGivedGrade);
         }
 
-        var message=req.session.message;
-
-        if(typeof message != 'undefined'){
-            resultData.message=message;
-            delete req.session.message;
-        }
+        req.session.nowUrl=`/politician/${politician_no}`;
     }
     catch(err){
          resultData.status=500;
@@ -237,7 +232,6 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     var user_id=req.user.user_id;
     var politician_no=req.params.politician_no;
     var dayInfo=moment().isoWeekday(0).format('YYYY-MM-DD');
-    var isGivedGrade=0;
     var sendAlert="";
     console.log(grade_score);
 
@@ -245,7 +239,6 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
         var grade_info=await getUserPoliticianGradeByWeek(connection,user_id,politician_no,dayInfo);
 
         if(grade_info.length > 0){ //이미 이번주에 평점을 주었다면 업데이트
-            isGivedGrade=1;
             await updateGradeInfoRecord(connection,user_id,politician_no,dayInfo,grade_score);
             sendAlert=`<script type="text/javascript">alert("이번주 평점을 업데이트 했습니다.");window.location ="/politician/${politician_no}";</script>`;
             //await updateUserPoliticianGrade(connection,user_id,politician_no,grade_score);
@@ -271,7 +264,6 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     finally{
         connection.end();
         //res.redirect(`/${req.params.politician_no}/grade`);
-        req.session.isGivedGrade=isGivedGrade;
         res.send(sendAlert);
         //res.redirect(`/politician/${req.params.politician_no}`);
     }
