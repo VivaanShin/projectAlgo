@@ -29,7 +29,7 @@ router.get('/',async (req,res)=>{
     var connection=mysql.createConnection(dbConfig);
     var resultData={};
     var gradePage=req.query.grade_page; //유저 평점 관리 페이지
-    var detailPage=req.query.detail_page; //유저 평점 상세정보 페이지
+    //var detailPage=req.query.detail_page; //유저 평점 상세정보 페이지
     try{
         var userInfo=await getAllUserInfo(connection);
         var gradeTotal=userInfo.length;
@@ -38,7 +38,13 @@ router.get('/',async (req,res)=>{
 
         if(typeof gradePage=='undefined' || typeof detailPage =='undefined'){
             gradePage=1;
-            detailPage=1;
+            //detailPage=1;
+        }
+
+        var orderBy=req.body.orderBy;
+
+        if(typeof orderBy != 'undefined'){
+            orderBy=0;
         }
 
         gradePage=Number(gradePage);
@@ -60,7 +66,7 @@ router.get('/',async (req,res)=>{
             oneUser.user_id=userInfo[i].user_id;
             oneUser.user_email=userInfo[i].user_email;
             oneUser.user_black=userInfo[i].user_black;
-            var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection);
+            var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection,orderBy);
 
             oneUser.count=usersGradeCountAndAvg.count;
             oneUser.avg=usersGradeCountAndAvg.avg;
@@ -69,7 +75,7 @@ router.get('/',async (req,res)=>{
         }
 
         resultData.gradeInfo=gradeInfo;
-        var gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
+        /*var gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
         var detailTotal=gradeDetailInfo.length;
         resultData.detailTotal=detailTotal;
 
@@ -84,7 +90,7 @@ router.get('/',async (req,res)=>{
         else{
             var endDetailPage=detailPage*pagingNum;
             resultData.gradeDetailInfo=gradeDetailInfo.slice(startDetailPage,endDetailPage);
-        }
+        }*/
         resultData.status=200;
     }
     catch(err){

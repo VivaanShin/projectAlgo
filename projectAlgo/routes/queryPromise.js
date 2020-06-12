@@ -241,9 +241,13 @@ exports.deleteUserInterest=function deleteUserInterest(user_id,connection){ //co
     })
 };
 
-exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connection){ //connection 하나를 전달 받아서 사용,동기형으로 사용자의 평점 부여 횟수와 평점 평균을 가져옴
+exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connection,orderBy){ //connection 하나를 전달 받아서 사용,동기형으로 사용자의 평점 부여 횟수와 평점 평균을 가져옴
     return new Promise((resolve,reject)=>{
-        connection.query(`select COUNT(*) as count,AVG(grade_score) as avg from tb_gradeinfo_record where user_id=?`,[user_id],
+        var orderByString="desc";
+        if(orderBy){
+            orderByString="asc"
+        }
+        connection.query(`select COUNT(*) as count,AVG(grade_score) as avg from tb_gradeinfo_record where user_id=? order by avg ${orderByString}`,[user_id],
         (err,countAndAvg)=>{
             if(err)
                 reject(err);
