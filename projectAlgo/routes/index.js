@@ -20,10 +20,12 @@ router.get('/', function(req, res, next) {
     var message=req.session.message;
 
     if(typeof message != 'undefined'){
-        resultData.message=message;
-        delete req.session.message;
 
-        res.render('home.ejs',message);
+      console.log(message);
+      resultData.message=message;
+      delete req.session.message;
+
+      res.render('home.ejs',message);
     }
     else{
       res.render('home.ejs');

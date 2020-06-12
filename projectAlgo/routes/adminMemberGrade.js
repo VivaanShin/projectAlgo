@@ -21,9 +21,9 @@ const dbConfig={
 };
 
 router.get('/',async (req,res)=>{
-    /*if(!isAdmin(req)){
-        res.render({status:401, message="접근불가"});
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
     var connection=mysql.createConnection(dbConfig);
     var resultData={};
     var gradePage=req.query.grade_page; //유저 평점 관리 페이지
@@ -96,8 +96,9 @@ router.get('/',async (req,res)=>{
 });
 
 router.put('/black',async (req,res)=>{ //사용자 블랙등록
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){ //Admin이 아니면 접근 불가
+        return res.redirect('/');
+    }
     var connection=mysql.createConnection(dbConfig);
     var blackUser={};
     blackUser.user_id=req.body.user_id;
@@ -119,8 +120,9 @@ router.put('/black',async (req,res)=>{ //사용자 블랙등록
 });
 
 router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    } //Admin이 아니면 접근 불가
     var connection=mysql.createConnection(dbConfig);
     var blackUserId=req.body.user_id;
 
@@ -138,8 +140,9 @@ router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
 });
 
 router.put('/',async (req,res)=>{ //tb_user_politician_grade update
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){ //Admin이 아니면 접근 불가
+        return res.redirect('/');
+    }
     var connection=mysql.createConnection(dbConfig);
     var updateUserGrade={};
     updateUserGrade.user_id=req,body.user_id;
@@ -160,8 +163,9 @@ router.put('/',async (req,res)=>{ //tb_user_politician_grade update
 });
 
 router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    } //Admin이 아니면 접근 불가
     var connection=mysql.createConnection(dbConfig);
     var deleteUserGrade={};
     deleteUserGrade.user_id=req,body.user_id;

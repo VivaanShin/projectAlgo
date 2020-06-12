@@ -10,10 +10,10 @@ const dbConfig={
     database : 'project_algo'
 };
 const pagingNum=10; //페이징 한 페이지에 10개 
-//Admin 로그인 테스트 필요
 router.get('/',(req,res)=>{
-  /*if(!isAdmin(req))
-    render({status:401,message:"접근불가"});*/
+  if(!isAdmin(req)){
+    return res.redirect('/');
+  }
 
     var page=req.query.page;
     if(typeof page=='undefined'){
@@ -55,8 +55,9 @@ router.get('/',(req,res)=>{
 });
 
 router.put('/',(req,res)=>{ //정치인 정보 등록
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-          return;*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    } //Admin이 아니면 접근 불가
 
     var politician_no=req.body.politician_no;
     var politician_name=req.body.politician_name;
@@ -95,8 +96,9 @@ router.put('/',(req,res)=>{ //정치인 정보 등록
 });
 
 router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    } //Admin이 아니면 접근 불가
 
     var politician_no=req.params.politician_no;
     var politician_name=req.body.politician_name;
@@ -138,8 +140,9 @@ router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
 });
 
 router.delete('/:politician_no',(req,res)=>{ //정치인 정보 삭제
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    } //Admin이 아니면 접근 불가
     
     var politician_no=req.params.politician_no;
     

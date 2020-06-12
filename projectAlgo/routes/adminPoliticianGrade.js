@@ -13,9 +13,9 @@ const updateAdminGradeInfoRecord=require('./queryPromise').updateAdminGradeInfoR
 const deleteGradeInfoRecord=require('./queryPromise').deleteGradeInfoRecord;
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
-    /*if(!isAdmin(req)){
-        res.render({status:401, message="접근불가"});
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
 
     var connection=mysql.createConnection(dbConfig);
     var resultData={};
@@ -55,8 +55,10 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
 });
 
 router.put('/',async (req,res)=>{ //정치인 평점 정보 수정
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    } //Admin이 아니면 접근 불가
+        
     
     var connection=mysql.createConnection(dbConfig);
     var updateGrade={};
@@ -80,8 +82,9 @@ router.put('/',async (req,res)=>{ //정치인 평점 정보 수정
 });
 
 router.delete('/',async (req,res)=>{ //정치인 평점 정보 삭제
-    /*if(!isAdmin(req)) //Admin이 아니면 접근 불가
-        return;*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    } //Admin이 아니면 접근 불가
     
     var connection=mysql.createConnection(dbConfig);
     var deleteGrade={};

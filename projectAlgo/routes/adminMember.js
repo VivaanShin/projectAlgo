@@ -23,9 +23,9 @@ const pagingNum=10; //페이지 하나당 10개
   
 //후에 Admin 로그인 확인
 router.get('/',async (req,res)=>{
-    /*if(!isAdmin(req)){
-        res.render({status:401,message:"접근불가"});
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
 
     var resultData={};
     var connection=mysql.createConnection(dbConfig);
@@ -97,9 +97,9 @@ router.get('/',async (req,res)=>{
 });
 
 router.put('/',async (req,res)=>{
-    /*if(!isAdmin(req)){
-        return;
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
     var connection=mysql.createConnection(dbConfig);
     var user={};
     user.user_id=req.body.id;
@@ -142,9 +142,9 @@ router.put('/',async (req,res)=>{
 });
 
 router.delete('/',async (req,res)=>{
-    /*if(!isAdmin(req)){
-        return;
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
     var connection=mysql.createConnection(dbConfig);
 
     var user_id=req.body.user_id;

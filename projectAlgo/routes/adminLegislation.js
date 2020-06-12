@@ -14,9 +14,9 @@ const deletePoliticianLegislation=require('./queryPromise').deletePoliticianLegi
 const deletePoliticianLegislationRel=require('./queryPromise').deletePoliticianLegislationRel;
 const pagingNum=10; //한 페이지에 10개
 router.get('/',async (req,res)=>{
-    /*if(!isAdmin(req)){
-        res.render({status:401,message:"접근불가"});
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
 
     var connection = mysql.createConnection(dbConfig);
     var resultData={};
@@ -55,9 +55,9 @@ router.get('/',async (req,res)=>{
     }
 });
 router.put('/',async (req,res)=>{ //입법정보 저장
-    /*if(!isAdmin(req)){
-        return;
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
     var connection = mysql.createConnection(dbConfig);
     var newLegislation={};
     newLegislation.issue_id=req.body.issue_id;
@@ -84,9 +84,9 @@ router.put('/',async (req,res)=>{ //입법정보 저장
     }
 });
 router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
-    /*if(!isAdmin(req)){
-        return;
-    }*/
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
 
     var connection = mysql.createConnection(dbConfig);
     var updateLegislation={};
@@ -114,6 +114,10 @@ router.put('/:issue_id',async (req,res)=>{ //입법정보 수정
 });
 
 router.delete('/',async (req,res)=>{ //입법정보 삭제
+    if(!isAdmin(req)){
+        return res.redirect('/');
+    }
+
     var connection = mysql.createConnection(dbConfig);
     var deleteLegislationId=req.body.issue_id;
 
