@@ -25,7 +25,7 @@ router.post('/', (req,res) => {
   if(isLoggedin(req)){ //로그인 정보
           resultData.user=req.user;
       }
-      /*
+
   var user_id = req.user.user_id;
 
    var itScience_sec = parseInt(req.body.itScience_sec);
@@ -73,11 +73,21 @@ router.post('/', (req,res) => {
    var defense_diplomacy = parseInt(req.body.defense_diplomacy);
    var politics_common = parseInt(req.body.politics_common);
 
-   var itScience = parseInt(itScience_sec * {(mobile + internet_sns + communication + it_common + security + computer + game + science_common)/8});
-   var economy = parseInt(economy_sec * {(finance + stock + industry + small_venture + property + global_economy + living_economy + economy_common)/8});
-   var culture = parseInt(culture_sec * {(health + exhibit_performance + art_architecture + traffic + travel + religion + food + culture_common)/8});
-   var society = parseInt(society_sec * {(event_accident + education + work + media + environment + humanrights_welfare + food_medical + society_common)/8});
-   var politics = parseInt(politics_sec * {(bluehouse + assembly_party + northkorea + administration + defense_diplomacy + politics_common)/6});
+   var itScience = (itScience_sec * {(mobile + internet_sns + communication + it_common + security + computer + game + science_common)/8;
+   var economy = (economy_sec * {(finance + stock + industry + small_venture + property + global_economy + living_economy + economy_common)/8});
+   var culture = (culture_sec * {(health + exhibit_performance + art_architecture + traffic + travel + religion + food + culture_common)/8});
+   var society = (society_sec * {(event_accident + education + work + media + environment + humanrights_welfare + food_medical + society_common)/8});
+   var politics = (politics_sec * {(bluehouse + assembly_party + northkorea + administration + defense_diplomacy + politics_common)/6});
+
+   console.log("itScience, economy, culture, society, politics", itScience, economy, culture, society, politics);
+
+   itScience = parseInt(itScience);
+   economy = parseInt(economy);
+   culture = parseInt(culture);
+   society = parseInt(society);
+   politics = parseInt(politics_sec);
+
+   console.log("parseInt - itScience, economy, culture, society, politics", itScience, economy, culture, society, politics);
 
    var connection = mysql.createConnection(dbConfig);
    connection.connect();
@@ -160,7 +170,7 @@ connection.end();
 
 
 
-*/
+
   res.render('home', resultData);
  });
 
