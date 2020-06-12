@@ -10,7 +10,7 @@ const mysql=require('mysql');
 exports.getLegislationInfo=function getLegislationInfo(politician_no,connection){ //connection 하나를 전달 받아서 사용,동기형으로 입법 정보를 가져옴 
     return new Promise((resolve,reject)=>{
         connection.query(`select * from tb_politician_legislation as pl, tb_politician_legislation_rel as rel, tb_committee_info as com 
-        where pl.issue_id=rel.issue_id and rel.politician_no=? and com.committeeCode=pl.curr_committee`,
+        where pl.issue_id=rel.issue_id and rel.politician_no=? and com.committeeCode=pl.curr_committee order by procDt desc`,
         [politician_no],(err,legislation)=>{
             if(err)
                 reject(err);
