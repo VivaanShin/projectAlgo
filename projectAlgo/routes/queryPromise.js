@@ -40,7 +40,7 @@ exports.getPoliticianAllAverageGrade=function getPoliticianAllAverageGrade(polit
     return new Promise((resolve,reject)=>{
         var connection = mysql.createConnection(dbConfig);
         connection.connect();
-        connection.query(`select avg(grade_score) as grade_score from tb_user_politician_grade
+        connection.query(`select avg(grade_score) as grade_score from tb_gradeinfo_record
         group by politician_no having politician_no=?`,[politician_no],(err,avg_grade)=>{
             if(err) 
             {
@@ -104,7 +104,7 @@ exports.updateGradeInfoRecord=function updateGradeinfoRecord(connection,user_id,
 }
 
 
-exports.updateUserPoliticianGrade=function updateUserPoliticianGrade(connection,user_id,politician_no,grade_score){ //tb_user_politician_grade 업데이트
+/*exports.updateUserPoliticianGrade=function updateUserPoliticianGrade(connection,user_id,politician_no,grade_score){ //tb_user_politician_grade 업데이트
     return new Promise((resolve,reject)=>{
         connection.query(`update tb_user_politician_grade set grade_score=?
                      where user_id=?
@@ -117,7 +117,7 @@ exports.updateUserPoliticianGrade=function updateUserPoliticianGrade(connection,
                 resolve(user_grade);
             })
         });    
-}
+}*/
 
 
 /*exports.insertGradeInfoRecord=function insertGradeInfoRecord(connection,user_id,politician_no,grade_score){
@@ -147,7 +147,7 @@ exports.insertGradeInfoRecord=function insertGradeInfoRecord(connection,user_id,
         });    
 }
 
-exports.insertUserPoliticianGrade=function insertUserPoliticianGrade(connection,user_id,politician_no,grade_score){
+/*exports.insertUserPoliticianGrade=function insertUserPoliticianGrade(connection,user_id,politician_no,grade_score){
     return new Promise((resolve,reject)=>{
         connection.query(`insert into tb_user_politician_grade values(?,?,?)`,[user_id,politician_no,grade_score],
                      (err,user_grade)=>{
@@ -158,7 +158,7 @@ exports.insertUserPoliticianGrade=function insertUserPoliticianGrade(connection,
                 resolve(user_grade); //평점 정보 결과
             })
         });    
-}
+}&/
 
 exports.getAllUserInfo=function getAllUserInfo(connection){ // connection 하나를 전달 받아서 사용,동기형으로 사용자 정보를 가져옴 
     return new Promise((resolve,reject)=>{
@@ -308,7 +308,7 @@ exports.deleteBlackUser=function deleteBlackUser(user_id,connection){ //connecti
     })
 };
 
-exports.getPoliticianGradeByUser=function getPoliticianGradeByUser(user_id,connection){ //connection 하나를 전달 받아서 사용,user_id로 조회
+/*exports.getPoliticianGradeByUser=function getPoliticianGradeByUser(user_id,connection){ //connection 하나를 전달 받아서 사용,user_id로 조회
     return new Promise((resolve,reject)=>{
         connection.query(`select * from tb_user_politician_grade where user_id=?`,[user_id],
         (err,grade)=>{
@@ -317,7 +317,7 @@ exports.getPoliticianGradeByUser=function getPoliticianGradeByUser(user_id,conne
             resolve(grade);
         });
     })
-};
+};*/
 
 exports.deleteUserPoliticianGrade=function deleteUserPoliticianGrade(user_id,politician_no,connection){ //tb_politician_grade 삭제
     return new Promise((resolve,reject)=>{
