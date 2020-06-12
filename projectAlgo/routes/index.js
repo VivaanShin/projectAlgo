@@ -7,16 +7,16 @@ var session = require('express-session');
 var flash = require('connect-flash');
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var nowUrl=req.session.nowUrl;
+  if(typeof nowUrl != 'undefined'){
+    delete req.session.nowUrl;
+  }
+  
   if(isLoggined(req)){
     var user={user:req.user};
     res.render('home.ejs',user);
   }
-  else{
-    var nowUrl=req.session.nowUrl;
-    if(typeof nowUrl != 'undefined'){
-      delete req.session.nowUrl;
-    }
-  
+  else{ 
     res.render('home.ejs');
   }
 });
