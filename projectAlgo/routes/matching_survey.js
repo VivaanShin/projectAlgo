@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 const isLoggedin=require('../scripts/confirmLogin').isLoggedIn;
 const mysql = require('mysql');
 const dbConfig={
@@ -24,52 +25,142 @@ router.post('/', (req,res) => {
   if(isLoggedin(req)){ //로그인 정보
           resultData.user=req.user;
       }
+  var user_id = req.user.user_id;
+
+   var itScience_sec = parseInt(req.body.itScience_sec);
+   var mobile = parseInt(req.body.mobile);
+   var internet_sns = parseInt(req.body.internet_sns);
+   var communication = parseInt(req.body.communication);
+   var it_common = parseInt(req.body.it_common);
+   var security = parseInt(req.body.security);
+   var computer = parseInt(req.body.computer);
+   var game = parseInt(req.body.game;);
+   var science_common = parseInt(req.body.science_common);
+   var economy_sec = parseInt(req.body.economy_sec);
+   var finance = parseInt(req.body.finance);
+   var stock = parseInt(req.body.stock);
+   var industry = parseInt(req.body.industry);
+   var small_venture = parseInt(req.body.small_venture);
+   var property = parseInt(req.body.property);
+   var global_economy = parseInt(req.body.global_economy);
+   var living_economy = parseInt(req.body.living_economy);
+   var economy_common = parseInt(req.body.economy_common);
+   var culture_sec = parseInt(req.body.culture_sec);
+   var health = parseInt(req.body.health);
+   var exhibit_performance = parseInt(req.body.exhibit_performance);
+   var art_architecture = parseInt(req.body.art_architecture);
+   var traffic = parseInt(req.body.traffic);
+   var travel = parseInt(req.body.travel);
+   var religion = parseInt(req.body.religion);
+   var food = parseInt(req.body.food);
+   var culture_common = parseInt(req.body.culture_common);
+
+   var society_sec = parseInt(req.body.society_sec);
+   var event_accident = parseInt(req.body.event_accident);
+   var education = parseInt(req.body.education);
+   var work = parseInt(req.body.work);
+   var media = parseInt(req.body.media);
+   var environment = parseInt(req.body.environment);
+   var humanrights_welfare = parseInt(req.body.humanrights_welfare);
+   var food_medical = parseInt(req.body.food_medical);
+   var society_common = parseInt(req.body.society_common);
+   var politics_sec = parseInt(req.body.politics_sec);
+   var bluehouse = parseInt(req.body.bluehouse);
+   var assembly_party = parseInt(req.body.assembly_party);
+   var northkorea = parseInt(req.body.northkorea);
+   var administration = parseInt(req.body.administration);
+   var defense_diplomacy = parseInt(req.body.defense_diplomacy);
+   var politics_common = parseInt(req.body.politics_common);
+
+   var itScience = parseInt(itScience_sec * {(mobile + internet_sns + communication + it_common + security + computer + game + science_common)/8});
+   var economy = parseInt(economy_sec * {(finance + stock + industry + small_venture + property + global_economy + living_economy + economy_common)/8});
+   var culture = parseInt(culture_sec * {(health + exhibit_performance + art_architecture + traffic + travel + religion + food + culture_common)/8});
+   var society = parseInt(society_sec * {(event_accident + education + work + media + environment + humanrights_welfare + food_medical + society_common)/8});
+   var politics = parseInt(politics_sec * {(bluehouse + assembly_party + northkorea + administration + defense_diplomacy + politics_common)/6});
+
+   var connection = mysql.createConnection(dbConfig);
+   connection.connect();
+
+   function user_interest_sql() {
+     return new Promise(function(resolve, reject) {
+       var params = [
+    itScience_sec, mobile, internet_sns, communication, it_common, security, computer, game, science_common,
+    economy_sec, finance, stock, industry, small_venture, property, global_economy, living_economy,
+    economy_common, culture_sec, health, exhibit_performance, art_architecture, traffic, travel,
+    religion, food, culture_common, society_sec, event_accident, education, work, media,
+    environment, humanrights_welfare, food_medical, society_common, politics_sec, bluehouse,
+    assembly_party, northkorea, administration, defense_diplomacy, politics_common
+  ];
+
+     var sql = 'insert into tb_user_interest_moreinfo(user_id, itScience_sec, mobile, internet_sns, communication, it_common, security, computer, game, science_common, economy_sec, finance, stock, industry, small_venture, property, global_economy, living_economy, economy_common, culture_sec, health, exhibit_performance, art_architecture, traffic, travel, religion, food, culture_common, society_sec, event_accident, education, work, media, environment, humanrights_welfare, food_medical, society_common, politics_sec, bluehouse, assembly_party, northkorea, administration, defense_diplomacy, politics_common) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+     console.log("params", params);
+     connection.query(sql, params, function(err, rows, fields) {
+       console.log("query in");
+       if (err) {
+         console.log("query err");
+         return done(null, false, {
+           message: 'DB error'
+         });
+       } else {
+         resolve(user_id);
+         return done(null, true, {
+           message: 'success',
+         });
+       }
+     });
+
+     })
+   }
+   user_interest_sql().then(function(user_id){
+     var params2 = [itScience, economy, culture, society, politics];
+     var sql2 = 'insert into tb_user_interest(user_id, itScience, economy, culture, society, politics) values(?,?,?,?,?,?)';
+     connection.query(sql2, params2, function(err, rows, fields) {
+       console.log("query2 in");
+       if (err) {
+         console.log("query2 err");
+         return done(null, false, {
+           message: 'DB error'
+         });
+       } else {
+         return done(null, true, {
+           message: 'success'
+         });
+       }
+     });
+   }).then(function(user_id){
+     var sql3 = `update tb_user_info set user_interest_check=1
+                  where user_id=?`;
+     connection.query(sql3, user_id, function(err, rows, fields) {
+       console.log("query3 in");
+       if (err) {
+         console.log("query3 err");
+         return done(null, false, {
+           message: 'DB error'
+         });
+       } else {
+         return done(null, true, {
+           message: 'success'
+         });
+       }
+     });
+   }).catch(function(err) {
+     console.log('error', err);
+   })
+
+
+
+
+
+
+
+
+
+connection.end();
+
+
+
+
   res.render('home', resultData);
-/*
-   var itScience_sec = $('input:radio[name="itScience_sec"]:checked).val();
-   var mobile = $('input:radio[name="mobile"]:checked).val();
-   var internet_sns = $('input:radio[name="internet_sns"]:checked).val();
-   var communication = $('input:radio[name="communication"]:checked).val();
-   var it_common = $('input:radio[name="it_common"]:checked).val();
-   var security = $('input:radio[name="security"]:checked).val();
-   var computer = $('input:radio[name="computer"]:checked).val();
-   var game = $('input:radio[name="game"]:checked).val();
-   var science_common = $('input:radio[name="science_common"]:checked).val();
-   var economy_sec = $('input:radio[name="economy_sec"]:checked).val();
-   var finance = $('input:radio[name="finance"]:checked).val();
-   var stock = $('input:radio[name="stock"]:checked).val();
-   var industry = $('input:radio[name="industry"]:checked).val();
-   var small_venture = $('input:radio[name="small_venture"]:checked).val();
-   var property = $('input:radio[name="property"]:checked).val();
-   var global_economy = $('input:radio[name="global_economy"]:checked).val();
-   var living_economy = $('input:radio[name="living_economy"]:checked).val();
-   var economy_common = $('input:radio[name="economy_common"]:checked).val();
-   var culture_sec = $('input:radio[name="culture_sec"]:checked).val();
-   var health = $('input:radio[name="health"]:checked).val();
-   var exhibit_performance = $('input:radio[name="exhibit_performance"]:checked).val();
-   var art_architecture = $('input:radio[name="art_architecture"]:checked).val();
-   var traffic = $('input:radio[name="traffic"]:checked).val();
-   var travel = $('input:radio[name="travel"]:checked).val();
-   var religion = $('input:radio[name="religion"]:checked).val();
-   var culture_common = $('input:radio[name="culture_common"]:checked).val();
-   var food = $('input:radio[name="food"]:checked).val();
-   var society_sec = $('input:radio[name="society_sec"]:checked).val();
-   var event_accident = $('input:radio[name="event_accident"]:checked).val();
-   var education = $('input:radio[name="education"]:checked).val();
-   var work = $('input:radio[name="work"]:checked).val();
-   var media = $('input:radio[name="media"]:checked).val();
-   var environment = $('input:radio[name="environment"]:checked).val();
-   var humanrights_welfare = $('input:radio[name="humanrights_welfare"]:checked).val();
-   var food_medical = $('input:radio[name="food_medical"]:checked).val();
-   var society_common = $('input:radio[name="society_common"]:checked).val();
-   var politics_sec = $('input:radio[name="politics_sec"]:checked).val();
-   var bluehouse = $('input:radio[name="bluehouse"]:checked).val();
-   var assembly_party = $('input:radio[name="assembly_party"]:checked).val();
-   var northkorea = $('input:radio[name="northkorea"]:checked).val();
-   var administration = $('input:radio[name="administration"]:checked).val();
-   var defense_diplomacy = $('input:radio[name="defense_diplomacy"]:checked).val();
-   var politics_common = $('input:radio[name="politics_common"]:checked).val();
-*/
  });
 
 
