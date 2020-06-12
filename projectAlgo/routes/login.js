@@ -14,6 +14,9 @@ router.post('/',function(req,res,next){
     if(!user){
       req.session.message = info.message; //done(null,false,messsage에 들어가는 메세지)
     }
+    else{
+      req.user=uer;
+    }
 
     return res.redirect('/');
   })(req, res, next);
