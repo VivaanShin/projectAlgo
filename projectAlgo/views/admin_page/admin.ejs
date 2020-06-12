@@ -65,26 +65,26 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a  class="active-menu" href="admin.html"><i class="fa fa-dashboard"></i> 회원 정보</a>
+                        <a  class="active-menu" href="/admin/member"><i class="fa fa-dashboard"></i> 회원 정보</a>
                     </li>
                     <li>
-                        <a href="candidate_info.html"><i class="fa fa-desktop"></i>정치인 정보 </a>
+                        <a href="/admin/politician"><i class="fa fa-desktop"></i>정치인 정보 </a>
                     </li>
 
                     <li>
-                        <a href="grade_user.html"><i class="fa fa-sitemap"></i>평점 관리<!--span class="fa arrow"></span--></a>
+                        <a href="/admin/member_grade"><i class="fa fa-sitemap"></i>평점 관리<!--span class="fa arrow"></span--></a>
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a  href="grade_user.html">유저 평점 관리</a>
+                                <a  href="/admin/member_grade">유저 평점 관리</a>
                             </li>
 
                             <li>
-                                <a href="grade_candidate.html">정치인 평점 관리</a>
+                                <a href="/admin/politician_grade">정치인 평점 관리</a>
                             </li>
 
                             <li>
-                                <a href="block_user.html">블랙 유저 관리</a>
+                                <a href="#">블랙 유저 관리</a>
                             </li>
               
 
@@ -132,18 +132,17 @@
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th style="width:5%; text-align:center;">번호</th>
+                                                <th style="width:3%; text-align:center;">번호</th>
                                                 <th style="width:5%; text-align:center;">ID</th>
                                                 <th style="width:8%; text-align:center;">이메일</th>
                                                 <th style="width:8%; text-align:center;">전화번호</th>
-                                                <th style="width:5%; text-align:center;">출생연도</th>
-                                                <th style="width:5%; text-align:center;">직업</th>
+                                                <th style="width:5%; text-align:center;">영구정지여부</th>
                                                 <th style="width:5%; text-align:center;">과학/IT</th>
-                                                <th style="width:5%; text-align:center;">사회</th>
                                                 <th style="width:5%; text-align:center;">경제</th>
-                                                <th style="width:5%; text-align:center;">정치</th>
                                                 <th style="width:5%; text-align:center;">문화</th>
-                                                <th style="width:5%; text-align:center;">관리</th>
+                                                <th style="width:5%; text-align:center;">사회</th>
+                                                <th style="width:5%; text-align:center;">정치</th>
+                                                <th style="width:8%; text-align:center;">관리</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -152,8 +151,7 @@
                                                 <td>A</td>
                                                 <td><input type="text" value="A@naver.com" style="width:90%; text-align: center;"></td>
                                                  <td><input type="text" value="010-xxxx-xxxx" style="width:90%; text-align: center;"></td>
-                                                <td><input type="text" value="19xx" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="교수" style="width:70%; text-align: center;"></td>
+                                                <td>true</td>
                                                 <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
                                                 <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
                                                 <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
@@ -173,7 +171,6 @@
                     </div>
                 </div>
                 <!-- /. ROW  -->
-				<footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
             </div>
             <!-- /. PAGE INNER  -->
         </div>

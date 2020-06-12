@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>알Go뽑자 어드민페이지</title>
     <!-- Bootstrap Styles-->
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="/css_admin/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
-    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="/css_admin/font-awesome.css" rel="stylesheet" />
     <!-- Morris Chart Styles-->
-    <link href="js/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="/js_admin/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- Custom Styles-->
-    <link href="css/custom-styles.css" rel="stylesheet" />
+    <link href="/css_admin/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -65,26 +65,26 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="admin.html"><i class="fa fa-dashboard"></i> 회원 정보</a>
+                        <a   href="/admin/member"><i class="fa fa-dashboard"></i> 회원 정보</a>
                     </li>
                     <li>
-                        <a class="active-menu"href="candidate_info.html"><i class="fa fa-desktop"></i>정치인 정보 </a>
+                        <a class="active-menu" href="/admin/politician"><i class="fa fa-desktop"></i>정치인 정보 </a>
                     </li>
 
                     <li>
-                        <a href="grade_user.html"><i class="fa fa-sitemap"></i>평점 관리<!--span class="fa arrow"></span--></a>
+                        <a href="/admin/member_grade"><i class="fa fa-sitemap"></i>평점 관리<!--span class="fa arrow"></span--></a>
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a  href="grade_user.html">유저 평점 관리</a>
+                                <a  href="/admin/member_grade">유저 평점 관리</a>
                             </li>
 
                             <li>
-                                <a href="grade_candidate.html">정치인 평점 관리</a>
+                                <a href="/admin/politician_grade">정치인 평점 관리</a>
                             </li>
 
                             <li>
-                                <a href="block_user.html">블랙 유저 관리</a>
+                                <a href="#">블랙 유저 관리</a>
                             </li>
               
 
@@ -132,32 +132,37 @@
                                             <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th style="width:5%; text-align:center;">번호</th>
-                                                <th style="width:5%; text-align:center;">이름</th>
-                                                <th style="width:5%; text-align:center;">출생연도</th>
+                                                <th style="width:3%; text-align:center;">번호</th>
+                                                <th style="width:3%; text-align:center;">이름</th>
+                                                <th style="width:5%; text-align:center;">생년월일</th>
                                                 <th style="width:5%; text-align:center;">소속정당</th>
-                                                <th style="width:5%; text-align:center;">선거구</th>
-
+                                                <th style="width:5%; text-align:center;">시/도</th>
+                                                <th style="width:5%; text-align:center;">구/시/군</th>
                                                 <th style="width:5%; text-align:center;">직업</th>
-                                                <th style="width:5%; text-align:center;">병역여부</th>
+                                                <th style="width:5%; text-align:center;">학력</th>
+                                                <th style="width:5%; text-align:center;">경력</th>
 
                                                 <th style="width:5%; text-align:center;">과학/IT</th>
-                                                <th style="width:5%; text-align:center;">사회</th>
                                                 <th style="width:5%; text-align:center;">경제</th>
-                                                <th style="width:5%; text-align:center;">정치</th>
                                                 <th style="width:5%; text-align:center;">문화</th>
-                                                <th style="width:5%; text-align:center;">관리</th>
+                                                <th style="width:5%; text-align:center;">사회</th>
+                                                <th style="width:5%; text-align:center;">정치</th>
+                                                <th style="width:8%; text-align:center;">관리</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td>A</td>
+                                                <td><input type="text" value="A" style="width:100%; text-align: center;"></td>
                                                 <td><input type="text" value="19xx" style="width:100%; text-align: center;"></td>
                                                 <td><input type="text" value="A당" style="width:70%; text-align: center;"></td>
+                                                <td><input type="text" value="XX시" style="width:70%; text-align: center;"></td>
                                                 <td><input type="text" value="XX구" style="width:70%; text-align: center;"></td>
                                                 <td><input type="text" value="의사" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="true" style="width:50%; text-align: center;"></td>
+                                                <td><input type="text" value="서울대졸" style="width:50%; text-align: center;"></td>
+                                                <td><input type="text" value="경력" style="width:70%; text-align: center;"></td>
+
                                                 <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
                                                 <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
                                                 <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
@@ -187,34 +192,37 @@
 
                                     <div class="table-responsive">
                                             <table class="table table-striped table-bordered table-hover">
-                                        <thead>
+                                         <thead>
                                             <tr>
-                                                <th style="width:5%; text-align:center;">번호</th>
-                                                <th style="width:5%; text-align:center;">이름</th>
-                                                <th style="width:5%; text-align:center;">출생연도</th>
+                                                <th style="width:3%; text-align:center;">이름</th>
+                                                <th style="width:5%; text-align:center;">생년월일</th>
                                                 <th style="width:5%; text-align:center;">소속정당</th>
-                                                <th style="width:5%; text-align:center;">선거구</th>
-
+                                                <th style="width:5%; text-align:center;">시/도</th>
+                                                <th style="width:5%; text-align:center;">구/시/군</th>
                                                 <th style="width:5%; text-align:center;">직업</th>
-                                                <th style="width:5%; text-align:center;">병역여부</th>
+                                                <th style="width:5%; text-align:center;">학력</th>
+                                                <th style="width:5%; text-align:center;">경력</th>
 
                                                 <th style="width:5%; text-align:center;">과학/IT</th>
-                                                <th style="width:5%; text-align:center;">사회</th>
                                                 <th style="width:5%; text-align:center;">경제</th>
-                                                <th style="width:5%; text-align:center;">정치</th>
                                                 <th style="width:5%; text-align:center;">문화</th>
-                                                <th style="width:5%; text-align:center;">관리</th>
+                                                <th style="width:5%; text-align:center;">사회</th>
+                                                <th style="width:5%; text-align:center;">정치</th>
+                                                <th style="width:8%; text-align:center;">관리</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>end of index</td>
-                                                <td><input type="text" value="" style="width:50%; text-align: center;"></td>
+                                                <td><input type="text" value="" style="width:100%; text-align: center;"></td>
                                                 <td><input type="text" value="" style="width:100%; text-align: center;"></td>
                                                 <td><input type="text" value="" style="width:70%; text-align: center;"></td>
                                                 <td><input type="text" value="" style="width:70%; text-align: center;"></td>
                                                 <td><input type="text" value="" style="width:70%; text-align: center;"></td>
+                                                <td><input type="text" value="" style="width:70%; text-align: center;"></td>
                                                 <td><input type="text" value="" style="width:50%; text-align: center;"></td>
+                                                <td><input type="text" value="" style="width:70%; text-align: center;"></td>
+
                                                 <td><input type="text" value="" style="width:50%; text-align: center;"></td>
                                                 <td><input type="text" value="" style="width:50%; text-align: center;"></td>
                                                 <td><input type="text" value="" style="width:50%; text-align: center;"></td>
@@ -222,6 +230,7 @@
                                                 <td><input type="text" value="" style="width:50%; text-align: center;"></td>
                                                 <td> <button>추가하기</button></td>
                                             </tr>
+                                          
                                           
 
                                         </tbody>

@@ -394,7 +394,7 @@
 
 
 
-<div class="" style="display: flex; margin-bottom: 8%;">
+<div class="" style="display: flex; margin-bottom: 5%;">
 
 
    <div class="" style="width:45%; margin-right:8%; padding-top: 3%;">
@@ -422,6 +422,31 @@
         document.write(year + '년 ' + month + '월 ' + date+'일 ')
       </script>
     </h5> 
+
+
+    <% if(typeof user == 'undefined'){ %>
+
+    <select class="custom-select" name="grade" style="width:60%;">
+      <option selected="">-평점-</option>
+      <option value='1'>1점</option>
+      <option value='2'>2점</option>
+      <option value='3'>3점</option>
+      <option value='4'>4점</option>
+      <option value='5'>5점</option>
+      <option value='6'>6점</option>
+      <option value='7'>7점</option>
+      <option value='8'>8점</option>
+      <option value='9'>9점</option>
+      <option value='10'>10점</option>
+    </select>
+
+
+    <button class="btn btn-primary" data-toggle="modal" data-target="#LoginModal" style="margin-top: 3%;"
+    >평점주기</button>
+
+
+    <% } else{ %>
+
     <form method="post" action="/politician/<%= politicianInfo.politician_no %>/grade?_method=put">
     <select class="custom-select" name="grade" style="width:60%;">
       <option selected="">-평점-</option>
@@ -436,19 +461,34 @@
       <option value='9'>9점</option>
       <option value='10'>10점</option>
     </select>
-    <button class="btn btn-primary" style="margin-top: 3%;"
+
+   <button class="btn btn-primary" style="margin-top: 3%;"
     >평점주기</button>
 
-<script type="text/javascript">
-  function checkG(login){
+<% if(typeof isGivedState !='undefined') { %>
+    <script>
+        var isGivedState = <%= isGivedState %>
+            if(isGivedState==0){
+               alert("주 1회당 평점 부여 가능합니다.");
+            }
+            else{
+               alert("이번 주 평점을 주었습니다.");
+            }            
+    </script>
+<% } %>
 
-  if(login=='undefined')
-  alert("로그인이 필요한 서비스입니다.");
-}
-</script>
-    
+</form>
 
-   </form>
+
+
+
+    <% } %>
+
+
+
+
+
+
 
     </div>
   
@@ -593,11 +633,11 @@
       
 
 
-     <div class="" style="width:55%;"><!--발의섹션-->
+     <div class="" style="width:100%; margin-left: 5%;"><!--발의섹션-->
     
     
     <div style="margin-bottom:5%;">
-    <h4 class="">정치인 발의 내용</h4>
+    <h3 class="">정치인 발의 내용</h3>
     </div>
 
 
@@ -615,11 +655,33 @@
 
              <tbody>
                <tr>
-                  <td><%= politicianLegislationInfo[0].issue_name%></td>
-                  <td><%= politicianLegislationInfo[0].curr_committee%></td>
-                  <td><%= politicianLegislationInfo[0].proposeDt%></td>
-                  <td><%= politicianLegislationInfo[0].generalResult%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[0].issue_name%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[0].committeename%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[0].proposeDt%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[0].generalResult%></td>
                </tr>
+
+               <tr>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[1].issue_name%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[1].committeename%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[1].proposeDt%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[1].generalResult%></td>
+               </tr>
+
+                  <tr>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[2].issue_name%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[2].committeename%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[2].proposeDt%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[2].generalResult%></td>
+               </tr>
+
+                <tr>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[3].issue_name%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[3].committeename%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[3].proposeDt%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[3].generalResult%></td>
+               </tr>
+
              </tbody>
            </table>
     </div>
