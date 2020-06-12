@@ -10,8 +10,10 @@ const updateBlackInUserInfo=require('./queryPromise').updateBlackInUserInfo;
 const insertBlackUser=require('./queryPromise').insertBlackUser;
 const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
 const deleteBlackUser=require('./queryPromise').deleteBlackUser;
-const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
+//const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
+const updateGradeinfoRecord=require('./queryPromise').updateGradeInfoRecord;
 const deleteUserPoliticianGrade=require('./queryPromise').deleteUserPoliticianGrade;
+const deleteUserGrade=require('./queryPromise').deleteUserGrade;
 const pagingNum=10;
 const dbConfig={
     host     : 'localhost',
@@ -109,13 +111,14 @@ router.put('/black',async (req,res)=>{ //사용자 블랙등록
     try{
         await updateBlackInUserInfo(blackUser.user_id,connection); //tb_user_info 업데이트
         await insertBlackUser(blackUser,connection); //tb_user_black에 데이터를 넣음
+        await deleteUserGrade(blackUser.user_id,connection); //black된 사용자의 평점 정보 삭제
     }
     catch(err){
         console.log(err.message);
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade');
     }
 });
 
@@ -135,7 +138,7 @@ router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade');
     }
 });
 
@@ -148,16 +151,17 @@ router.put('/',async (req,res)=>{ //tb_user_politician_grade update
     updateUserGrade.user_id=req,body.user_id;
     updateUserGrade.politician_no=req.body.politician_no;
     updateUserGrade.grade_score=req.body.grade_score;
+    updateUserGrade.weekDay=req.body.grade_st_date;
 
     try{
-        await updateUserPoliticianGrade(connection,updateUserGrade.user_id,updateUserGrade.politician_no,updateUserGrade.grade_score);
+        await updateGradeinfoRecord(connection,updateUserGrade.user_id,updateUserGrade.politician_no,updateUserGrade.weekDay,updateUserGrade.grade_score);
     }
     catch(err){
         console.log(err.message);
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade');
     }
 
 });
@@ -179,7 +183,7 @@ router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade?grade_page=1&detail_page=1');
+        res.redirect('/admin/member_grade');
     }
 
 });

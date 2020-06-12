@@ -104,7 +104,7 @@ exports.updateGradeInfoRecord=function updateGradeinfoRecord(connection,user_id,
 }
 
 
-/*exports.updateUserPoliticianGrade=function updateUserPoliticianGrade(connection,user_id,politician_no,grade_score){ //tb_user_politician_grade 업데이트
+/*exports.updateUserPoliticianGrade=function updateUserPoliticianGrade(connection,user_id,politician_no,grade_score){ //tb_gradeinfo_record 업데이트
     return new Promise((resolve,reject)=>{
         connection.query(`update tb_user_politician_grade set grade_score=?
                      where user_id=?
@@ -158,7 +158,7 @@ exports.insertGradeInfoRecord=function insertGradeInfoRecord(connection,user_id,
                 resolve(user_grade); //평점 정보 결과
             })
         });    
-}&/
+}*/
 
 exports.getAllUserInfo=function getAllUserInfo(connection){ // connection 하나를 전달 받아서 사용,동기형으로 사용자 정보를 가져옴 
     return new Promise((resolve,reject)=>{
@@ -243,7 +243,7 @@ exports.deleteUserInterest=function deleteUserInterest(user_id,connection){ //co
 
 exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connection){ //connection 하나를 전달 받아서 사용,동기형으로 사용자의 평점 부여 횟수와 평점 평균을 가져옴
     return new Promise((resolve,reject)=>{
-        connection.query(`select COUNT(*) as count,AVG(grade_score) as avg from tb_user_politician_grade where user_id=?`,[user_id],
+        connection.query(`select COUNT(*) as count,AVG(grade_score) as avg from tb_gradeinfo_record where user_id=?`,[user_id],
         (err,countAndAvg)=>{
             if(err)
                 reject(err);
@@ -252,9 +252,9 @@ exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connect
     })
 };
 
-exports.getUserGrade=function getUserGradeCountAndAvg(connection){ //connection 하나를 전달 받아서 사용,동기형으로 tn_user_politician_grade를 모두 가져옴
+exports.getUserGrade=function getUserGrade(connection){ //connection 하나를 전달 받아서 사용,동기형으로 tn_user_politician_grade를 모두 가져옴
     return new Promise((resolve,reject)=>{
-        connection.query(`select * from tb_user_politician_grade`,
+        connection.query(`select * from tb_gradeinfo_record`,
         (err,userGrade)=>{
             if(err)
                 reject(err);
@@ -321,7 +321,7 @@ exports.deleteBlackUser=function deleteBlackUser(user_id,connection){ //connecti
 
 exports.deleteUserPoliticianGrade=function deleteUserPoliticianGrade(user_id,politician_no,connection){ //tb_politician_grade 삭제
     return new Promise((resolve,reject)=>{
-        connection.query(`delete from tb_user_politician_grade where user_id=? and politician_no=?`,[user_id,politician_no],
+        connection.query(`delete from tb_gradeinfo_record where user_id=? and politician_no=?`,[user_id,politician_no],
         (err,grade)=>{
             if(err)
                 reject(err);
@@ -480,6 +480,18 @@ exports.getPoliticianInfoByNo=function getPoliticianInfoByNo(politician_no,conne
             
             console.log(politician);
             resolve(politician);
+        });
+    })
+};
+
+exports.deleteUserGrade=function deleteUserGrade(user_id,connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`delect from tb_gradeinfo_record where user_id=?`,[user_id]
+        ,(err,user)=>{
+            if(err)
+                reject(err);
+        
+            resolve(user);
         });
     })
 };
