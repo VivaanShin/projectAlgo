@@ -269,7 +269,7 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
         connection.end();
         //res.redirect(`/${req.params.politician_no}/grade`);
         req.session.isGivedGrade=isGivedGrade;
-        res.redirect(`/politician/${req.params.politician_no}`);
+        //res.redirect(`/politician/${req.params.politician_no}`);
     }
 });
 module.exports=router;
