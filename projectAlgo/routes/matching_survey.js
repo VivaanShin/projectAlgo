@@ -25,6 +25,7 @@ router.post('/', (req,res) => {
   if(isLoggedin(req)){ //로그인 정보
           resultData.user=req.user;
       }
+      /*
   var user_id = req.user.user_id;
 
    var itScience_sec = parseInt(req.body.itScience_sec);
@@ -159,7 +160,7 @@ connection.end();
 
 
 
-
+*/
   res.render('home', resultData);
  });
 
