@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
       console.log(message);
       delete req.session.message;
 
-      res.render('home.ejs',message);
+      res.render('home.ejs',{message:message});
     }
     else{
       res.render('home.ejs');
