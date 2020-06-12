@@ -130,15 +130,9 @@ router.post('/', (req, res) => {
             connection.query(sql, params, function(err, rows, fields) {
               console.log("query in");
               if (err) {
-                console.log("query err");
-                return done(null, false, {
-                  message: 'DB error'
-                });
+                console.log(error);
               } else {
-                resolve(user_id);
-                return done(null, true, {
-                  message: 'success',
-                });
+                console.log("sql success");
               }
             });
 
@@ -150,14 +144,9 @@ router.post('/', (req, res) => {
           connection.query(sql2, params2, function(err, rows, fields) {
             console.log("query2 in");
             if (err) {
-              console.log("query2 err");
-              return done(null, false, {
-                message: 'DB error'
-              });
+              console.log(error);
             } else {
-              return done(null, true, {
-                message: 'success'
-              });
+              console.log("sql success");
             }
           });
         }).then(function(user_id) {
@@ -166,14 +155,9 @@ router.post('/', (req, res) => {
           connection.query(sql3, user_id, function(err, rows, fields) {
             console.log("query3 in");
             if (err) {
-              console.log("query3 err");
-              return done(null, false, {
-                message: 'DB error'
-              });
+              console.log(error);
             } else {
-              return done(null, true, {
-                message: 'success'
-              });
+              console.log("sql success");
             }
           });
         }).catch(function(err) {
