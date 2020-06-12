@@ -19,7 +19,12 @@ const dbConfig={
   });
 
 router.post('/', (req,res) => {
-
+  console.log("req.body: ", req.body);
+  var resultData={};
+  if(isLoggedin(req)){ //로그인 정보
+          resultData.user=req.user;
+      }
+  res.render('home', resultData);
 /*
    var itScience_sec = $('input:radio[name="itScience_sec"]:checked).val();
    var mobile = $('input:radio[name="mobile"]:checked).val();
