@@ -130,7 +130,7 @@ router.post('/', (req, res) => {
             connection.query(sql, params, function(err, rows, fields) {
               console.log("query in");
               if (err) {
-                console.log(error);
+                console.log(err);
               } else {
                 console.log("sql success");
               }
@@ -144,7 +144,7 @@ router.post('/', (req, res) => {
           connection.query(sql2, params2, function(err, rows, fields) {
             console.log("query2 in");
             if (err) {
-              console.log(error);
+              console.log(err);
             } else {
               console.log("sql success");
             }
@@ -155,7 +155,7 @@ router.post('/', (req, res) => {
           connection.query(sql3, user_id, function(err, rows, fields) {
             console.log("query3 in");
             if (err) {
-              console.log(error);
+              console.log(err);
             } else {
               console.log("sql success");
             }
