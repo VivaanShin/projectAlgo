@@ -76,6 +76,10 @@ router.get('/',async (req,res)=>{
     }
 
     finally{
+        var nowUrl=req.session.nowUrl;
+        if(typeof nowUrl != 'undefined'){
+          delete req.session.nowUrl;
+        }
         console.log(resultData);
         connection.end();
         res.render('search.ejs', resultData);
