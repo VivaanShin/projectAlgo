@@ -21,7 +21,7 @@ router.post('/',function(req,res,next){
     }
     
     if(!user){
-      console.log(info.message);
+      console.log(`<script type="text/javascript">alert(${info.message});window.location=${nowUrl};</script>;`);
       res.send(`<script type="text/javascript">alert(${info.message});window.location=${nowUrl};</script>;`); //done(null,false,messsage에 들어가는 메세지)
     }
     else{
