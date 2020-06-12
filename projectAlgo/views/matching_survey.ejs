@@ -49,7 +49,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  
+
   <script src="/js/custom.js"></script>
   <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
   <script type="text/javascript" src="/css/radar-chart.js"></script>
@@ -167,7 +167,7 @@
         <button type="button" class="btn btn" data-toggle="modal" data-target="#LoginModal" aria-hidden="true">
           <img src="/img/profile_icon.jpg" alt="회원 아이콘">
         </button>
-  
+
 
         <!--조건문 : 로그인 되어 있을 시 #Member_Modal로 이동하는 버튼 생성-->
          <% }else{ %>
@@ -261,17 +261,17 @@
         <li class="nav-item">
         <a class="nav-link" href="/matching_survey">AI매칭설문조사</a>
         </li>
-        <%  } %>        
-        
+        <%  } %>
+
 
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
         <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
         <li class="nav-item">
         <a class="nav-link" href="/matching_service">AI매칭결과</a>
         </li>
-        <%  } %>        
-        
-        
+        <%  } %>
+
+
 
     </ul>
     <!--메뉴탭 끝-->
@@ -282,15 +282,15 @@
 
 
     <div id="myTabContent" class="tab-content">
- 
+
  <!--설문조사-->
       <div class="tab-pane fade active show" id="matching_survey">
 
 <div class="wrap">
   <h1 class="likert-header">AI매칭서비스를 위한 설문조사입니다.</h1>
   <h5 class="likert-header">귀하의 정치관심사에 점수를 주세요.</h5>
-  
-  <form action="">
+
+  <form action="/matching_survey", method="post">
 
     <label class="statement" style="margin-bottom: 3%;">과학/IT 분야</label>
     <ul class='likert' style="width: 110%; margin-left: 3%;">
@@ -911,7 +911,7 @@
         <label>10</label>
       </li>
  </ul>
-  
+
 <label class="statement" style="margin-bottom: 3%;">부동산</label>
     <ul class='likert' style="width: 110%; margin-left: 3%;">
       <li>
@@ -2195,6 +2195,9 @@
     <div class="buttons">
       <button class="btn btn-primary" style="width: 30%; font-size: x-large;">제출하기</button>
     </div>
+    <div>
+      <input type="submit" value="제출하기2" />
+    </div>
   </form>
 </div>
 
@@ -2295,7 +2298,6 @@
 
 
 
-     
 
 
 
@@ -2305,7 +2307,8 @@
 
 
 
- 
+
+
 
 
 
