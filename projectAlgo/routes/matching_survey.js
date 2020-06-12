@@ -117,7 +117,7 @@ router.post('/', (req, res) => {
         function user_interest_sql() {
           return new Promise(function(resolve, reject) {
             var params = [
-              itScience_sec, mobile, internet_sns, communication, it_common, security, computer, game, science_common,
+              user_id, itScience_sec, mobile, internet_sns, communication, it_common, security, computer, game, science_common,
               economy_sec, finance, stock, industry, small_venture, property, global_economy, living_economy,
               economy_common, culture_sec, health, exhibit_performance, art_architecture, traffic, travel,
               religion, food, culture_common, society_sec, event_accident, education, work, media,
@@ -139,7 +139,7 @@ router.post('/', (req, res) => {
           })
         }
         user_interest_sql().then(function(user_id) {
-          var params2 = [itScience, economy, culture, society, politics];
+          var params2 = [user_id, itScience, economy, culture, society, politics];
           var sql2 = 'insert into tb_user_interest(user_id, itScience, economy, culture, society, politics) values(?,?,?,?,?,?)';
           connection.query(sql2, params2, function(err, rows, fields) {
             console.log("query2 in");
