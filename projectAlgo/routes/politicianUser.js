@@ -114,9 +114,9 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         var isGivedGrade=req.session.isGivedGrade;
 
         if(typeof isGivedGrade !='undefined'){
-            console.log(isGivedGrade);
             resultData.isGivedGrade=isGivedGrade;
             delete req.session.isGivedGrade;
+            console.log(isGivedGrade);
         }
 
         var message=req.session.message;
