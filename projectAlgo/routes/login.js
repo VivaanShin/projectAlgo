@@ -15,11 +15,14 @@ router.post('/',function(req,res,next){
       req.session.message = info.message; //done(null,false,messsage에 들어가는 메세지)
     }
     else{
-      console.log(user);
-      req.user=user;
+      return req.login(user, (loginError) => {
+        if (loginError) {
+          console.error(loginError);
+          return next(loginError);
+        }
+        return res.redirect('/');
+      });
     }
-
-    return res.redirect('/');
   })(req, res, next);
 });
 // 인증 실패 시 401 리턴
