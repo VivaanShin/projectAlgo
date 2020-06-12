@@ -73,8 +73,9 @@ router.post('/', (req,res) => {
    var defense_diplomacy = parseInt(req.body.defense_diplomacy);
    var politics_common = parseInt(req.body.politics_common);
 
+/*
     var itScience_func = function(itScience_sec, mobile, internet_sns, communication, it_common, security, computer, game, science_common){
-      var itScience = Number(itScience_sec) * {(Number(mobile) + Number(internet_sns) + Number(communication) + Number(it_common) + Number(security) + Number(computer) + Number(game) + Number(science_common))/8};
+      var itScience = Number(itScience_sec) * ((Number(mobile) + Number(internet_sns) + Number(communication) + Number(it_common) + Number(security) + Number(computer) + Number(game) + Number(science_common))/8);
       return itScience;
     }
 
@@ -97,13 +98,14 @@ router.post('/', (req,res) => {
       var politics = Number(politics_sec) * {(Number(bluehouse) + Number(assembly_party) + Number(northkorea) + Number(administration) + Number(defense_diplomacy) + Number(politics_common))/8};
       return politics;
     }
-/*
-   var itScience = Number(itScience_sec) * {(Number(mobile) + Number(internet_sns) + Number(communication) + Number(it_common) + Number(security) + Number(computer) + Number(game) + Number(science_common))/8};
-   var economy = Number(economy_sec) * {(Number(finance) + Number(stock)+ Number(industry) + Number(small_venture) + Number(property) + Number(global_economy) + Number(living_economy) + Number(economy_common))/8};
-   var culture = Number(culture_sec) * {(Number(health) + Number(exhibit_performance) + Number(art_architecture) + Number(traffic) + Number(travel) + Number(religion) + Number(food) + Number(culture_common))/8};
-   var society = Number(society_sec) * {(Number(event_accident) + Number(education) + Number(work) + Number(media) + Number(environment) + Number(humanrights_welfare) + Number(food_medical) + Number(society_common))/8};
-   var politics = Number(politics_sec) * {(Number(bluehouse) + Number(assembly_party) + Number(northkorea) + Number(administration) + Number(defense_diplomacy + Number(politics_common))/6};
-*/
+    */
+
+   var itScience = Number(itScience_sec) * ((Number(mobile) + Number(internet_sns) + Number(communication) + Number(it_common) + Number(security) + Number(computer) + Number(game) + Number(science_common))/8);
+   var economy = Number(economy_sec) * ((Number(finance) + Number(stock)+ Number(industry) + Number(small_venture) + Number(property) + Number(global_economy) + Number(living_economy) + Number(economy_common))/8);
+   var culture = Number(culture_sec) * ((Number(health) + Number(exhibit_performance) + Number(art_architecture) + Number(traffic) + Number(travel) + Number(religion) + Number(food) + Number(culture_common))/8);
+   var society = Number(society_sec) * ((Number(event_accident) + Number(education) + Number(work) + Number(media) + Number(environment) + Number(humanrights_welfare) + Number(food_medical) + Number(society_common))/8);
+   var politics = Number(politics_sec) * ((Number(bluehouse) + Number(assembly_party) + Number(northkorea) + Number(administration) + Number(defense_diplomacy + Number(politics_common))/6);
+
    console.log("itScience, economy, culture, society, politics", itScience, economy, culture, society, politics);
 
    itScience = parseInt(itScience);
