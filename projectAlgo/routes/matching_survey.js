@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
         resultData.user = req.user;
       }
 
-      var user_id = req.user.user_id;
+      var user_id = resultData.user.user_id;
 
       var itScience_sec = parseInt(req.body.itScience_sec);
       var mobile = parseInt(req.body.mobile);
