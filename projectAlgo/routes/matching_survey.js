@@ -104,7 +104,7 @@ router.post('/', (req,res) => {
    var economy = Number(economy_sec) * ((Number(finance) + Number(stock)+ Number(industry) + Number(small_venture) + Number(property) + Number(global_economy) + Number(living_economy) + Number(economy_common))/8);
    var culture = Number(culture_sec) * ((Number(health) + Number(exhibit_performance) + Number(art_architecture) + Number(traffic) + Number(travel) + Number(religion) + Number(food) + Number(culture_common))/8);
    var society = Number(society_sec) * ((Number(event_accident) + Number(education) + Number(work) + Number(media) + Number(environment) + Number(humanrights_welfare) + Number(food_medical) + Number(society_common))/8);
-   var politics = Number(politics_sec) * ((Number(bluehouse) + Number(assembly_party) + Number(northkorea) + Number(administration) + Number(defense_diplomacy + Number(politics_common))/6);
+   var politics = Number(politics_sec) * ((Number(bluehouse) + Number(assembly_party) + Number(northkorea) + Number(administration) + Number(defense_diplomacy + Number(politics_common))/6)
 
    console.log("itScience, economy, culture, society, politics", itScience, economy, culture, society, politics);
 
