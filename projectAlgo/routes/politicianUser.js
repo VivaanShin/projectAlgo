@@ -112,11 +112,12 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         }
         resultData.status=200;
 
-        var isGivedGrade=req.query.is_gived_grade;
+        var isGivedGrade=req.session.isGivedGrade;
 
         if(typeof isGivedGrade !='undefined'){
             console.log(isGivedGrade);
             resultData.isGivedGrade=isGivedGrade;
+            delete req.session.isGivedGrade;
         }
 
         var message=req.session.message;
@@ -270,7 +271,8 @@ router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
     finally{
         connection.end();
         //res.redirect(`/${req.params.politician_no}/grade`);
-        res.redirect(`/politician/${req.params.politician_no}?is_gived_grade=${isGivedGrade}`);
+        req.session.isGivedGrade=isGivedGrade;
+        res.redirect(`/politician/${req.params.politician_no}`);
     }
 });
 module.exports=router;
