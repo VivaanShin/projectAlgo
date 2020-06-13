@@ -127,7 +127,6 @@ router.put('/',async (req,res)=>{
             user.culture=req.body.user_culture;
             user.society=req.body.user_society;
             user.politics=req.body.user_politics;
-            user.interest_date=moment().format('YYYY-MM-DD');
             await updateUserInterest(user,connection); //update
         }
     }
