@@ -69,7 +69,7 @@ router.get('/AImatching', (req, res) => {
               });
             })
             .value();
-          console.log("maxNum", maxNum);  
+          console.log("maxNum", maxNum);
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
           var user_economy = rows[0].economy;
