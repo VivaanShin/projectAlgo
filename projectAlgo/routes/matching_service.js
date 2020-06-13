@@ -38,33 +38,29 @@ const dbConfig = {
             console.log("sql success");
             console.log(rows);
 
-
-            var maxNum = 0;
-            var maxIndex = 0;
-            for(var i = 0; i < rows.length; i++){
-              if(maxNum < rows[i]){
-                maxNum = rows[i];
-                maxIndex = i;
-              }
-            }
-
+            Math.max.apply(Math, array.map(function(o){
+              return o.rows;
+            }))
+            var maxNum = o.rows;
+            console.log("maxNum", maxNum);
             /*
             //유저 관심사 객체
             var user_interest = {
-              itScience : rows[0],
-              economy : rows[1],
-              culture : rows[2],
-              society : rows[3],
-              politics : rows[4]
+              itScience : rows[0].itScience,
+              economy : rows[0].economy,
+              culture : rows[0].culture,
+              society : rows[0].society,
+              politics : rows[0].politics
             }
             */
 
             //유저 관심사 각각 배열
-            var user_itScience = rows[0];
-            var user_economy = rows[1];
-            var user_culture = rows[2];
-            var user_society = rows[3];
-            var user_politics = rows[4];
+            var user_itScience = rows[0].itScience;
+            var user_economy = rows[0].economy;
+            var user_culture = rows[0].culture;
+            var user_society = rows[0].society;
+            var user_politics = rows[0].politics;
+            console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
             var user_interest_max = "default"
             if(user_itScience = maxNum){
               user_interest_max = "itScience"
@@ -80,7 +76,7 @@ const dbConfig = {
               console.log("maxNum error")
             }
 
-
+            console.log("user_interest_max", user_interest_max);
             resolve(user_interest_max)
           }
         });
