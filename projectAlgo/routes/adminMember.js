@@ -58,7 +58,7 @@ router.get('/',async (req,res)=>{
     
         //for(let i=startPage;i<endPage;i++){ //유저 정보를 하나씩 조회하여
         for(let i=0;i<userInfo.length;i++){
-            /*var oneUserInfo={
+            var oneUserInfo={
                 user_id:userInfo[i].user_id,
                 user_pw:userInfo[i].user_pw,
                 user_email:userInfo[i].user_email,
@@ -68,8 +68,7 @@ router.get('/',async (req,res)=>{
                 user_token:userInfo[i].user_token,
                 user_interest_check:userInfo[i].user_interest_check
 
-            }*/;
-            var oneUserInfo=JSON.parse(JSON.stringify(userInfo[i]));
+            };
             var oneUserInterest={}; //관심사 정보 temp
             console.log(oneUserInfo);
 
