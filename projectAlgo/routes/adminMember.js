@@ -107,7 +107,7 @@ router.put('/',async (req,res)=>{
     if(!isAdmin(req)){
         return res.redirect('/');
     }
-    console.log(req.headers);
+    console.log(req.body);
     var connection=mysql.createConnection(dbConfig);
     var user={};
     user.user_id=req.body.user_id;
