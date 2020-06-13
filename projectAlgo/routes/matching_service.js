@@ -50,6 +50,7 @@ router.get('/AImatching', (req, res) => {
           console.log("maxNum", maxNum);
           */
 
+          /*
           //유저 관심사 객체
           var user_interest = {
             x: rows[0].itScience,
@@ -58,7 +59,7 @@ router.get('/AImatching', (req, res) => {
             x: rows[0].society,
             x: rows[0].politics
           }
-
+          */
           /*
           var map = {};
           rows.forEach((rows) => {
@@ -70,18 +71,12 @@ router.get('/AImatching', (req, res) => {
           });
           var maxNum = Object.values(map);
           */
-          var xMax = Math.max.apply(null, user_interest.map(function(o) {
-            return o.x;
-          }));
-          var maxNum = user_interest.filter(function(o) {
-            return o.x === xMax;
-          })[0];
+
           /*
           var xMax = Math.max(...Array.from(user_interest, o => o.x));
           var maxNum = user_interest.find(o => o.x === xMax);
           */
 
-          console.log("maxNum", maxNum);
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
           var user_economy = rows[0].economy;
@@ -89,6 +84,10 @@ router.get('/AImatching', (req, res) => {
           var user_society = rows[0].society;
           var user_politics = rows[0].politics;
           console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
+          //최대값 찾기
+          var maxNum = Math.max(user_itScience, user_economy, user_culture, user_society, user_politics);
+          console.log("maxNum", maxNum);
+
           var user_interest_max = "default"
           if (user_itScience = maxNum) {
             user_interest_max = "itScience"
