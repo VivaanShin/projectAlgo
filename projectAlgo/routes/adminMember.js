@@ -137,7 +137,6 @@ router.put('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.redirect('/admin/member');
     }
 });
 
@@ -162,7 +161,6 @@ router.delete('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.redirect('/admin/member');
     }
 })
 
