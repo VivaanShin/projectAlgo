@@ -72,9 +72,9 @@ router.get('/AImatching', (req, res) => {
           */
 
           var xMax = Math.max(...Array.from(user_interest, o => o.x));
-          var maxNum = objects.find(o => o.x === xMax);
+          var maxNum = user_interest.find(o => o.x === xMax);
 
-          
+
           console.log("maxNum", maxNum);
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
