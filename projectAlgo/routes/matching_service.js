@@ -90,7 +90,7 @@ router.get('/AImatching', (req, res) => {
     return new Promise(function(resolve, reject) {
 
 
-      var sql2 = 'select * from tb_politician_interest order by ? limit 10';
+      var sql2 = 'select * from tb_politician_interest order by "?" desc limit 10';
       connection.query(sql2, user_interest_max, function(err, rows, fields) {
         console.log("query2 in");
         if (err) {
