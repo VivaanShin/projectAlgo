@@ -69,8 +69,6 @@ router.get('/AImatching', (req, res) => {
           });
 
           var maxNum = Object.values(map);
-
-          console.log(answer);
           console.log("maxNum", maxNum);
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
