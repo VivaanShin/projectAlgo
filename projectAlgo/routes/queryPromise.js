@@ -500,3 +500,27 @@ exports.deleteUserGrade=function deleteUserGrade(user_id,connection){ //tb_grade
         });
     })
 };
+
+exports.unsetForeignKeyChecks=function unsetForeignKeyChecks(connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`SET foreign_key_checks = 0`,[user_id]
+        ,(err,result)=>{
+            if(err)
+                reject(err);
+        
+            resolve(result);
+        });
+    })
+};
+
+exports.setForeignKeyChecks=function setForeignKeyChecks(connection){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`SET foreign_key_checks = 1`,[user_id]
+        ,(err,result)=>{
+            if(err)
+                reject(err);
+        
+            resolve(result);
+        });
+    })
+};

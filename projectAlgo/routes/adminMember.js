@@ -4,10 +4,12 @@ const getAllUserInfo=require('./queryPromise').getAllUserInfo;
 const getUserInterest=require('./queryPromise').getUserInterest;
 const updateAdminUserInfo=require('./queryPromise').updateAdminUserInfo;
 const updateUserInterest=require('./queryPromise').updateUserInterest;
-const insertUserInterest=require('./queryPromise').insertUserInterest;
+//const insertUserInterest=require('./queryPromise').insertUserInterest;
 const deleteUserInfo=require('./queryPromise').deleteUserInfo;
 const deleteUserInterest=require('./queryPromise').deleteUserInterest;
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
+const unsetForeignKeyChecks=require('./queryPromise').unsetForeignKeyChecks;
+const setForeignKeyChecks=require('./queryPromise').setForeignKeyChecks;
 const mysql=require('mysql');
 const router=express.Router();
 //const bcrypt=require('bcrypt-nodejs');
@@ -145,7 +147,9 @@ router.delete('/',async (req,res)=>{
         if(isInterest > 0){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
             await deleteUserInterest(user_id,connection);
         }
+        await unsetForeignKeyChecks(connection);
         await deleteUserInfo(user_id,connection);
+        await setForeignKeyChecks(connection);
     }
     catch(err){
         console.log(err.message);
