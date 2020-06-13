@@ -1,3 +1,4 @@
+/*
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
@@ -40,16 +41,6 @@ router.get('/AImatching', (req, res) => {
           console.log("sql success");
           console.log(rows);
 
-          /*
-          //유저 관심사 객체
-          var user_interest = {
-            x: rows[0].itScience,
-            x: rows[0].economy,
-            x: rows[0].culture,
-            x: rows[0].society,
-            x: rows[0].politics
-          }
-          */
 
 
           //유저 관심사 각각 배열
@@ -244,3 +235,4 @@ router.get('/AImatching', (req, res) => {
 })
 
 module.exports = router;
+*/
