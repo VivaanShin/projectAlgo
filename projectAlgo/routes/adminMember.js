@@ -8,6 +8,7 @@ const insertUserInterest=require('./queryPromise').insertUserInterest;
 const deleteUserInfo=require('./queryPromise').deleteUserInfo;
 const deleteUserInterest=require('./queryPromise').deleteUserInterest;
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
+const getUserInterest=require('./queryPromise').getUserInterest;
 const mysql=require('mysql');
 const router=express.Router();
 //const bcrypt=require('bcrypt-nodejs');
@@ -113,29 +114,20 @@ router.put('/',async (req,res)=>{
     user.user_email=req.body.user_email;
     user.user_phone=req.body.user_phone;
     user.user_state=req.body.user_state;
-    user.user_interest_check=req.body.user_interest_check;
+    user.user_black=req.body.user_black;
 
     try{
+        var isInterest= await getUserInterest(user.user_id,connection);
         await updateAdminUserInfo(user,connection);
         
-        if(user_interest_check){ //interest_check가 true라면 tb_user_interest도 업데이트
-            user.user_job=req.body.user_job;
-            user.user_age=req.body.user_age;
-            user.itScience=req.body.itScience;
-            user.economy=req.body.economy;
-            user.culture=req.body.culture;
-            user.society=req.body.society;
-            user.politics=req.body.politics;
+        if(isInterest > 0){ //interest_check가 true라면 tb_user_interest도 업데이트
+            user.itScience=req.body.user_itScience;
+            user.economy=req.body.user_economy;
+            user.culture=req.body.user_culture;
+            user.society=req.body.user_society;
+            user.politics=req.body.user_politics;
             user.interest_date=moment().format('YYYY-MM-DD');
-
-            var user_interest=await getUserInterest(connection);
-
-            if(user_interest.length > 0){ //이미 관심사 매칭을 수행한 적이 있다면
-                await updateUserInterest(user,connection); //update
-            }
-            else{ //아니면 insert
-                await insertUserInterest(user,connection);
-            }
+            await updateUserInterest(user,connection); //update
         }
     }
     catch(err){
