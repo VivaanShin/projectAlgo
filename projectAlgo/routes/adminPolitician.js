@@ -29,6 +29,7 @@ router.get('/',(req,res)=>{
             resultData.status=500;
       
         else{
+            politicians=JSON.parse(JSON.stringify(politicians));
             resultData.status=200;
             //resultData.politicianResult=politicians;//상태값+모든 정치인 정보 row
             var total=politicians.length;
@@ -49,7 +50,6 @@ router.get('/',(req,res)=>{
             }
         } 
         connection.end();
-        console.log(resultData);
         res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
       
       });
