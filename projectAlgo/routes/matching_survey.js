@@ -140,6 +140,7 @@ router.post('/', (req, res) => {
           })
         }
         user_interest_sql().then(function(user_id) {
+          console.log("promise2",user_id);
           var params2 = [user_id, itScience, economy, culture, society, politics];
           var sql2 = 'insert into tb_user_interest(user_id, itScience, economy, culture, society, politics) values(?,?,?,?,?,?)';
           connection.query(sql2, params2, function(err, rows, fields) {
@@ -152,6 +153,7 @@ router.post('/', (req, res) => {
             }
           });
         }).then(function(user_id) {
+          console.log("promise3",user_id);
           var sql3 = `update tb_user_info set user_interest_check=1
                   where user_id=?`;
           connection.query(sql3, user_id, function(err, rows, fields) {
