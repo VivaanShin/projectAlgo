@@ -33,7 +33,6 @@ router.get('/',async (req,res)=>{
 
     try{
         var userInfo=await getAllUserInfo(connection); //모든 유저 정보 가져옴
-        console.log(userInfo);
         /*var page=req.query.page;
         var startPage=(page-1)*pagingNum;
         var endPage;
@@ -84,7 +83,7 @@ router.get('/',async (req,res)=>{
                 oneUserInfo.interest_date="0000-00-00";
             }
             memberList.push(oneUserInfo);
-            console.log("User:"+oneUserInfo);
+            console.log(oneUserInfo);
         }
 
         resultData.status=200;
