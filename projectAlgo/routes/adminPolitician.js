@@ -50,6 +50,7 @@ router.get('/',(req,res)=>{
             }
         } 
         connection.end();
+        console.log(resultData);
         res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
       
       });
