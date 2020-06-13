@@ -62,7 +62,7 @@ router.get('/',async (req,res)=>{
             var oneUserInterest={}; //관심사 정보 temp
 
             if(oneUserInfo.user_interest_check){//관심사 매칭을 수행 한 적이 있다면, 테이블에서 가져옴
-                oneUserInterest=await getUserInterest(one_user_info.user_id,connection); 
+                oneUserInterest=await getUserInterest(oneUserInfo.user_id,connection); 
                 oneUserInfo.user_job=one_user_interest.user_job;
                 oneUserInfo.user_age=one_user_interest.user_age;
                 oneUserInfo.itScience=one_user_interest.itScience;
