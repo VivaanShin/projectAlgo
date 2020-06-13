@@ -124,9 +124,7 @@ router.get('/AImatching', (req, res) => {
           var politician9_score = distance(user_interest, politician9);
           var politician10_score = distance(user_interest, politician10);
 
-          var matching_result = [
-            id: 'test',
-            name: 'test',
+          var matching_result = {
             children : [
               {
                 politician_no : rows[0].politician_no,
@@ -219,7 +217,7 @@ router.get('/AImatching', (req, res) => {
                 politics : rows[9].politics
               }
             ]
-          ]
+          }
 
           console.log(matching_result)
 
