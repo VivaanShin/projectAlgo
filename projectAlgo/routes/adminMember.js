@@ -63,14 +63,14 @@ router.get('/',async (req,res)=>{
 
             if(oneUserInfo.user_interest_check){//관심사 매칭을 수행 한 적이 있다면, 테이블에서 가져옴
                 oneUserInterest=await getUserInterest(oneUserInfo.user_id,connection); 
-                oneUserInfo.user_job=oneUserInterest.user_job;
-                oneUserInfo.user_age=oneUserInterest.user_age;
-                oneUserInfo.itScience=oneUserInterest.itScience;
-                oneUserInfo.economy=oneUserInterest.economy;
-                oneUserInfo.culture=oneUserInterest.culture;
-                oneUserInfo.politics=oneUserInterest.politics;
-                oneUserInfo.society=oneUserInterest.society;
-                oneUserInfo.interest_date=oneUserInterest.interest_date;
+                oneUserInfo.user_job=oneUserInterest[0].user_job;
+                oneUserInfo.user_age=oneUserInterest[0].user_age;
+                oneUserInfo.itScience=oneUserInterest[0].itScience;
+                oneUserInfo.economy=oneUserInterest[0].economy;
+                oneUserInfo.culture=oneUserInterest[0].culture;
+                oneUserInfo.politics=oneUserInterest[0].politics;
+                oneUserInfo.society=oneUserInterest[0].society;
+                oneUserInfo.interest_date=oneUserInterest[0].interest_date;
             }
             else{ //없으면 Default 값으로 저장
                 oneUserInfo.user_job="없음";
@@ -83,11 +83,11 @@ router.get('/',async (req,res)=>{
                 oneUserInfo.interest_date="0000-00-00";
             }
             memberList.push(oneUserInfo);
-            console.log(oneUserInfo);
         }
 
         resultData.status=200;
         resultData.memberList=memberList;
+        console.log(resultData.memberList);
     }
     catch(err){
         console.log(err.message);
