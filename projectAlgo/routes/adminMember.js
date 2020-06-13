@@ -58,7 +58,7 @@ router.get('/',async (req,res)=>{
     
         //for(let i=startPage;i<endPage;i++){ //유저 정보를 하나씩 조회하여
         for(let i=0;i<userInfo.length;i++){
-            var oneUserInfo=userInfo[i].RowDataPacket;
+            var oneUserInfo=JSON.parse(JSON.stringify(userInfo[i]));
             var oneUserInterest={}; //관심사 정보 temp
             console.log(oneUserInfo);
 
