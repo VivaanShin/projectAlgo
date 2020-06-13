@@ -163,19 +163,11 @@ router.post('/', (req, res) => {
               resolve()
             }
           });
+        }).then(function() {
+          connection.end();
         }).catch(function(err) {
           console.log('error', err);
         })
-
-
-
-
-
-
-
-
-
-        connection.end();
 
 
 
