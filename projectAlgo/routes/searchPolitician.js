@@ -27,7 +27,7 @@ router.get('/',async (req,res)=>{
             var politicians=await searchPoliticianBySdNameAndSggName(h_area1,h_area2,connection);
 
             for(let i=0;i<politicians.length;i++){
-                politician={
+                var politician={
                     politician_no:politicians[i].politician_no,
                     politician_name:politicians[i].politician_name,
                     jdName:politicians[i].jdName,
