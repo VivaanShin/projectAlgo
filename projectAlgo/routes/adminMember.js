@@ -69,7 +69,7 @@ router.get('/',async (req,res)=>{
                 user_interest_check:userInfo[i].user_interest_check
 
             }*/;
-            var oneUserInfo=Object.values(JSON.parse(JSON.stringify(userInfo[i])));
+            var oneUserInfo=JSON.parse(JSON.stringify(userInfo[i]));
             var oneUserInterest={}; //관심사 정보 temp
             console.log(oneUserInfo);
 
