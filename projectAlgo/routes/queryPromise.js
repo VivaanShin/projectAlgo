@@ -197,8 +197,8 @@ exports.updateAdminUserInfo=function updateAdminUserInfo(user,connection){ //con
 exports.updateUserInterest=function updateUserInterest(user,connection){ //connection 하나를 전달 받아서 사용,동기형으로 tb_user_interest update
     return new Promise((resolve,reject)=>{
         connection.query(`update tb_user_interest set itScience=?,economy=?,
-        culture=?,society=?,politics=?,interest_date=? where user_id=?`,[user.itScience,user.economy
-            ,user.culture,user.society,user.politics,user.interest_date,user.user_id],
+        culture=?,society=?,politics=? where user_id=?`,[user.itScience,user.economy
+            ,user.culture,user.society,user.politics,user.user_id],
         (err,user)=>{
             if(err)
                 reject(err);
@@ -209,8 +209,8 @@ exports.updateUserInterest=function updateUserInterest(user,connection){ //conne
 
 exports.insertUserInterest=function insertUserInterest(user,connection){ //connection 하나를 전달 받아서 사용,동기형으로 tb_user_interest insert
     return new Promise((resolve,reject)=>{
-        connection.query(`insert into tb_user_interest values(?,?,?,?,?,?,?,?,?)`,[user.user_id,user.user_job,user.user_age,user.itScience,user.economy
-            ,user.culture,user.society,user.politics,user.interest_date],
+        connection.query(`insert into tb_user_interest values(?,?,?,?,?,?)`,[user.user_id,user.itScience,user.economy
+            ,user.culture,user.society,user.politics],
         (err,user)=>{
             if(err)
                 reject(err);

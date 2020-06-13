@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
   console.log('matching_service join');
   res.render('matching_service',resultData);
 });
-
+//테스트 용
 
 router.get('/AImatching', (req, res) => {
   var resultData = {};
@@ -52,8 +52,6 @@ router.get('/AImatching', (req, res) => {
         } else {
           console.log("sql success");
           console.log(rows);
-
-          //위는 임시 유저 관심사 정보니까 나중에 삭제해주세요
           /*
           Math.max.apply(Math, rows.map(function(o){
             return o.rows;
