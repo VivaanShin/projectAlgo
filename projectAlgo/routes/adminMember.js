@@ -139,8 +139,8 @@ router.delete('/',async (req,res)=>{
         return res.redirect('/');
     }
     var connection=mysql.createConnection(dbConfig);
-    console.log(req.body);
     var user_id=req.body.user_id;
+    console.log(user_id);
 
     try{ //우선 사용자 정보부터 삭제
         var isInterest= await getUserInterest(user_id,connection);
