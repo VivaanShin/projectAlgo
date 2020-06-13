@@ -144,6 +144,7 @@ router.get('/AImatching', (req, res) => {
   }).catch(function(err) {
     console.log('error', err);
   })
+  console.log(resultData);
   res.render('matching_service.ejs', resultData);
 })
 
