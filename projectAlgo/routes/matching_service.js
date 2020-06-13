@@ -39,6 +39,15 @@ router.get('/AImatching', (req, res) => {
           console.log("sql success");
           console.log(rows);
 
+          var user_interest={
+            itScience:5,
+            economy:6,
+            culture:9,
+            society:4,
+            politics:6
+          };
+          resultData.user_interest=user_interest;
+          //위는 임시 유저 관심사 정보니까 나중에 삭제해주세요
           /*
           Math.max.apply(Math, rows.map(function(o){
             return o.rows;

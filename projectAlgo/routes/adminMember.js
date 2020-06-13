@@ -65,24 +65,18 @@ router.get('/',async (req,res)=>{
 
             if(oneUserInfo.user_interest_check){//관심사 매칭을 수행 한 적이 있다면, 테이블에서 가져옴
                 oneUserInterest=await getUserInterest(oneUserInfo.user_id,connection); 
-                oneUserInfo.user_job=oneUserInterest[0].user_job;
-                oneUserInfo.user_age=oneUserInterest[0].user_age;
                 oneUserInfo.itScience=oneUserInterest[0].itScience;
                 oneUserInfo.economy=oneUserInterest[0].economy;
                 oneUserInfo.culture=oneUserInterest[0].culture;
                 oneUserInfo.politics=oneUserInterest[0].politics;
                 oneUserInfo.society=oneUserInterest[0].society;
-                oneUserInfo.interest_date=oneUserInterest[0].interest_date;
             }
             else{ //없으면 Default 값으로 저장
-                oneUserInfo.user_job="없음";
-                oneUserInfo.user_age=0;
                 oneUserInfo.itScience=0;
                 oneUserInfo.economy=0;
                 oneUserInfo.culture=0;
                 oneUserInfo.politics=0;
-                oneUserInfo.society=0
-                oneUserInfo.interest_date="0000-00-00";
+                oneUserInfo.society=0;
             }
             memberList.push(oneUserInfo);
         }
