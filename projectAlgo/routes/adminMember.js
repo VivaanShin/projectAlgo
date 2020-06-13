@@ -139,7 +139,7 @@ router.delete('/',async (req,res)=>{
         return res.redirect('/');
     }
     var connection=mysql.createConnection(dbConfig);
-
+    console.log(req.body);
     var user_id=req.body.user_id;
 
     try{ //우선 사용자 정보부터 삭제
