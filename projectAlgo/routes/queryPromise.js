@@ -251,6 +251,7 @@ exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connect
         (err,countAndAvg)=>{
             if(err)
                 reject(err);
+                console.log(countAndAvg);
             resolve(countAndAvg);
         });
     })
