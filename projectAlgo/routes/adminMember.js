@@ -104,8 +104,6 @@ router.put('/',async (req,res)=>{
     if(!isAdmin(req)){
         return res.redirect('/');
     }
-
-    console.log(req.body);
     var connection=mysql.createConnection(dbConfig);
     var user={};
     user.user_id=req.body.user_id;
@@ -117,6 +115,7 @@ router.put('/',async (req,res)=>{
 
     try{
         var isInterest= await getUserInterest(user.user_id,connection);
+        console.log(user);
         await updateAdminUserInfo(user,connection);
         
         if(isInterest > 0){ //interest_check가 true라면 tb_user_interest도 업데이트
