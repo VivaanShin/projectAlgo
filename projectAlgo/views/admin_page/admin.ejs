@@ -35,8 +35,8 @@
 
         fetch("/admin/member", {
                          method: "PUT",
-                         body: data
-        })
+                         body: JSON.stringify(data) // data can be `string` or {object}!
+            })
         }
 
         function clickDelete(id){
