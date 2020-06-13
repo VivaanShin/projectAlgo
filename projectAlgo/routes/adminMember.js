@@ -144,7 +144,6 @@ router.delete('/',async (req,res)=>{
     try{ //우선 사용자 정보부터 삭제
         var isInterest= await getUserInterest(user_id,connection);
         if(isInterest.length > 0){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
-            console.log('error!')
             await deleteUserInterest(user_id,connection);
         }
         await unsetForeignKeyChecks(connection);

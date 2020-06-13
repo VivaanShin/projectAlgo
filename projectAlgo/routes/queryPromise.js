@@ -503,7 +503,7 @@ exports.deleteUserGrade=function deleteUserGrade(user_id,connection){ //tb_grade
 
 exports.unsetForeignKeyChecks=function unsetForeignKeyChecks(connection){ //tb_gradeinfo_record delete 
     return new Promise((resolve,reject)=>{
-        connection.query(`SET foreign_key_checks = 0`,[user_id]
+        connection.query(`SET foreign_key_checks = 0`
         ,(err,result)=>{
             if(err)
                 reject(err);
@@ -515,7 +515,7 @@ exports.unsetForeignKeyChecks=function unsetForeignKeyChecks(connection){ //tb_g
 
 exports.setForeignKeyChecks=function setForeignKeyChecks(connection){ //tb_gradeinfo_record delete 
     return new Promise((resolve,reject)=>{
-        connection.query(`SET foreign_key_checks = 1`,[user_id]
+        connection.query(`SET foreign_key_checks = 1`
         ,(err,result)=>{
             if(err)
                 reject(err);
