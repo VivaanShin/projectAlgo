@@ -133,7 +133,7 @@ router.post('/', (req, res) => {
                 console.log(err);
               } else {
                 console.log("sql success");
-                resolve()
+                resolve(user_id)
               }
             });
 
@@ -148,7 +148,7 @@ router.post('/', (req, res) => {
               console.log(err);
             } else {
               console.log("sql success");
-              resolve()
+              resolve(user_id)
             }
           });
         }).then(function(user_id) {
