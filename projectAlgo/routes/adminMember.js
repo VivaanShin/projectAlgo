@@ -89,7 +89,6 @@ router.get('/',async (req,res)=>{
 
         resultData.status=200;
         resultData.memberList=memberList;
-        console.log(resultData.memberList);
     }
     catch(err){
         console.log(err.message);
@@ -106,6 +105,7 @@ router.put('/',async (req,res)=>{
     }
     var connection=mysql.createConnection(dbConfig);
     var user={};
+    console.log(req.body);
     user.user_id=req.body.user_id;
     //var user_pw=bcrypt.hash(req.body.user_pw, null, null);
     user.user_email=req.body.user_email;
