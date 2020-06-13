@@ -114,7 +114,6 @@ router.put('/',async (req,res)=>{
     //var user_pw=bcrypt.hash(req.body.user_pw, null, null);
     user.user_email=req.body.user_email;
     user.user_phone=req.body.user_phone;
-    user.user_state=req.body.user_state;
     user.user_black=req.body.user_black;
 
     try{
