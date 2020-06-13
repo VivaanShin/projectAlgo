@@ -156,18 +156,21 @@ router.post('/', (req, res) => {
           })
 
         }).then(function(user_id) {
-          console.log("promise3",user_id);
-          var sql3 = `update tb_user_info set user_interest_check=1
-                  where user_id=?`;
-          connection.query(sql3, user_id, function(err, rows, fields) {
-            console.log("query3 in");
-            if (err) {
-              console.log(err);
-            } else {
-              console.log("sql success");
-              resolve()
-            }
-          });
+          return new Promise(function(resolve, reject){
+            console.log("promise3",user_id);
+            var sql3 = `update tb_user_info set user_interest_check=1
+                    where user_id=?`;
+            connection.query(sql3, user_id, function(err, rows, fields) {
+              console.log("query3 in");
+              if (err) {
+                console.log(err);
+              } else {
+                console.log("sql success");
+                resolve()
+              }
+            });
+          })
+
         }).then(function() {
           connection.end();
         }).catch(function(err) {
