@@ -59,16 +59,18 @@ router.get('/AImatching', (req, res) => {
             politics : rows[0].politics
           }
           */
-          var maxNum = _(rows)
-            .groupBy(function(o) { // group by source and target
-              return o.source + '-' + o.target;
-            })
-            .map(function(arr) { // map the groups to values
-              return arr.reduce(function(max, o) { // get the object with the hight normal in each group
-                return max.metrics.normal > o.metrics.normal ? max : o;
-              });
-            })
-            .value();
+          var map = {};
+          rows.forEach((rows) => {
+            var mapKey = rows.source + "/" + rows.target;
+            answerrows = map[mapKey];
+
+            if (!answerrows || answerrows.metrics.normal < rows.metrics.normal)
+              map[mapKey] = rows;
+          });
+
+          var maxNum = Object.values(map);
+
+          console.log(answer);
           console.log("maxNum", maxNum);
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
