@@ -38,7 +38,7 @@ const dbConfig = {
             console.log("sql success");
             console.log(rows);
 
-            Math.max.apply(Math, array.map(function(o){
+            Math.max.apply(Math, rows.map(function(o){
               return o.rows;
             }))
             var maxNum = o.rows;
