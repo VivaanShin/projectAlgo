@@ -31,6 +31,7 @@ router.get('/',async (req,res)=>{
 
         var startPage=(page-1)*10;
         var allLegislation=await getAllLegislation(connection); //tb_politician_legislation
+        allLegislation=JSON.parse(JSON.stringify(allLegislation));
         var total=allLegislation.length;
         resultData.total=total;
 

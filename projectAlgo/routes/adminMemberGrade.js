@@ -48,7 +48,7 @@ router.get('/',async (req,res)=>{
         }
 
         gradePage=Number(gradePage);
-        detailPage=Number(detailPage);
+        //detailPage=Number(detailPage);
 
         var startGradePage=(gradePage-1)*pagingNum;
 
@@ -91,6 +91,8 @@ router.get('/',async (req,res)=>{
             var endDetailPage=detailPage*pagingNum;
             resultData.gradeDetailInfo=gradeDetailInfo.slice(startDetailPage,endDetailPage);
         }*/
+
+        console.log(resultData);
         resultData.status=200;
     }
     catch(err){

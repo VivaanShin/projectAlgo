@@ -29,6 +29,7 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
 
     try{
         var gradeInfoRecord=await getGradeInfoRecord(connection);
+        gradeInfoRecord=JSON.parse(JSON.stringify(gradeInfoRecord));
         var total=gradeInfoRecord.length;
         var startPage=(page-1)*10;
         
