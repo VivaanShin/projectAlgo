@@ -106,7 +106,7 @@ router.put('/',async (req,res)=>{
     }
     var connection=mysql.createConnection(dbConfig);
     var user={};
-    user.user_id=req.body.id;
+    user.user_id=req.body.user_id;
     //var user_pw=bcrypt.hash(req.body.user_pw, null, null);
     user.user_email=req.body.user_email;
     user.user_phone=req.body.user_phone;
