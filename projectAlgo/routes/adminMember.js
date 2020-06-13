@@ -140,11 +140,10 @@ router.delete('/',async (req,res)=>{
     }
     var connection=mysql.createConnection(dbConfig);
     var user_id=req.body.user_id;
-    console.log(user_id);
 
     try{ //우선 사용자 정보부터 삭제
         var isInterest= await getUserInterest(user_id,connection);
-        if(isInterest > 0){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
+        if(isInterest.length > 0){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
             await deleteUserInterest(user_id,connection);
         }
         await unsetForeignKeyChecks(connection);
