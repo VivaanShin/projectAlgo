@@ -141,11 +141,11 @@ router.get('/AImatching', (req, res) => {
     })
   }).then(function() {
     connection.end();
+    console.log(resultData);
+    res.render('matching_service.ejs', resultData);
   }).catch(function(err) {
     console.log('error', err);
   })
-  console.log(resultData);
-  res.render('matching_service.ejs', resultData);
 })
 
 module.exports = router;
