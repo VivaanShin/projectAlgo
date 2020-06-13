@@ -20,6 +20,7 @@ router.get('/AImatching', (req, res) => {
   var resultData = {};
   if (isLoggedin(req)) { //로그인 정보
     resultData.user = req.user;
+    console.log(resultData.user);
   }
 
   var user_id = req.user.user_id;
