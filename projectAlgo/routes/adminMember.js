@@ -86,6 +86,7 @@ router.get('/',async (req,res)=>{
 
         resultData.status=200;
         resultData.memberList=memberList;
+        console.log(resultData.memberList);
     }
     catch(err){
         console.log(err.message);
