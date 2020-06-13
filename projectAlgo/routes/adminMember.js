@@ -32,16 +32,16 @@ router.get('/',async (req,res)=>{
     var memberList=[];
 
     try{
+        if(typeof page == 'undefined'){
+            page=1;
+        }
+        
         var userInfo=await getAllUserInfo(connection); //모든 유저 정보 가져옴
         var page=req.query.page;
         var startPage=(page-1)*pagingNum;
         var endPage;
         var total=userInfo.length;
         resultData.total=total;
-
-        if(typeof page == 'undefined'){
-            page=1;
-        }
 
         page=Number(page);
 
