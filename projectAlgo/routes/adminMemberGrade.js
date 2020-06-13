@@ -5,7 +5,7 @@ const router=express.Router();
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 const getAllUserInfo=require('./queryPromise').getAllUserInfo;
 const getUserGradeCountAndAvg=require('./queryPromise').getUserGradeCountAndAvg;
-const getUserGrade=require('./queryPromise').getUserGrade;
+//const getUserGrade=require('./queryPromise').getUserGrade;
 const updateBlackInUserInfo=require('./queryPromise').updateBlackInUserInfo;
 const insertBlackUser=require('./queryPromise').insertBlackUser;
 const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
@@ -28,7 +28,7 @@ router.get('/',async (req,res)=>{
     }
     var connection=mysql.createConnection(dbConfig);
     var resultData={};
-    var gradePage=req.query.grade_page; //유저 평점 관리 페이지
+    var gradePage=req.query.page; //유저 평점 관리 페이지
     //var detailPage=req.query.detail_page; //유저 평점 상세정보 페이지
     try{
         var userInfo=await getAllUserInfo(connection);
@@ -36,7 +36,7 @@ router.get('/',async (req,res)=>{
         resultData.gradeTotal=gradeTotal;
         var gradeInfo=[];
 
-        if(typeof gradePage=='undefined' || typeof detailPage =='undefined'){
+        if(typeof gradePage=='undefined'){
             gradePage=1;
             //detailPage=1;
         }
@@ -52,10 +52,10 @@ router.get('/',async (req,res)=>{
 
         var startGradePage=(gradePage-1)*pagingNum;
 
-        if(gradePage <=0 || gradePage>gradeTotal/pagingNum){//잘 못된 페이지처리
+        if(gradePage <=0 || gradePage>Math.ceil(gradeTotal/pagingNum)){//잘 못된 페이지처리
             gradePage=1;
         }
-        else if(gradePage==gradeTotal/pagingNum){ //마지막 페이지 처리
+        else if(gradePage==Math.ceil(gradeTotal/pagingNum)){ //마지막 페이지 처리
             var endGradePage=gradeTotal;
         }
         else{ //일반적인 페이지처리

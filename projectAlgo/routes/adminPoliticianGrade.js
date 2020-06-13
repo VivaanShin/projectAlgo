@@ -33,11 +33,11 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
         var total=gradeInfoRecord.length;
         var startPage=(page-1)*10;
         
-        if(page <=0 || page >total/pagingNum){//잘 못된 페이지 처리
+        if(page <=0 || page >Math.ceil(total/pagingNum)){//잘 못된 페이지 처리
             page=1
             return;
         }
-        else if(page==total/pagingNum) { //마지막 페이지 처리
+        else if(page==Math.ceil(total/pagingNum)) { //마지막 페이지 처리
             resultData.gradeInfoRecord=gradeInfoRecord.slice(startPage);
         }
         else{

@@ -36,11 +36,11 @@ router.get('/',(req,res)=>{
             resultData.total=total;
             var startPage=(page-1)*pagingNum;
 
-            if(page<=0 || page > total/pagingNum){ //잘 못된 페이지가 들어왔을 시
+            if(page<=0 || page > Math.ceil(total/pagingNum)){ //잘 못된 페이지가 들어왔을 시
                 res.redirect('/admin/politician?page=1');
                 return;
             }
-            else if(page == total/pagingNum){ //마지막 페이지 처리
+            else if(page == Math.ceil(total/pagingNum)){ //마지막 페이지 처리
                 resultData.politicianResult=politicians.slice(startPage);
             }
             else{ //일반적인 페이지 처리

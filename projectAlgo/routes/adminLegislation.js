@@ -35,10 +35,10 @@ router.get('/',async (req,res)=>{
         var total=allLegislation.length;
         resultData.total=total;
 
-        if(page <=0 || page> total/pagingNum){// 잘 못된 페이지 처리
+        if(page <=0 || page> Math.ceil(total/pagingNum)){// 잘 못된 페이지 처리
             page=1;
         }
-        else if(page==total/pagingNum){ //마지막 페이지처리
+        else if(page==Math.ceil(total/pagingNum)){ //마지막 페이지처리
             resultData.legislation=allLegislation.slice(startPage);
         }
         else{ //일반적인 페이지 처리

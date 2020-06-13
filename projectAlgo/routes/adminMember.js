@@ -46,11 +46,13 @@ router.get('/',async (req,res)=>{
 
         page=Number(page);
 
-        if(page <=0 || page> total/pagingNum){ //잘 못된 페이지 처리
-            page=1
+        if(page <=0 || page> Math.ceil(total/pagingNum)){ //잘 못된 페이지 처리
+            if(total % paingNum <=0 || page >=(total/pagingNum)+2){
+                page=1
+            }
         }
 
-        else if(page==total/pagingNum){ //마지막페이지 처리
+        else if(page==Math.ceil(total/pagingNum)){ //마지막페이지 처리
             endPage=total;
         }
         else{
