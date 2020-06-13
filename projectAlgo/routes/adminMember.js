@@ -99,6 +99,10 @@ router.get('/',async (req,res)=>{
     }
 });
 
+router.post('/',function(req,res){
+    console.log(req.body);
+});
+
 router.put('/',async (req,res)=>{
     if(!isAdmin(req)){
         return res.redirect('/');
