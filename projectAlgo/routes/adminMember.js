@@ -122,7 +122,7 @@ router.put('/',async (req,res)=>{
         console.log(user);
         await updateAdminUserInfo(user,connection);
         
-        if(isInterest > 0){ //interest_check가 true라면 tb_user_interest도 업데이트
+        if(isInterest.length > 0){ //interest_check가 true라면 tb_user_interest도 업데이트
             user.itScience=req.body.user_itScience;
             user.economy=req.body.user_economy;
             user.culture=req.body.user_culture;
@@ -148,12 +148,11 @@ router.delete('/',async (req,res)=>{
     var connection=mysql.createConnection(dbConfig);
 
     var user_id=req.body.user_id;
-    var user_interest_check=req.body.user_interest_check;
 
     try{
         await deleteUserInfo(user_id,connection); //우선 사용자 정보부터 삭제
-
-        if(user_interest_check){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
+        var isInterest= await getUserInterest(user_id,connection);
+        if(isInterest > 0){ //만약 사용자가 관심사 매칭을 수행한 적이 있다면 그것도 삭제
             await deleteUserInterest(user_id,connection);
 
         }//나중에 사용자가 준 평점도 삭제 할 것인지 생각
