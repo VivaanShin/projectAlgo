@@ -68,8 +68,8 @@ router.get('/',async (req,res)=>{
             oneUser.user_black=userInfo[i].user_black;
             var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection,orderBy);
 
-            oneUser.count=usersGradeCountAndAvg.count;
-            oneUser.avg=usersGradeCountAndAvg.avg;
+            oneUser.count=usersGradeCountAndAvg[0].count;
+            oneUser.avg=usersGradeCountAndAvg[0].avg;
 
             gradeInfo.push(oneUser);
         }
