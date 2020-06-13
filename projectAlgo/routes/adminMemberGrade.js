@@ -69,7 +69,7 @@ router.get('/',async (req,res)=>{
             var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection,orderBy);
 
             oneUser.count=usersGradeCountAndAvg[0].count;
-            oneUser.avg=usersGradeCountAndAvg[0].avg;
+            oneUser.avg=(usersGradeCountAndAvg[0].avg==null) ? 0:usersGradeCountAndAvg[0].avg;
 
             gradeInfo.push(oneUser);
         }
