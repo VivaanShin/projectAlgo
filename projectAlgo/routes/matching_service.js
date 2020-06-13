@@ -52,11 +52,11 @@ router.get('/AImatching', (req, res) => {
 
           //유저 관심사 객체
           var user_interest = {
-            x : rows[0].itScience,
-            x : rows[0].economy,
-            x : rows[0].culture,
-            x : rows[0].society,
-            x : rows[0].politics
+            x: rows[0].itScience,
+            x: rows[0].economy,
+            x: rows[0].culture,
+            x: rows[0].society,
+            x: rows[0].politics
           }
 
           /*
@@ -70,10 +70,16 @@ router.get('/AImatching', (req, res) => {
           });
           var maxNum = Object.values(map);
           */
-
+          var xMax = Math.max.apply(null, user_interest.map(function(o) {
+            return o.x;
+          }));
+          var maxNum = user_interest.filter(function(o) {
+            return o.x === xMax;
+          })[0];
+          /*
           var xMax = Math.max(...Array.from(user_interest, o => o.x));
           var maxNum = user_interest.find(o => o.x === xMax);
-
+          */
 
           console.log("maxNum", maxNum);
           //유저 관심사 각각 배열
