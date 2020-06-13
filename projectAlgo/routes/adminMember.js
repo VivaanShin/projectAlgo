@@ -97,7 +97,7 @@ router.get('/',async (req,res)=>{
 
         resultData.status=200;
         resultData.memberList=memberList;
-        console.log(resultData.memberList);
+        console.log(resultData);
     }
     catch(err){
         console.log(err.message);
