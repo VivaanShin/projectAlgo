@@ -8,7 +8,6 @@ const insertUserInterest=require('./queryPromise').insertUserInterest;
 const deleteUserInfo=require('./queryPromise').deleteUserInfo;
 const deleteUserInterest=require('./queryPromise').deleteUserInterest;
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
-const getUserInterest=require('./queryPromise').getUserInterest;
 const mysql=require('mysql');
 const router=express.Router();
 //const bcrypt=require('bcrypt-nodejs');
