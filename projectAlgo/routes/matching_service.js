@@ -49,16 +49,17 @@ router.get('/AImatching', (req, res) => {
           const maxNum = Math.max(...arrayToSearchIn.map(o => o.rows), 0);
           console.log("maxNum", maxNum);
           */
-          /*
+
           //유저 관심사 객체
           var user_interest = {
-            itScience : rows[0].itScience,
-            economy : rows[0].economy,
-            culture : rows[0].culture,
-            society : rows[0].society,
-            politics : rows[0].politics
+            x : rows[0].itScience,
+            x : rows[0].economy,
+            x : rows[0].culture,
+            x : rows[0].society,
+            x : rows[0].politics
           }
-          */
+
+          /*
           var map = {};
           rows.forEach((rows) => {
             var mapKey = rows.source + "/" + rows.target;
@@ -67,8 +68,13 @@ router.get('/AImatching', (req, res) => {
             if (!answerrows || answerrows.metrics.normal < rows.metrics.normal)
               map[mapKey] = rows;
           });
-
           var maxNum = Object.values(map);
+          */
+
+          var xMax = Math.max(...Array.from(user_interest, o => o.x));
+          var maxNum = objects.find(o => o.x === xMax);
+
+          
           console.log("maxNum", maxNum);
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
