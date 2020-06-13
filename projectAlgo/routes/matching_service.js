@@ -38,10 +38,13 @@ const dbConfig = {
             console.log("sql success");
             console.log(rows);
 
+            /*
             Math.max.apply(Math, rows.map(function(o){
               return o.rows;
             }))
             var maxNum = o.rows;
+            */
+            const maxNum = Math.max(...arrayToSearchIn.map(o => o.rows), 0);
             console.log("maxNum", maxNum);
             /*
             //유저 관심사 객체
