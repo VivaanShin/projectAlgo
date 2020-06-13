@@ -89,15 +89,15 @@ router.get('/AImatching', (req, res) => {
           console.log("maxNum", maxNum);
 
           var user_interest_max = "default"
-          if (user_itScience = maxNum) {
+          if (user_itScience == maxNum) {
             user_interest_max = "itScience"
-          } else if (user_economy = maxNum) {
+          } else if (user_economy == maxNum) {
             user_interest_max = "economy"
-          } else if (user_culture = maxNum) {
+          } else if (user_culture == maxNum) {
             user_interest_max = "culture"
-          } else if (user_society = maxNum) {
+          } else if (user_society == maxNum) {
             user_interest_max = "society"
-          } else if (user_politics = maxNum) {
+          } else if (user_politics == maxNum) {
             user_interest_max = "politics"
           } else {
             console.log("maxNum error")
