@@ -249,8 +249,8 @@
 
 
 
-      <li class="nav-item" >
-        <a class="nav-link active" data-toggle="tab" href="#candidate_list">정치인 검색</a>
+     <li class="nav-item" >
+        <a class="nav-link" href="/search">정치인 검색</a>
       </li>
 
 
@@ -264,7 +264,7 @@
         
         <% if(typeof user == 'undefined') { %>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
+        <a class="nav-link active" data-toggle="modal" data-target="#LoginModal">AI매칭서비스</a>
         </li>
         <% } %>
 
@@ -272,14 +272,14 @@
         <!--조건문 로그인이 되어있으나 설문조사를 한적없을 시-->
         <% if(typeof user != 'undefined' && user.user_interest_check==0) { %>
         <li class="nav-item">
-        <a class="nav-link" href="/matching_survey">AI매칭설문조사</a>
+        <a class="nav-link active" href="/matching_survey">AI매칭설문조사</a>
         </li>
         <%  } %>        
         
         <!--조건문 로그인이 되어있고 설문조사를 완료 했을 시-->
         <% if(typeof user != 'undefined' && user.user_interest_check==1) { %>
         <li class="nav-item">
-        <a class="nav-link" href="/matching_service">AI매칭결과</a>
+        <a class="nav-link active" href="/matching_service">AI매칭결과</a>
         </li>
         <%  } %>        
         
@@ -366,77 +366,44 @@
 
 
 
-      <div class="tab-pane fade  active show" id="candidate_list">
+<div class="tab-pane fade  active show" id="candidate_list" style="margin-bottom: 10%;">
   
-    <div class="row">
+    <div class="row"  style="display:flex;">
 
-      <div class="col-lg-3">
-        <div class="form-group" style="margin-top:20%;">
-          <h2>나의 정치 성향</h2><br><br>
-  <textarea style="display:none;" id="1" cols="60" rows="15">내정치성향,사회,경제,과학,정치,문화
-<%= searchResult.user_id %>,<%= searchResult.society %>,<%= searchResult.economy %>,<%= searchResult.itScience %>,<%= searchResult.politics %>,<%= searchResult.culture %>
+      <div class="" style="width:23%; padding-left:3%;">
+         
+ <div style="text-align:center; display: block; height: 110%%; width:270px; margin-right:5%; border:4px groove currentColor; ">  
+   <h2 style="padding-top:3%;">나의 정치성향</h2><br><br>
+  <textarea style="display:none;" id="<%= user.user_id %>" cols="60" rows="15">이름,사회,경제,과학,정치,문화
+<%= user.user_id %>, <%= user_interest.society %>, <%= user_interest.economy %>, <%= user_interest.itScience %>, <%= user_interest.politics %>, <%= user_interest.culture %>
   </textarea>
 
 
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-  
-      <div class="card-body">
-      <div id="chart-container1"></div>
-      <button onclick = "location.href = /matching_survey" class="btn btn-primary">설문조사다시하기</button>
-
+      <div class="" style="padding-top: 5%; text-align: center;">
+      <div id="chart-container<%= user.user_id %>"></div>
+      <script>  showRadar("<%= user.user_id %>"); </script>
       </div>
-      <script>  showRadar(1); </script>
 
-    </div>
-       
+
+
         </div> 
       </div>
 
-<div class="col-lg-1" style="margin-left:4%; margin-right:8%; border-right : 2px solid  grey; height:100%; left : 20%; position:absolute;"  >
+
+<div class="" style="margin-left:8%; margin-right:2%; border-left : 2px solid  grey; width:5%; height:100;"  >
 </div>
 
 
 
 
 
-<div class="col-lg-8 offset-lg-1" style="padding-top:5%;">
-
-
+<div class="" style="width: 55%; display: block;">
     
-     <% for(var i=0; i < 10; i++){ %>
-  <div style="display: inline-block;">  
-  
-  <textarea style="display:none;" id="<%= searchResult[i].politician_no %>" cols="60" rows="15">이름,사회,경제,과학,정치,문화
-<%= searchResult[i].politician_name %>,<%= searchResult[i].society %>,<%= searchResult[i].economy %>,<%= searchResult[i].itScience %>,<%= searchResult[i].politics %>,<%= searchResult[i].culture %>
-  </textarea>
-
-
-    <div class="card border-light" style="width: 35%; margin-right:5%;">
-        <div class="card-header" style="display: -webkit-box;" >
-        <img src="<%= searchResult[i].img %>" alt="정치인 사진" style="margin-top: 35%;">
-        <div style=" margin-left: 14%; margin-top: 5%;">  
-        <span class="badge badge-primary"><%= searchResult[i].jdName %></span>
-
-        <br>
-        
-        <h3><%= searchResult[i].politician_name %></h3>
-        <p class="text-muted"><%= searchResult[i].politician_name %>
-        </p>
-        <p class="text-muted"><%= searchResult[i].career2 %></p>
-       </div>
-        </div>
-
-      <div class="card-body">
-      <div id="chart-container<%= searchResult[i].politician_no %>"></div>
-      </div>
-      <script>  showRadar(<%= searchResult[i].politician_no %>); </script>
-
-    </div>
-  </div>
-   <% } %>
 
 
     </div><!--col8-->
+
+
     </div><!--row-->
       </div><!--candidate_list-->
 

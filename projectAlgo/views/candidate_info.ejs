@@ -654,33 +654,17 @@
              </thead>
 
              <tbody>
+
+
+              <% for(i=0 ; i < politicianLegislationInfo.length ; i++) {%>
                <tr>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[0].issue_name%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[0].committeename%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[0].proposeDt%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[0].generalResult%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[i].issue_name%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[i].committeename%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[i].proposeDt%></td>
+                  <td style="text-align:center;"><%= politicianLegislationInfo[i].generalResult%></td>
                </tr>
-
-               <tr>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[1].issue_name%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[1].committeename%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[1].proposeDt%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[1].generalResult%></td>
-               </tr>
-
-                  <tr>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[2].issue_name%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[2].committeename%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[2].proposeDt%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[2].generalResult%></td>
-               </tr>
-
-                <tr>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[3].issue_name%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[3].committeename%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[3].proposeDt%></td>
-                  <td style="text-align:center;"><%= politicianLegislationInfo[3].generalResult%></td>
-               </tr>
+               <% } %>
+              
 
              </tbody>
            </table>

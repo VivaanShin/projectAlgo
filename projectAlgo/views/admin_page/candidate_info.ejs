@@ -16,6 +16,103 @@
     <link href="/css_admin/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+<script>
+       function clickModify(id){
+
+        var politician_no = document.getElementById('ttt'+id+'_politician_no').value;
+
+        var data = {
+            politician_no : document.getElementById('ttt'+id+'_politician_no').value,
+            politician_name : document.getElementById('ttt'+id+'_politician_name').value,
+            birthday : document.getElementById('ttt'+id+'_politician_birthday').value,
+            jdName : document.getElementById('ttt'+id+'_politician_jdName').value,
+            sdName : document.getElementById('ttt'+id+'_politician_sdName').value,
+            wiwName : document.getElementById('ttt'+id+'_politician_wiwName').value,
+            job : document.getElementById('ttt'+id+'_politician_job').value,
+            edu : document.getElementById('ttt'+id+'_politician_edu').value,
+            career2 : document.getElementById('ttt'+id+'_politician_career2').value,
+            itScience : document.getElementById('ttt'+id+'_politician_itScience').value,
+            economy : document.getElementById('ttt'+id+'_politician_economy').value,
+            culture : document.getElementById('ttt'+id+'_politician_culture').value,
+            society : document.getElementById('ttt'+id+'_politician_society').value,
+            politics : document.getElementById('ttt'+id+'_politician_politics').value
+        }
+        console.log('ttt'+id);
+        console.log(data);
+
+        fetch("/admin/politician/"+politician_no, {
+                         method: "PUT",
+                         body: JSON.stringify(data),
+                         headers:{
+                             'Content-Type': 'application/json'
+                            }
+        })
+        }
+
+
+
+        function clickDelete(id){
+
+        var politician_no = document.getElementById('ttt'+id+'_politician_no').value;
+                   
+        var data = {
+            politician_no : document.getElementById('ttt'+id+'_politician_no').value
+        }
+
+           fetch("/admin/politician/"+politician_no, {
+                         method: "DELETE",
+                         body: JSON.stringify(data),
+                         headers:{
+                             'Content-Type': 'application/json'
+                            }
+        })
+        }
+
+
+
+     function clickAdd(){
+                   
+        var data = {
+            politician_no : document.getElementById('tt_politician_no').value,
+            politician_name : document.getElementById('tt_politician_name').value,
+            birthday : document.getElementById('tt_politician_birthday').value,
+            jdName : document.getElementById('tt_politician_jdName').value,
+            sdName : document.getElementById('tt_politician_sdName').value,
+            wiwName : document.getElementById('tt_politician_wiwName').value,
+            job : document.getElementById('tt_politician_job').value,
+            edu : document.getElementById('tt_politician_edu').value,
+            career2 : document.getElementById('tt_politician_career2').value,
+            itScience : document.getElementById('tt_politician_itScience').value,
+            economy : document.getElementById('tt_politician_economy').value,
+            culture : document.getElementById('tt_politician_culture').value,
+            society : document.getElementById('tt_politician_society').value,
+            politics : document.getElementById('tt_politician_politics').value
+        }
+
+           fetch("/admin/politician", {
+                         method: "PUT",
+                         body: JSON.stringify(data),
+                         headers:{
+                             'Content-Type': 'application/json'
+                            }
+        })
+        }
+                   
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
 
 <body>
@@ -123,8 +220,14 @@
                 <div class="row">
                    
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                정치인관리 
+                            <div class="panel-heading" style="display: flex;">
+                                 <h4 style="margin-right:70%; padding-top:0;">정치인관리</h4>
+                                
+                                  <form class="form-group input-group"  style="display: flex; margin-bottom: 0;">
+                                  <input class="form-control" type="text" placeholder="검색" style="height:100%;">
+                                  <button class="input-group-addon" type="submit" style="width:30%;">검색하기</button>
+                                  </form>
+
                             </div> 
 
                             <div class="panel-body">
@@ -133,7 +236,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="width:3%; text-align:center;">번호</th>
-                                                <th style="width:3%; text-align:center;">이름</th>
+                                                <th style="width:5%; text-align:center;">이름</th>
                                                 <th style="width:5%; text-align:center;">생년월일</th>
                                                 <th style="width:5%; text-align:center;">소속정당</th>
                                                 <th style="width:5%; text-align:center;">시/도</th>
@@ -152,24 +255,48 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><input type="text" value="A" style="width:100%; text-align: center;"></td>
-                                                <td><input type="text" value="19xx" style="width:100%; text-align: center;"></td>
-                                                <td><input type="text" value="A당" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="XX시" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="XX구" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="의사" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="서울대졸" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="경력" style="width:70%; text-align: center;"></td>
+                                              <% for(var i =0; i < politicianResult.length; i++) { %>
+                                            
+                                            
+                                            <tr>    
+                                            <input style="display: none" id = "ttt<%= i %>_politician_no" value="<%= politicianResult[i].politician_no %>">
 
-                                                <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="5" style="width:50%; text-align: center;"></td>
-                                                <td> <button>수정</button><button>삭제</button></td>
+                                            <td style=" text-align: center; width:3%;"><%= i+1 %></td>
+                                            <td><input id = "ttt<%= i %>_politician_name" type="text" value="<%= politicianResult[i].politician_name %>" style=" text-align: center; width:90%;">
+                                            </td>
+                                            <td><input id = "ttt<%= i %>_politician_birthday" type="text" value="<%= politicianResult[i].birthday %>" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_jdName" type="text" value="<%= politicianResult[i].jdName %>" style=" text-align: center;width:90%;" ></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_sdName" type="text" value="<%= politicianResult[i].sdName %>" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_wiwName" type="text" value="<%= politicianResult[i].wiwName %>" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_job" type="text" value="<%= politicianResult[i].job %>" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_edu" type="text" value="<%= politicianResult[i].edu %>" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_career2" type="text" value="<%= politicianResult[i].career2 %>" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_itScience" type="text" value="<%= politicianResult[i].itScience %>" style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_economy" type="text" value="<%= politicianResult[i].economy %>" style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_culture" type="text" value="<%= politicianResult[i].culture %>" style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_society" type="text" value="<%= politicianResult[i].society %>" style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "ttt<%= i %>_politician_politics" type="text" value="<%= politicianResult[i].politics %>" style=" text-align: center; width:50%;" ></td>
+
+                                            <td style="text-align: center;">
+                                                <div style="display: inline-flex">
+                                               <button type="button" onclick="clickModify('<%= i %>')">수정</button>
+                                               <button type="button" onclick="clickDelete('<%= i %>')">삭제</button>
+                                                </div>
+                                            </td>
                                             </tr>
+                                        
+                                            <% } %>
                                           
                                           
 
@@ -177,6 +304,26 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+
+                         <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate" style="margin-left: 20%; margin-bottom: 2%; text-align: center;">
+
+                                
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                                                    <a href="#">Previous</a>
+                                                </li>
+                                                <% for(var i = 0; i < total/10 ; i++) { %>
+                                                <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+                                                    <a href="/admin/politician?page=<%= i+1 %>"><%= i+1 %></a>
+                                                </li>
+                                                <% } %>
+
+                                                <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a>
+                                                </li>
+                                            </ul>
+
+                            
                         </div>
                     </div>
 
@@ -194,41 +341,63 @@
                                             <table class="table table-striped table-bordered table-hover">
                                          <thead>
                                             <tr>
-                                                <th style="width:3%; text-align:center;">이름</th>
-                                                <th style="width:5%; text-align:center;">생년월일</th>
-                                                <th style="width:5%; text-align:center;">소속정당</th>
-                                                <th style="width:5%; text-align:center;">시/도</th>
-                                                <th style="width:5%; text-align:center;">구/시/군</th>
-                                                <th style="width:5%; text-align:center;">직업</th>
-                                                <th style="width:5%; text-align:center;">학력</th>
-                                                <th style="width:5%; text-align:center;">경력</th>
+                                                <th style="width:5%; text-align:center;">번호</th>
+                                                <th style="width:8%; text-align:center;">이름</th>
+                                                <th style="width:8%; text-align:center;">생년월일</th>
+                                                <th style="width:8%; text-align:center;">소속정당</th>
+                                                <th style="width:8%; text-align:center;">시/도</th>
+                                                <th style="width:8%; text-align:center;">구/시/군</th>
+                                                <th style="width:8%; text-align:center;">직업</th>
+                                                <th style="width:8%; text-align:center;">학력</th>
+                                                <th style="width:10%; text-align:center;">경력</th>
 
                                                 <th style="width:5%; text-align:center;">과학/IT</th>
                                                 <th style="width:5%; text-align:center;">경제</th>
                                                 <th style="width:5%; text-align:center;">문화</th>
                                                 <th style="width:5%; text-align:center;">사회</th>
                                                 <th style="width:5%; text-align:center;">정치</th>
-                                                <th style="width:8%; text-align:center;">관리</th>
+                                                <th style="width:10%; text-align:center;">관리</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><input type="text" value="" style="width:100%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:100%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:70%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:70%; text-align: center;"></td>
+                                      <tr>    
+                                        
+                                            <td><input id = "tt_politician_no" type="text" style=" text-align: center; width:90%;">
 
-                                                <td><input type="text" value="" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:50%; text-align: center;"></td>
-                                                <td><input type="text" value="" style="width:50%; text-align: center;"></td>
-                                                <td> <button>추가하기</button></td>
+                                            <td><input id = "tt_politician_name" type="text" style=" text-align: center; width:90%;">
+                                            </td>
+
+                                            <td><input id = "tt_politician_birthday" type="text"style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "tt_politician_jdName" type="text" style=" text-align: center;width:90%;" ></td>
+
+                                            <td><input id = "tt_politician_sdName" type="text" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "tt_politician_wiwName" type="text"style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "tt_politician_job" type="text"style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "tt_politician_edu" type="text" style=" text-align: center; width:90%;"></td>
+
+                                            <td><input id = "tt_politician_career2" type="text" style=" text-align: center; width:90%;"></td>
+
+
+                                            <td><input id = "tt_politician_itScience" type="text"style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "tt_politician_economy" type="text" style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "tt_politician_culture" type="text" style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "tt_politician_society" type="text" style=" text-align: center; width:50%;" ></td>
+
+                                            <td><input id = "tt_politician_politics" type="text"
+                                                style=" text-align: center; width:50%;" ></td>
+
+                                            <td style="text-align: center;">
+
+                                               <button type="button" onclick="clickAdd();">추가하기</button>
+                                            </td>
                                             </tr>
                                           
                                           
@@ -259,23 +428,6 @@
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-	 
-    <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <!-- Morris Chart Js -->
-    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js"></script>
-	
-	
-	<script src="assets/js/easypiechart.js"></script>
-	<script src="assets/js/easypiechart-data.js"></script>
-	
-	
-    <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
 
 
 </body>

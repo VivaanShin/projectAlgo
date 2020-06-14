@@ -17,7 +17,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
     <script>
-       function clickModify(id){
+             function clickModify(id){
 
         var data = {
             user_id : document.getElementById('ttt'+id+'_user_id').value,
@@ -201,7 +201,6 @@
                                             <tr>    
                                             <td style=" text-align: center; width:3%;"><%= i+1 %></td>
                                             <td><input id = "ttt<%= i %>_user_id" type="text" value="<%= memberList[i].user_id %>" style=" text-align: center; width:90%;">
-                                            </input>
                                             </td>
                                             <td><input id = "ttt<%= i %>_user_email" type="text" value="<%= memberList[i].user_email %>" style=" text-align: center; width:100s%;"></td>
                                             <td><input id = "ttt<%= i %>_user_phone" type="text" value="<%= memberList[i].user_phone %>" style=" text-align: center;width:70%;" ></td>
@@ -225,7 +224,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div><!--pannelbody-->
 
 
                              <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate" style="margin-left:70%;">
