@@ -616,12 +616,9 @@ exports.getPoliticianAllAverageGradeAndCount=function getPoliticianAllAverageGra
     return new Promise((resolve,reject)=>{
         connection.query(`select avg(grade_score) as avg, count(*) as count from tb_gradeinfo_record
         where politician_no=?`,[politician_no],(err,avg_grade)=>{
-            if(err) 
-            {
-                connection.end();
+            if(err) {
                 reject(err);
-            }   
-            connection.end();
+            }
             resolve(avg_grade); //해당  정치인 평점 평균
         });
     });
