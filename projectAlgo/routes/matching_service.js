@@ -133,16 +133,27 @@ router.get('/', (req, res) => {
           var politician9 = [rows[8].itScience, rows[8].economy, rows[8].culture, rows[8].society, rows[8].politics];
           var politician10 = [rows[9].itScience, rows[9].economy, rows[9].culture, rows[9].society, rows[9].politics];
 
-          var politician1_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician2_score = 100*(1-(distance(user_interest_score, politician2)/224));
-          var politician3_score = 100*(1-(distance(user_interest_score, politician3)/224));
-          var politician4_score = 100*(1-(distance(user_interest_score, politician4)/224));
-          var politician5_score = 100*(1-(distance(user_interest_score, politician5)/224));
-          var politician6_score = 100*(1-(distance(user_interest_score, politician6)/224));
-          var politician7_score = 100*(1-(distance(user_interest_score, politician7)/224));
-          var politician8_score = 100*(1-(distance(user_interest_score, politician8)/224));
-          var politician9_score = 100*(1-(distance(user_interest_score, politician9)/224));
-          var politician10_score = 100*(1-(distance(user_interest_score, politician10)/224));
+          var politician1_score = distance(user_interest_score, politician1);
+          var politician2_score = distance(user_interest_score, politician2);
+          var politician3_score = distance(user_interest_score, politician3);
+          var politician4_score = distance(user_interest_score, politician4);
+          var politician5_score = distance(user_interest_score, politician5);
+          var politician6_score = distance(user_interest_score, politician6);
+          var politician7_score = distance(user_interest_score, politician7);
+          var politician8_score = distance(user_interest_score, politician8);
+          var politician9_score = distance(user_interest_score, politician9);
+          var politician10_score = distance(user_interest_score, politician10);
+
+          var politician1_percent = 100*(1-(distance(user_interest_score, politician1)/224));
+          var politician2_percent = 100*(1-(distance(user_interest_score, politician2)/224));
+          var politician3_percent = 100*(1-(distance(user_interest_score, politician3)/224));
+          var politician4_percent = 100*(1-(distance(user_interest_score, politician4)/224));
+          var politician5_percent = 100*(1-(distance(user_interest_score, politician5)/224));
+          var politician6_percent = 100*(1-(distance(user_interest_score, politician6)/224));
+          var politician7_percent = 100*(1-(distance(user_interest_score, politician7)/224));
+          var politician8_percent = 100*(1-(distance(user_interest_score, politician8)/224));
+          var politician9_percent = 100*(1-(distance(user_interest_score, politician9)/224));
+          var politician10_percent = 100*(1-(distance(user_interest_score, politician10)/224));
 
 
 
@@ -150,6 +161,7 @@ router.get('/', (req, res) => {
             children: [{
                 politician_no: rows[0].politician_no,
                 politician_match_rate: politician1_score,
+                politician_match_percent: politician1_percent,
                 itScience: rows[0].itScience,
                 economy: rows[0].economy,
                 culture: rows[0].culture,
@@ -159,6 +171,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[1].politician_no,
                 politician_match_rate: politician2_score,
+                politician_match_percent: politician2_percent,
                 itScience: rows[1].itScience,
                 economy: rows[1].economy,
                 culture: rows[1].culture,
@@ -168,6 +181,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[2].politician_no,
                 politician_match_rate: politician3_score,
+                politician_match_percent: politician3_percent,
                 itScience: rows[2].itScience,
                 economy: rows[2].economy,
                 culture: rows[2].culture,
@@ -177,6 +191,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[3].politician_no,
                 politician_match_rate: politician4_score,
+                politician_match_percent: politician4_percent,
                 itScience: rows[3].itScience,
                 economy: rows[3].economy,
                 culture: rows[3].culture,
@@ -186,6 +201,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[4].politician_no,
                 politician_match_rate: politician5_score,
+                politician_match_percent: politician5_percent,
                 itScience: rows[4].itScience,
                 economy: rows[4].economy,
                 culture: rows[4].culture,
@@ -195,6 +211,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[5].politician_no,
                 politician_match_rate: politician6_score,
+                politician_match_percent: politician6_percent,
                 itScience: rows[5].itScience,
                 economy: rows[5].economy,
                 culture: rows[5].culture,
@@ -204,6 +221,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[6].politician_no,
                 politician_match_rate: politician7_score,
+                politician_match_percent: politician7_percent,
                 itScience: rows[6].itScience,
                 economy: rows[6].economy,
                 culture: rows[6].culture,
@@ -213,6 +231,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[7].politician_no,
                 politician_match_rate: politician8_score,
+                politician_match_percent: politician8_percent,
                 itScience: rows[7].itScience,
                 economy: rows[7].economy,
                 culture: rows[7].culture,
@@ -222,6 +241,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[8].politician_no,
                 politician_match_rate: politician9_score,
+                politician_match_percent: politician9_percent,
                 itScience: rows[8].itScience,
                 economy: rows[8].economy,
                 culture: rows[8].culture,
@@ -231,6 +251,7 @@ router.get('/', (req, res) => {
               {
                 politician_no: rows[9].politician_no,
                 politician_match_rate: politician10_score,
+                politician_match_percent: politician10_percent,
                 itScience: rows[9].itScience,
                 economy: rows[9].economy,
                 culture: rows[9].culture,
@@ -308,7 +329,8 @@ router.get('/', (req, res) => {
               culture: resultData.matching_result[i].culture,
               society: resultData.matching_result[i].society,
               politics: resultData.matching_result[i].politics,
-              politician_match_rate: resultData.matching_result[i].politician_match_rate
+              politician_match_rate: resultData.matching_result[i].politician_match_rate,
+              politician_match_percent: resultData.matching_result[i].politician_match_percent
             }
             searchResult.push(politician);
           }
