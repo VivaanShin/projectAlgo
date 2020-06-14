@@ -398,7 +398,86 @@
 
 
 <div class="" style="width: 55%; display: block;">
-    
+    <% if(typeof searchResult!='undefined' && searchResult.length==0) { %>
+      <div class="card border-light" style="height:50%; width: 35%; margin-right:5%;">
+        검색결과 없음.
+      </div>
+    <% } %>
+
+
+
+
+    <% if(typeof searchResult!='undefined' && searchResult.length > 0) { %>
+
+    <% for(var i=0; i < searchResult.length; i++){ %>
+
+      <% if( i%2==0 ) { %>
+
+        <div style="display: flex; margin-bottom: 3%;">
+
+     <% } %>
+
+  <div style="display: block; height: 55%; width:270px; margin-right:5%; border:4px groove currentColor; ">  
+  <div style="text-align: center; "> <h3>매칭 <%= i+1 %>순위</h3></div>
+
+   
+  <textarea style="display:none;" id="<%= searchResult[i].politician_no %>" cols="60" rows="15">이름,사회,경제,과학,정치,문화
+<%= user.user_id %>, <%= user_interest.society %>, <%= user_interest.economy %>, <%= user_interest.itScience %>, <%= user_interest.politics %>, <%= user_interest.culture %>
+<%= searchResult[i].politician_name %>,<%= searchResult[i].society %>,<%= searchResult[i].economy %>,<%= searchResult[i].itScience %>,<%= searchResult[i].politics %>,<%= searchResult[i].culture %>
+
+  </textarea>
+
+
+
+ 
+      <div class="" style="display:flex; height:60%; border-top:4px groove currentColor;" >
+        
+        <a href="/politician/<%= searchResult[i].politician_no %>" style="text-align: center; width:300px; height:220px;">
+        <img src="<%= searchResult[i].img %>" alt="정치인 사진" style="width: -webkit-fill-available;
+    height: -webkit-fill-available;"></a>
+       
+       <div style="padding-top: 5%; padding-left:3%;  width:60%;" >  
+        
+        <% if(searchResult[i].jdName=='미래통합당'){ %>
+        <span class="badge badge-primary">
+
+
+        <%} else if(searchResult[i].jdName=='더불어민주당'){ %>
+        <span class="badge badge-danger">
+
+        <%} else{ %>
+        <span class="badge badge-dark">
+        <% } %>
+
+
+          <%= searchResult[i].jdName %></span>
+        
+        <br>
+        <h3><%= searchResult[i].politician_name %></h3>
+        <p class="text-muted"><%= searchResult[i].birthday %></p>
+        <p class="text-muted"><%= searchResult[i].career2 %></p>
+       </div>
+
+      </div>
+
+      <div class="" style="padding-top: 5%; border-top:4px groove currentColor; text-align: center; display: block;">
+      <div id="chart-container<%= searchResult[i].politician_no %>"></div>
+      <div><h2><%= searchResult[i].politician_match_percent %>% 매칭</h2></div>
+      <script>  showRadar(<%= searchResult[i].politician_no %>); </script>
+      </div>
+  </div>
+
+
+     <% if( i%2==1 ) { %>
+
+        </div>
+
+     <% } %>
+
+
+  
+   <% } %>
+   <% } %>
 
 
     </div><!--col8-->

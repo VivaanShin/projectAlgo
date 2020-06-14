@@ -127,7 +127,12 @@
                             </div> 
 
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="
+                                width: 100%;
+                                height: 400px;
+                                overflow-x: scroll;
+                                overflow-y: scroll;
+                                border-top: 1px solid #d0d0d0;">
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
@@ -137,21 +142,28 @@
                                                 <th style="width:5%;">선거구</th>
                                                 <th style="width:4%;">평점받은횟수</th>
                                                 <th style="width:5%;">평균 평점</th>
-                                                <th style="width:5%;">관리</th>
         
                                             </tr>
                                         </thead>
                                         <tbody>
+ 
+                                            <% for(var i=0; i<gradeList.length ; i++) { %>
                                             <tr>
-                                                <td>1</td>
-                                                <td>김철수</td>
-                                                <td>XX당</td>
-                                                <td>XX구</td>
-                                                <td>5</td>
-                                                <td><input type="text" value="8.5" style="width:50%; text-align: center;"></td>
-                                                <td> <button>수정</button><button>삭제</button></td>
+                                                <td><%= gradeList[i].politician_no %></td>
+                                                <td><%= gradeList[i].politician_name %></td>
+                                                <td><%= gradeList[i].jdName %></td>
+                                                <td><%= gradeList[i].sggName %></td>
+                                                <td><%= gradeList[i].count %></td>
+                                                <td><%= gradeList[i].avg %></td>
+
                                             </tr>
+                                            <% } %>
+
+
+
                                             
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -161,7 +173,8 @@
                     </div>
                 </div>
                 <!-- /. ROW  -->
-				<footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+
+
             </div>
             <!-- /. PAGE INNER  -->
         </div>
