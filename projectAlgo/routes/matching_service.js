@@ -123,11 +123,13 @@ router.get('/', (req, res) => {
           console.log(err);
         } else {
           console.log("sql2 success");
+          /*
           for (var i = 0; i < rows.length; i++) {
             for (var keyNm in rows[i]) {
               console.log("key: " + keyNm + ", value : " + rows[i][keyNm]);
             }
           }
+          */
           var politician1 = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
           var politician2 = [rows[1].itScience, rows[1].economy, rows[1].culture, rows[1].society, rows[1].politics];
           var politician3 = [rows[2].itScience, rows[2].economy, rows[2].culture, rows[2].society, rows[2].politics];
@@ -274,7 +276,7 @@ router.get('/', (req, res) => {
           matching_result.children.sort(function(a, b) {
             return a.politician_match_rate < b.politician_match_rate ? -1 : a.seq > b.seq ? 1 : 0;
           });
-
+          console.log(matching_result.children);
           //console.log(matching_result)
 
           resultData.matching_result = matching_result.children;
