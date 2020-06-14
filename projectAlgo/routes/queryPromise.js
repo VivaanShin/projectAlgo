@@ -569,7 +569,7 @@ exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician
 
 exports.updatePoliticianInterest=function updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics){ 
         return new Promise((resolve,reject)=>{
-            connection.query(`update tb_politician_interest set itScience=?, economy=?, culture=?, society=?, politics=?, where politician_no=?`,[itScience,economy,culture,society,politics,politician_no]
+            connection.query(`update tb_politician_interest set itScience=?, economy=?, culture=?, society=?, politics=? where politician_no=?`,[itScience,economy,culture,society,politics,politician_no]
             ,(err,result)=>{
                 if(err)
                     reject(err);
