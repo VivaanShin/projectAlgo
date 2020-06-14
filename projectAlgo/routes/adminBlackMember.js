@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     resultData.user.user_interest_check = req.session.user_interest_check;
   }
   console.log('adminBlackMember join');
-  res.render('admin_page/block_user', resultData);
+  res.render('admin_page/block_user.ejs', resultData);
 });
 
 
