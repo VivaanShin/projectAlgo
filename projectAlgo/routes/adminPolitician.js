@@ -194,6 +194,7 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     }
     finally{
         connection.end();
+        res.send(`<script type="text/javascript">alert("수정완료!");window.location="/admin/politician";</script>;`);
     }
 });
 
