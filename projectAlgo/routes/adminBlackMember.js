@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/', async(req, res) => {
+router.post('/unblack', async(req, res) => {
   var resultData = {};
   if (!isAdmin(req)) {
     return res.redirect('/');
