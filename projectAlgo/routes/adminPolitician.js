@@ -32,11 +32,13 @@ router.get('/',(req,res)=>{
     page=Number(page);
   
     var connection=mysql.createConnection(dbConfig);  
-    connection.query('select * from tb_politician_info as pol, tb_politician_interest as int where pol.politician_no in (int.politician_no)',(err,politicians)=>{ //정치인성향 계산이 필요
+    connection.query('select * from tb_politician_info as pol, tb_politician_interest as int where pol.politician_no=int.politician_no',(err,politicians)=>{ //정치인성향 계산이 필요
     //connection.query('select * from tb_politician_info',(err,politicians)=>{
         var resultData={};
-        if(err)     
+        if(err){
+            console.log("error");     
             resultData.status=500;
+        }
       
         else{
             politicians=JSON.parse(JSON.stringify(politicians));
