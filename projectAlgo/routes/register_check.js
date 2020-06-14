@@ -22,6 +22,7 @@ router.get('/', (req, res) => {
 
   var user_email = req.param('user_email');
   var user_token = req.param('user_token');
+
   var sql = 'select `user_token` from `tb_user_info` where `user_email`=? and `user_state`=0';
   connection.query(sql, user_email, function(err, rows, fields) {
     console.log("register_check_rows",rows);

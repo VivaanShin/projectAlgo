@@ -65,6 +65,12 @@ router.get('/', (req, res) => {
           var user_culture_sqrt = Math.sqrt(user_culture);
           var user_society_sqrt = Math.sqrt(user_society);
           var user_politics_sqrt = Math.sqrt(user_politics);
+
+          var user_itScience_sqrt = Math.floor(user_itScience_sqrt);
+          var user_economy_sqrt = Math.floor(user_economy_sqrt);
+          var user_culture_sqrt = Math.floor(user_culture_sqrt);
+          var user_society_sqrt = Math.floor(user_society_sqrt);
+          var user_politics_sqrt = Math.floor(user_politics_sqrt);
           //console.log("sqrt score", user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt);
 
           //유저 관심사 객체
