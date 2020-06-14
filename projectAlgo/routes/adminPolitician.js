@@ -35,12 +35,12 @@ router.get('/',(req,res)=>{
     connection.query('select * from tb_politician_info as pol, tb_politician_interest as int where pol.politician_no=int.politician_no',(err,politicians)=>{ //정치인성향 계산이 필요
     //connection.query('select * from tb_politician_info',(err,politicians)=>{
         var resultData={};
-        if(err){
-            console.log("error");     
+        if(err){   
             resultData.status=500;
         }
       
         else{
+            console.log(politicians);
             politicians=JSON.parse(JSON.stringify(politicians));
             console.log(politicians);
             resultData.status=200;
