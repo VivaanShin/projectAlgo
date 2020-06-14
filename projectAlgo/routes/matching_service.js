@@ -42,16 +42,7 @@ router.get('/', (req, res) => {
           console.log(rows);
 
 
-          //유저 관심사 객체
-          var user_interest = {
-            itScience: rows[0].itScience,
-            economy: rows[0].economy,
-            culture: rows[0].culture,
-            society: rows[0].society,
-            politics: rows[0].politics
-          }
 
-          resultData.user_interest = user_interest;
 
 
 
@@ -70,7 +61,16 @@ router.get('/', (req, res) => {
           var user_politics_sqrt = Math.sqrt(user_politics);
           console.log("sqrt score",user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt);
 
+          //유저 관심사 객체
+          var user_interest = {
+            itScience: user_itScience_sqrt,
+            economy: user_economy_sqrt,
+            culture: user_culture_sqrt,
+            society: user_society_sqrt,
+            politics: user_politics_sqrt
+          }
 
+          resultData.user_interest = user_interest;
 
           var user_interest_score = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
           console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
