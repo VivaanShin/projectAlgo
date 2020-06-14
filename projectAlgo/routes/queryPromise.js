@@ -556,7 +556,7 @@ exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician
         return new Promise((resolve,reject)=>{
             connection.query(`update tb_politician_info set politician_name=?, sgId=?, sgTypecode=?, sggName=?, sdName=?, wiwName=?, jdName=?, gender=?, birthday=?, age=?,
             addr=?, jobId=?, job=?, eduId=?, edu=?, career1=?, career2=?, dugsu=?, dugyul=?, prmsCnt=?, prmsRate=? where politician_no=${politician_no}`
-            ,[politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+            ,[politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday
                 ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate]
             ,(err,result)=>{
                 if(err)
