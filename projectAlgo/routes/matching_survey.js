@@ -184,7 +184,7 @@ router.post('/', (req, res) => {
     req.session.user_interest_check = 1;
     req.session.save(function(err) {
       req.session.reload(function(err) {
-        res.render('matching_service', resultData);
+        res.render('home', resultData);
       });
     });
   }).catch(function(err) {
