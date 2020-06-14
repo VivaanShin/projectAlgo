@@ -50,7 +50,7 @@ router.get('/',async (req,res)=>{
                 politician.society=3;
                 politician.politics=8;
                 searchResult.push(politician);
-            }                                           
+            }
             resultData.searchResult=searchResult;
             console.log(searchResult);
         }
@@ -67,7 +67,7 @@ router.get('/',async (req,res)=>{
              resultData.message=message;
              delete req.session.message;
          }
-         
+
          resultData.status=200;
     }
     catch(err){
@@ -85,6 +85,6 @@ router.get('/',async (req,res)=>{
         res.render('search.ejs', resultData);
     }
 });
-   
+
 
 module.exports=router;

@@ -41,17 +41,17 @@ router.get('/', (req, res) => {
           console.log("sql success");
           console.log(rows);
 
-          /*
+
           //유저 관심사 객체
           var user_interest = {
-            x: rows[0].itScience,
-            x: rows[0].economy,
-            x: rows[0].culture,
-            x: rows[0].society,
-            x: rows[0].politics
+            itScience: rows[0].itScience,
+            economy: rows[0].economy,
+            culture: rows[0].culture,
+            society: rows[0].society,
+            politics: rows[0].politics
           }
-          */
 
+          resultData.user_interest = user_interest;
 
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
@@ -59,7 +59,7 @@ router.get('/', (req, res) => {
           var user_culture = rows[0].culture;
           var user_society = rows[0].society;
           var user_politics = rows[0].politics;
-          var user_interest = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
+          var user_interest_score = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
           console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
           //최대값 찾기
           var maxNum = Math.max(user_itScience, user_economy, user_culture, user_society, user_politics);
@@ -81,13 +81,13 @@ router.get('/', (req, res) => {
           }
 
           console.log("user_interest_max", user_interest_max);
-          resolve(user_interest, user_interest_max)
+          resolve(user_interest_score, user_interest_max)
         }
       });
 
     })
   }
-  AImathing().then(function(user_interest, user_interest_max) {
+  AImathing().then(function(user_interest_score, user_interest_max) {
     return new Promise(function(resolve, reject) {
 
 
@@ -114,16 +114,16 @@ router.get('/', (req, res) => {
           var politician9 = [rows[8].itScience, rows[8].economy, rows[8].culture, rows[8].society, rows[8].politics];
           var politician10 = [rows[9].itScience, rows[9].economy, rows[9].culture, rows[9].society, rows[9].politics];
 
-          var politician1_score = distance(user_interest, politician1);
-          var politician2_score = distance(user_interest, politician2);
-          var politician3_score = distance(user_interest, politician3);
-          var politician4_score = distance(user_interest, politician4);
-          var politician5_score = distance(user_interest, politician5);
-          var politician6_score = distance(user_interest, politician6);
-          var politician7_score = distance(user_interest, politician7);
-          var politician8_score = distance(user_interest, politician8);
-          var politician9_score = distance(user_interest, politician9);
-          var politician10_score = distance(user_interest, politician10);
+          var politician1_score = distance(user_interest_score, politician1);
+          var politician2_score = distance(user_interest_score, politician2);
+          var politician3_score = distance(user_interest_score, politician3);
+          var politician4_score = distance(user_interest_score, politician4);
+          var politician5_score = distance(user_interest_score, politician5);
+          var politician6_score = distance(user_interest_score, politician6);
+          var politician7_score = distance(user_interest_score, politician7);
+          var politician8_score = distance(user_interest_score, politician8);
+          var politician9_score = distance(user_interest_score, politician9);
+          var politician10_score = distance(user_interest_score, politician10);
 
           var matching_result = {
             children: [{
@@ -230,7 +230,7 @@ router.get('/', (req, res) => {
           console.log(matching_result)
 
           resultData.matching_result = matching_result.children;
-          resultData.user_interest = user_interest;
+
           console.log(resultData);
           //rows 가 10개 나옴
           resolve(resultData)
