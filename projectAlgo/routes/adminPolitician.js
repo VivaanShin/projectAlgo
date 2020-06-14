@@ -32,8 +32,8 @@ router.get('/',(req,res)=>{
     page=Number(page);
   
     var connection=mysql.createConnection(dbConfig);  
-    //connection.query('select * from tb_politician_info as pol, tb_politician_interest as int where pol.politician_no=int.politician_no',(err,politicians)=>{ //정치인성향 계산이 필요
-    connection.query('select * from tb_politician_info',(err,politicians)=>{
+    connection.query('select * from tb_politician_info as pol, tb_politician_interest as int where pol.politician_no=int.politician_no',(err,politicians)=>{ //정치인성향 계산이 필요
+    //connection.query('select * from tb_politician_info',(err,politicians)=>{
         var resultData={};
         if(err)     
             resultData.status=500;
@@ -58,13 +58,13 @@ router.get('/',(req,res)=>{
 
             }
 
-            for(i=0;i<resultData.politicianResult.length;i++){ //임시이므로 성향 계산이 다 되면 삭제해야함
+            /*for(i=0;i<resultData.politicianResult.length;i++){ //임시이므로 성향 계산이 다 되면 삭제해야함
                 resultData.politicianResult[i].itScience=0;
                 resultData.politicianResult[i].economy=0;
                 resultData.politicianResult[i].culture=0;
                 resultData.politicianResult[i].society=0;
                 resultData.politicianResult[i].politics=0;
-            }
+            }*/
         } 
         connection.end();
         res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
