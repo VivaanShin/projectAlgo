@@ -184,11 +184,9 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     */
 
     try{
-        await unsetForeignKeyChecks(connection);
         await updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
             age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
         await updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics);
-        await setForeignKeyChecks(connection);
     }
     catch(err){
         console.log(err.message);
