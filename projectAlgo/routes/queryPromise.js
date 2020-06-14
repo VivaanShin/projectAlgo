@@ -266,7 +266,7 @@ exports.getBlackUserInfo=function getBlackAllUserInfo(connection){ // connection
 
 exports.getBlackUserGradeCountAndAvg=function getBlackUserGradeCountAndAvg(user_id,connection,orderBy){ //connection 하나를 전달 받아서 사용,동기형으로 사용자의 평점 부여 횟수와 평점 평균을 가져옴
     return new Promise((resolve,reject)=>{
-        connection.query(`select COUNT(*) as count,AVG(grade_score) as avg from tb_gradeinfo_record where user_id=? and user_black=1`,[user_id],
+        connection.query(`select COUNT(*) as count,AVG(grade_score) as avg from tb_gradeinfo_record where user_id=?`,[user_id],
         (err,countAndAvg)=>{
             if(err)
                 reject(err);
