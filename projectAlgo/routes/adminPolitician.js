@@ -120,7 +120,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
 
     try{
 
-        if(politician_no.length <=0){
+        if(typeof politician_no.length =='undefined'){
             console.log("insert");
             politician_no=req.body.politician_no;
             await unsetForeignKeyChecks(connection);
