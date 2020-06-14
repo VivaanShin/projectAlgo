@@ -191,7 +191,7 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
         await setForeignKeyChecks(connection);
     }
     catch(err){
-        console.log(err);
+        console.log(err.message);
     }
     finally{
         connection.end();
