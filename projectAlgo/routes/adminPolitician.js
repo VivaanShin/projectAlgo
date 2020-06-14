@@ -2,6 +2,7 @@
 const express=require('express');
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 const mysql=require('mysql');
+const { request } = require('express');
 const router=express.Router();
 const dbConfig={
     host     : 'localhost',
@@ -91,6 +92,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
 
+    console.log(req.body);
     var politician_no=req.body.politician_no;
     var politician_name=req.body.politician_name;
     var sgId=20200415;
