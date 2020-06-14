@@ -43,6 +43,7 @@ router.get('/',async (req,res)=>{
                 politician.culture=politician_interest[0].culture;
                 politician.society=politician_interest[0].society;
                 politician.politics=politician_interest[0].politics;
+                console.log(politician_interest);
 
                 searchResult.push(politician);
             }

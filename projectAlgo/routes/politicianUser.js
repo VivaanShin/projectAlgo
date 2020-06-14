@@ -52,6 +52,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         politicianInfo.culture=politicianInterest[0].culture;
         politicianInfo.society=politicianInterest[0].society;
         politicianInfo.politics=politicianInterest[0].politics;
+        console.log(politicianInterest);
 
         resultData.politicianInfo=politicianInfo;
         var politicianLegislationInfo=await getLegislationInfo(politician_no,connection);
