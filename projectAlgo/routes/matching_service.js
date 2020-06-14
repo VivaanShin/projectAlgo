@@ -81,7 +81,7 @@ router.get('/', (req, res) => {
             society: user_society_sqrt,
             politics: user_politics_sqrt
           }
-          console.log("user_interest",user_interest);
+          console.log("user_interest", user_interest);
           resultData.user_interest = user_interest;
 
           var user_interest_score = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
@@ -152,16 +152,16 @@ router.get('/', (req, res) => {
           var politician9_score = distance(user_interest_score, politician9);
           var politician10_score = distance(user_interest_score, politician10);
 
-          var politician1_percent = Math.floor(100*(1-(distance(user_interest_score, politician1)/224)));
-          var politician2_percent = Math.floor(100*(1-(distance(user_interest_score, politician2)/224)));
-          var politician3_percent = Math.floor(100*(1-(distance(user_interest_score, politician3)/224)));
-          var politician4_percent = Math.floor(100*(1-(distance(user_interest_score, politician4)/224)));
-          var politician5_percent = Math.floor(100*(1-(distance(user_interest_score, politician5)/224)));
-          var politician6_percent = Math.floor(100*(1-(distance(user_interest_score, politician6)/224)));
-          var politician7_percent = Math.floor(100*(1-(distance(user_interest_score, politician7)/224)));
-          var politician8_percent = Math.floor(100*(1-(distance(user_interest_score, politician8)/224)));
-          var politician9_percent = Math.floor(100*(1-(distance(user_interest_score, politician9)/224)));
-          var politician10_percent = Math.floor(100*(1-(distance(user_interest_score, politician10)/224)));
+          var politician1_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician1) / 224)));
+          var politician2_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician2) / 224)));
+          var politician3_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician3) / 224)));
+          var politician4_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician4) / 224)));
+          var politician5_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician5) / 224)));
+          var politician6_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician6) / 224)));
+          var politician7_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician7) / 224)));
+          var politician8_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician8) / 224)));
+          var politician9_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician9) / 224)));
+          var politician10_percent = Math.floor(100 * (1 - (distance(user_interest_score, politician10) / 224)));
 
 
 
@@ -268,7 +268,7 @@ router.get('/', (req, res) => {
               }
             ]
           }
-          console.log("matching_check1",matching_result.children);
+          console.log("matching_check1", matching_result.children);
           //console.log(matching_result)
 
           //matching_result 객체 배열 정렬
@@ -301,7 +301,7 @@ router.get('/', (req, res) => {
       */
 
       var politician_no1 = resultData.matching_result[0].politician_no;
-      console.log("politician_no1",politician_no1);
+      console.log("politician_no1", politician_no1);
       var politician_no2 = resultData.matching_result[1].politician_no;
       var politician_no3 = resultData.matching_result[2].politician_no;
       var politician_no4 = resultData.matching_result[3].politician_no;
@@ -365,12 +365,16 @@ router.get('/', (req, res) => {
   }).then(function() {
     return new Promise(function(resolve, reject) {
 
-    connection.end();
-    req.session.user_interest_check = 1;
-    resultData.user.user_interest_check = 1;
-    console.log(req.session);
-    res.render('matching_service', resultData);
-  })
+      connection.end();
+      req.session.user_interest_check = 1;
+      req.session.save(function(err) {
+        req.session.reload(function(err) {
+          res.render('matching_service', resultData);
+        });
+      });
+      console.log(req.session);
+      //res.render('matching_service', resultData);
+    })
   }).catch(function(err) {
     console.log('error', err);
   })
