@@ -558,14 +558,13 @@ exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician
             sgId=?,sgTypecode=?,sggName=?,sdName=?,wiwName=?,
             jdName=?,gender=?,birthday=?,age=?,addr=?,jobId=?,job=?,
             eduId=?,edu=?,career1=?,career2=?,dugsu=?,
-            dugyul=?,prmsCnt=?,prmsRate=? 
-            where politician_no=?`,[politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+            dugyul=?,prmsCnt=?,prmsRate=? where politician_no=?`,[politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
                 ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate,politician_no]
             ,(err,result)=>{
                 if(err)
                     reject(err);
                 
-                console.log(result);
+                console.log(politician_no);
                 resolve(result);
          });
     })
@@ -573,13 +572,12 @@ exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician
 
 exports.updatePoliticianInterest=function updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics){ 
         return new Promise((resolve,reject)=>{
-            connection.query(`update tb_politician_interest set itScience=?,economy=?,culture=?,society=?,politics=?
-            where politician_no=?`,[itScience,economy,culture,society,politics,politician_no]
+            connection.query(`update tb_politician_interest set itScience=?,economy=?,culture=?,society=?,politics=? where politician_no=?`,[itScience,economy,culture,society,politics,politician_no]
             ,(err,result)=>{
                 if(err)
                     reject(err);
 
-                console.log(result);
+                console.log(politician_no);
                 resolve(result);
          });
     })
