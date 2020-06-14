@@ -108,7 +108,7 @@ router.post('/', (req, res) => {
 
       console.log("itScience, economy, culture, society, politics", itScience, economy, culture, society, politics);
 
-        itScience = parseInt(itScience); economy = parseInt(economy); culture = parseInt(culture); society = parseInt(society); politics = parseInt(politics_sec);
+        itScience = parseInt(itScience); economy = parseInt(economy); culture = parseInt(culture); society = parseInt(society); politics = parseInt(politics);
 
         console.log("parseInt - itScience, economy, culture, society, politics", itScience, economy, culture, society, politics);
 

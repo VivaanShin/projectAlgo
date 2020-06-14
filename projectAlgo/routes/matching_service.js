@@ -53,12 +53,25 @@ router.get('/', (req, res) => {
 
           resultData.user_interest = user_interest;
 
+
+
+
           //유저 관심사 각각 배열
           var user_itScience = rows[0].itScience;
           var user_economy = rows[0].economy;
           var user_culture = rows[0].culture;
           var user_society = rows[0].society;
           var user_politics = rows[0].politics;
+
+          var user_itScience_sqrt = Math.sqrt(user_itScience);
+          var user_economy_sqrt = Math.sqrt(user_economy);
+          var user_culture_sqrt = Math.sqrt(user_culture);
+          var user_society_sqrt = Math.sqrt(user_society);
+          var user_politics_sqrt = Math.sqrt(user_politics);
+          console.log("sqrt score",user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt);
+
+
+
           var user_interest_score = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
           console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
           //최대값 찾기
