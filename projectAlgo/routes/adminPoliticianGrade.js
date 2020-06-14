@@ -25,11 +25,10 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
         var gradeList=[];
 
         for(let i=0;i<politicians.length;i++){
-            var one_politician=politicians[i];
-            var averageAndCount=getPoliticianAllAverageGradeAndCount(connection,one_politician.politician_no);
-
-            one_politician.avg=(!averageAndCount[0].avg) ? 0:averageAndCount[0].avg;
-            one_politician.count=averageAndCount[0].count;
+            var onePolitician=politicians[i];
+            var averageAndCount=await getPoliticianAllAverageGradeAndCount(connection,one_politician.politician_no);
+            onePolitician.avg=(!averageAndCount[0].avg) ? 0:averageAndCount[0].avg;
+            onePolitician.count=averageAndCount[0].count;
 
             gradeList.push(one_politician);
             console.log(one_politician);
