@@ -357,13 +357,14 @@ router.get('/', (req, res) => {
 
           resultData.searchResult = searchResult;
           console.log("searchResult final console", searchResult);
+          req.session.user_interest_check = 1;
           resolve()
         }
       })
     })
   }).then(function() {
     connection.end();
-    req.session.user_interest_check = 1;
+
     res.render('matching_service', resultData);
   }).catch(function(err) {
     console.log('error', err);
