@@ -23,16 +23,18 @@ router.get('/', async (req, res) => {
   var memberList = [];
 
   try {
+    console.log("try1");
     var blackInfo = await getBlackUserInfo(connection);
     var gradeInfo = [];
-
+    console.log("try2");
     for (var i=0; i<blackInfo.length; i++){
       var blackUser={};
       blackUser.user_id=blackInfo[i].user_id;
       blackUser.user_email=blackInfo[i].user_email;
       blackUser.user_black=blackInfo[i].user_black;
+      console.log("try3");
       var blackUsersGradeCountAndAvg =await getBlackUserGradeCountAndAvg(blackUser.user_id,connection);
-
+      console.log("try4");
       blackUser.count=blackUsersGradeCountAndAvg[0].count;
       blackUser.avg=(!blackUsersGradeCountAndAvg[0].avg) ? 0:blackUsersGradeCountAndAvg[0].avg;
 
