@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     var blackInfo = await getBlackUserInfo(connection);
     var gradeInfo = [];
 
-    for (var i=0; i<userInfo.length; i++){
+    for (var i=0; i<blackInfo.length; i++){
       var blackUser={};
       blackUser.user_id=blackInfo[i].user_id;
       blackUser.user_email=blackInfo[i].user_email;
