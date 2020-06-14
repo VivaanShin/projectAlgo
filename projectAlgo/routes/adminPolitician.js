@@ -139,6 +139,7 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     } //Admin이 아니면 접근 불가
 
     var politician_no=req.params.politician_no;
+    console.log(politician_no);
     var politician_name=req.body.politician_name;
     var sgId=20200415;
     var sgTypecode=2;
