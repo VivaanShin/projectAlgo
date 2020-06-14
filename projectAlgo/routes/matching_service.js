@@ -363,10 +363,14 @@ router.get('/', (req, res) => {
       })
     })
   }).then(function() {
+    return new Promise(function(resolve, reject) {
+
     connection.end();
     req.session.user_interest_check = 1;
     resultData.user.user_interest_check = 1;
+    console.log(req.session);
     res.render('matching_service', resultData);
+  })
   }).catch(function(err) {
     console.log('error', err);
   })
