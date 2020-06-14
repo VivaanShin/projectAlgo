@@ -11,13 +11,14 @@ const dbConfig = {
   database: 'project_algo'
 }; //후에 DB설정에 맞게 변경
 
+/*
 router.get('/', (req, res) => {
   console.log('matching_service join');
   res.render('matching_service');
 });
+*/
 
-
-router.get('/AImatching', (req, res) => {
+router.get('/', (req, res) => {
   var resultData = {};
   if (isLoggedin(req)) { //로그인 정보
     resultData.user = req.user;
@@ -313,7 +314,7 @@ router.get('/AImatching', (req, res) => {
   }).catch(function(err) {
     console.log('error', err);
   })
-  res.render('home', resultData);
+  res.render('matching_service', resultData);
 })
 
 module.exports = router;
