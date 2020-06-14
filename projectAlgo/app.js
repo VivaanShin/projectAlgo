@@ -26,6 +26,7 @@ var adminMemberRouter=require('./routes/adminMember');
 var adminPoliticianRouter=require('./routes/adminPolitician');
 var adminMemberGradeRouter=require('./routes/adminMemberGrade');
 var adminPoliticianGradeRouter=require('./routes/adminPoliticianGrade');
+var adminBlackMemberRouter=require('./routes/adminBlackMember');
 //여기까지 어드민 라우터
 
 var flash = require('flash');
@@ -67,6 +68,7 @@ app.use('/admin/politician',adminPoliticianRouter);
 app.use('/admin/member_grade',adminMemberGradeRouter);
 //app.use('/admin/legislation',adminLegislationRouter);
 app.use('/admin/politician_grade',adminPoliticianGradeRouter);
+app.use('/admin/adminBlackMember',adminBlackMemberRouter);
 //여기까지 어드민 라우터
 
 
