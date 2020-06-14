@@ -81,7 +81,7 @@ router.get('/', (req, res) => {
             society: user_society_sqrt,
             politics: user_politics_sqrt
           }
-
+          console.log("user_interest",user_interest);
           resultData.user_interest = user_interest;
 
           var user_interest_score = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
