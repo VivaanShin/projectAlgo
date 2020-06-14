@@ -68,9 +68,10 @@ router.get('/',(req,res)=>{
                 resultData.politicianResult[i].society=0;
                 resultData.politicianResult[i].politics=0;
             }*/
+
+            connection.end();
+            res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
         } 
-        connection.end();
-        res.render('admin_page/candidate_info.ejs',resultData); //나중에 render할 view 설정
       
       });
 });
