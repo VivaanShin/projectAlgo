@@ -89,6 +89,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
     var gender=1;
     var birthday=req.body.birthday;
     var age=50;
+    console.log(age);
     var addr=sggName+" "+sdName;
     var jobId=0;
     var job=req.body.job;
