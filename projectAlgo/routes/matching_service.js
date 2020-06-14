@@ -251,7 +251,7 @@ router.get('/AImatching', (req, res) => {
 
 
 
-
+      var politician = {};
       var sql3 = 'select * from tb_politician_info where politician_no IN (?) ';
       connection.query(sql3, politician_no_list, function(err, rows, fields) {
         console.log("query3 in");
