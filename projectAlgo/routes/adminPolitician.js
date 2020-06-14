@@ -201,7 +201,7 @@ router.delete('/:politician_no',async (req,res)=>{ //정치인 정보 삭제
     if(!isAdmin(req)){
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
-    
+    var connection=mysql.createConnection(dbConfig);
     var politician_no=req.params.politician_no;
     
 
