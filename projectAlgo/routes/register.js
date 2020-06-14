@@ -178,7 +178,7 @@ passport.use('local-join', new LocalStrategy({
           from: process.env.MAIL_EMAIL,
           to: user_email,
           subject: '알고뽑자사이트 이메일 인증 요청 메일입니다.',
-          html: '<p><h1>해당 url 클릭시 인증이 완료됩니다. </h1> </p>' + email_url
+          html: '<p><h1>해당 url 접속시 인증이 완료됩니다. </h1> </p>' + email_url
         }
         let transporter = nodemailer.createTransport(mailConfig);
         transporter.sendMail(message);
