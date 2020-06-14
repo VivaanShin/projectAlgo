@@ -166,6 +166,7 @@ router.post('/', (req, res) => {
                 console.log(err);
               } else {
                 console.log("sql success");
+                req.user.user_interest_check = 1;
                 resolve()
               }
             });
@@ -180,7 +181,7 @@ router.post('/', (req, res) => {
 
 
 
-        res.render('matching_service', resultData);
+        res.render('home', resultData);
       });
 
 
