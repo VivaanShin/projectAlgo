@@ -524,3 +524,86 @@ exports.setForeignKeyChecks=function setForeignKeyChecks(connection){ //tb_grade
         });
     })
 };
+
+exports.insertPoliticianInfo=function insertPoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+    age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`insert into tb_politician_info values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+            ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate]
+        ,(err,result)=>{
+            if(err)
+                reject(err);
+        
+            resolve(result);
+        });
+    })
+};
+
+exports.insertPoliticianInterest=function insertPoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics){ //tb_gradeinfo_record delete 
+    return new Promise((resolve,reject)=>{
+        connection.query(`insert into tb_politician_interest values(?.?,?,?,?,?)`,[politician_no,itScience,economy,culture,society,politics]
+        ,(err,result)=>{
+            if(err)
+                reject(err);
+        
+            resolve(result);
+        });
+    })
+};
+
+exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+    age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate){ //tb_gradeinfo_record delete 
+        return new Promise((resolve,reject)=>{
+            connection.query(`update tb_politician_info set politician_no=?,politician_name=?,
+            sgId=?,sgTypecode=?,sggName=?,sdName=?,wiwName=?,
+            jdName=?,gender=?,birthday=?,age=?,addr=?,jobId=?,job=?,
+            eduId=?,edu=?,career1=?,career2=?,dugsu=?,
+            dugyul=?,prmsCnt=?,prmsRate=? 
+            where politician_no=?`,[politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+                ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate,politician_no]
+            ,(err,result)=>{
+                if(err)
+                    reject(err);
+            
+                resolve(result);
+         });
+    })
+};
+
+exports.updatePoliticianInterest=function updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics){ 
+        return new Promise((resolve,reject)=>{
+            connection.query(`update tb_politician_interest set politician_no=?
+            ,itScience=?,economy=?,culture=?,society=?,politics=?
+            where politician_no=?`,[politician_no,itScience,economy,culture,society,politics,politician_no]
+            ,(err,result)=>{
+                if(err)
+                    reject(err);
+            
+                resolve(result);
+         });
+    })
+};
+
+exports.deletePoliticianInfo=function deletePoliticianInfo(connection,politician_no){
+        return new Promise((resolve,reject)=>{
+            connection.query(`delete from tb_politician_info where politician_no=?`,[politician_no]
+            ,(err,result)=>{
+                if(err)
+                    reject(err);
+            
+                resolve(result);
+         });
+    })
+};
+
+exports.deletePoliticianInterest=function deletePoliticianInterest(connection,politician_no){
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from tb_politician_interest where politician_no=?`,[politician_no]
+        ,(err,result)=>{
+            if(err)
+                reject(err);
+        
+            resolve(result);
+     });
+    })
+};

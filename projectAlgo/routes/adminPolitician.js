@@ -9,7 +9,30 @@ const dbConfig={
     password : 'algoalgo',
     database : 'project_algo'
 };
-const pagingNum=10; //페이징 한 페이지에 10개 
+const pagingNum=10; //페이징 한 페이지에 10개
+const insertPoliticianInfo=require('./queryPromise').insertPoliticianInfo;
+const insertPoliticianInterest=require('./queryPromise').insertPoliticianInterest;
+const updatePoliticianInfo=require('./queryPromise').updatePoliticianInfo;
+const updatePoliticianInterest=require('./queryPromise').updatePoliticianInterest;
+const deletePoliticianInfo=require('./queryPromise').deletePoliticianInfo;
+const deletePoliticianInterest=require('./queryPromise').deletePoliticianInterest;
+const unsetForeignKeyChecks=require('./queryPromise').unsetForeignKeyChecks;
+const setForeignKeyChecks=require('./queryPromise').setForeignKeyChecks;
+function getAgeFromBirthDay(birthday) {
+
+    // 전달받은 생년월일로 Date 객체 생성한다. 이하 생년월일 객체라고 칭한다.
+    var birthday = new Date(birthday);
+    
+    // 오늘 날짜 기준으로 나이를 구하기 위해 Date 객체 생성한다. -> 이하 오늘날짜 객체라고 칭한다.
+    var today = new Date();
+    
+    // 오늘날짜 객체의 연도에서 생년월일 객체의 연도를 뺀다.
+    var years = today.getFullYear() - birthday.getFullYear();
+    
+    // years 의 값이 실질적으로 구해진 나이이다.
+    return years;
+    
+}
 router.get('/',(req,res)=>{
   if(!isAdmin(req)){
     return res.redirect('/');
@@ -23,7 +46,8 @@ router.get('/',(req,res)=>{
     page=Number(page);
   
     var connection=mysql.createConnection(dbConfig);  
-    connection.query('select * from tb_politician_info',(err,politicians)=>{ //정치인 테이블에서 조회
+    //connection.query('select * from tb_politician_info as pol, tb_politician_interest as int where pol.politician_no=int.politician_no',(err,politicians)=>{ //정치인성향 계산이 필요
+    connection.query('select * from tb_politician_info',(err,politicians)=>{
         var resultData={};
         if(err)     
             resultData.status=500;
@@ -31,7 +55,6 @@ router.get('/',(req,res)=>{
         else{
             politicians=JSON.parse(JSON.stringify(politicians));
             resultData.status=200;
-            //resultData.politicianResult=politicians;//상태값+모든 정치인 정보 row
             var total=politicians.length;
             resultData.total=total;
             var startPage=(page-1)*pagingNum;
@@ -48,6 +71,14 @@ router.get('/',(req,res)=>{
                 resultData.politicianResult=politicians.slice(startPage,endPage);
 
             }
+
+            for(i=0;i<resultData.politicianResult.length;i++){ //임시이므로 성향 계산이 다 되면 삭제해야함
+                resultData.politicianResult[i].itScience=0;
+                resultData.politicianResult[i].economy=0;
+                resultData.politicianResult[i].culture=0;
+                resultData.politicianResult[i].society=0;
+                resultData.politicianResult[i].politics=0;
+            }
         } 
         connection.end();
         console.log(resultData);
@@ -56,45 +87,65 @@ router.get('/',(req,res)=>{
       });
 });
 
-router.put('/',(req,res)=>{ //정치인 정보 등록
+router.put('/',async (req,res)=>{ //정치인 정보 등록
     if(!isAdmin(req)){
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
 
     var politician_no=req.body.politician_no;
     var politician_name=req.body.politician_name;
-    var sgId=req.body.sgId;
-    var sgTypecode=req.bdoy.sgTypecode;
+    var sgId=20200415;
+    var sgTypecode=2;
     var sggName=req.body.sggName;
     var sdName=req.body.sdName;
-    var wiwName=req.body.wiwName;
+    var wiwName=req.body.sdName;
     var jdName=req.body.jdName;
     var gender=req.body.gender;
     var birthday=req.body.birthday;
-    var age=req.body.age;
-    var addr=req.body.addr;
-    var jobId=req.body.jobId;
+    var age=getAgeFromBirthDay(birthday);
+    var addr=sggName+" "+sdName;
+    var jobId=0;
     var job=req.body.job;
-    var eduId=req.body.eduId;
+    var eduId=0;
     var edu=req.body.edu;
-    var career1=req.body.career1;
+    var career1=req.body.career2;
     var career2=req.body.career2;
-    var dugsu=req.body.dugsu;
-    var dugyul=req.body.dugyul;
-    var prmsCnt=req.body.prmsCnt;
-    var prmsRate=req.body.prmsCnt;
+    var dugsu=0;
+    var dugyul=0;
+    var prmsCnt=0;
+    var prmsRate=0;
+    var itScience=req.body.itScience;
+    var economy=req.body.economy;
+    var culture=req.body.culture;
+    var society=req.body.society;
+    var politics=req.body.politics;
 
     var connection=mysql.createConnection(dbConfig);
-    connection.query(`insert into tb_politician_info values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    /*connection.query(`insert into tb_politician_info values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
                    [politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
-                    ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate]
+                    age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate]
                    ,(err,result)=>{
                         if(err)
                             console.log(err.message);
         
                         res.redirect('/admin/politician?page=1');
                    });
-    
+    */
+
+    try{
+        await unsetForeignKeyChecks(connection);
+        await insertPoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+            age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
+        await insertPoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics);
+        await setForeignKeyChecks(connection);
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+    }
+   
 });
 
 router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
@@ -102,31 +153,36 @@ router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
 
-    var politician_no=req.params.politician_no;
+    var politician_no=req.body.politician_no;
     var politician_name=req.body.politician_name;
-    var sgId=req.body.sgId;
-    var sgTypecode=req.bdoy.sgTypecode;
+    var sgId=20200415;
+    var sgTypecode=2;
     var sggName=req.body.sggName;
     var sdName=req.body.sdName;
-    var wiwName=req.body.wiwName;
+    var wiwName=req.body.sdName;
     var jdName=req.body.jdName;
     var gender=req.body.gender;
     var birthday=req.body.birthday;
-    var age=req.body.age;
-    var addr=req.body.addr;
-    var jobId=req.body.jobId;
+    var age=getAgeFromBirthDay(birthday);
+    var addr=sggName+" "+sdName;
+    var jobId=0;
     var job=req.body.job;
-    var eduId=req.body.eduId;
+    var eduId=0;
     var edu=req.body.edu;
-    var career1=req.body.career1;
+    var career1=req.body.career2;
     var career2=req.body.career2;
-    var dugsu=req.body.dugsu;
-    var dugyul=req.body.dugyul;
-    var prmsCnt=req.body.prmsCnt;
-    var prmsRate=req.body.prmsCnt;
+    var dugsu=0;
+    var dugyul=0;
+    var prmsCnt=0;
+    var prmsRate=0;
+    var itScience=req.body.itScience;
+    var economy=req.body.economy;
+    var culture=req.body.culture;
+    var society=req.body.society;
+    var politics=req.body.politics;
 
     var connection=mysql.createConnection(dbConfig);
-    connection.query(`update tb_politician_info set politician_no=?,politician_name=?,
+    /*connection.query(`update tb_politician_info set politician_no=?,politician_name=?,
     sgId=?,sgTypecode=?,sggName=?,sdName=?,wiwName=?,
     jdName=?,gender=?,birthday=?,age=?,addr=?,jobId=?,job=?,
     eduId=?,edu=?,career1=?,career2=?,dugsu=?,
@@ -139,6 +195,21 @@ router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
                         
                         res.redirect('admin/politician?page=1');
                    });
+    */
+
+    try{
+        await unsetForeignKeyChecks(connection);
+        await updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+            age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
+        await updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics);
+        await setForeignKeyChecks(connection);
+    }
+    catch(err){
+        console.log(err);
+    }
+    finally{
+        connection.end();
+    }
 });
 
 router.delete('/:politician_no',(req,res)=>{ //정치인 정보 삭제
@@ -148,11 +219,18 @@ router.delete('/:politician_no',(req,res)=>{ //정치인 정보 삭제
     
     var politician_no=req.params.politician_no;
     
-    connection.query(`delete from tb_politician_info where politician_no=?`,[politician_no],(err,result)=>{
-        if(err)
-            console.log(err.message);
-        
-        res.redirect('admin/politician?page=1');
-    });
+
+    try{
+        await unsetForeignKeyChecks(connection);
+        await deletePoliticianInfo(connection,politician_no);
+        await deletePoliticianInterest(connection,politician_no);
+        await setForeignKeyChecks(connection);
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    finally{
+        connection.end();
+    }
 });
 module.exports=router;
