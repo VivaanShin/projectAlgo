@@ -554,12 +554,12 @@ exports.insertPoliticianInterest=function insertPoliticianInterest(connection,po
 exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
     age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate){ //tb_gradeinfo_record delete 
         return new Promise((resolve,reject)=>{
-            connection.query(`update tb_politician_info set politician_no=?,politician_name=?,
+            connection.query(`update tb_politician_info set politician_name=?,
             sgId=?,sgTypecode=?,sggName=?,sdName=?,wiwName=?,
             jdName=?,gender=?,birthday=?,age=?,addr=?,jobId=?,job=?,
             eduId=?,edu=?,career1=?,career2=?,dugsu=?,
             dugyul=?,prmsCnt=?,prmsRate=? 
-            where politician_no=?`,[politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
+            where politician_no=?`,[politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
                 ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate,politician_no]
             ,(err,result)=>{
                 if(err)
