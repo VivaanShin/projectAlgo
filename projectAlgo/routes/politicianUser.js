@@ -108,6 +108,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
 
         if(isLoggedin(req)){ //로그인 정보
             resultData.user=req.user;
+            resultData.user.user_interest_check=req.session.user_interest_check;
         }
         resultData.status=200;
 

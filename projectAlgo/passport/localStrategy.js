@@ -45,8 +45,8 @@ module.exports=(passport)=>{
                         }
                         else{
                             console.log('로그인 성공');
-                            return done(null,{user_id:user[0].user_id,user_state:user[0].user_state,
-                             user_interest_check:user[0].user_interest_check}) //유저 아이디와 admin 여부를 저장
+                            req.session.user_interest_check=user[0].user_interest_check;
+                            return done(null,{user_id:user[0].user_id,user_state:user[0].user_state}) //유저 아이디와 admin 여부를 저장
                         }
                     }
                     else{

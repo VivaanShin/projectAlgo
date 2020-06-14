@@ -105,7 +105,7 @@ router.get('/',async (req,res)=>{
     }
 });
 
-router.put('/black',async (req,res)=>{ //사용자 블랙등록
+router.post('/black',async (req,res)=>{ //사용자 블랙등록
     if(!isAdmin(req)){ //Admin이 아니면 접근 불가
         return res.redirect('/');
     }
@@ -130,7 +130,7 @@ router.put('/black',async (req,res)=>{ //사용자 블랙등록
     }
 });
 
-router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
+router.post('/unblack',async (req,res)=>{ //사용자 블랙해제
     if(!isAdmin(req)){
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
@@ -149,50 +149,3 @@ router.put('/unblack',async (req,res)=>{ //사용자 블랙해제
         res.redirect('/admin/member_grade');
     }
 });
-
-router.put('/',async (req,res)=>{ //tb_user_politician_grade update
-    if(!isAdmin(req)){ //Admin이 아니면 접근 불가
-        return res.redirect('/');
-    }
-    var connection=mysql.createConnection(dbConfig);
-    var updateUserGrade={};
-    updateUserGrade.user_id=req,body.user_id;
-    updateUserGrade.politician_no=req.body.politician_no;
-    updateUserGrade.grade_score=req.body.grade_score;
-    updateUserGrade.weekDay=req.body.grade_st_date;
-
-    try{
-        await updateGradeinfoRecord(connection,updateUserGrade.user_id,updateUserGrade.politician_no,updateUserGrade.weekDay,updateUserGrade.grade_score);
-    }
-    catch(err){
-        console.log(err.message);
-    }
-    finally{
-        connection.end();
-        res.redirect('/admin/member_grade');
-    }
-
-});
-
-router.delete('/',async (req,res)=>{ //tb_user_politician_grade delete
-    if(!isAdmin(req)){
-        return res.redirect('/');
-    } //Admin이 아니면 접근 불가
-    var connection=mysql.createConnection(dbConfig);
-    var deleteUserGrade={};
-    deleteUserGrade.user_id=req,body.user_id;
-    deleteUserGrade.politician_no=req.body.politician_no;
-
-    try{
-        await deleteUserPoliticianGrade(deleteUserGrade.user_id,deleteUserGrade.politician_no,connection);
-    }
-    catch(err){
-        console.log(err.message);
-    }
-    finally{
-        connection.end();
-        res.redirect('/admin/member_grade');
-    }
-
-});
-module.exports=router;

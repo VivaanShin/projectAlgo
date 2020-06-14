@@ -57,7 +57,7 @@ router.get('/',async (req,res)=>{
 
         if(isLoggined){
             resultData.user=req.user;
-            console.log(resultData.user);
+            resultData.user.user_interest_check=req.session.user_interest_check;
         }
          //세션 상태값+모든 검색된 정치인 정보 Row
 
