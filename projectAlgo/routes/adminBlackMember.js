@@ -3,6 +3,9 @@ var router = express.Router();
 var session = require('express-session');
 const isAdmin = require('../scripts/confirmAdmin').isAdmin;
 const getBlackUserInfo=require('./queryPromise').getBlackUserInfo;
+const updateBlackUnUserInfo=require('./queryPromise').updateBlackUnUserInfo;
+const getBlackUserGrade=require('./queryPromise').getBlackUserGrade;
+const deleteBlackUser=require('./queryPromise').deleteBlackUser;
 const getBlackUserGradeCountAndAvg=require('./queryPromise').getBlackUserGradeCountAndAvg;
 const mysql = require('mysql');
 const dbConfig = {
@@ -45,21 +48,10 @@ router.get('/', async (req, res) => {
     }
 
     resultData.gradeInfo=gradeInfo;
+    var gradeDetailInfo=await getBlackUserGrade(blackUser.user_id,connection); // 유저 평점 상세정보 render
+    resultData.gradeDetailInfo=gradeDetailInfo;
     console.log("resultData",resultData);
-    /*
-    var sql = 'select * from tb_user_black';
-    connection.query(sql, function(err, rows, fields) {
-      var blackinfo=[];
 
-      for (var i=0; i<rows.length;i++){
-        var blackUser={};
-        blackUser.user
-      }
-
-
-    })
-
-    */
 
 
   } catch (err) {
@@ -71,7 +63,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   var resultData = {};
   if (!isAdmin(req)) {
     return res.redirect('/');
@@ -81,7 +73,17 @@ router.post('/', async (req, res) => {
   var resultData = {};
   var memberList = [];
 
+  var blackUser.user_id = req.body.user_id;
+
   try {
+    await updateBlackUnUserInfo(blackUser.user_id,connection);
+    await deleteBlackUser(blackUser.user_id,connection);
+
+
+
+
+
+
 
   } catch (err) {
     console.log(err.message);
