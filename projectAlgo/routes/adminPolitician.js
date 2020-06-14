@@ -138,7 +138,6 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
 
-    console.log('test');
     var politician_no=req.body.politician_no;
     var politician_name=req.body.politician_name;
     var sgId=20200415;
@@ -166,6 +165,8 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     var culture=req.body.culture;
     var society=req.body.society;
     var politics=req.body.politics;
+
+    console.log(req.body);
 
     var connection=mysql.createConnection(dbConfig);
     /*connection.query(`update tb_politician_info set politician_no=?,politician_name=?,

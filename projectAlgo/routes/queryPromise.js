@@ -564,7 +564,8 @@ exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician
             ,(err,result)=>{
                 if(err)
                     reject(err);
-            
+                
+                console.log(result);
                 resolve(result);
          });
     })
@@ -577,7 +578,8 @@ exports.updatePoliticianInterest=function updatePoliticianInterest(connection,po
             ,(err,result)=>{
                 if(err)
                     reject(err);
-            
+
+                console.log(result);
                 resolve(result);
          });
     })
