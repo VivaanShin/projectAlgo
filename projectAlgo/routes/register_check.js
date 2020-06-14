@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   var sql = 'select `user_token` from `tb_user_info` where `user_email`=? and `user_state`=0';
   connection.query(sql, user_email, function(err, rows, fields) {
     console.log("register_check_rows",rows);
-    console.log("register_check_rows_user_token",rows[0].RowDataPacket.user_token);
+    console.log("register_check_rows_user_token",rows[0].user_token);
     if (err) {
       console.log(err);
     } else {
