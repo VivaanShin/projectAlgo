@@ -134,15 +134,15 @@ router.get('/', (req, res) => {
           var politician10 = [rows[9].itScience, rows[9].economy, rows[9].culture, rows[9].society, rows[9].politics];
 
           var politician1_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician2_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician3_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician4_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician5_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician6_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician7_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician8_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician9_score = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician10_score = 100*(1-(distance(user_interest_score, politician1)/224));
+          var politician2_score = 100*(1-(distance(user_interest_score, politician2)/224));
+          var politician3_score = 100*(1-(distance(user_interest_score, politician3)/224));
+          var politician4_score = 100*(1-(distance(user_interest_score, politician4)/224));
+          var politician5_score = 100*(1-(distance(user_interest_score, politician5)/224));
+          var politician6_score = 100*(1-(distance(user_interest_score, politician6)/224));
+          var politician7_score = 100*(1-(distance(user_interest_score, politician7)/224));
+          var politician8_score = 100*(1-(distance(user_interest_score, politician8)/224));
+          var politician9_score = 100*(1-(distance(user_interest_score, politician9)/224));
+          var politician10_score = 100*(1-(distance(user_interest_score, politician10)/224));
 
 
 
