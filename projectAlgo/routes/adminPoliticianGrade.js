@@ -32,8 +32,10 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
             one_politician.count=averageAndCount[0].count;
 
             gradeList.push(one_politician);
+            console.log(one_politician);
         }
 
+        console.log(gradeList);
         resultData.gradeList=gradeList;
     }
     catch(err){
