@@ -24,7 +24,7 @@ var matchingServiceRouter=require('./routes/matching_service');
 var adminRouter=require('./routes/admin');
 var adminMemberRouter=require('./routes/adminMember');
 var adminPoliticianRouter=require('./routes/adminPolitician');
-var adminMemberGradeRouter=require('./routes/adminMemberGrade');
+var adminMemberGradeRouter=require('./routes/adminPoliticianGrade');
 //var adminLegislationRouter=require('./routes/adminLegislation');
 var adminPoliticianGradeRouter=require('./routes/adminPoliticianGrade');
 //여기까지 어드민 라우터

@@ -11,8 +11,8 @@ const insertBlackUser=require('./queryPromise').insertBlackUser;
 const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
 const deleteBlackUser=require('./queryPromise').deleteBlackUser;
 //const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
-const updateGradeinfoRecord=require('./queryPromise').updateGradeInfoRecord;
-const deleteUserPoliticianGrade=require('./queryPromise').deleteUserPoliticianGrade;
+//const updateGradeinfoRecord=require('./queryPromise').updateGradeInfoRecord;
+//const deleteUserPoliticianGrade=require('./queryPromise').deleteUserPoliticianGrade;
 const deleteUserGrade=require('./queryPromise').deleteUserGrade;
 const pagingNum=10;
 const dbConfig={
@@ -149,3 +149,5 @@ router.post('/unblack',async (req,res)=>{ //사용자 블랙해제
         res.redirect('/admin/member_grade');
     }
 });
+
+module.exports=router;
