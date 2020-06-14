@@ -65,7 +65,7 @@ router.get('/', (req, res) => {
           var user_culture_sqrt = Math.sqrt(user_culture);
           var user_society_sqrt = Math.sqrt(user_society);
           var user_politics_sqrt = Math.sqrt(user_politics);
-          console.log("sqrt score", user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt);
+          //console.log("sqrt score", user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt);
 
           //유저 관심사 객체
           var user_interest = {
@@ -79,7 +79,7 @@ router.get('/', (req, res) => {
           resultData.user_interest = user_interest;
 
           var user_interest_score = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
-          console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
+          //console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
           //최대값 찾기
           var maxNum = Math.max(user_itScience, user_economy, user_culture, user_society, user_politics);
           console.log("maxNum", maxNum);
@@ -99,7 +99,7 @@ router.get('/', (req, res) => {
             console.log("maxNum error")
           }
 
-          console.log("user_interest_max", user_interest_max);
+          //console.log("user_interest_max", user_interest_max);
           resolve(user_interest_score, user_interest_max)
         }
       });
@@ -261,7 +261,7 @@ router.get('/', (req, res) => {
             ]
           }
 
-          console.log(matching_result)
+          //console.log(matching_result)
 
           //matching_result 객체 배열 정렬
 
@@ -269,11 +269,11 @@ router.get('/', (req, res) => {
             return a.politician_match_rate < b.politician_match_rate ? -1 : a.seq > b.seq ? 1 : 0;
           });
 
-          console.log(matching_result)
+          //console.log(matching_result)
 
           resultData.matching_result = matching_result.children;
 
-          console.log(resultData);
+          //console.log(resultData);
           //rows 가 10개 나옴
           resolve(resultData)
         }
@@ -344,10 +344,10 @@ router.get('/', (req, res) => {
             politician[i].push(resultData.matching_result[i].politician_match_rate)
           }
           */
-          console.log("politician final console", politician)
+          //console.log("politician final console", politician)
 
           resultData.searchResult = searchResult;
-          console.log("searchResult final console", searchResult);
+          //console.log("searchResult final console", searchResult);
           resolve()
         }
       })

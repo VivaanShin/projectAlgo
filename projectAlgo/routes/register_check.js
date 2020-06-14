@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
   var user_email = req.param('user_email');
   var user_token = req.param('user_token');
-
+  console.log('check user_token',user_token);
   var sql = 'select `user_token` from `tb_user_info` where `user_email`=?';
   connection.query(sql, [user_email], function(err, rows, fields) {
     if (err) {
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
         console.log('token mismatch');
         res.render('register');
       } else {
-        var sql2 = 'update `tb_user_info` set `user_state`=1 where `user_email`=? ';
+        var sql2 = 'update `tb_user_info` set `user_state`=1 where `user_email`=? and `user_state`=0';
         connection.query(sql2, [user_email], function(err, rows, fields) {
           if (err) {
             console.log(err);
