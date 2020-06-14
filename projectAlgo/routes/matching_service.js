@@ -366,14 +366,16 @@ router.get('/', (req, res) => {
     return new Promise(function(resolve, reject) {
 
       connection.end();
+      /*
       req.session.user_interest_check = 1;
       req.session.save(function(err) {
         req.session.reload(function(err) {
           res.render('matching_service', resultData);
         });
       });
+      */
       console.log(req.session);
-      //res.render('matching_service', resultData);
+      res.render('matching_service', resultData);
     })
   }).catch(function(err) {
     console.log('error', err);
