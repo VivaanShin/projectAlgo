@@ -143,9 +143,9 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     var politician_name=req.body.politician_name;
     var sgId=20200415;
     var sgTypecode=2;
-    var sggName=req.body.sggName;
+    var sggName=req.body.sdName;
     var sdName=req.body.sdName;
-    var wiwName=req.body.sdName;
+    var wiwName=req.body.wiwName;
     var jdName=req.body.jdName;
     var gender=1;
     var birthday=req.body.birthday;
@@ -166,37 +166,8 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     var culture=req.body.culture;
     var society=req.body.society;
     var politics=req.body.politics;
-
-    test.politician_no=Number(req.params.politician_no);
-    test.politician_name=req.body.politician_name;
-    test.sgId=20200415;
-    test.sgTypecode=2;
-    test.sggName=req.body.sggName;
-    test.sdName=req.body.sdName;
-    test.wiwName=req.body.sdName;
-    test.jdName=req.body.jdName;
-    test.gender=1;
-    test.birthday=req.body.birthday;
-    test.age=50;
-    test.addr=sggName+" "+sdName;
-    test.jobId=0;
-    test.job=req.body.job;
-    test.eduId=0;
-    test.edu=req.body.edu;
-    test.career1=req.body.career2;
-    test.career2=req.body.career2;
-    test.dugsu=0;
-    test.dugyul=0;
-    test.prmsCnt=0;
-    test.prmsRate=0;
-    test.itScience=req.body.itScience;
-    test.economy=req.body.economy;
-    test.culture=req.body.culture;
-    test.society=req.body.society;
-    test.politics=req.body.politics;
-    test.connection=mysql.createConnection(dbConfig);
-
-    console.log(test);
+    
+    connection=mysql.createConnection(dbConfig);
 
     try{
         await updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
