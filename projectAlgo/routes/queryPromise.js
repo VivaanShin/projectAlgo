@@ -555,9 +555,9 @@ exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician
     age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate){ //tb_gradeinfo_record delete 
         return new Promise((resolve,reject)=>{
             connection.query(`update tb_politician_info set politician_name=?, sgId=?, sgTypecode=?, sggName=?, sdName=?, wiwName=?, jdName=?, gender=?, birthday=?, age=?,
-            addr=?, jobId=?, job=?, eduId=?, edu=?, career1=?, career2=?, dugsu=?, dugyul=?, prmsCnt=?, prmsRate=? where politician_no=?`
+            addr=?, jobId=?, job=?, eduId=?, edu=?, career1=?, career2=?, dugsu=?, dugyul=?, prmsCnt=?, prmsRate=? where politician_no=${politician_no}`
             ,[politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
-                ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate,politician_no]
+                ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate]
             ,(err,result)=>{
                 if(err)
                     reject(err);
@@ -569,7 +569,7 @@ exports.updatePoliticianInfo=function updatePoliticianInfo(connection,politician
 
 exports.updatePoliticianInterest=function updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics){ 
         return new Promise((resolve,reject)=>{
-            connection.query(`update tb_politician_interest set itScience=?, economy=?, culture=?, society=?, politics=? where politician_no=?`,[itScience,economy,culture,society,politics,politician_no]
+            connection.query(`update tb_politician_interest set itScience=?, economy=?, culture=?, society=?, politics=?, where politician_no=${politician_no}`,[itScience,economy,culture,society,politics]
             ,(err,result)=>{
                 if(err)
                     reject(err);

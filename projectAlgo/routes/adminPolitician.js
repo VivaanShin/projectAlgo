@@ -78,7 +78,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
     } //Admin이 아니면 접근 불가
 
     console.log(req.body);
-    var politician_no=req.params.politician_no;
+    var politician_no=req.body.politician_no;
     var politician_name=req.body.politician_name;
     var sgId=20200415;
     var sgTypecode=2;
@@ -119,22 +119,10 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
     */
 
     try{
-        console.log(typeof politician_no);
-        if(typeof politician_no.length =='undefined'){
-            console.log("insert");
-            politician_no=req.body.politician_no;
-            await unsetForeignKeyChecks(connection);
-            await insertPoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
-            await insertPoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics);
-            await setForeignKeyChecks(connection);
-        }
-        else{
-
-            console.log("update")
-            await updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
-                age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
-            await updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics);
-        }
+        await unsetForeignKeyChecks(connection);
+        await insertPoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
+        await insertPoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics);
+        await setForeignKeyChecks(connection);
     }
     catch(err){
         console.log(err.message);
@@ -145,7 +133,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
    
 });
 
-/*router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
+router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     if(!isAdmin(req)){
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
