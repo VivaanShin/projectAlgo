@@ -78,7 +78,7 @@ router.post('/black',async (req,res)=>{ //사용자 블랙등록
     try{
         await updateBlackInUserInfo(blackUser.user_id,connection); //tb_user_info 업데이트
         await insertBlackUser(blackUser,connection); //tb_user_black에 데이터를 넣음
-        await deleteUserGrade(blackUser.user_id,connection); //black된 사용자의 평점 정보 삭제
+        //await deleteUserGrade(blackUser.user_id,connection); //black된 사용자의 평점 정보 삭제
     }
     catch(err){
         console.log(err.message);
