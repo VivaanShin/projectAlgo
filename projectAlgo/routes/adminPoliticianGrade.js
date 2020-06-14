@@ -21,7 +21,6 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
 
     try{
         var politicians=await getAllPoliticianInfo(connection);
-        politicians=JSON.parse(JSON.stringify(politicians));
         var gradeList=[];
 
         for(let i=0;i<politicians.length;i++){
