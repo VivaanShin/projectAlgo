@@ -173,9 +173,9 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     test.politician_name=req.body.politician_name;
     test.sgId=20200415;
     test.sgTypecode=2;
-    test.sggName=req.body.sggName;
+    test.sggName=req.body.sdName;
     test.sdName=req.body.sdName;
-    test.wiwName=req.body.sdName;
+    test.wiwName=req.body.wiwName;
     test.jdName=req.body.jdName;
     test.gender=1;
     test.birthday=req.body.birthday;
@@ -197,7 +197,7 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     test.society=req.body.society;
     test.politics=req.body.politics;
     console.log(test);
-    
+
     try{
         await updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
             age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
