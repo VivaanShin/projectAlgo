@@ -40,6 +40,7 @@ router.get('/',(req,res)=>{
       
         else{
             politicians=JSON.parse(JSON.stringify(politicians));
+            console.log(politicians);
             resultData.status=200;
             var total=politicians.length;
             resultData.total=total;
