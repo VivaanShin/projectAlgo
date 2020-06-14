@@ -5,7 +5,7 @@ const router=express.Router();
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 const getAllUserInfo=require('./queryPromise').getAllUserInfo;
 const getUserGradeCountAndAvg=require('./queryPromise').getUserGradeCountAndAvg;
-//const getUserGrade=require('./queryPromise').getUserGrade;
+const getUserGrade=require('./queryPromise').getUserGrade;
 const updateBlackInUserInfo=require('./queryPromise').updateBlackInUserInfo;
 const insertBlackUser=require('./queryPromise').insertBlackUser;
 const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
@@ -48,7 +48,7 @@ router.get('/',async (req,res)=>{
         }
 
         resultData.gradeInfo=gradeInfo;
-        var gradeDetailInfo=await getUserGrade(connection,user_id); // 유저 평점 상세정보 render
+        var gradeDetailInfo=await getUserGrade(connection); // 유저 평점 상세정보 render
         resultData.gradeDetailInfo=gradeDetailInfo;
 
         console.log(resultData);

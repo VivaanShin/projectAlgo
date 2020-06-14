@@ -253,9 +253,9 @@ exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connect
     })
 };
 
-exports.getUserGrade=function getUserGrade(connection,user_id){ //connection 하나를 전달 받아서 사용,동기형으로 tn_user_politician_grade를 모두 가져옴
+exports.getUserGrade=function getUserGrade(connection){ //connection 하나를 전달 받아서 사용,동기형으로 tn_user_politician_grade를 모두 가져옴
     return new Promise((resolve,reject)=>{
-        connection.query(`select * from tb_gradeinfo_record as tr, tb_politician_info as pi where tr.politician_no=pi.politician_no`,[user_id]
+        connection.query(`select * from tb_gradeinfo_record as tr, tb_politician_info as pi where tr.politician_no=pi.politician_no`
         ,(err,userGrade)=>{
             if(err)
                 reject(err);
