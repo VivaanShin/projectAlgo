@@ -150,16 +150,16 @@ router.get('/', (req, res) => {
           var politician9_score = distance(user_interest_score, politician9);
           var politician10_score = distance(user_interest_score, politician10);
 
-          var politician1_percent = 100*(1-(distance(user_interest_score, politician1)/224));
-          var politician2_percent = 100*(1-(distance(user_interest_score, politician2)/224));
-          var politician3_percent = 100*(1-(distance(user_interest_score, politician3)/224));
-          var politician4_percent = 100*(1-(distance(user_interest_score, politician4)/224));
-          var politician5_percent = 100*(1-(distance(user_interest_score, politician5)/224));
-          var politician6_percent = 100*(1-(distance(user_interest_score, politician6)/224));
-          var politician7_percent = 100*(1-(distance(user_interest_score, politician7)/224));
-          var politician8_percent = 100*(1-(distance(user_interest_score, politician8)/224));
-          var politician9_percent = 100*(1-(distance(user_interest_score, politician9)/224));
-          var politician10_percent = 100*(1-(distance(user_interest_score, politician10)/224));
+          var politician1_percent = Math.floor(100*(1-(distance(user_interest_score, politician1)/224)));
+          var politician2_percent = Math.floor(100*(1-(distance(user_interest_score, politician2)/224)));
+          var politician3_percent = Math.floor(100*(1-(distance(user_interest_score, politician3)/224)));
+          var politician4_percent = Math.floor(100*(1-(distance(user_interest_score, politician4)/224)));
+          var politician5_percent = Math.floor(100*(1-(distance(user_interest_score, politician5)/224)));
+          var politician6_percent = Math.floor(100*(1-(distance(user_interest_score, politician6)/224)));
+          var politician7_percent = Math.floor(100*(1-(distance(user_interest_score, politician7)/224)));
+          var politician8_percent = Math.floor(100*(1-(distance(user_interest_score, politician8)/224)));
+          var politician9_percent = Math.floor(100*(1-(distance(user_interest_score, politician9)/224)));
+          var politician10_percent = Math.floor(100*(1-(distance(user_interest_score, politician10)/224)));
 
 
 
