@@ -180,7 +180,7 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
         connection.end();
         res.send(`<script type="text/javascript">alert("응답");window.location="/admin/politician";</script>`);
     }
-});*/
+});
 
 router.delete('/:politician_no',async (req,res)=>{ //정치인 정보 삭제
     if(!isAdmin(req)){
