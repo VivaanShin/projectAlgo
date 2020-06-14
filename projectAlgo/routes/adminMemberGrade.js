@@ -73,7 +73,7 @@ router.post('/black',async (req,res)=>{ //사용자 블랙등록
     blackUser.user_id=req.body.user_id;
     blackUser.black_st_date=moment().format('YYYY-MM-DD');
     blackUser.black_ed_date=moment().add(1, 'months').format('YYYY-MM-DD')//한 달 뒤
-    blackUser.black_reason=req.body.black_reason;
+    blackUser.black_reason="비정상적인 평점 부여";
 
     try{
         await updateBlackInUserInfo(blackUser.user_id,connection); //tb_user_info 업데이트
