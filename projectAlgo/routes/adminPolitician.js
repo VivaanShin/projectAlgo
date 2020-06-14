@@ -19,21 +19,6 @@ const deletePoliticianInfo=require('./queryPromise').deletePoliticianInfo;
 const deletePoliticianInterest=require('./queryPromise').deletePoliticianInterest;
 const unsetForeignKeyChecks=require('./queryPromise').unsetForeignKeyChecks;
 const setForeignKeyChecks=require('./queryPromise').setForeignKeyChecks;
-function getAgeFromBirthDay(birthday) {
-
-    // 전달받은 생년월일로 Date 객체 생성한다. 이하 생년월일 객체라고 칭한다.
-    var birthday = new Date(birthday);
-    
-    // 오늘 날짜 기준으로 나이를 구하기 위해 Date 객체 생성한다. -> 이하 오늘날짜 객체라고 칭한다.
-    var today = new Date();
-    
-    // 오늘날짜 객체의 연도에서 생년월일 객체의 연도를 뺀다.
-    var years = today.getFullYear() - birthday.getFullYear();
-    
-    // years 의 값이 실질적으로 구해진 나이이다.
-    return years;
-    
-}
 router.get('/',(req,res)=>{
   if(!isAdmin(req)){
     return res.redirect('/');
@@ -103,7 +88,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
     var jdName=req.body.jdName;
     var gender=1;
     var birthday=req.body.birthday;
-    var age=getAgeFromBirthDay(birthday);
+    var age=50;
     var addr=sggName+" "+sdName;
     var jobId=0;
     var job=req.body.job;
@@ -164,7 +149,7 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     var jdName=req.body.jdName;
     var gender=1;
     var birthday=req.body.birthday;
-    var age=getAgeFromBirthDay(birthday);
+    var age=50;
     var addr=sggName+" "+sdName;
     var jobId=0;
     var job=req.body.job;
