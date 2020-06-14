@@ -256,10 +256,10 @@ exports.getUserGradeCountAndAvg=function getUserGradeCountAndAvg(user_id,connect
 exports.getBlackUserInfo=function getBlackAllUserInfo(connection){ // connection 하나를 전달 받아서 사용,동기형으로 사용자 정보를 가져옴
     return new Promise((resolve,reject)=>{
         connection.query(`select * from tb_user_info where user_black = 1`,
-        (err,user_info)=>{
+        (err,black_info)=>{
             if(err)
                 reject(err);
-            resolve(user_info); //블랙 사용자 정보 가져옴
+            resolve(black_info); //블랙 사용자 정보 가져옴
         });
     })
 };
