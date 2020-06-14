@@ -13,7 +13,7 @@ const dbConfig = {
 }; //후에 DB설정에 맞게 변경
 
 router.get('/', async (req, res) => {
-  var resultData = {};
+  console.log("adminBlackMember join");
   if (!isAdmin(req)) {
     return res.redirect('/');
   }
@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
 
     }
 
-    resultData.gradeInfo=gradeinfo;
+    resultData.gradeInfo=gradeInfo;
     console.log("resultData",resultData);
     /*
     var sql = 'select * from tb_user_black';
