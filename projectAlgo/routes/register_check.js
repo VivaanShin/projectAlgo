@@ -23,12 +23,13 @@ router.get('/', (req, res) => {
   var user_email = req.param('user_email');
   var user_token = req.param('user_token');
   console.log('check user_token',user_token);
-  var sql = 'select `user_token` from `tb_user_info` where `user_email`=?';
+  var sql = 'select `user_token` from `tb_user_info` where `user_email`=? and `user_state`=0';
   connection.query(sql, [user_email], function(err, rows, fields) {
     if (err) {
       console.log(err);
     } else {
       if (user_token != rows[0].user_token) {
+        console.log("user_token",user_token,"user_token_db",rows[0]_token);
         console.log('token mismatch');
         res.render('register');
       } else {
