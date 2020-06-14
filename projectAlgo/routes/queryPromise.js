@@ -526,7 +526,7 @@ exports.setForeignKeyChecks=function setForeignKeyChecks(connection){ //tb_grade
 };
 
 exports.insertPoliticianInfo=function insertPoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
-    age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate){ //tb_gradeinfo_record delete 
+    age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate){
     return new Promise((resolve,reject)=>{
         connection.query(`insert into tb_politician_info values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
             ,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate]
