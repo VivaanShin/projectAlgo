@@ -238,6 +238,7 @@ router.get('/AImatching', (req, res) => {
     })
   }).then(function(resultData) {
     return new Promise(function(resolve, reject) {
+      /*
       var politician_no_list = [];
       console.log("typeof politician_no_list",typeof(politician_no_list))
       console.log("resultData.matching_result[0].politician_no",typeof(resultData.matching_result[0].politician_no))
@@ -246,14 +247,23 @@ router.get('/AImatching', (req, res) => {
         console.log(typeof(politician_no_search))
         politician_no_list.push(politician_no_search);
       }
-      console.log("typeof politician_no_list", typeof(politician_no_list));
-      console.log("politician_no_list", politician_no_list);
+      */
+
+      var politician_no1 = resultData.matching_result[0].politician_no;
+      var politician_no2 = resultData.matching_result[1].politician_no;
+      var politician_no3 = resultData.matching_result[2].politician_no;
+      var politician_no4 = resultData.matching_result[3].politician_no;
+      var politician_no5 = resultData.matching_result[4].politician_no;
+      var politician_no6 = resultData.matching_result[5].politician_no;
+      var politician_no7 = resultData.matching_result[6].politician_no;
+      var politician_no8 = resultData.matching_result[7].politician_no;
+      var politician_no9 = resultData.matching_result[8].politician_no;
+      var politician_no10 = resultData.matching_result[9].politician_no;
 
 
-
-
+      var politician_no_list = [politician_no1,politician_no2,politician_no3,politician_no4,politician_no5,politician_no6,politician_no7,politician_no8,politician_no9,politician_no10]
       var politician = {};
-      var sql3 = 'select * from tb_politician_info where politician_no IN (?) ';
+      var sql3 = 'select * from tb_politician_info where politician_no IN (?,?,?,?,?,?,?,?,?,?) ';
       connection.query(sql3, politician_no_list, function(err, rows, fields) {
         console.log("query3 in");
         if (err) {
@@ -261,7 +271,7 @@ router.get('/AImatching', (req, res) => {
         } else {
           console.log("query3 rows: ", rows);
           for(var i = 0; i<rows.length; i++){
-            var politician={
+            politician= {
               politician_no:rows[i].politician_no,
               politician_name:rows[i].politician_name,
               jdName:rows[i].jdName,
