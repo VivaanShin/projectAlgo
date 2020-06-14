@@ -196,7 +196,8 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     test.culture=req.body.culture;
     test.society=req.body.society;
     test.politics=req.body.politics;
-
+    console.log(test);
+    
     try{
         await updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
             age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
