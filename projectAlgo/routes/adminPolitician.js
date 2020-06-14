@@ -119,7 +119,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
     */
 
     try{
-
+        console.log(typeof politician_no);
         if(typeof politician_no.length =='undefined'){
             console.log("insert");
             politician_no=req.body.politician_no;
