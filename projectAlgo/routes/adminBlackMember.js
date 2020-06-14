@@ -3,7 +3,7 @@ var router = express.Router();
 var session = require('express-session');
 const isAdmin = require('../scripts/confirmAdmin').isAdmin;
 const getBlackUserInfo=require('./queryPromise').getBlackUserInfo;
-const updateBlackUnUserInfo=require('./queryPromise').updateBlackUnUserInfo;
+const updateUnBlackInUserInfo=require('./queryPromise').updateUnBlackInUserInfo;
 const getBlackUserGrade=require('./queryPromise').getBlackUserGrade;
 const deleteBlackUser=require('./queryPromise').deleteBlackUser;
 const getBlackUserGradeCountAndAvg=require('./queryPromise').getBlackUserGradeCountAndAvg;
@@ -75,7 +75,7 @@ router.post('/unblack', async(req, res) => {
   var blackUserId=req.body.user_id;
 
   try {
-    await updateBlackUnUserInfo(blackUserId,connection);
+    await updateUnBlackInUserInfo(blackUserId,connection);
     await deleteBlackUser(blackUserId,connection);
 
 
