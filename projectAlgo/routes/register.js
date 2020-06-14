@@ -118,6 +118,7 @@ passport.use('local-join', new LocalStrategy({
       var newSecret = twoFactor.generateSecret();
       var newToken = twoFactor.generateToken(newSecret.secret);
       var user_token = newToken.token;
+      console.log("user_token",user_token);
       var email_url = 'ec2-3-34-124-6.ap-northeast-2.compute.amazonaws.com' + '/register_check' + '?user_email=' + user_email + '&user_token=' + user_token;
 
       //비밀번호 해쉬값변경
