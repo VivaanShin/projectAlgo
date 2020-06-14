@@ -599,3 +599,30 @@ exports.deletePoliticianInterest=function deletePoliticianInterest(connection,po
      });
     })
 };
+
+exports.getAllPoliticianInfo=function getAllPoliticianInfo(connection){
+    return new Promise((resolve,reject)=>{
+        connection.query(`select * from tb_politician_info`
+        ,(err,result)=>{
+            if(err)
+                reject(err);
+        
+            resolve(result);
+     });
+    })
+};
+
+exports.getPoliticianAllAverageGradeAndCount=function getPoliticianAllAverageGradeAndCount(connection,politician_no){ //정치인 평점을 모두 가져옴
+    return new Promise((resolve,reject)=>{
+        connection.query(`select avg(grade_score) as avg, count(*) as count from tb_gradeinfo_record
+        where politician_no=?`,[politician_no],(err,avg_grade)=>{
+            if(err) 
+            {
+                connection.end();
+                reject(err);
+            }   
+            connection.end();
+            resolve(avg_grade); //해당  정치인 평점 평균
+        });
+    });
+};
