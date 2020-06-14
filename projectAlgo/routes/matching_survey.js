@@ -12,7 +12,7 @@ const dbConfig = {
 
 router.get('/', (req, res) => {
   var resultData = {};
-  if (isLoggined(req)) {
+  if (isLoggedin(req)) {
     resultData.user = req.user;
     resultData.user.user_interest_check = req.session.user_interest_check;
   }
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   console.log("req.body: ", req.body);
   var resultData = {};
-  if (isLoggined(req)) {
+  if (isLoggedin(req)) {
     resultData.user = req.user;
     resultData.user.user_interest_check = req.session.user_interest_check;
   }
