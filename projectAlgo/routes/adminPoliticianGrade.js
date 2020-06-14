@@ -78,7 +78,7 @@ router.put('/',async (req,res)=>{ //정치인 평점 정보 수정
     }
     finally{
         connection.end();
-        res.redirect('/admin/politician_grade?page=1'); //view 설정
+        res.redirect('/admin/politician_grade'); //view 설정
     }
 });
 
@@ -104,7 +104,7 @@ router.delete('/',async (req,res)=>{ //정치인 평점 정보 삭제
     }
     finally{
         connection.end();
-        res.redirect('/admin/politician_grade?page=1'); //view 설정
+        res.redirect('/admin/politician_grade'); //view 설정
     }
 });
 module.exports=router;
