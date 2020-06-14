@@ -180,7 +180,7 @@ router.post('/', (req, res) => {
 
 
 
-        res.render('home', resultData);
+        res.render('matching_service', resultData);
       });
 
 
