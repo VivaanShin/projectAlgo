@@ -20,10 +20,16 @@ router.get('/', (req, res) => {
 
 router.get('/', (req, res) => {
   var resultData = {};
+  /*
   if (isLoggedin(req)) { //로그인 정보
     resultData.user = req.user;
   }
+  */
 
+  if (isLoggined) {
+    resultData.user = req.user;
+    resultData.user.user_interest_check = req.session.user_interest_check;
+  }
   var user_id = req.user.user_id;
 
   var connection = mysql.createConnection(dbConfig);
@@ -59,7 +65,7 @@ router.get('/', (req, res) => {
           var user_culture_sqrt = Math.sqrt(user_culture);
           var user_society_sqrt = Math.sqrt(user_society);
           var user_politics_sqrt = Math.sqrt(user_politics);
-          console.log("sqrt score",user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt);
+          console.log("sqrt score", user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt);
 
           //유저 관심사 객체
           var user_interest = {
@@ -275,9 +281,9 @@ router.get('/', (req, res) => {
       var politician_no10 = resultData.matching_result[9].politician_no;
 
 
-      var politician_no_list = [politician_no1,politician_no2,politician_no3,politician_no4,politician_no5,politician_no6,politician_no7,politician_no8,politician_no9,politician_no10]
+      var politician_no_list = [politician_no1, politician_no2, politician_no3, politician_no4, politician_no5, politician_no6, politician_no7, politician_no8, politician_no9, politician_no10]
       var politician = {};
-      var searchResult=[];
+      var searchResult = [];
       var sql3 = 'select * from tb_politician_info where politician_no IN (?,?,?,?,?,?,?,?,?,?) ';
       connection.query(sql3, politician_no_list, function(err, rows, fields) {
         console.log("query3 in");
@@ -285,22 +291,22 @@ router.get('/', (req, res) => {
           console.log(err);
         } else {
           console.log("query3 rows: ", rows);
-          for(var i = 0; i<rows.length; i++){
-            politician= {
-              politician_no:rows[i].politician_no,
-              politician_name:rows[i].politician_name,
-              jdName:rows[i].jdName,
-              birthday:rows[i].birthday,
-              career1:rows[i].career1,
-              career2:rows[i].career2,
-              img:"/images/"+rows[i].politician_no+".jpg",
-              link:"/politician/"+rows[i].politician_no,
-              itScience:resultData.matching_result[i].itScience,
-              economy:resultData.matching_result[i].economy,
-              culture:resultData.matching_result[i].culture,
-              society:resultData.matching_result[i].society,
-              politics:resultData.matching_result[i].politics,
-              politician_match_rate:resultData.matching_result[i].politician_match_rate
+          for (var i = 0; i < rows.length; i++) {
+            politician = {
+              politician_no: rows[i].politician_no,
+              politician_name: rows[i].politician_name,
+              jdName: rows[i].jdName,
+              birthday: rows[i].birthday,
+              career1: rows[i].career1,
+              career2: rows[i].career2,
+              img: "/images/" + rows[i].politician_no + ".jpg",
+              link: "/politician/" + rows[i].politician_no,
+              itScience: resultData.matching_result[i].itScience,
+              economy: resultData.matching_result[i].economy,
+              culture: resultData.matching_result[i].culture,
+              society: resultData.matching_result[i].society,
+              politics: resultData.matching_result[i].politics,
+              politician_match_rate: resultData.matching_result[i].politician_match_rate
             }
             searchResult.push(politician);
           }
@@ -316,7 +322,7 @@ router.get('/', (req, res) => {
           */
           console.log("politician final console", politician)
 
-          resultData.searchResult=searchResult;
+          resultData.searchResult = searchResult;
           console.log("searchResult final console", searchResult);
           resolve()
         }
@@ -324,6 +330,7 @@ router.get('/', (req, res) => {
     })
   }).then(function() {
     connection.end();
+    req.session.user_interest_check = 1;
     res.render('matching_service', resultData);
   }).catch(function(err) {
     console.log('error', err);
