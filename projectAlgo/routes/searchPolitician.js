@@ -38,17 +38,12 @@ router.get('/',async (req,res)=>{
                     link:"/politician/"+politicians[i].politician_no
                 };
                 var politician_interest=await getPoliticianInterestByNo(politician.politician_no,connection); //정치인 관심사 정보를 가져옴
-                //politician.itScience=politician_interest[0].itScience;
-                //politician.economy=politician_interest[0].economy;
-                //politician.culture=politician_interest[0].culture;
-                //politician.society=politician_interest[0].society;
-                //politician.politics=politician_interest[0].politics;
+                politician.itScience=politician_interest[0].itScience;
+                politician.economy=politician_interest[0].economy;
+                politician.culture=politician_interest[0].culture;
+                politician.society=politician_interest[0].society;
+                politician.politics=politician_interest[0].politics;
 
-                politician.itScience=5;
-                politician.economy=7;
-                politician.culture=6;
-                politician.society=3;
-                politician.politics=8;
                 searchResult.push(politician);
             }
             resultData.searchResult=searchResult;

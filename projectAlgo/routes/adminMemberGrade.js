@@ -40,7 +40,7 @@ router.get('/',async (req,res)=>{
             oneUser.user_email=userInfo[i].user_email;
             oneUser.user_black=userInfo[i].user_black;
             var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection);
-            
+
             oneUser.count=usersGradeCountAndAvg[0].count;
             oneUser.avg=(!usersGradeCountAndAvg[0].avg) ? 0:usersGradeCountAndAvg[0].avg;
 
@@ -48,13 +48,8 @@ router.get('/',async (req,res)=>{
         }
 
         resultData.gradeInfo=gradeInfo;
-
-        var user_id=req.params.user_id;
-
-        if(user_id){
-            var gradeDetailInfo=await getUserGrade(connection,user_id); // 유저 평점 상세정보 render
-            resultData.gradeDetailInfo=gradeDetailInfo;
-        }
+        var gradeDetailInfo=await getUserGrade(connection,user_id); // 유저 평점 상세정보 render
+        resultData.gradeDetailInfo=gradeDetailInfo;
 
         console.log(resultData);
         resultData.status=200;
