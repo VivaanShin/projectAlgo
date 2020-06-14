@@ -25,7 +25,7 @@ router.get('/',async (req,res)=>{ //tb_gradeinfo_record에서 가져옴
 
         for(let i=0;i<politicians.length;i++){
             var onePolitician=politicians[i];
-            var averageAndCount=await getPoliticianAllAverageGradeAndCount(connection,one_politician.politician_no);
+            var averageAndCount=await getPoliticianAllAverageGradeAndCount(connection,onePolitician.politician_no);
             onePolitician.avg=(!averageAndCount[0].avg) ? 0:averageAndCount[0].avg;
             onePolitician.count=averageAndCount[0].count;
 
