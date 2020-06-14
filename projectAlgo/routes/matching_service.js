@@ -239,14 +239,15 @@ router.get('/AImatching', (req, res) => {
   }).then(function(resultData) {
     return new Promise(function(resolve, reject) {
       var politician_no_list = [];
-      console.log("politician_no_list",typeof(politician_no_list))
+      console.log("typeof politician_no_list",typeof(politician_no_list))
       console.log("resultData.matching_result[0].politician_no",typeof(resultData.matching_result[0].politician_no))
       for (var i = 0; i < resultData.matching_result.length;i++){
         var politician_no_search = resultData.matching_result[i].politician_no;
         console.log(typeof(politician_no_search))
         politician_no_list.push(politician_no_search);
       }
-      console.log(politician_no_list);
+      console.log("typeof politician_no_list", typeof(politician_no_list));
+      console.log("politician_no_list", politician_no_list);
 
 
 
