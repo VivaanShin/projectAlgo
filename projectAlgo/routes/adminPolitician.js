@@ -148,7 +148,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
    
 });
 
-router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
+router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     if(!isAdmin(req)){
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
@@ -212,7 +212,7 @@ router.put('/:politician_no',(req,res)=>{ //정치인 정보 수정
     }
 });
 
-router.delete('/:politician_no',(req,res)=>{ //정치인 정보 삭제
+router.delete('/:politician_no',async (req,res)=>{ //정치인 정보 삭제
     if(!isAdmin(req)){
         return res.redirect('/');
     } //Admin이 아니면 접근 불가
