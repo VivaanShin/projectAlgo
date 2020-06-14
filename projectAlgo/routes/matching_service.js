@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
   }
   */
 
-  if (isLoggined) {
+  if (isLoggined(req)) {
     resultData.user = req.user;
     resultData.user.user_interest_check = req.session.user_interest_check;
   }
