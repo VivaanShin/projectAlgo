@@ -311,10 +311,11 @@ router.get('/', (req, res) => {
     })
   }).then(function() {
     connection.end();
+    res.render('matching_service', resultData);
   }).catch(function(err) {
     console.log('error', err);
   })
-  res.render('matching_service', resultData);
+
 })
 
 module.exports = router;
