@@ -58,6 +58,7 @@ router.get('/', async (req, res) => {
     console.log(err.message);
     resultData.status = 500;
   } finally {
+    connection.end();
     res.render('admin_page/block_user.ejs', resultData);
   }
 });
@@ -71,7 +72,6 @@ router.post('/unblack', async(req, res) => {
 
   var connection = mysql.createConnection(dbConfig);
   var resultData = {};
-  var memberList = [];
   var blackUserId=req.body.user_id;
 
   try {
@@ -88,7 +88,8 @@ router.post('/unblack', async(req, res) => {
     console.log(err.message);
     resultData.status = 500;
   } finally {
-    res.render('admin_page/block_user.ejs', resultData);
+    connection.end();
+    res.redirect('admin_page/block_user.ejs', resultData);
   }
 
 
