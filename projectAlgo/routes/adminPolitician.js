@@ -120,7 +120,8 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
 
     try{
 
-        if(typeof politician_no == 'undefined'){
+        if(politician_no.length <=0){
+            console.log("insert");
             politician_no=req.body.politician_no;
             await unsetForeignKeyChecks(connection);
             await insertPoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
@@ -128,6 +129,8 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
             await setForeignKeyChecks(connection);
         }
         else{
+
+            console.log("update")
             await updatePoliticianInfo(connection,politician_no,politician_name,sgId,sgTypecode,sggName,sdName,wiwName,jdName,gender,birthday,
                 age,addr,jobId,job,eduId,edu,career1,career2,dugsu,dugyul,prmsCnt,prmsRate);
             await updatePoliticianInterest(connection,politician_no,itScience,economy,culture,society,politics);
