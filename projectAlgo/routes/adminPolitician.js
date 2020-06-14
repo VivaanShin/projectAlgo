@@ -35,12 +35,13 @@ router.get('/',(req,res)=>{
     connection.query('select * from tb_politician_info as pol, tb_politician_interest as int where pol.politician_no=int.politician_no',(err,politicians)=>{ //정치인성향 계산이 필요
     //connection.query('select * from tb_politician_info',(err,politicians)=>{
         var resultData={};
-        if(err){   
+        console.log(politicians);
+        if(err){
+            console.log(err.message);   
             resultData.status=500;
         }
       
         else{
-            console.log(politicians);
             politicians=JSON.parse(JSON.stringify(politicians));
             console.log(politicians);
             resultData.status=200;
@@ -49,8 +50,7 @@ router.get('/',(req,res)=>{
             var startPage=(page-1)*pagingNum;
 
             if(page<=0 || page > Math.ceil(total/pagingNum)){ //잘 못된 페이지가 들어왔을 시
-                res.redirect('/admin/politician?page=1');
-                return;
+                page=1
             }
             else if(page == Math.ceil(total/pagingNum)){ //마지막 페이지 처리
                 resultData.politicianResult=politicians.slice(startPage);
