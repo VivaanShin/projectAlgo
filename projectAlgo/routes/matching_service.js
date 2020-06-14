@@ -263,6 +263,7 @@ router.get('/AImatching', (req, res) => {
 
       var politician_no_list = [politician_no1,politician_no2,politician_no3,politician_no4,politician_no5,politician_no6,politician_no7,politician_no8,politician_no9,politician_no10]
       var politician = {};
+      var searchResult=[];
       var sql3 = 'select * from tb_politician_info where politician_no IN (?,?,?,?,?,?,?,?,?,?) ';
       connection.query(sql3, politician_no_list, function(err, rows, fields) {
         console.log("query3 in");
@@ -279,9 +280,17 @@ router.get('/AImatching', (req, res) => {
               career1:rows[i].career1,
               career2:rows[i].career2,
               img:"/images/"+rows[i].politician_no+".jpg",
-              link:"/politician/"+rows[i].politician_no
+              link:"/politician/"+rows[i].politician_no,
+              itScience:resultData.matching_result[i].itScience,
+              economy:resultData.matching_result[i].economy,
+              culture:resultData.matching_result[i].culture,
+              society:resultData.matching_result[i].society,
+              politics:resultData.matching_result[i].politics,
+              politician_match_rate:resultData.matching_result[i].politician_match_rate
             }
+            searchResult.push(politician);
           }
+          /*
           for(var i = 0; i<politician.length; i++){
             politician[i].push(resultData.matching_result[i].itScience)
             politician[i].push(resultData.matching_result[i].economy)
@@ -290,10 +299,11 @@ router.get('/AImatching', (req, res) => {
             politician[i].push(resultData.matching_result[i].politics)
             politician[i].push(resultData.matching_result[i].politician_match_rate)
           }
+          */
           console.log("politician final console", politician)
 
-          resultData.searchResult=politician;
-
+          resultData.searchResult=searchResult;
+          console.log("searchResult final console", searchResult);
           resolve()
         }
       })
