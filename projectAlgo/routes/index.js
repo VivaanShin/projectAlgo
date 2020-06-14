@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
   
   if(isLoggined(req)){
     var user={user:req.user};
+    user.user.user_interest_check=req.session.user_interest_check;
     res.render('home.ejs',user);
   }
   else{ 
