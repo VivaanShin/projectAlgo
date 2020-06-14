@@ -238,7 +238,7 @@ router.get('/AImatching', (req, res) => {
     })
   }).then(function(resultData) {
     return new Promise(function(resolve, reject) {
-      var politician_no_list = {}
+      var politician_no_list = [];
       console.log(typeof(resultData.matching_result[0].politician_no))
       for (var i = 0; i < resultData.matching_result.length;i++){
         var politician_no_search = resultData.matching_result[i].politician_no;
