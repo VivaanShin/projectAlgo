@@ -258,6 +258,7 @@ router.get('/AImatching', (req, res) => {
         if (err) {
           console.log(err);
         } else {
+          console.log("query3 rows: ", rows);
           for(var i = 0; i<rows.length; i++){
             var politician={
               politician_no:rows[i].politician_no,
