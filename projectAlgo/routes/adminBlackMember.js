@@ -72,12 +72,11 @@ router.post('/', (req, res) => {
   var connection = mysql.createConnection(dbConfig);
   var resultData = {};
   var memberList = [];
-
-  var blackUser.user_id = req.body.user_id;
+  var blackUserId=req.body.user_id;
 
   try {
-    await updateBlackUnUserInfo(blackUser.user_id,connection);
-    await deleteBlackUser(blackUser.user_id,connection);
+    await updateBlackUnUserInfo(blackUserId,connection);
+    await deleteBlackUser(blackUserId,connection);
 
 
 
