@@ -68,7 +68,7 @@ app.use('/admin/politician',adminPoliticianRouter);
 app.use('/admin/member_grade',adminMemberGradeRouter);
 //app.use('/admin/legislation',adminLegislationRouter);
 app.use('/admin/politician_grade',adminPoliticianGradeRouter);
-app.use('/admin/block_user',adminBlackMemberRouter);
+app.use('/admin/adminBlackMember',adminBlackMemberRouter);
 //여기까지 어드민 라우터
 
 

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
-const isLoggedin = require('../scripts/confirmLogin').isLoggedIn;
+const isAdmin=require('../scripts/confirmAdmin').isAdmin;
 const mysql = require('mysql');
 const dbConfig = {
   host: 'localhost',
@@ -10,11 +10,10 @@ const dbConfig = {
   database: 'project_algo'
 }; //후에 DB설정에 맞게 변경
 
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
   var resultData = {};
-  if (isLoggedin(req)) {
-    resultData.user = req.user;
-    resultData.user.user_interest_check = req.session.user_interest_check;
+  if(!isAdmin(req)){
+      return res.redirect('/');
   }
   console.log('adminBlackMember join');
   res.render('admin_page/block_user.ejs', resultData);
