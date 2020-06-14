@@ -32,43 +32,15 @@ router.get('/',async (req,res)=>{
     //var detailPage=req.query.detail_page; //유저 평점 상세정보 페이지
     try{
         var userInfo=await getAllUserInfo(connection);
-        var gradeTotal=userInfo.length;
-        resultData.gradeTotal=gradeTotal;
         var gradeInfo=[];
 
-        if(typeof gradePage=='undefined'){
-            gradePage=1;
-            //detailPage=1;
-        }
-
-        var orderBy=req.body.orderBy;
-
-        if(typeof orderBy != 'undefined'){
-            orderBy=0;
-        }
-
-        gradePage=Number(gradePage);
-        //detailPage=Number(detailPage);
-
-        var startGradePage=(gradePage-1)*pagingNum;
-
-        if(gradePage <=0 || gradePage>Math.ceil(gradeTotal/pagingNum)){//잘 못된 페이지처리
-            gradePage=1;
-        }
-        else if(gradePage==Math.ceil(gradeTotal/pagingNum)){ //마지막 페이지 처리
-            var endGradePage=gradeTotal;
-        }
-        else{ //일반적인 페이지처리
-            var endGradePage=gradePage*pagingNum;
-        }
-        for (let i=startGradePage;i<endGradePage;i++){ //유저평점관리 render
+        for (let i=0;i<userInfo.length;i++){ //유저평점관리 render
             var oneUser={};
             oneUser.user_id=userInfo[i].user_id;
             oneUser.user_email=userInfo[i].user_email;
             oneUser.user_black=userInfo[i].user_black;
-            var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection,orderBy);
-            console.log(usersGradeCountAndAvg);
-
+            var usersGradeCountAndAvg=await getUserGradeCountAndAvg(oneUser.user_id,connection);
+            
             oneUser.count=usersGradeCountAndAvg[0].count;
             oneUser.avg=(!usersGradeCountAndAvg[0].avg) ? 0:usersGradeCountAndAvg[0].avg;
 
