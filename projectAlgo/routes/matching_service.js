@@ -268,7 +268,7 @@ router.get('/', (req, res) => {
               }
             ]
           }
-          console.log("matching_check2",matching_result.children);
+          console.log("matching_check1",matching_result.children);
           //console.log(matching_result)
 
           //matching_result 객체 배열 정렬
@@ -276,7 +276,7 @@ router.get('/', (req, res) => {
           matching_result.children.sort(function(a, b) {
             return a.politician_match_rate < b.politician_match_rate ? -1 : a.seq > b.seq ? 1 : 0;
           });
-          console.log("matching check1", matching_result.children);
+          console.log("matching check2", matching_result.children);
           //console.log(matching_result)
 
           resultData.matching_result = matching_result.children;
@@ -301,6 +301,7 @@ router.get('/', (req, res) => {
       */
 
       var politician_no1 = resultData.matching_result[0].politician_no;
+      console.log("politician_no1",politician_no1);
       var politician_no2 = resultData.matching_result[1].politician_no;
       var politician_no3 = resultData.matching_result[2].politician_no;
       var politician_no4 = resultData.matching_result[3].politician_no;
