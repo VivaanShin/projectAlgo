@@ -12,7 +12,7 @@ const deleteBlackUser=require('./queryPromise').deleteBlackUser;
 //const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
 //const updateGradeinfoRecord=require('./queryPromise').updateGradeInfoRecord;
 //const deleteUserPoliticianGrade=require('./queryPromise').deleteUserPoliticianGrade;
-const getAllNotBlackUserInfo=require('./queryPromise').getAllNotBlackUserInfo;
+const getAllNormalUserInfo=require('./queryPromise').getAllNormalUserInfo;
 const pagingNum=10;
 const dbConfig={
     host     : 'localhost',
@@ -30,7 +30,7 @@ router.get('/',async (req,res)=>{
     var gradePage=req.query.page; //유저 평점 관리 페이지
     //var detailPage=req.query.detail_page; //유저 평점 상세정보 페이지
     try{
-        var userInfo=await getAllNotBlackUserInfo(connection);
+        var userInfo=await getAllNormalUserInfo(connection);
         var gradeInfo=[];
 
         for (let i=0;i<userInfo.length;i++){ //유저평점관리 render

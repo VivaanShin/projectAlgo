@@ -658,9 +658,9 @@ exports.getPoliticianAllAverageGradeAndCount=function getPoliticianAllAverageGra
     });
 };
 
-exports.getAllNotBlackUserInfo=function getAllNotBlackUserInfo(connection){ // connection 하나를 전달 받아서 사용,동기형으로 사용자 정보를 가져옴
+exports.getAllNormalUserInfo=function getAllNormalUserInfo(connection){ // connection 하나를 전달 받아서 사용,동기형으로 사용자 정보를 가져옴
     return new Promise((resolve,reject)=>{
-        connection.query(`select * from tb_user_info where user_black=0`,
+        connection.query(`select * from tb_user_info where user_state=1`,
         (err,user_info)=>{
             if(err)
                 reject(err);
