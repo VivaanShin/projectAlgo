@@ -133,7 +133,7 @@ router.put('/',async (req,res)=>{ //정치인 정보 등록
     }
     finally{
         connection.end();
-        res.send(`<script type="text/javascript">window.location="/admin/politician";</script>`);
+        res.redirect('/admin/politician');
     }
    
 });
@@ -183,7 +183,7 @@ router.put('/:politician_no',async (req,res)=>{ //정치인 정보 수정
     }
     finally{
         connection.end();
-        res.send(`<script type="text/javascript">window.location="/admin/politician";</script>`);
+        res.redirect('/admin/politician');
     }
 });
 
@@ -206,7 +206,7 @@ router.delete('/:politician_no',async (req,res)=>{ //정치인 정보 삭제
     }
     finally{
         connection.end();
-        res.send(`<script type="text/javascript">window.location="/admin/politician";</script>`);
+        res.redirect('/admin/politician');
     }
 });
 module.exports=router;

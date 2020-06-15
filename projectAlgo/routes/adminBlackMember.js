@@ -84,8 +84,7 @@ router.post('/unblack', async(req, res) => {
     resultData.status = 500;
   } finally {
     connection.end();
-    //res.redirect('admin_page/block_user.ejs', resultData);
-    res.send(`<script type="text/javascript">window.location="adminBlackMember";</script>`);
+    res.redirect('/admin/adminBlackMember');
   }
 
 

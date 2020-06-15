@@ -127,7 +127,7 @@ router.put('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.send(`<script type="text/javascript">window.location ="/admin/member";</script>`);
+        res.redirect('/admin/member');
     }
 });
 
@@ -151,8 +151,8 @@ router.delete('/',async (req,res)=>{
         console.log(err.message);
     }
     finally{
-        res.send(`<script type="text/javascript">window.location ="/admin/member";</script>`);
         connection.end();
+        res.redirect('/admin/member');
     }
 })
 
