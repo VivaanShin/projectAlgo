@@ -29,6 +29,10 @@ router.post('/',function(req,res,next){
           console.error(loginError);
           return next(loginError);
         }
+
+        if(user.user_state==2){
+          return res.redirect('/admin/member');
+        }
         return res.redirect(nowUrl);
       });
     }
