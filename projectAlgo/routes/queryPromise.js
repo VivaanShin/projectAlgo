@@ -300,7 +300,7 @@ exports.getBlackUserGrade=function getBlackUserGrade(user_id, connection){ //con
 
 exports.updateBlackInUserInfo=function updateBlackInUserInfo(user_id,connection){ //connection 하나를 전달 받아서 사용,tb_user_info의 user_black을 1로 함
     return new Promise((resolve,reject)=>{
-        connection.query(`update tb_user_info set user_black= 1 and user_state = 9 where user_id=?`,[user_id],
+        connection.query(`update tb_user_info set user_black= 1,user_state = 9 where user_id=?`,[user_id],
         (err,user)=>{
             if(err)
                 reject(err);
