@@ -84,7 +84,7 @@ router.post('/black',async (req,res)=>{ //사용자 블랙등록
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade');
+        res.send(`<script type="text/javascript">window.location ="/admin/member_grade";</script>`);
     }
 });
 

@@ -79,17 +79,13 @@ router.post('/unblack', async(req, res) => {
     await deleteBlackUser(blackUserId,connection);
 
 
-
-
-
-
-
   } catch (err) {
     console.log(err.message);
     resultData.status = 500;
   } finally {
     connection.end();
-    res.redirect('admin_page/block_user.ejs', resultData);
+    //res.redirect('admin_page/block_user.ejs', resultData);
+    res.send(`<script type="text/javascript">window.location="adminBlackMember";</script>`);
   }
 
 

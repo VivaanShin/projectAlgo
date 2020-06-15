@@ -95,10 +95,6 @@ router.get('/',async (req,res)=>{
     }
 });
 
-router.post('/',function(req,res){
-    console.log(req.body);
-});
-
 router.put('/',async (req,res)=>{
     if(!isAdmin(req)){
         return res.redirect('/');
@@ -131,6 +127,7 @@ router.put('/',async (req,res)=>{
     }
     finally{
         connection.end();
+        res.send(`<script type="text/javascript">window.location ="/admin/member";</script>`);
     }
 });
 
@@ -154,6 +151,7 @@ router.delete('/',async (req,res)=>{
         console.log(err.message);
     }
     finally{
+        res.send(`<script type="text/javascript">window.location ="/admin/member";</script>`);
         connection.end();
     }
 })
