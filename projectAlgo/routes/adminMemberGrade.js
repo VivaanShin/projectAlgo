@@ -3,7 +3,6 @@ const mysql=require('mysql');
 const moment=require('moment');
 const router=express.Router();
 const isAdmin=require('../scripts/confirmAdmin').isAdmin;
-const getAllUserInfo=require('./queryPromise').getAllUserInfo;
 const getUserGradeCountAndAvg=require('./queryPromise').getUserGradeCountAndAvg;
 const getUserGrade=require('./queryPromise').getUserGrade;
 const updateBlackInUserInfo=require('./queryPromise').updateBlackInUserInfo;
@@ -13,7 +12,7 @@ const deleteBlackUser=require('./queryPromise').deleteBlackUser;
 //const updateUserPoliticianGrade=require('./queryPromise').updateUserPoliticianGrade;
 //const updateGradeinfoRecord=require('./queryPromise').updateGradeInfoRecord;
 //const deleteUserPoliticianGrade=require('./queryPromise').deleteUserPoliticianGrade;
-const deleteUserGrade=require('./queryPromise').deleteUserGrade;
+const getAllNotBlackUserInfo=require('./queryPromise').getAllNotBlackUserInfo;
 const pagingNum=10;
 const dbConfig={
     host     : 'localhost',
@@ -31,7 +30,7 @@ router.get('/',async (req,res)=>{
     var gradePage=req.query.page; //유저 평점 관리 페이지
     //var detailPage=req.query.detail_page; //유저 평점 상세정보 페이지
     try{
-        var userInfo=await getAllUserInfo(connection);
+        var userInfo=await getAllNotBlackUserInfo(connection);
         var gradeInfo=[];
 
         for (let i=0;i<userInfo.length;i++){ //유저평점관리 render
