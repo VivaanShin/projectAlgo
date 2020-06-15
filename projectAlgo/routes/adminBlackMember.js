@@ -84,7 +84,7 @@ router.post('/unblack', async(req, res) => {
     resultData.status = 500;
   } finally {
     connection.end();
-    res.redirect('/admin/adminBlackMember');
+    //res.redirect('/admin/adminBlackMember');
   }
 
 

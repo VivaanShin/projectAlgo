@@ -152,7 +152,7 @@ router.delete('/',async (req,res)=>{
     }
     finally{
         connection.end();
-        res.redirect('/admin/member');
+        //res.redirect('/admin/member');
     }
 })
 

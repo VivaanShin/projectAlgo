@@ -84,7 +84,7 @@ router.post('/black',async (req,res)=>{ //사용자 블랙등록
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade');
+        //res.redirect('/admin/member_grade');
     }
 });
 
@@ -104,7 +104,7 @@ router.post('/unblack',async (req,res)=>{ //사용자 블랙해제
     }
     finally{
         connection.end();
-        res.redirect('/admin/member_grade');
+        //sres.redirect('/admin/member_grade');
     }
 });
 
