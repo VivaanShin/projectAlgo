@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
         img: "/images/" + politician_info[0].politician_no + ".jpg",
         link: "/politician/" + politician_info[0].politician_no
       };
-      var politician_interest = await getPoliticianInterestByNo(rows[0].politician_no, connection); //정치인 관심사 정보를 가져옴
+      var politician_interest = await getPoliticianInterestByNo(politician_info[0].politician_no, connection); //정치인 관심사 정보를 가져옴
       politician.itScience = politician_interest[0].itScience;
       politician.economy = politician_interest[0].economy;
       politician.culture = politician_interest[0].culture;
