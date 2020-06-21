@@ -28,34 +28,37 @@ router.post('/', async (req, res) => {
     var searchResult = [];
 
     var politician_info = await getPoliticianinfoByName(politician_name);
+    if (politician_info.length == 0) {
+      console.log("검색결과 없음")
+      searchResult.state = '1';
+      resultData.searchResult = searchResult;
+    } else {
+      console.log("politician_info",politician_info);
+      var politician = {
+        politician_no: politician_info[0].politician_no,
+        politician_name: politician_info[0].politician_name,
+        jdName: politician_info[0].jdName,
+        birthday: politician_info[0].birthday,
+        career1: politician_info[0].career1,
+        career2: politician_info[0].career2,
+        img: "/images/" + politician_info[0].politician_no + ".jpg",
+        link: "/politician/" + politician_info[0].politician_no
+      };
+      var politician_interest = await getPoliticianInterestByNo(rows[0].politician_no, connection); //정치인 관심사 정보를 가져옴
+      politician.itScience = politician_interest[0].itScience;
+      politician.economy = politician_interest[0].economy;
+      politician.culture = politician_interest[0].culture;
+      politician.society = politician_interest[0].society;
+      politician.politics = politician_interest[0].politics;
 
-    var politician = {
-      politician_no: politician_info[0].politician_no,
-      politician_name: politician_info[0].politician_name,
-      jdName: politician_info[0].jdName,
-      birthday: politician_info[0].birthday,
-      career1: politician_info[0].career1,
-      career2: politician_info[0].career2,
-      img: "/images/" + politician_info[0].politician_no + ".jpg",
-      link: "/politician/" + politician_info[0].politician_no
-    };
-    var politician_interest = await getPoliticianInterestByNo(rows[0].politician_no, connection); //정치인 관심사 정보를 가져옴
-    politician.itScience = politician_interest[0].itScience;
-    politician.economy = politician_interest[0].economy;
-    politician.culture = politician_interest[0].culture;
-    politician.society = politician_interest[0].society;
-    politician.politics = politician_interest[0].politics;
+      searchResult.push(politician);
+      resultData.searchResult = searchResult;
+    }
 
-    searchResult.push(politician);
-    resultData.searchResult=searchResult;
-
-
-  }catch(err){
-    resultData.status=500;
+  } catch (err) {
+    resultData.status = 500;
     console.log(err);
-  }
-
-  finally{
+  } finally {
     connection.end();
     res.render('search.ejs', resultData);
   }
