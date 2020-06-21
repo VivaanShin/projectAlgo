@@ -43,8 +43,11 @@ soup=BeautifulSoup(res,'html.parser')
 
 news_ul=soup.find('ul',class_='type01')
 news_list={'articleList':[]} #JSON 전환용 dic_list
-
+news_index=0;
 for news in news_ul.findAll('li',id=re.compile('sp_nws')):
+    
+    if(news_index >=3):
+        break;
     new_news={}
     new_news_each_title=news.find('a',class_='_sp_each_title') #제목 select
     new_news_txt_inline=news.find('dd',class_='txt_inline')#날짜를 가져오기 위한 영역
@@ -56,6 +59,7 @@ for news in news_ul.findAll('li',id=re.compile('sp_nws')):
     
     
     news_list['articleList'].append(new_news)
+    news_index+=1
     
 print(json.dumps(news_list['articleList'])) #JSON으로 node.js python-shell에 반환
  
