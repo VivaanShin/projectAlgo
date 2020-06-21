@@ -40,6 +40,7 @@ router.get('/', (req, res) => {
       resultData.user_id = user_id;
       resultData.user_email = user_email;
       resultData.user_phone = user_phone;
+      console.log("resultData print:",resultData);
       res.render('register_change', resultData);
 
     }
