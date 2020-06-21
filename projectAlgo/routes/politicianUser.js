@@ -91,7 +91,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
-            var weekEndDay=moment(weekDay).isoWeekday(13).format('YYYY-MM-DD');
             var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
             var tempWeekNewsList=await getPoliticianWeeklyNews(politicianInfo.politician_name,weekDay,weekEndDay);
            
@@ -99,14 +98,18 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             if(tempWeekGrade.length > 0){
                 weekGrade=tempWeekGrade[0].grade_score;
             }
-            weekElements={weekGrade:weekGrade,weekDay:weekDay};
-            weekNewsElement={
-                weekStartDay:weekDay,
-                weekEndDay:weekEndDay,
-                weekNewsList:tempWeekNewsList //해당 주의 뉴스 리스트
-            };
 
-            weekNewsInfo.push(weekNewsElement);
+            if(i > 0){
+                var weekEndDay=moment(weekDay).isoWeekday(13).format('YYYY-MM-DD');
+                weekElements={weekGrade:weekGrade,weekDay:weekDay};
+                weekNewsElement={
+                    weekStartDay:weekDay,
+                    weekEndDay:weekEndDay,
+                    weekNewsList:tempWeekNewsList //해당 주의 뉴스 리스트
+                };
+
+                weekNewsInfo.push(weekNewsElement);
+            }
             gradeList.push(weekElements);
             weekDay=moment().isoWeekday(i*-7).format('YYYY-MM-DD');
         }
