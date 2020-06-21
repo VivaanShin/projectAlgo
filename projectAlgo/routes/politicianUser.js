@@ -98,10 +98,11 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
                 weekGrade=tempWeekGrade[0].grade_score;
             }
 
+            weekElements={weekGrade:weekGrade,weekDay:weekDay};
+
             if(i > 0){
                 var tempWeekNewsList=await getPoliticianWeeklyNews(politicianInfo.politician_name,weekDay,weekEndDay);
                 var weekEndDay=moment(weekDay).isoWeekday(13).format('YYYY-MM-DD');
-                weekElements={weekGrade:weekGrade,weekDay:weekDay};
                 weekNewsElement={
                     weekStartDay:weekDay,
                     weekEndDay:weekEndDay,
