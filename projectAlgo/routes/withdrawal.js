@@ -31,21 +31,14 @@ router.get('/', (req, res) => {
   connection.query(sql, [user_id], function(err, rows, fields) {
     console.log("query in");
     if (err) {
-      console.log("query err");
-      return done(null, false, {
-        message: 'DB2 error'
-      });
+      console.log("query err",err);
     } else {
-      return done(null, true, {
-        message: 'success'
+      console.log("회원탈퇴 완료")
+      res.redirect('home', resultData);
       });
     }
   });
 
-
-
-
-  res.render('home', resultData);
   connection.end();
 });
 
