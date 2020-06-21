@@ -63,7 +63,8 @@ router.post('/', (req, res) => {
         console.log(error)
       }
     })
-  }.then(function(hash_pw){
+  }
+  userinfo_change().then(function(hash_pw){
     return new Promise(function(resolve, reject){
       var sql = 'update tb_user_info set user_pw = ? , user_email = ? , user_phone = ? where user_id = ?';
       var params = [hash_pw, user_email, user_phone, user_id];
