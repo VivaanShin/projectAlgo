@@ -34,18 +34,19 @@ router.get('/', (req, res) => {
       console.log(err);
     }else{
       console.log("success");
+      console.log("rows[0]",rows[0]);
       var user_email = rows[0].user_email;
       var user_phone = rows[0].user_phone;
       resultData.user_id = user_id;
       resultData.user_email = user_email;
       resultData.user_phone = user_phone;
       res.render('register_change', resultData);
-      connection.end();
+
     }
 
 
   })
-
+connection.end();
 });
 
 
