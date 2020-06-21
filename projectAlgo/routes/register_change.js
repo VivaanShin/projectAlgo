@@ -41,21 +41,12 @@ router.get('/', (req, res) => {
       searchResult.user_email = user_email;
       searchResult.user_phone = user_phone;
       resultData.searchResult = searchResult;
-      res.render('home', resultData);
+      res.render('register_change', resultData);
       connection.end();
     }
 
 
   })
-
-
-
-
-
-
-
-
-  res.render('register_change', resultData);
 
 });
 
