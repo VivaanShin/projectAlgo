@@ -41,7 +41,7 @@ exports.getPoliticianinfoByName=function getPoliticianinfoByName(politician_name
         var connection = mysql.createConnection(dbConfig);
         connection.connect();
         connection.query(`select * from tb_politician_info
-        where politician_name=?`,[politician_name],(err,name)=>{
+        where politician_name=?`,[politician_name],(err,politician_info)=>{
             if(err)
             {
                 connection.end();
