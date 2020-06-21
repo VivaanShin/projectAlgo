@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
     resultData.user = req.user;
     resultData.user.user_interest_check = req.session.user_interest_check;
   }
-  console.log(req.body);
+  console.log("req.body",req.body);
   var user_id = req.user.user_id;
   var user_pw = req.body.user_pw;
   var user_pw_check = req.body.user_pw_check;
