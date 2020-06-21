@@ -36,6 +36,23 @@ exports.getPoliticianNameByNo=function getPoliticianNameByNo(politician_no){
     });
 };
 
+exports.getPoliticianinfoByName=function getPoliticianinfoByName(politician_name){
+    return new Promise((resolve,reject)=>{
+        var connection = mysql.createConnection(dbConfig);
+        connection.connect();
+        connection.query(`select * from tb_politician_info
+        where politician_name=?`,[politician_name],(err,name)=>{
+            if(err)
+            {
+                connection.end();
+                reject(err);
+            }
+            connection.end();
+            resolve(politician_info); //정치인 아이디를 가져옴
+        });
+    });
+};
+
 exports.getPoliticianAllAverageGrade=function getPoliticianAllAverageGrade(politician_no){ //정치인 평점을 모두 가져옴
     return new Promise((resolve,reject)=>{
         var connection = mysql.createConnection(dbConfig);

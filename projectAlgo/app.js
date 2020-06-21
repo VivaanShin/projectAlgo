@@ -19,6 +19,7 @@ var loginRouter=require('./routes/login');
 var logoutRouter=require('./routes/logout');
 var politicianUserRouter=require('./routes/politicianUser');
 var searchRouter=require('./routes/searchPolitician');
+var namesearchRouter=require('./routes/namesearchPolitician');
 var matchingSurveyRouter=require('./routes/matching_survey');
 var matchingServiceRouter=require('./routes/matching_service');
 //여기까지 사용자 라우터
@@ -62,6 +63,7 @@ app.use('/login',loginRouter);
 app.use('/logout',logoutRouter);
 app.use('/politician',politicianUserRouter);
 app.use('/search',searchRouter);
+app.use('/namesearchPolitician',namesearchRouter);
 app.use('/matching_survey',matchingSurveyRouter);
 app.use('/matching_service',matchingServiceRouter);
 //여기까지 사용자 use
