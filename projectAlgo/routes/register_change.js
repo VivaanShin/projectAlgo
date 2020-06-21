@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
     resultData.user.user_interest_check = req.session.user_interest_check;
   }
   var user_id = req.user.user_id;
-
+  console.log(user_id);
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
   var sql = 'select * from tb_user_info where user_id = ?';
@@ -39,7 +39,6 @@ router.get('/', (req, res) => {
       resultData.searchResult.user_id = user_id;
       resultData.searchResult.user_email = user_email;
       resultData.searchResult.user_phone = user_phone;
-      resolve();
       res.render('home', resultData);
       connection.end();
     }
