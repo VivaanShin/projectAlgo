@@ -35,8 +35,7 @@ router.get('/', (req, res) => {
     } else {
       console.log("회원탈퇴 완료")
       res.redirect('home', resultData);
-      });
-    }
+
   });
 
   connection.end();
