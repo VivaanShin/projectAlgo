@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
   console.log("user_id:",user_id);
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
-  var sql = 'select * from tb_user_info where user_id = ?';
-  connection.query(sql, user_id, function(err, rows, fields) {
+  var sql = 'select * from tb_user_info where `user_id` = ?';
+  connection.query(sql, [user_id], function(err, rows, fields) {
     if(err){
       console.log(err);
     }else{
