@@ -91,7 +91,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
-            var weekEndDay=moment(weekDay).isoWeekday(6).format('YYYY-MM-DD');
+            var weekEndDay=moment(weekDay).isoWeekday(-6).format('YYYY-MM-DD');
             var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
             var tempWeekNewsList=await getPoliticianWeeklyNews(politicianInfo.politician_name,weekDay,weekEndDay);
            
