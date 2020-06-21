@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
   var user_pw_check = req.body.user_pw_check;
   var user_email = req.body.user_email;
   var user_phone = req.body.user_phone;
-
+  var hash_pw;
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
 
