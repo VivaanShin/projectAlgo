@@ -7,6 +7,7 @@ const getPoliticianNewsJSON=require('../scripts/getPoliticianNews').getPoliticia
 const moment=require('moment'); //시간 조작 모듈
 const router=express.Router();
 const isLoggedin=require('../scripts/confirmLogin').isLoggedIn;
+const getPoliticianWeeklyNews=require('../scripts/getPoliticianWeeklyNews');
 const dbConfig={
     host     : 'localhost',
     user     : 'root',
@@ -85,20 +86,31 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         }
         resultData.gradeScore=gradeScore;
         var gradeList=[]; //정치인 주당 평균
-
-        var weekDay=moment().isoWeekday(0).format('YYYY-MM-DD');; //해당 주 일요일부터 4주까지
-        console.log(moment(weekDay).isoWeek())
+        var weekNewsInfo=[]; //주당 뉴스
+        var weekDay=moment().isoWeekday(0).format('YYYY-MM-DD'); //해당 주 일요일부터 4주까지
+        
         
         for (let i=0;i<4;i++){//4주 까지 가져옴
+            var weekEndDay=moment(weekDay).isoWeekday(6).format('YYYY-MM-DD');
             var tempWeekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
+            var tempWeekNewsList=await getPoliticianWeeklyNews(politicianInfo.politician_name,weekDay,weekEndDay);
+           
             var weekGrade=0;
             if(tempWeekGrade.length > 0){
                 weekGrade=tempWeekGrade[0].grade_score;
             }
             weekElements={weekGrade:weekGrade,weekDay:weekDay};
+            weekNewsElement={
+                weekStartDay:weekDay,
+                weekEndDay:weekEndDay,
+                weekNewsList:JSON.parse(JSON.stringify(tempWeekNewsList)) //해당 주의 뉴스 리스트
+            };
+
+            weekNewsInfo.push(weekNewsElement);
             gradeList.push(weekElements);
             weekDay=moment().isoWeekday((i+1)*-7).format('YYYY-MM-DD');
         }
+        resultData.weekNewsInfo=weekNewsInfo;
         resultData.gradeList=gradeList.reverse();
 
         if(isLoggedin(req)){ //로그인 정보
@@ -127,48 +139,28 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     }
 });
 
-/*router.get('/:politician_no/legislation_info',async (req,res)=>{ //입법정보 라우터
-    var connection = mysql.createConnection(dbConfig);
-    connection.connect();
-    var resultData={}; //배열에 입법 정보 저장
-    var politician_no=req.params.politician_no;
-
-    try{
-       resultData.legislation_info=await getLegislationInfo(politician_no,connection);
-       resultData.status=200;
-
-       if(isLoggedin(req)){
-           resultData.user=req.user;
-       }
-    }
-    catch(err){
-        resultData.status=500;
-    }
-    finally{
-        connection.end();
-        res.render('',resultData); //나중에 프론트엔드 완성되면 view 지정
-        
-    }
-});*/
 
 /*router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
+    var weekStartDay=req.query.week_start_day.replace('-','.'); //시작일자
+    var weekEndDay=moment(weekStartDay).day(6).format('YYYY.MM.DD');
     try{
         var politician_name=await getPoliticianNameByNo(req.params.politician_no);
-        var rawNewsData=await getPoliticianNewsJSON(politician_name[0].politician_name);
+        var rawNewsData=JSON.parse(JSON.stringify(await getPoliticianWeeklyNews(politician_name,weekStartDay,weekEndDay)));
         var articleList=[];
         var status={};
 
         for(let i=0;i<rawNewsData.length;i++){
             var push_news_data={
-                articleTitle:rawNewsData[i].title,
-                articleLink:rawNewsData[i].originallink,
-                articleDay:String(moment(String(rawNewsData[i].pubDate)).format(YYYY.MM.DD))
+                articleTitle:rawNewsData[i].articleTitle,
+                articleLink:rawNewsData[i].articleLink,
+                articlePress:rawNewsData[i].articlePress,
+                articleDay:rawNewsData[i].articleDay,
             };
 
             articleList.push(push_news_data);
         }
         status=200;
-
+        resultData.articleList=articleList;
         if(isLoggedin(req)){
             resultData.user=req.user;
         }
@@ -179,40 +171,8 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
     }
 
     finally{
-        resultData.articleList=articleList;
         resultData.status=status;
         res.render('',resultData);//나중에 프론트엔드 완성되면 view 지정
-    }
-});
-*/
-/*router.get('/:politician_no/grade',async (req,res)=>{ //정치인 평점 정보 라우터
-    try{
-        var status={};
-        var resultData={};
-        var politician_no=req.params.politician_no;
-        var gradeAllAveragescore=await getPoliticianAllAverageGrade(politician_no);
-        var gradeList=[];
-        var weekDay=moment().day(0).format('YYYY-MM-DD'); //해당 주 월요일부터 4주까지 
-        
-        for (let i=0;i<4;i++){//4주 까지 가져옴
-            weekGrade=await getPoliticianWeekAverageGrade(politician_no,weekDay);
-            weekElements={weekGrade:weekGrade,weekDay:weekDay};
-            gradeList.push(weekElements);
-            weekDay=moment.day(i*-7).format('YYYY-MM-DD');
-        }
-        status=200;
-        resultData.grade_score=gradeAllAveragescore;
-        resultData.gradeList=gradeList;
-
-        if(isLoggedin(req)){
-            resultData.user=req.user;
-        }
-    }
-    catch(err){
-        status=500;
-    }
-    finally{
-        res.render('',resultData) //나중에 프론트엔드 완성되면 view 지정
     }
 });*/
 

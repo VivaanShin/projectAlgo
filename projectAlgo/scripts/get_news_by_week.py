@@ -25,7 +25,7 @@ def date_cleaning(text):
         match = r.search(text).group(1)
         return_text=match
     finally:
-        return return_text
+        return return_text;
 
 if(len(sys.argv)<3):
     print("정보 모두 입력 필요")
@@ -38,7 +38,7 @@ end_day=urllib.parse.quote_plus(str(sys.argv[3]).replace('-', '')) #마지막 �
 #날짜 검색 Url
 search_url="""https://search.naver.com/search.naver?where=news&sm=tab_opt&sort=0&photo=0&field=0&pd=3&ds={}&de={}&query={}""".format(start_day,end_day,name)
 
-res=urllib.request.urlopen(search_url).read()
+res=urllib.request.urlopen(search_url).read().decode('utf-8');
 soup=BeautifulSoup(res,'html.parser')
 
 news_ul=soup.find('ul',class_='type01')
@@ -57,5 +57,5 @@ for news in news_ul.findAll('li',id=re.compile('sp_nws')):
     
     news_list['articleList'].append(new_news)
     
-print(json.dumps(news_list,ensure_ascii=False)) #JSON으로 node.js python-shell에 반환
+print(json.dumps(news_list['articleList'])) #JSON으로 node.js python-shell에 반환
  
