@@ -70,7 +70,7 @@ router.post('/', (req, res) => {
       var params = [hash_pw, user_email, user_phone, user_id];
       connection.query(sql, params, function(err, results, fields) {
         if(err){
-          console.oog(err);
+          console.log(err);
         }else{
           console.log("success");
           resolve();
