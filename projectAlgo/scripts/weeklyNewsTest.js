@@ -3,10 +3,10 @@ const getPoliticianWeeklyNews=require('./getPoliticianWeeklyNews');
 
 async function test(){
     try{
-        var results=await getPoliticianWeeklyNews('이낙연','2020-06-14','2020-06-20');
+        var results=await getPoliticianWeeklyNews('태구민','2020-05-24','2020-05-30');
         results=JSON.parse(JSON.stringify(results));
 
-        console.log(results[0].articleTitle);
+        console.log(results[3]);
     }
     catch(err){
         console.log(err);
