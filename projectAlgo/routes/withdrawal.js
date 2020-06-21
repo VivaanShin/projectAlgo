@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
       console.log("query err",err);
     } else {
       console.log("회원탈퇴 완료")
-      res.redirect(200,'home');
+      res.redirect(200,'/');
 
   }});
 
