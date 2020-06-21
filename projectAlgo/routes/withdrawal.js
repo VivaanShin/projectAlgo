@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
   connection.connect();
 
   var sql = 'delete from tb_user_info where user_id = ?';
-  connection.query(sql2, [user_id], function(err, rows, fields) {
+  connection.query(sql, [user_id], function(err, rows, fields) {
     console.log("query in");
     if (err) {
       console.log("query err");
