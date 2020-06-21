@@ -87,8 +87,10 @@ router.post('/', (req, res) => {
       if(user_pw == user_pw_check){
         bcrypt.hash(user_pw, null, null, function(err, hash){
           hash_pw = hash
+          console.log("hash_pw:",hash_pw)
+          resolve(hash_pw)
         })
-        resolve(hash_pw)
+
       }
       else {
         console.log(error)
