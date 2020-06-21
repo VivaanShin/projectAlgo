@@ -111,6 +111,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
             weekDay=moment().isoWeekday((i+1)*-7).format('YYYY-MM-DD');
         }
         resultData.weekNewsInfo=weekNewsInfo;
+        console.log(weekNewsInfo);
         resultData.gradeList=gradeList.reverse();
 
         if(isLoggedin(req)){ //로그인 정보
