@@ -135,8 +135,6 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
         req.session.nowUrl=`/politician/${politician_no}`;
     }
     catch(err){
-         resultData.status=500;
-         console.log(err.message);
     }
     finally{
         connection.end();
