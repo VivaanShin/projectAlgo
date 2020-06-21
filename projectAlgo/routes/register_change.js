@@ -36,9 +36,11 @@ router.get('/', (req, res) => {
       console.log("success");
       var user_email = rows[0].user_email;
       var user_phone = rows[0].user_phone;
-      resultData.searchResult.user_id = user_id;
-      resultData.searchResult.user_email = user_email;
-      resultData.searchResult.user_phone = user_phone;
+      searchResult = {};
+      searchResult.user_id = user_id;
+      searchResult.user_email = user_email;
+      searchResult.user_phone = user_phone;
+      resultData.searchResult = searchResult;
       res.render('home', resultData);
       connection.end();
     }
