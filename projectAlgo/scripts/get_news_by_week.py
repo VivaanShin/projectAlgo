@@ -31,7 +31,7 @@ if(len(sys.argv)<3):
     print("정보 모두 입력 필요")
     sys.exit(-1)
     
-name=urllib.parse.quote_plus(sys.argv[1]) #이름
+name=urllib.parse.quote_plus(sys.argv[1]+" 의원") #이름
 start_day=urllib.parse.quote_plus(str(sys.argv[2]).replace('-', '')) #시작 날짜
 end_day=urllib.parse.quote_plus(str(sys.argv[3]).replace('-', '')) #마지막 날짜
 
