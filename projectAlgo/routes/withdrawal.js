@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     resultData.user = req.user;
     resultData.user.user_interest_check = req.session.user_interest_check;
   }
-  var user_id = req.body.user_id;
+  var user_id = req.user.user_id;
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
   console.log('userid:',user_id)
