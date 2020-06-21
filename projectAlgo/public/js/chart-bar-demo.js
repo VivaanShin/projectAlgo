@@ -45,6 +45,9 @@ var myBarChart = new Chart(ctx, {
     }],
   },
   options: {
+
+    onClick: graphClickEvent,
+
     maintainAspectRatio: false,
     layout: {
       padding: {
