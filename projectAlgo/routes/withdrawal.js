@@ -21,10 +21,10 @@ router.get('/', (req, res) => {
   var user_id = req.body.user_id;
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
-
+  console.log('userid:',user_id)
   function withdrawal() {
     return new Promise(function(resolve, reject){
-      var sql = 'delete from tb_user_info where user_id = ?';
+      var sql = `delete from tb_user_info where user_id = ?`;
       connection.query(sql, [user_id], function(err, rows, fields) {
         console.log("query in");
         if (err) {
