@@ -13,11 +13,6 @@ const dbConfig = {
 
 router.get('/', (req, res) => {
   var resultData = {};
-  /*
-  if (isLoggedin(req)) { //로그인 정보
-    resultData.user = req.user;
-  }
-  */
 
   if (isLoggedin(req)) {
     resultData.user = req.user;
@@ -27,21 +22,30 @@ router.get('/', (req, res) => {
   var connection = mysql.createConnection(dbConfig);
   connection.connect();
 
-  var sql = 'delete from tb_user_info where user_id = ?';
-  connection.query(sql, [user_id], function(err, rows, fields) {
-    console.log("query in");
-    if (err) {
-      console.log("query err",err);
-    } else {
-      console.log("회원탈퇴 완료")
-      req.logout();
-      req.session.destroy(function (err){
-          res.redirect('/');
-      });
+  function withdrawal() {
+    return new Promise(function(resolve, reject){
+      var sql = 'delete from tb_user_info where user_id = ?';
+      connection.query(sql, [user_id], function(err, rows, fields) {
+        console.log("query in");
+        if (err) {
+          console.log("query err",err);
+        } else {
+          console.log("회원탈퇴 완료")
+          req.logout();
+          req.session.destroy(function (err){
+              res.redirect('/');
+          });
 
-  }});
+      }});
+    })
+  }
+  withdrawal().then(function(){
+    connection.end();
+  }).catch(function(err){
+    console.log('error',err);
+  })
 
-  connection.end();
+
 });
 
 
