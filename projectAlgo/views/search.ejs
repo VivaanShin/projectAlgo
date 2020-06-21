@@ -199,22 +199,18 @@
 
 
 
-      <!--정치인/선거구 검색창-->
+            <!--정치인/선거구 검색창-->
       <div class="tsh" style="padding-top:7.5%">
-        <form name="formSearch" onsubmit="return false;" method="post" action="">
-          <input type="hidden" name="PageNumber" value="1">
-          <input type="hidden" name="searchArea" value="total">
-          <input type="hidden" name="searchCategory" value="total">
-          <input type="hidden" name="researchType" value="">
+        <form name="formSearch" method="post" action="/namesearchPolitician">
 
           <span>
-            <input type="text" title="검색어" id="sh_txt" name="searchQuery" value="" onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event);" style="ime-mode:active;" class="inp"
+            <input type="text" title="검색어" name="politician_name" value="" 
               placeholder="정치인/선거구 검색">
           </span>
 
-          <a class="btn_gnbSch" href="javascript:goSearch();">
+          <button>
             <img src="/img/btn_gnbSch.png" alt="검색">
-          </a>
+          </button>
         </form>
 
       </div>
@@ -305,8 +301,8 @@
           <p class="text-center"></p>
 
           <!--검색창-->
-          <form class="form-inline my-2">
-            <input class="form-control mr-sm-2" style="width: 24%; margin-left: 36%;" type="text" placeholder="정치인 검색">
+          <form class="form-inline my-2" action="/namesearchPolitician" method="post">
+            <input class="form-control mr-sm-2" style="width: 24%; margin-left: 36%;" type="text" name = "politician_name" placeholder="정치인 검색">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
           </form>
           <br><br><br><br><br><br><br>
