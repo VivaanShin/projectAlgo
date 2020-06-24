@@ -141,7 +141,7 @@ router.get('/:politician_no',async (req,res)=>{ //기본 신상 정보 라우터
 });
 
 
-router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
+/*router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
     var weekStartDay=req.query.week_start_day.replace('-','.'); //시작일자
     var weekEndDay=moment(weekStartDay).day(6).format('YYYY.MM.DD');
     try{
@@ -175,7 +175,7 @@ router.get('/:politician_no/news',async (req,res)=>{//정치인 뉴스 라우터
         resultData.status=status;
         res.render('',resultData);//나중에 프론트엔드 완성되면 view 지정
     }
-});
+});*/
 
 router.put('/:politician_no/grade',async (req,res)=>{ //정치인 평점 등록
 
