@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
     }
 
     resultData.gradeInfo=gradeInfo;
-    var gradeDetailInfo=await getBlackUserGrade(blackUser.user_id,connection); // 유저 평점 상세정보 render
+    var gradeDetailInfo=await getBlackUserGrade(connection); // 유저 평점 상세정보 render
     resultData.gradeDetailInfo=gradeDetailInfo;
     console.log("resultData",resultData);
 
