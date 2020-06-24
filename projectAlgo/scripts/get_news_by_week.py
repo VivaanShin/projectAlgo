@@ -58,8 +58,9 @@ for news in news_ul.findAll('li',id=re.compile('sp_nws')):
     new_news['articleDay']=date_cleaning(new_news_txt_inline.text)#기사 날짜
     
     
+    re.sub('/[\']/g',new_news['articleTitle'],' ');
     news_list['articleList'].append(new_news)
     news_index+=1
-    
+
 print(json.dumps(news_list['articleList'])) #JSON으로 node.js python-shell에 반환
  
