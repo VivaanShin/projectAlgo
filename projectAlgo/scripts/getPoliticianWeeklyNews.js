@@ -17,6 +17,7 @@ module.exports=function getPoliticianWeeklyNews(politician_name,weekStartDay,wee
                 reject(err);
             }
 
+            console.log(results[0]);
             resolve(results[0]);
         });
     });
