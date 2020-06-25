@@ -17,15 +17,7 @@ module.exports=function getPoliticianWeeklyNews(politician_name,weekStartDay,wee
                 reject(err);
             }
             
-
-            if(typeof results == 'undefined'){ //크롤링 된 기사 없을 시 처리 
-
-                resolve(results);
-            }
-
-            else{
-                resolve(results[0]);
-            }
+            resolve(results[0]);
         });
     });
 };

@@ -46,7 +46,7 @@ news_list={'articleList':[]} #JSON 전환용 dic_list
 news_index=0;
 for news in news_ul.findAll('li',id=re.compile('sp_nws')):
     
-    if(news_index >=3):
+    if(news_index >=3 or not news):
         break;
     new_news={}
     new_news_each_title=news.find('a',class_='_sp_each_title') #제목 select
