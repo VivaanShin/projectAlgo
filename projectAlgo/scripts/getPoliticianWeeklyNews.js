@@ -18,9 +18,9 @@ module.exports=function getPoliticianWeeklyNews(politician_name,weekStartDay,wee
             }
             
 
-            if(typeof results == 'undefined'){ //크롤링 된 기사 없을 시 처리
+            if(typeof results == 'undefined'){ //크롤링 된 기사 없을 시 처리 
 
-                resolve(new Array(0));
+                resolve(results);
             }
 
             else{
