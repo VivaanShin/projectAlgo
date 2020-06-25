@@ -16,11 +16,16 @@ module.exports=function getPoliticianWeeklyNews(politician_name,weekStartDay,wee
             if(err){
                 reject(err);
             }
+            
 
-            console.log(weekStartDay);
-            console.log(weekEndDay);
-            console.log(results[0]);
-            resolve(results[0]);
+            if(typeof results == 'undefined'){ //크롤링 된 기사 없을 시 처리
+
+                resolve(new Array(0));
+            }
+
+            else{
+                resolve(results[0]);
+            }
         });
     });
 };
