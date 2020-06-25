@@ -58,8 +58,7 @@ for news in news_ul.findAll('li',id=re.compile('sp_nws')):
     new_news['articleDay']=date_cleaning(new_news_txt_inline.text)#기사 날짜
     
     
-    new_news['articleTitle']=new_news['articleTitle'].replace("·"," ")
-    new_news['articleTitle']=new_news['articleTitle'].replace("\"","'")
+    new_news['articleTitle']=new_news['articleTitle'].replace("\""," ")
     print(new_news)
     news_list['articleList'].append(new_news)
     news_index+=1
