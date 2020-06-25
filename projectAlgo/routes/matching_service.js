@@ -84,7 +84,7 @@ router.get('/', (req, res) => {
           console.log("user_interest", user_interest);
           resultData.user_interest = user_interest;
 
-          var user_interest_score = [user_itScience_sqrt, user_economy_sqrt, user_culture_sqrt, user_society_sqrt, user_politics_sqrt];
+          var user_interest_score = [rows[0].itScience, rows[0].economy, rows[0].culture, rows[0].society, rows[0].politics];
           //console.log(user_itScience, user_economy, user_culture, user_society, user_politics);
           //최대값 찾기
           var maxNum = Math.max(user_itScience, user_economy, user_culture, user_society, user_politics);
