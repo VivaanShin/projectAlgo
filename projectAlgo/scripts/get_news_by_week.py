@@ -60,6 +60,8 @@ for news in news_ul.findAll('li',id=re.compile('sp_nws')):
     
     new_news['articleTitle']=new_news['articleTitle'].replace("·"," ")
     new_news['articleTitle']=new_news['articleTitle'].replace("'"," ")
+    new_news['articleTitle']=new_news['articleTitle'].replace("\""," ")
+    print(new_news)
     news_list['articleList'].append(new_news)
     news_index+=1
 
